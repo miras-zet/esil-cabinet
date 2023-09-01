@@ -1,0 +1,30 @@
+.shapka{
+    display: flex;
+    justify-content: flex-end;}
+.shapka p{
+    display: flex;
+  justify-content: flex-end;
+  width: 400px;
+  height: 280px;
+  text-align: right;
+
+}
+
+.qr{
+    display: flex;
+  justify-content: flex-start;
+  position: absolute;
+  top: 40px;
+  width: 200px;
+}
+
+.bodytext{
+    text-align: justify;
+  text-indent: 15px;
+}
+.bodytext h3{
+    text-align: center;
+}
+.bodytext p{
+    text-align: justify;
+}

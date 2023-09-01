@@ -1,0 +1,43 @@
+.modal{
+    position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #00000091;
+  left: 0;
+  z-index: 0;
+}
+.modalblock{
+    background: aliceblue;
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  margin-top: 10%;
+  padding: 25px;
+  z-index: 99999;
+}
+
+.modalblock select{
+    width: 90%;
+  height: 30px;
+  font-size: 16px;
+  background: none;
+  border: 1px solid;
+}
+
+.modalblock button{
+    border: 0;
+  background: green;
+  font-size: 18px;
+  font-family: 'Roboto Slab', sans-serif;;
+  color: aliceblue;
+  padding: 9px 15px;
+  border-radius: 7px;
+}
+
+@media only screen and (max-width: 479px){
+  .modalblock{
+    width: auto;
+  }
+}
