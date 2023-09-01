@@ -1,8 +1,7 @@
 import axios from "axios";
-import * as dotenv from "dotenv";
-dotenv.config({path: __dirname+'/.env'});
+import config from "./config.json";
 
-export const API_URL = process.env.API_URL;
+export const API_URL = config.API_URL;
 
 const $api = axios.create({
     withCredentials: true,
