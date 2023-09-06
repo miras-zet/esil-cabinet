@@ -6,11 +6,13 @@ export interface CertResponse {
     birth_date: string;
     cafedra_kz: string;
     cafedra_ru: string;
+    cafedra_en: string;
     course_count: number;
     course_number: number;
     created: string;
     dekanat_kz: string;
     dekanat_ru: string;
+    dekanat_en: string;
     grant_type: string;
     id: number;
     iin: string;
@@ -21,9 +23,11 @@ export interface CertResponse {
     specialization_code: string;
     specialization_name_kz: string;
     specialization_name_ru: string;
+    specialization_name_en: string;
     start_date: Date;
     study_form_id: number;
     study_form_name_kz: string;
     study_form_name_ru: string;
+    study_form_name_en: string;
     
 }
