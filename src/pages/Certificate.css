@@ -28,3 +28,9 @@
 .bodytext p{
     text-align: justify;
 }
+#report {width: auto;
+   background-color: white;
+  color: black;
+  padding: 20px 50px;
+    }
+     
