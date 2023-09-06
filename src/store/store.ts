@@ -9,8 +9,9 @@ export default class Store {
     user = {} as IUser; 
     certificat = {} as CertResponse;     
     isLoading = false;
-    isAuth = false;    
-
+    isAuth = false;  
+      
+   
     constructor() {
         makeAutoObservable(this);
     }
@@ -54,7 +55,7 @@ export default class Store {
                 this.setUser(user);
             }
         } catch (e:any) {
-            console.log(e.response?.data?.message);
+            console.log(e.response?.data?.message);                      
         }
     }
     async logout() {

@@ -2,7 +2,7 @@ import { CertResponse } from "../../models/response/CertResponse"
 import moment from "moment";
 import QRCode from "react-qr-code";
 import '../Certificate.css'
-
+import html2pdf from 'html2pdf.js/dist/html2pdf.min';
 
 
 export function Prilozhenie4(certificat:CertResponse)  {
@@ -17,10 +17,16 @@ export function Prilozhenie4(certificat:CertResponse)  {
         
     //   },[]);      
       const qrcodeValue = `${window.location.host}/certificate/student/${certificat.id}`; 
-
+      const generatePdf = () => {
+        const report = document.getElementById('report');
+        html2pdf().from(report).save()
+      };
+      
   return (
     <>
-    <div>
+    <div><button onClick={generatePdf}> save PDF</button></div>
+    
+    <div id="report" style={{width: "100%", backgroundColor: 'white', color: "black"}}>
         <div style={{float: "left", display: "flex",justifyContent: "flex-start"}}>{certificat?.id} / {moment(certificat?.created).format("DD.MM.YYYY")}</div>
         {/* <div style={
             {display: "flex",
