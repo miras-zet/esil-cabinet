@@ -13,7 +13,7 @@ export interface CertResponse {
     dekanat_kz: string;
     dekanat_ru: string;
     dekanat_en: string;
-    grant_type: string;
+    grant_type: number;
     id: number;
     iin: string;
     lastname: string;

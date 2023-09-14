@@ -5,6 +5,7 @@ import '../Certificate.css'
 import html2pdf from 'html2pdf.js/dist/html2pdf.min';
 
 
+
 export function Students(certificat:CertResponse)  {
     // const [certid] = useState<number>(id);
     // const [certificat, setCertificat] = useState<CertResponse>();
@@ -19,8 +20,9 @@ export function Students(certificat:CertResponse)  {
       const qrcodeValue = `${window.location.host}/certificate/student/${certificat.id}`; 
       const generatePdf = () => {
         const report = document.getElementById('report');
-        html2pdf().from(report).save()
-      };
+        html2pdf().from(report).save()     
+        
+      };      
       
   return (
     <>
@@ -61,8 +63,9 @@ export function Students(certificat:CertResponse)  {
                         , {moment(certificat?.birth_date).format("DD.MM.YYYY")} г.р. </b> в том, что он (а) действительно обучающим(ей)ся на <b>{certificat?.course_number}</b> курсе, образовательной программе  <b>{certificat?.specialization_code} - "{certificat?.specialization_name_ru}" </b>,
                         <u><b> Учреждения "Esil University"</b> <b>лицензия № KZ08LAA00032358  от 01.04. 2022 г., без ограничения</b></u><br/> 
                         <br/>Факультет {certificat?.dekanat_ru}  
-						<br/>Форма обучения: {certificat?.study_form_name_ru} <br/> 
-                        Государственный грант / <b>На платной основе</b> / Грант Акимата<br/>
+						<br/>Форма обучения: {certificat?.study_form_name_ru} <br/>                         
+                        {certificat.grant_type === -4 && <><b>Государственный грант</b> / На платной основе / Грант Акимата<br/></>}
+                        {certificat.grant_type === -7 && <>Государственный грант / <b>На платной основе </b>/ Грант Акимата<br/></>}
 						Справка действительна на 2023/2024 учебный год.<br/>						
 						Срок обучения в учебном заведении {certificat?.course_count} года.<br/>
 						Период обучения с {moment(certificat?.start_date).format("DD.MM.YYYY")} года по 30.06.{2024+certificat!.course_count-certificat!.course_number} года. <br/>
