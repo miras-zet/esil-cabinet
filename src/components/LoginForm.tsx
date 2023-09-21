@@ -18,7 +18,7 @@ const LoginForm: FC = () => {
         value = {
             username
         }
-        type = "text" placeholder = "username" 
+        type = "text" placeholder = "ИИН или логин" 
         style={{fontSize: 16,
             padding: 5,
             margin: 5,
@@ -32,7 +32,7 @@ const LoginForm: FC = () => {
         value = {
             password
         }
-        type = "password" placeholder = "password"
+        type = "password" placeholder = "пароль"
         style={{fontSize: 16,
             padding: 5,
             margin: 5,

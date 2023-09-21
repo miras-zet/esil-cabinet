@@ -69,7 +69,7 @@ export function Students(certificat:CertResponse)  {
 						Справка действительна на 2023/2024 учебный год.<br/>						
 						Срок обучения в учебном заведении {certificat?.course_count} года.<br/>
 						Период обучения с {moment(certificat?.start_date).format("DD.MM.YYYY")} года по 30.06.{2024+certificat!.course_count-certificat!.course_number} года. <br/>
-						Справка выдана для предъявления предъявления по месту требования.
+						Справка выдана для предъявления по месту требования.
 						</p>
 					</div>
 				</div>
