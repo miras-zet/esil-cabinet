@@ -10,6 +10,7 @@ export default class Store {
     certificat = {} as CertResponse;     
     isLoading = false;
     isAuth = false;  
+    errors = 0;
       
    
     constructor() {
@@ -20,6 +21,9 @@ export default class Store {
         this.isAuth = bool;
     }
     
+    async setError(error: number){
+        this.errors = error;
+    };
     
     // setAuth() {
     //     this.isAuth();
@@ -55,7 +59,8 @@ export default class Store {
                 this.setUser(user);
             }
         } catch (e:any) {
-            console.log(e.response?.data?.message);                      
+            console.log(e.response?.data?.message);   
+            this.setError(e.response?.data?.statusCode);                      
         }
     }
     async logout() {

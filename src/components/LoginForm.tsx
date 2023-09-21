@@ -11,7 +11,7 @@ const LoginForm: FC = () => {
     <div> 
         <img src="https://esil.edu.kz/bitrix/templates/UniverNew/img/logo_new.png" width={300} />
         <h2 style={{fontSize: 30}}>АВТОРИЗУЙТЕСЬ</h2>
-        <div>{}</div> 
+        
         < input onChange = {
             e => setUsername(e.target.value)
         }
@@ -38,7 +38,8 @@ const LoginForm: FC = () => {
             margin: 5,
           }}
         /> 
-         <br/>
+        <div>{store.errors === 401 && <span style={{color: 'red'}}>Не верно введен логин или пароль</span>} {store.errors === 500 && <span style={{color: 'red'}}>Ошибка сервера</span>} &nbsp;</div> 
+          
         <button onClick = {
             () => store.login(username, password)
         } 
