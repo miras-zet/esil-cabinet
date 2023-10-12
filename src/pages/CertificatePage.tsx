@@ -8,6 +8,8 @@ import { Prilozhenie4 } from './tamplate/Prilozhenie4';
 import { Students } from './tamplate/Students';
 import { Prilozhenie31 } from './tamplate/Prilozhenie31';
 import { Prilozhenie29 } from './tamplate/Prilozhenie29';
+import { Link } from 'react-router-dom';
+import { StudentsEn } from './tamplate/StudentsEn';
 
 
 
@@ -43,6 +45,7 @@ const certificatePage:FC = () => {
 
   return (
     <div>
+       <Link to={"/"} className='btn'>Назад</Link>
         {(() => {
         switch(certificate.cert_type) {
             case 1:
@@ -56,7 +59,10 @@ const certificatePage:FC = () => {
             case 5:
               return  Prilozhenie31(certificate);
             case 6:
-              return  Students(certificate);
+              if (certificate.language === 'en')
+                return  StudentsEn(certificate);
+              else 
+                return  Students(certificate);
           default:
             return  Students(certificate);
         }

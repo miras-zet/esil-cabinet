@@ -93,9 +93,9 @@ export default class Store {
             this.setLoading(false);
         }
     }
-    async prepareCert(value:number) {
+    async prepareCert(value:number, lang:string) {
         try {
-            const response = await CertService.prepareCert(localStorage.getItem('token')!, parseInt(localStorage.getItem('user_id')!), value,'ru');
+            const response = await CertService.prepareCert(localStorage.getItem('token')!, parseInt(localStorage.getItem('user_id')!), value,lang);
             this.certificat = response.data;
             //console.log(response);
             localStorage.setItem('certificat', ''+response.data.id);

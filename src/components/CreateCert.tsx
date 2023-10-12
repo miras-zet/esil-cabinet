@@ -5,7 +5,8 @@ import './CreateCert.css';
 import { ModalContext } from "../http/ModalContext";
 
 const CreateCert: FC = () => {
-    const [value, setValue] = useState<string>('');    
+    const [value, setValue] = useState<string>('');
+    const [lang, setLang] = useState<string>('');    
     const {store} = React.useContext(Context);    
     const {close} = useContext(ModalContext);     
 
@@ -27,12 +28,17 @@ const CreateCert: FC = () => {
         <div className="modalblock">
         <h1>Выберите тип справки</h1>
         <select value={value} onChange={event => setValue(event.target.value)}>
-            <option key='0' value='0'>---</option>
+            <option key='0' value=''>---</option>
             {options}
-	    </select>        
+	    </select>  
+        <p style={{color:"black"}}>Выберите язык</p>
+        <select value={lang} onChange={event => setLang(event.target.value)}>
+            <option key='ru' value='ru'>Русский</option>
+            <option key='en' value='en'>Аглийский</option>
+	    </select>      
         <p></p>
         <button onClick = {
-            () => store.prepareCert(parseInt(value))
+            () => store.prepareCert(parseInt(value), lang)
         } > Создать справку</button>         <button  style={{background:"blue", marginLeft:20}}   onClick={close}> Отмена</button>
         </div>
         
