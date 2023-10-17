@@ -9,6 +9,7 @@ import { Students } from './tamplate/Students';
 import { Prilozhenie31 } from './tamplate/Prilozhenie31';
 import { Prilozhenie29 } from './tamplate/Prilozhenie29';
 import { useParams } from 'react-router-dom';
+import { StudentsEn } from './tamplate/StudentsEn';
 
 
 
@@ -45,8 +46,11 @@ const certificateLinkPage:FC = () => {
               return  Prilozhenie29(certificate);
             case 5:
               return  Prilozhenie31(certificate);
-            case 6:
-              return  Students(certificate);
+              case 6:
+                if (certificate.language === 'en')
+                  return  StudentsEn(certificate);
+                else 
+                  return  Students(certificate);
           default:
             return  Students(certificate);
         }
