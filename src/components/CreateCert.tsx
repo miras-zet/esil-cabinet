@@ -34,7 +34,7 @@ const CreateCert: FC = () => {
         <p style={{color:"black"}}>Выберите язык</p>
         <select value={lang} onChange={event => setLang(event.target.value)}>
             <option key='ru' value='ru'>Русский</option>
-            <option key='en' value='en'>Аглийский</option>
+            <option key='en' value='en'>Английский</option>
 	    </select>      
         <p></p>
         <button onClick = {
