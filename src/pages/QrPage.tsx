@@ -30,12 +30,12 @@ const certificatePage:FC = () => {
   },[])
 
   if(reason){
-    return <div>Сертификат не найдет</div>
+    return <div>Сертификат не найден</div>
   }
   return (
     <div>
         <div>
-            {/* <img src="http://old.esil.edu.kz/bitrix/templates/UniverNew/img/logo_new.png" width={300} /> */}
+            <img src="./logo_new.png" width={300} /> 
             <h1>Учреждения "Esil University"</h1>
             <p>{typeCert[certificate.cert_type-1]}</p>
             <p>ФИО обучающегося:  <u>  {certificate.lastname} {certificate.name} {certificate.middlename}   </u> </p>
