@@ -14,7 +14,7 @@ const LoginForm: FC = () => {
     // }
     return (
     <div> 
-        <img src="http://old.esil.edu.kz/bitrix/templates/UniverNew/img/logo_new.png" width={300} />
+        {/* <img src="http://old.esil.edu.kz/bitrix/templates/UniverNew/img/logo_new.png" width={300} /> */}
         <h2 style={{fontSize: 40}}>Esil Кабинет</h2>
         <input onChange = {
             e => setUsername(e.target.value)
