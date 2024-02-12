@@ -23,7 +23,7 @@ export function StudentsEn(certificat:CertResponse)  {
         html2pdf().from(report).save()     
         
       };      
-      
+     
   return (
     <>
     <div><button onClick={generatePdf}> save PDF</button></div>

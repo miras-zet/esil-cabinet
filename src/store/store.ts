@@ -11,6 +11,8 @@ export default class Store {
     isLoading = false;
     isAuth = false;  
     errors = 0;
+    KPIScore = 0;
+    role!: String;
       
    
     constructor() {
@@ -24,6 +26,10 @@ export default class Store {
     async setError(error: number){
         this.errors = error;
     };
+
+    async setKPIScore(score: number){
+        this.KPIScore = score;
+    };
     
     // setAuth() {
     //     this.isAuth();
@@ -31,6 +37,10 @@ export default class Store {
 
     setUser(user: AuthResponse) {
          this.user = user;
+    }
+
+    setRole(role: String) {
+        this.role = role;
     }
 
     setcertificate(certificate: CertResponse){
@@ -43,16 +53,25 @@ export default class Store {
     setLoading(bool: boolean) {
         this.isLoading = bool;
     }
-
     async login(username: string, password: string) {
         try {
             const response = await AuthService.login(username, password);
             // console.log(response);
             localStorage.setItem('token', response.data.token);
-            localStorage.setItem('user_id',""+response.data.id);
+            localStorage.setItem('role', response.data.role_str);
+            localStorage.setItem('KPIScore', response.data.KPIScore);
+            localStorage.setItem('cafedraname', response.data.cafedraname);
+            localStorage.setItem('cafedraid', ""+response.data.cafedraid);
+            localStorage.setItem('user_id', ""+response.data.id);
             localStorage.setItem('data',response.request.response);
 
             this.setAuth(true);
+            if(localStorage.getItem('role')=='plt_student'){
+                this.setRole("plt_student");
+            }
+            if(localStorage.getItem('role')=='plt_tutor'){
+                this.setRole("plt_tutor");
+            }
             //this.isAuth();
             const user = JSON.parse(localStorage.getItem('data')!);
             if (user) {
@@ -107,6 +126,23 @@ export default class Store {
     async getCert() {
         try {
             const response = await CertService.getCert(parseInt(localStorage.getItem('user_id')!),localStorage.getItem('token')!);
+            console.log(response);
+        } catch (e:any) {
+            console.log(e.response?.data?.message);
+        }
+    }
+
+    async getRole() {
+        try {
+            const response = await localStorage.getItem('role');
+            console.log(response);
+        } catch (e:any) {
+            console.log(e.response?.data?.message);
+        }
+    }
+    async getKPIScore() {
+        try {
+            const response = await localStorage.getItem('KPIScore');
             console.log(response);
         } catch (e:any) {
             console.log(e.response?.data?.message);

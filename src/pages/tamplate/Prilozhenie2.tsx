@@ -20,10 +20,10 @@ export function Prilozhenie2(certificat:CertResponse)  {
         const report = document.getElementById('report');
         html2pdf().from(report).save()
       };
-      
+
   return (
     <>
-    <div><button onClick={generatePdf}> save PDF</button></div>
+   <div><button onClick={generatePdf}> save PDF</button></div>
     
     <div id="report">
         <div style={{float: "left", display: "flex",justifyContent: "flex-start"}}>{certificat?.id} / {moment(certificat?.created).format("DD.MM.YYYY")}</div>

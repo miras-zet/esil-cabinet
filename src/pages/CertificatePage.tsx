@@ -8,7 +8,6 @@ import { Prilozhenie4 } from './tamplate/Prilozhenie4';
 import { Students } from './tamplate/Students';
 import { Prilozhenie31 } from './tamplate/Prilozhenie31';
 import { Prilozhenie29 } from './tamplate/Prilozhenie29';
-import { Link } from 'react-router-dom';
 import { StudentsEn } from './tamplate/StudentsEn';
 
 
@@ -25,7 +24,9 @@ const certificatePage:FC = () => {
   //const [certid, setCertid] = useState<number>(store.certificat.id);
   //const [certificat, setcertificat] = useState([]);
 
-  
+  function back() {
+    window.location.href="/";
+  }
   useEffect(() => {
     const certid = localStorage.getItem('certificat'); 
     // console.log(certid);
@@ -36,6 +37,7 @@ const certificatePage:FC = () => {
       const resp = await fetch(`${API_URL}/cert/${certid}`);
       setCertificate(await resp.json());
     };
+    
     fetch_data();
   },[]);
 
@@ -45,7 +47,7 @@ const certificatePage:FC = () => {
 
   return (
     <div>
-       <Link to={"/"} className='btn'>Назад</Link>
+      <button onClick={back}>Назад</button>
         {(() => {
         switch(certificate.cert_type) {
             case 1:

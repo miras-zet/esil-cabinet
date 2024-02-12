@@ -6,13 +6,17 @@ const LoginForm: FC = () => {
     const [username, setUsername] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const {store} = React.useContext(Context);
-
+    // const debugAdmin = () => {
+    //     store.login('6172', '020815550281');
+    // }
+    // const debugTutor = () => {
+    //     store.login('730705301528', '730705301528');
+    // }
     return (
     <div> 
-        <img src="https://esil.edu.kz/bitrix/templates/UniverNew/img/logo_new.png" width={300} />
-        <h2 style={{fontSize: 30}}>АВТОРИЗУЙТЕСЬ</h2>
-        
-        < input onChange = {
+        <img src="http://old.esil.edu.kz/bitrix/templates/UniverNew/img/logo_new.png" width={300} />
+        <h2 style={{fontSize: 40}}>Esil Кабинет</h2>
+        <input onChange = {
             e => setUsername(e.target.value)
         }
         value = {
@@ -42,12 +46,27 @@ const LoginForm: FC = () => {
           
         <button onClick = {
             () => store.login(username, password)
-        } 
+        }
         style={{padding: 10,
             margin: 10,
             background: "#47a847",
             color: "white"}}> Войти</button>
-        <p>Если вы в первый раз введите логин и пароль ваш ИИН</p>
+        {/* <button onClick = {
+            () => debugAdmin()
+        }
+        style={{padding: 10,
+            margin: 10,
+            background: "#47a847",
+            color: "white"}}> Тест (админ KPI)</button>
+        <button onClick = {
+            () => debugTutor()
+        }
+        style={{padding: 10,
+            margin: 10,
+            background: "#47a847",
+            color: "white"}}> Тест (ППС)</button> */}
+             
+        <p>Если вы на сайте в первый раз, ваш ИИН - ваши логин и пароль</p>
     </div>);
 };
 

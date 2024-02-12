@@ -21,9 +21,10 @@ export function Prilozhenie4(certificat:CertResponse)  {
         const report = document.getElementById('report');
         html2pdf().from(report).save()
       };
-      
+
   return (
     <>
+    
     <div><button onClick={generatePdf}> save PDF</button></div>
     
     <div id="report">

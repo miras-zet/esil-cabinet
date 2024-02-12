@@ -7,7 +7,11 @@ import CertificatePage from './pages/CertificatePage'
 import QrPage from './pages/QrPage'
 import CertificateListPage from './pages/CertificateListPage'
 import CertificateLinkPage from './pages/CertificateLinkPage'
-
+import KPIPage from './pages/KPIPage'
+import KPIUpload from './pages/KPIUpload'
+import KPIAdminPage from './pages/KPIAdminPage'
+import KPIAdminViewUser from './pages/KPIAdminViewUser'
+import KPIStats from './pages/KPIStats'
 
   
 
@@ -43,6 +47,11 @@ const App:FC = () => {
     <>
       <Routes>
         <Route path="/" element={ <HomePage /> } />
+        <Route path="/kpi" element={ <KPIPage /> } />
+        <Route path="/kpiupload" element={ <KPIUpload /> } />
+        <Route path="/kpiadmin" element={<KPIAdminPage />} />
+        <Route path="/kpiadminview" element={<KPIAdminViewUser/>} />
+        <Route path="/kpistats" element={<KPIStats/>} />
         <Route path="/certificate" element={ <CertificatePage /> } />
         <Route path="/list" element={ <CertificateListPage /> } />
         <Route path="/list/certificate/:id" element={ <CertificateLinkPage /> } />
