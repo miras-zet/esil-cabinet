@@ -1,9 +1,9 @@
 import http from "../http-common";
+
 import config from "../http/config.json";
 const API_URL = config.API_URL;
 
 const REACT_APP_API_URL = API_URL;
-
 const upload = (file: File,  activity_id: any, info: any): Promise<any> => {
   let formData = new FormData();
   const userid = localStorage.getItem('user_id');
@@ -39,7 +39,9 @@ const getTutors = () : Promise<any> =>{
 const getStats = () : Promise<any> =>{
   return http.get(`/upload/getstats`);
 }
-
+const getTopTen = () : Promise<any> =>{
+  return http.get(`/upload/gettopten`);
+}
 const getCategories = () : Promise<any> => {
     const categoryid = localStorage.getItem('categoryid');  
     return http.get(`/upload/activities/${categoryid}`);
@@ -59,6 +61,7 @@ const UploadService = {
   getKpi,
   getStats,
   getFilesForUser,
+  getTopTen,
   REACT_APP_API_URL
 };
 

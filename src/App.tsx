@@ -12,6 +12,7 @@ import KPIUpload from './pages/KPIUpload'
 import KPIAdminPage from './pages/KPIAdminPage'
 import KPIAdminViewUser from './pages/KPIAdminViewUser'
 import KPIStats from './pages/KPIStats'
+import KPITopTen from './pages/KPITopTen'
 
   
 
@@ -52,6 +53,7 @@ const App:FC = () => {
         <Route path="/kpiadmin" element={<KPIAdminPage />} />
         <Route path="/kpiadminview" element={<KPIAdminViewUser/>} />
         <Route path="/kpistats" element={<KPIStats/>} />
+        <Route path="/kpitopten" element={<KPITopTen/>} />
         <Route path="/certificate" element={ <CertificatePage /> } />
         <Route path="/list" element={ <CertificateListPage /> } />
         <Route path="/list/certificate/:id" element={ <CertificateLinkPage /> } />

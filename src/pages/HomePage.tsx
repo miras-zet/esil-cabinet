@@ -78,7 +78,7 @@ const HomePage:FC = () => {
             }
             if(role==='plt_tutor') KPIScore = localStorage.getItem('KPIScore');
             let premiere="";
-            let textcolor="";
+            let textcolor="white";
             if (parseInt(KPIScore)==0){
               premiere= "Нет";
             }
@@ -147,14 +147,13 @@ const HomePage:FC = () => {
                     <p><button onClick={() => redirectCafedra('3','Экономика')}>Экономика</button></p>
                     <p><button onClick={() => redirectCafedra('4','Менеджмент')}>Менеджмент</button></p>
                     <p><button onClick={() => redirectCafedra('5','Учет и аудит')}>Учет и аудит</button></p>
-                    <p><button onClick={() => redirectCafedra('11','Туризм и сервис')}>Туризм и сервис</button></p>
-                    <p><button onClick={() => redirectCafedra('16','МБШ')}>МБШ</button></p>
                   </td>
                 </tr>
               </table>    
               
-              <br/><br/><br/>
+              <br/><br/>
               <p><Link to="/kpistats"><button>Сводка по кафедрам</button></Link></p>
+              <p><Link to="/kpitopten"><button>Топ-10 преподавателей</button></Link></p>
               </div>
             }
             else{
