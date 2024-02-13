@@ -1,7 +1,8 @@
 import http from "../http-common";
+import config from "../http/config.json";
+const API_URL = config.API_URL;
 
-//const REACT_APP_API_URL = 'http://localhost:5173/';
-const REACT_APP_API_URL = 'http://cloud.esil.edu.kz/';
+const REACT_APP_API_URL = API_URL;
 
 const upload = (file: File,  activity_id: any, info: any): Promise<any> => {
   let formData = new FormData();
