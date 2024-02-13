@@ -7,7 +7,7 @@ import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import ICafedraStat from '../models/ICafedraStat';
 
-
+const url = UploadService.REACT_APP_API_URL;
 const KPIStats:FC = () => {  
       
     const [cafedraInfos, setCafedraInfos] = useState<Array<ICafedraStat>>([]);
@@ -31,9 +31,15 @@ const KPIStats:FC = () => {
     return <div>Loading ...</div>
   }
 
+  function redirectCafedra(id:string, name:string)  {
+    localStorage.setItem('cafedraid',id);
+    localStorage.setItem('cafedraname',name);
+    window.location.href=`${url}kpiadmin`;
+    return;
+  }
   const listCafedrasItems= cafedraInfos.map((element) =>  
     <tr key={element.id}>
-        <td>{element.cafedraNameRU}</td> 
+        <td><a onClick={()=>redirectCafedra(""+element.id,element.cafedraNameRU)}>{element.cafedraNameRU}</a></td> 
         <td>&nbsp;&nbsp;{element.scoresum}</td>
         <td>&nbsp;&nbsp;{Math.round(element.scoresum/element.tutorcount)}</td>
         <td>{element.tutorcount}</td>
