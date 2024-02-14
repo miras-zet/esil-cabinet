@@ -61,6 +61,7 @@ const HomePage:FC = () => {
     UploadService.getKpi()
     .then(
       (response) => {
+        localStorage.setItem('KPIScore',response.data.score)
         return setKpiInfo(response.data.score);
       }
     );
@@ -74,12 +75,12 @@ const HomePage:FC = () => {
             //alert(categoryScores[0]);
             const role = localStorage.getItem('role');
             let KPIScore="0";
+            let textcolor;
             if(kpiInfo===undefined && role==='plt_tutor'){
               location.reload();
             }
             if(role==='plt_tutor') KPIScore = localStorage.getItem('KPIScore');
             let premiere="";
-            let textcolor="gray";
             if (parseInt(KPIScore)==0){
               premiere= "Нет";
             }
@@ -93,7 +94,7 @@ const HomePage:FC = () => {
               premiere= "A";
             }
             if (parseInt(KPIScore)>200){
-              textcolor="orange";
+              textcolor='orange';
               premiere= "Silver";
             }
             if (parseInt(KPIScore)>300){
