@@ -5,7 +5,6 @@ import '../App.css';
 import UploadService from '../services/UploadService';
 import IFile from '../models/IFile';
 import { observer } from 'mobx-react-lite';
-import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 
@@ -89,13 +88,21 @@ const KPIAdminViewUser:FC = () => {
         </div>
     );
   } 
-  
+  const redirectDecider = () => {
+    if(localStorage.getItem('currentlyviewing')==='topten') {
+      window.location.href=window.location.protocol + '//' + window.location.host +'/kpitopten';
+    }
+    else if (localStorage.getItem('currentlyviewing')==='cafedratutors'){
+      window.location.href=window.location.protocol + '//' + window.location.host +'/kpiadmin';
+    }
+  }
 
   return ( <div>
     {(() => {
         //getfiles();
     return <div>
-        <Link to="/kpiadmin"><input className="btn btn-success btn-sm" type="button" value="Вернуться назад"></input></Link>
+        {/* <Link to="/kpiadmin"><input className="btn btn-success btn-sm" type="button" value="Вернуться назад"></input></Link> */}
+        <button onClick={redirectDecider}>Вернуться назад</button>
         <br/><br/>
         <div className="card mt-3" onLoad={getfiles}>
             <div>{message}</div>

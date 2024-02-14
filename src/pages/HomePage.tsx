@@ -13,8 +13,6 @@ import IKPI from '../models/IKPI';
 // dotenv.config();
 // const api_url=process.env.REACT_APP_API_URL;
 
-const api_url = UploadService.REACT_APP_API_URL;
-
 const HomePage:FC = () => {  
   const {store} = useContext(Context);  
   const {modal, open} = useContext(ModalContext); 
@@ -56,7 +54,7 @@ const HomePage:FC = () => {
   function redirectCafedra(id:string, name:string)  {
     localStorage.setItem('cafedraid',id);
     localStorage.setItem('cafedraname',name);
-    window.location.href=`${api_url}kpiadmin`;
+    window.location.href=window.location.protocol + '//' + window.location.host +'/kpiadmin';
     return;
   }
   /*const KPIScoreFromBackend = kpiInfo.map((element)=>
@@ -131,6 +129,7 @@ const HomePage:FC = () => {
               <h2>{store.isAuth ? `Кабинет администратора KPI`  : 'АВТОРИЗУЙТЕСЬ'}</h2> 
               <br/><br/>  
               <table>
+                <tbody>
                 <tr>
                   <th>Факультет прикладных наук</th>  
                   <th>Факультет бизнеса и управления</th>  
@@ -149,6 +148,7 @@ const HomePage:FC = () => {
                     <p><button onClick={() => redirectCafedra('5','Учет и аудит')}>Учет и аудит</button></p>
                   </td>
                 </tr>
+                </tbody>
               </table>    
               
               <br/><br/>

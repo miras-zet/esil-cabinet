@@ -1,9 +1,6 @@
 import http from "../http-common";
 
-import config from "../http/config.json";
-const API_URL = config.API_URL;
 
-const REACT_APP_API_URL = API_URL;
 const upload = (file: File,  activity_id: any, info: any): Promise<any> => {
   let formData = new FormData();
   const userid = localStorage.getItem('user_id');
@@ -62,7 +59,6 @@ const UploadService = {
   getStats,
   getFilesForUser,
   getTopTen,
-  REACT_APP_API_URL
 };
 
 export default UploadService;

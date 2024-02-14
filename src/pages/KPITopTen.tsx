@@ -7,7 +7,6 @@ import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import ITopTen from '../models/ITopTen';
 
-const url = UploadService.REACT_APP_API_URL;
 const KPITopTen:FC = () => {  
       
     const [topTenInfos, setTopTenInfos] = useState<Array<ITopTen>>([]);
@@ -33,13 +32,14 @@ const KPITopTen:FC = () => {
   function redirectViewUser(id:any, fio: any)  {
     localStorage.setItem('user_id_view',id);
     localStorage.setItem('fio_view',fio);
-    window.location.href=`${url}kpiadminview`;
+    localStorage.setItem('currentlyviewing','topten');
+    window.location.href=window.location.protocol + '//' + window.location.host +'/kpiadminview';
     return;
   }
   const listTopTenItems= topTenInfos.map((element) =>  
-    <tr key={element.id}>
+    <tr key={element.userid}>
         <td>{element.counter}</td> 
-        <td>&nbsp;&nbsp;<a onClick={()=>redirectViewUser(element.id, element.fio)}>{element.fio}</a></td>
+        <td>&nbsp;&nbsp;<a onClick={()=>redirectViewUser(element.userid, element.fio)}>{element.fio}</a></td>
         <td>&nbsp;&nbsp;{element.cafedraNameRU}</td>
         <td>{element.score}</td>
     </tr>

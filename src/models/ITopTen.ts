@@ -1,5 +1,5 @@
 export default interface ICafedraStat {
-    id: number,
+    userid: number,
     counter: number,
     cafedraNameRU: string,
     fio: string,

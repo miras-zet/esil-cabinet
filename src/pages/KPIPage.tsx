@@ -4,8 +4,6 @@ import LoginForm from '../components/LoginForm';
 import { observer } from 'mobx-react-lite';
 import { Link} from 'react-router-dom';
 import '../App.css';
-import UploadService from '../services/UploadService';
-const url = UploadService.REACT_APP_API_URL;
 
 const KPIPage:FC = () => {  
   const {store} = useContext(Context);  
@@ -43,7 +41,7 @@ const KPIPage:FC = () => {
   } 
   function redirect(id:string)  {
     localStorage.setItem('categoryid',id);
-    window.location.href=`${url}kpiupload`;
+    window.location.href=window.location.protocol + '//' + window.location.host +'/kpiupload';
     return;
   }
   return (

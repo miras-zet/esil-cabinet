@@ -7,7 +7,6 @@ import '../App.css';
 import ITutors from '../models/ITutors';
 import UploadService from '../services/UploadService';
 
-const url = UploadService.REACT_APP_API_URL;
 const KPIAdminPage:FC = () => {  
   const {store} = useContext(Context);  
   // const [user, setUser] = useState([]);  
@@ -49,7 +48,8 @@ const KPIAdminPage:FC = () => {
 function redirectViewUser(id:any, fio: any)  {
     localStorage.setItem('user_id_view',id);
     localStorage.setItem('fio_view',fio);
-    window.location.href=`${url}kpiadminview`;
+    localStorage.setItem('currentlyviewing','cafedratutors');
+    window.location.href=window.location.protocol + '//' + window.location.host +'/kpiadminview';
     return;
   }
 
