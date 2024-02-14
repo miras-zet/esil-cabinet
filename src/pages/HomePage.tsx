@@ -79,7 +79,7 @@ const HomePage:FC = () => {
             }
             if(role==='plt_tutor') KPIScore = localStorage.getItem('KPIScore');
             let premiere="";
-            let textcolor="";
+            let textcolor="gray";
             if (parseInt(KPIScore)==0){
               premiere= "Нет";
             }
