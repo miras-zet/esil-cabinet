@@ -166,7 +166,7 @@ const KPIUpload:FC = () => {
     </select>
     <br/><br/><br/>
     Дополнительная информация (название, год выдачи, ...):
-    <p><input className='btn' style={{width:'400px', fontSize:'14px', backgroundColor:'gray', color:'white'}} placeholder={'Дополнительная информация (название, год выдачи, ...)'} id='extradatainput' type='text' onChange={event => setInfo(event.target.value)} minLength={3} maxLength={100}></input></p>
+    <br/><input className='btn' style={{width:'400px', fontSize:'14px', backgroundColor:'gray', color:'white'}} id='extradatainput' type='text' onChange={event => setInfo(event.target.value)} minLength={3} maxLength={100}></input>
     <br/><br/>
     <div className="row">
       <div className="col-8">
