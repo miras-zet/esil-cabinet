@@ -160,30 +160,31 @@ const KPIUpload:FC = () => {
   return ( <div>
     <Link to="/kpi"><button>Вернуться назад</button></Link>
     <br/><br/><br/><br/><br/><br/>
-    <select className='btn' style={{backgroundColor:'gray', color:'white'}} name="categories" id="cat" onChange={event => setActivity(event.target.value)}>
+    <select className='btn' style={{backgroundColor:'silver', color:'DimGray'}} name="categories" id="cat" onChange={event => setActivity(event.target.value)}>
         <option value="notchosen">Выберите показатель...</option>
         {listCategoryItems}
     </select>
     <br/><br/><br/>
     Дополнительная информация (название, год выдачи, ...):
-    <br/><input className='btn' style={{width:'400px', fontSize:'14px', backgroundColor:'gray', color:'white'}} id='extradatainput' type='text' onChange={event => setInfo(event.target.value)} minLength={3} maxLength={100}></input>
+    <br/><input className='btn' style={{width:'400px', fontSize:'14px', backgroundColor:'silver', color:'DimGray'}} id='extradatainput' type='text' onChange={event => setInfo(event.target.value)} minLength={3} maxLength={100}></input>
     <br/><br/>
     <div className="row">
       <div className="col-8">
-        <label className="btn" style={{backgroundColor:'gray'}} >
+        <label className="btn" style={{backgroundColor:'silver', color:'DimGray'}} >
           {currentFile ? `Выбран файл:  ${currentFile.name}`:'Выберите файл...'}
-          <input type="file" hidden onChange={selectFile} style={{backgroundColor:'gray', color:'white'}}/>
+          <input type="file" hidden onChange={selectFile} style={{backgroundColor:'silver', color:'DimGray'}}/>
         </label>
       </div>
         <br/>
       <div className="col-4">
         <button
           disabled={!currentFile}
-          onClick={upload}>
+          onClick={upload}
+          style={{backgroundColor:'gray'}}>
           Отправить файл
         </button>
-        <br/>
-        <a onClick={help} style={{fontSize:"13px"}}>Помощь</a>
+        <br/><br/>
+        <a onClick={help} style={{fontSize:"14px"}}>Помощь</a>
       </div>
     </div>
     {message && (
@@ -192,8 +193,8 @@ const KPIUpload:FC = () => {
         <h4 style={{color: messagecolor}}>{message}</h4>
       </div>
     )}
-    <br/><br/><br/>
-    <div className="card mt-3">
+    <br/><br/>
+    {listFilesItems.length>0 ? (<div className="card mt-3">
         <div className="card-header">Список загруженных документов</div><br/>
         <center><table style={{textAlign: "center"}}><tbody>
             <tr>
@@ -207,8 +208,9 @@ const KPIUpload:FC = () => {
           
         </tbody>
         </table></center>
-      </div>
-  </div>)
+      </div>):''}
+    
+    </div>)
 }
 
 export default observer(KPIUpload)
