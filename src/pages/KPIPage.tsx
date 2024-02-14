@@ -50,7 +50,7 @@ const KPIPage:FC = () => {
         const role = localStorage.getItem('role');
         if(role=='plt_tutor') {
           return <div>
-              <Link to={"/"}>Вернуться назад</Link> 
+              <Link to={"/"}><button style={{backgroundColor:'silver'}}>Вернуться назад</button></Link> 
               <br/><br/>
               <h2>Загрузка документов</h2>   
               <p><button onClick={() => redirect('1')}>Профориентация</button></p>
