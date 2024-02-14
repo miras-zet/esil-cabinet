@@ -58,7 +58,7 @@ const KPITopTen:FC = () => {
     {(() => {
         //getfiles();
     return <div>
-        <Link to="/"><input className="btn btn-success btn-sm" type="button" value="Вернуться назад"></input></Link>
+        <Link to="/"><button>Вернуться назад</button></Link>
         <br/><br/>
         <div className="card mt-3" onLoad={getstats}>
             <div className="card-header">Топ-10 преподавателей</div><br/>

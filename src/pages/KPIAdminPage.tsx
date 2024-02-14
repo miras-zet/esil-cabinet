@@ -68,7 +68,7 @@ function redirectViewUser(id:any, fio: any)  {
         const cafedraname = localStorage.getItem('cafedraname');
         if(role=='plt_kpiadmin') {
           return <div>
-              <Link to={"/"} className='btn'>Вернуться назад</Link> 
+              <Link to={"/"}><button>Вернуться назад</button></Link> 
               <br/><br/>
               <h3>Баллы ППС</h3> 
               <h4>Кафедра {cafedraname}</h4> 

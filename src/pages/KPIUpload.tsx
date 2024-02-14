@@ -37,7 +37,7 @@ const KPIUpload:FC = () => {
     //   this.setState({ inputVal: e.target.value });
     // }
     const help = () => {
-      alert('Выберите показатель из списка, нажмите \"Browse...\" и выберите файл на компьютере. Затем нажмите \"Отправить файл\". Загружаемый файл должен быть формата .pdf, размер файла не должен превышать 10 МБ.');
+      alert('Выберите показатель из списка, затем выберите файл. Затем нажмите \"Отправить файл\". Загружаемый файл должен быть формата .pdf, размер файла не должен превышать 10 МБ.');
     };
     const featureNotReadyNotif =() =>{
       alert('Функция в разработке');
@@ -115,8 +115,6 @@ const KPIUpload:FC = () => {
             } else {
               setMessage("Ошибка удаления");
             }
-    
-            setCurrentFile(undefined);
           });
         }
 
@@ -160,25 +158,26 @@ const KPIUpload:FC = () => {
   } 
 
   return ( <div>
-    <Link to="/kpi"><input className="btn btn-success btn-sm" type="button" value="Вернуться назад"></input></Link>
+    <Link to="/kpi"><button>Вернуться назад</button></Link>
     <br/><br/><br/><br/><br/><br/>
-    <select name="categories" id="cat" onChange={event => setActivity(event.target.value)}>
+    <select className='btn' style={{backgroundColor:'gray', color:'white'}} name="categories" id="cat" onChange={event => setActivity(event.target.value)}>
         <option value="notchosen">Выберите показатель...</option>
         {listCategoryItems}
     </select>
-    <br/><br/>
-    <input style={{width:'400px'}} placeholder={'Дополнительная информация (название, год выдачи, ...)'} id='extradatainput' type='text' onChange={event => setInfo(event.target.value)} minLength={3} maxLength={100}></input>
+    <br/><br/><br/>
+    Дополнительная информация (название, год выдачи, ...):
+    <p><input className='btn' style={{width:'400px', fontSize:'14px', backgroundColor:'gray', color:'white'}} placeholder={'Дополнительная информация (название, год выдачи, ...)'} id='extradatainput' type='text' onChange={event => setInfo(event.target.value)} minLength={3} maxLength={100}></input></p>
     <br/><br/>
     <div className="row">
       <div className="col-8">
-        <label className="btn btn-default p-0">
-          <input type="file" onChange={selectFile} />
+        <label className="btn" style={{backgroundColor:'gray'}} >
+          {currentFile ? `Выбран файл: ${currentFile.name}`:'Выберите файл...'}
+          <input type="file" hidden onChange={selectFile} style={{backgroundColor:'gray', color:'white'}}/>
         </label>
       </div>
         <br/>
       <div className="col-4">
         <button
-          className="btn btn-success btn-sm"
           disabled={!currentFile}
           onClick={upload}>
           Отправить файл
