@@ -8,6 +8,7 @@ import { Link, Navigate } from 'react-router-dom';
 import '../App.css';
 import UploadService from '../services/UploadService';
 import IKPI from '../models/IKPI';
+import KPICategoryScores from '../components/KPICategoryScores';
 
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -17,10 +18,10 @@ const HomePage:FC = () => {
   const {store} = useContext(Context);  
   const {modal, open} = useContext(ModalContext); 
   const [kpiInfo, setKpiInfo] = useState<Array<IKPI>>([]);
- 
+  
  useEffect(() => {
     setKpiInfo([]);
- 
+    //setCategoryScores([]);
     // USEEFFECT DOES NOT WORK ON FIRST RENDER (FIX ASAP)
 
     if (localStorage.getItem('token')){
@@ -48,27 +49,29 @@ const HomePage:FC = () => {
   if(store.certificat?.id !== 0 && store.certificat?.id !== undefined){
     return <Navigate to='/certificate' />;
   } 
-  // function test()  {
-  //   alert(kpiInfo);
-  // }
+
   function redirectCafedra(id:string, name:string)  {
     localStorage.setItem('cafedraid',id);
     localStorage.setItem('cafedraname',name);
     window.location.href=window.location.protocol + '//' + window.location.host +'/kpiadmin';
     return;
   }
-  /*const KPIScoreFromBackend = kpiInfo.map((element)=>
-    <div>{element.score}</div>
-  );*/
-  const countKpi = () =>{
-    UploadService.getKpi().then((response) => {
-      setKpiInfo(response.data.score);
-    });
+
+  const countKpi = ()=>{
+    UploadService.getKpi()
+    .then(
+      (response) => {
+        return setKpiInfo(response.data.score);
+      }
+    );
   }
+  
   return (
     <div>
         {(() => {
             countKpi();
+            //countCategoryScores();
+            //alert(categoryScores[0]);
             const role = localStorage.getItem('role');
             let KPIScore="0";
             if(kpiInfo===undefined && role==='plt_tutor'){
@@ -76,7 +79,7 @@ const HomePage:FC = () => {
             }
             if(role==='plt_tutor') KPIScore = localStorage.getItem('KPIScore');
             let premiere="";
-            let textcolor="white";
+            let textcolor="";
             if (parseInt(KPIScore)==0){
               premiere= "Нет";
             }
@@ -90,7 +93,7 @@ const HomePage:FC = () => {
               premiere= "A";
             }
             if (parseInt(KPIScore)>200){
-              textcolor="yellow";
+              textcolor="orange";
               premiere= "Silver";
             }
             if (parseInt(KPIScore)>300){
@@ -120,7 +123,8 @@ const HomePage:FC = () => {
               <h4>Баллы KPI: <b style={{color: textcolor}}>{kpiInfo.toString()}</b></h4>
               <h4>{premiere ? `Премирование: ${premiere}`:''}</h4>
               <Link to="/kpi"><button>Загрузить документы</button></Link>
-             
+              <br/><br/><br/>
+              <KPICategoryScores/>
               </div>
             }
             else if(role==='plt_kpiadmin'){
@@ -159,6 +163,7 @@ const HomePage:FC = () => {
             else{
               <h3>internal error</h3>
             }
+            return;
           } )()}
     </div>
   );
