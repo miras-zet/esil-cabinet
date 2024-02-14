@@ -171,7 +171,7 @@ const KPIUpload:FC = () => {
     <div className="row">
       <div className="col-8">
         <label className="btn" style={{backgroundColor:'gray'}} >
-          {currentFile ? `Выбран файл: ${currentFile.name}`:'Выберите файл...'}
+          {currentFile ? `Выбран файл:  ${currentFile.name}`:'Выберите файл...'}
           <input type="file" hidden onChange={selectFile} style={{backgroundColor:'gray', color:'white'}}/>
         </label>
       </div>
