@@ -4,6 +4,7 @@ import {AuthResponse} from "../models/response/AuthResponse";
 import CertService from "../services/CertService";
 import { IUser } from "../models/IUser";
 import { CertResponse } from "../models/response/CertResponse";
+import { Navigate } from "react-router-dom";
 
 export default class Store { 
     user = {} as IUser; 
@@ -91,6 +92,8 @@ export default class Store {
             // localStorage.removeItem('certificat');
             localStorage.clear();
             this.setAuth(false);
+            window.location.href=window.location.protocol + '//' + window.location.host;
+    
         } catch (e:any) {
             console.log(e.response?.data?.message);
         }
