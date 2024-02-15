@@ -99,9 +99,8 @@ const KPIAdminViewUser:FC = () => {
 
   return ( <div>
     {(() => {
-        //getfiles();
-    return <div>
-        {/* <Link to="/kpiadmin"><input className="btn btn-success btn-sm" type="button" value="Вернуться назад"></input></Link> */}
+       const role = localStorage.getItem('role');
+       if(role==='plt_kpiadmin') return <div>
         <button onClick={redirectDecider}>Вернуться назад</button>
         <br/><br/>
         <div className="card mt-3" onLoad={getfiles}>
@@ -125,6 +124,10 @@ const KPIAdminViewUser:FC = () => {
             </center>
           </div>
         </div>
+        else{
+          return <div><button onClick={() => store.logout()}>Назад</button>  
+          <h4>Нет доступа к странице</h4></div>
+        }
       } )()}
   </div>);
 }

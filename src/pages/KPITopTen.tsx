@@ -62,7 +62,8 @@ const KPITopTen:FC = () => {
   return ( <div>
     {(() => {
         //getfiles();
-    return <div>
+        const role = localStorage.getItem('role');
+    if(role==='plt_kpiadmin')return <div>
         <Link to="/"><button>Вернуться назад</button></Link>
         <br/><br/>
         <div className="card mt-3" onLoad={getstats}>
@@ -85,6 +86,10 @@ const KPITopTen:FC = () => {
             </table></center>
           </div>
         </div>
+        else{
+          return <div><button onClick={() => store.logout()}>Назад</button>  
+          <h4>Нет доступа к странице</h4></div>
+        }
       } )()}
   </div>);
 }

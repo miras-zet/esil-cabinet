@@ -156,8 +156,8 @@ const KPIUpload:FC = () => {
         </div>
     );
   } 
-
-  return ( <div>
+  const role = localStorage.getItem('role');
+  if(role==='plt_tutor') return ( <div>
     <Link to="/kpi"><button>Вернуться назад</button></Link>
     <br/><br/><br/><br/><br/><br/>
     <select className='btn' style={{backgroundColor:'silver', color:'DimGray'}} name="categories" id="cat" onChange={event => setActivity(event.target.value)}>
@@ -211,6 +211,10 @@ const KPIUpload:FC = () => {
       </div>):''}
     
     </div>)
+    else{
+      return <div><button onClick={() => store.logout()}>Назад</button>  
+      <h4>Нет доступа к странице</h4></div>
+    }
 }
 
 export default observer(KPIUpload)
