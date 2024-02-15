@@ -37,6 +37,9 @@ const getTutors = () : Promise<any> =>{
 const getStats = () : Promise<any> =>{
   return http.get(`/upload/getstats`);
 }
+const getFacultyStats = () :Promise<any> =>{
+  return http.get(`/upload/getfacultystats`);
+}
 const getTopTen = () : Promise<any> =>{
   return http.get(`/upload/gettopten`);
 }
@@ -61,6 +64,7 @@ const UploadService = {
   getStats,
   getFilesForUser,
   getTopTen,
+  getFacultyStats,
 };
 
 export default UploadService;

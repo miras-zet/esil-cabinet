@@ -42,6 +42,11 @@ const KPITopTen:FC = () => {
         <td>&nbsp;&nbsp;<a onClick={()=>redirectViewUser(element.userid, element.fio)}>{element.fio}</a></td>
         <td>&nbsp;&nbsp;{element.cafedraNameRU}</td>
         <td>{element.score}</td>
+        <td>{element.kkson_count}</td>
+        <td>{element.scopus_count}</td>
+        <td>{element.wos_count}</td>
+        <td>{element.h_index_scopus}</td>
+        <td>{element.h_index_wos}</td>
     </tr>
   );
 
@@ -68,6 +73,11 @@ const KPITopTen:FC = () => {
                     <th>ФИО</th>
                     <th>&nbsp;&nbsp;Кафедра</th>
                     <th>&nbsp;&nbsp;Баллы</th>
+                    <th>&nbsp;&nbsp;Кол-во публикаций ККСОН</th>
+                    <th>&nbsp;&nbsp;Кол-во публикаций Scopus</th>
+                    <th>&nbsp;&nbsp;Кол-во публикаций Web of Science</th>
+                    <th>&nbsp;&nbsp;Индекс Хирша (Scopus)</th>
+                    <th>&nbsp;&nbsp;Индекс Хирша (WoS)</th>
                 </tr>
                 {listTopTenItems}
 
