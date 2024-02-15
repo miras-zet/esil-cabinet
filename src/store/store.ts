@@ -4,7 +4,6 @@ import {AuthResponse} from "../models/response/AuthResponse";
 import CertService from "../services/CertService";
 import { IUser } from "../models/IUser";
 import { CertResponse } from "../models/response/CertResponse";
-import { Navigate } from "react-router-dom";
 
 export default class Store { 
     user = {} as IUser; 
