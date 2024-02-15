@@ -49,8 +49,8 @@ const KPIStats:FC = () => {
     </tr>
   );
   const listFacultyItems= facultyInfos.map((element) =>  
-    <tr key={element.counter}>
-        <td>{element.facultyNameRU}</td> 
+    <tr key={element.id}>
+        <td>{element.facultyname}</td> 
         <td>&nbsp;&nbsp;{element.scoresum}</td>
         <td>&nbsp;&nbsp;{Math.round(element.scoresum/element.tutorcount)}</td>
         <td>{element.tutorcount}</td>
@@ -84,7 +84,7 @@ const KPIStats:FC = () => {
                 {listFacultyItems}
 
             </tbody>
-            </table><br/>
+            </table><br/><br/><br/>
             <div className="card-header">Статистика по кафедрам</div><br/>
             <table style={{textAlign: "center"}}><tbody>
                 <tr>

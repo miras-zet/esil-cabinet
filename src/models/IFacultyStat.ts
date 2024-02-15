@@ -1,6 +1,6 @@
 export default interface IFacultyStat {
-    counter: number,
-    facultyNameRU: string,
+    id: number,
+    facultyname: string,
     scoresum: number,
     tutorcount: number,
   }  
