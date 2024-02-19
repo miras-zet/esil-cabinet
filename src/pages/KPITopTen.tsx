@@ -39,8 +39,8 @@ const KPITopTen:FC = () => {
   const listTopTenItems= topTenInfos.map((element) =>  
     <tr key={element.userid}>
         <td>{element.counter}</td> 
-        <td>&nbsp;&nbsp;<a onClick={()=>redirectViewUser(element.userid, element.fio)}>{element.fio}</a></td>
-        <td>&nbsp;&nbsp;{element.cafedraNameRU}</td>
+        <td><a onClick={()=>redirectViewUser(element.userid, element.fio)}>{element.fio}</a></td>
+        <td>{element.cafedraNameRU}</td>
         <td>{element.score}</td>
         <td>{element.score_base}</td>
         <td>{element.score_advanced}</td>
