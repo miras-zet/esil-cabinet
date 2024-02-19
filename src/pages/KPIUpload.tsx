@@ -8,6 +8,7 @@ import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import moment from 'moment';
 import ICategory from '../models/ICategory';
+import IPltData from '../models/IPltData';
 
 
 const KPIUpload:FC = () => {  
@@ -17,6 +18,7 @@ const KPIUpload:FC = () => {
     const [message, setMessage] = useState<string>("");
     const [messagecolor, setMessageColor] = useState<string>("red");
     const [fileInfos, setFileInfos] = useState<Array<IFile>>([]);
+    const [pltData, setPltData] = useState<Array<IPltData>>([]);
     const [categoryInfos, setCategoryInfos] = useState<Array<ICategory>>([]);
     const {store} = useContext(Context);  
 
@@ -129,6 +131,9 @@ const KPIUpload:FC = () => {
     UploadService.getCategories().then((response) => {
         setCategoryInfos(response.data);
     });   
+    UploadService.getPlatonusData().then((response) => {
+      setPltData(response.data);
+  }); 
     
   },[]);
 
@@ -148,6 +153,21 @@ const KPIUpload:FC = () => {
 
   const listCategoryItems = categoryInfos.map((element)=>
     <option key={element.id} value={element.id}>{element.name}</option>
+  );
+
+  const pltDataTable = pltData.map((element)=>
+    <div>
+      <p>Кол-во международных статей: <b>{element.international_count}</b></p>
+      <p>Кол-во статей ККСОН: <b>{element.kkson_count}</b></p>
+      <p>Кол-во статей Scopus: <b>{element.scopus_count}</b></p>
+      <p>Кол-во статей Web of Science: <b>{element.wos_count}</b></p>
+      <p>Кол-во монографий: <b>{element.monograph_count}</b></p>
+      <p>Кол-во участий в научно-исследовательских работах (исполнитель): <b>{element.nirs_count}</b></p>
+      <p>Кол-во участий в научно-исследовательских работах (руководитель): <b>{element.nirs_count_manager}</b></p>
+      <p>Кол-во патентов: <b>{element.tia_count}</b></p>
+      <p>Индекс Хирша (Scopus): <b>{element.h_index_scopus}</b></p>
+      <p>Индекс Хирша (Web of Science): <b>{element.h_index_wos}</b></p>
+    </div>
   );
   if (!store.isAuth) {
     return (
@@ -208,6 +228,11 @@ const KPIUpload:FC = () => {
           
         </tbody>
         </table></center>
+      </div>):''}
+      <br/><br/>
+    {pltDataTable.length>0 ? (<div className="card mt-3">
+        <div className="card-header"><h3>Ваши публикации в Platonus</h3></div>
+        <center>{pltDataTable}</center>
       </div>):''}
     
     </div>)

@@ -30,6 +30,10 @@ const getFilesForUser = () : Promise<any> => {
   const userid = localStorage.getItem('user_id_view');  
   return http.get(`/upload/files/${userid}`);
 };
+const getPlatonusData = () : Promise<any> =>{
+  const userid = localStorage.getItem('user_id'); 
+  return http.get(`/upload/getpltdata/${userid}`);
+}
 const getTutors = () : Promise<any> =>{
   const cafedra = localStorage.getItem('cafedraid'); 
   return http.get(`/upload/gettutors/${cafedra}`);
@@ -61,6 +65,7 @@ const UploadService = {
   downloadFile,
   getCategoryScores,
   getKpi,
+  getPlatonusData,
   getStats,
   getFilesForUser,
   getTopTen,
