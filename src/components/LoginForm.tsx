@@ -15,7 +15,7 @@ const LoginForm: FC = () => {
     return (
     <div> 
         <img src="logo_new.png" width={300} /> 
-        <h2 style={{fontSize: 40}}>Esil Кабинет</h2>
+        <h2 style={{fontSize: 40}}>{window.location.port=='5173'? 'dev build':'Esil Кабинет'}</h2>
         <input onChange = {
             e => setUsername(e.target.value)
         }
