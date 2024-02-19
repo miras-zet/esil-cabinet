@@ -179,7 +179,7 @@ const KPIUpload:FC = () => {
   const role = localStorage.getItem('role');
   if(role==='plt_tutor') return ( <div>
     <Link to="/kpi"><button>Вернуться назад</button></Link>
-    <br/><br/><br/><br/><br/><br/>
+    <br/><br/><br/><br/><br/>
     <select className='btn' style={{backgroundColor:'silver', color:'DimGray'}} name="categories" id="cat" onChange={event => setActivity(event.target.value)}>
         <option value="notchosen">Выберите показатель...</option>
         {listCategoryItems}

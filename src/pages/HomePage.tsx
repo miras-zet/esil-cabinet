@@ -124,7 +124,7 @@ const HomePage:FC = () => {
               <h4>Баллы KPI: <b style={{color: textcolor}}>{kpiInfo.toString()}</b></h4>
               <h4>{premiere ? `Премирование: ${premiere}`:''}</h4>
               <Link to="/kpi"><button>Загрузить документы</button></Link>
-              <br/><br/><br/>
+              <br/><br/><br/>Каждый несёт персональную ответственность за ввод данных в систему оценки KPI.<br/><br/>
               <KPICategoryScores/>
               </div>
             }
