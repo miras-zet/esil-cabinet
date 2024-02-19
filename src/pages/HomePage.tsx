@@ -87,20 +87,20 @@ const HomePage:FC = () => {
             if (parseInt(KPIScore)>0){
               premiere= "C";
             }
-            if (parseInt(KPIScore)>50){
+            if (parseInt(KPIScore)>=50){
               premiere= "B"; 
             }
-            if (parseInt(KPIScore)>84){
+            if (parseInt(KPIScore)>=84){
               premiere= "A";
             }
-            if (parseInt(KPIScore)>200){
-              textcolor='orange';
+            if (parseInt(KPIScore)>=100) textcolor='orange';
+            if (parseInt(KPIScore)>=200){
               premiere= "Silver";
             }
-            if (parseInt(KPIScore)>300){
+            if (parseInt(KPIScore)>=300){
               premiere= "Gold";
             }
-            if (parseInt(KPIScore)>400){
+            if (parseInt(KPIScore)>=400){
               premiere= "Platinum";
             }
             if (parseInt(KPIScore)==0){
