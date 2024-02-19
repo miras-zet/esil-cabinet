@@ -41,17 +41,16 @@ const KPITopTen:FC = () => {
         <td>{element.counter}</td> 
         <td><a onClick={()=>redirectViewUser(element.userid, element.fio)}>{element.fio}</a></td>
         <td>{element.cafedraNameRU}</td>
-        <td>{element.score}</td>
         <td>{element.score_base}</td>
         <td>{element.score_advanced}</td>
-        <td>{element.international_count} (+{element.international_count*3})</td>
-        <td>{element.kkson_count} (+{element.kkson_count*7})</td>
-        <td>{element.scopus_count} (+{element.scopus_count*10})</td>
-        <td>{element.wos_count} (+{element.wos_count*10})</td>
-        <td>{element.monograph_count} (+{element.monograph_count*10})</td>
-        <td>{element.nirs_count} (+{element.nirs_count*20})</td>
-        <td>{element.nirs_count_manager} (+{element.nirs_count_manager*40})</td>
-        <td>{element.tia_count} (+{element.tia_count*5})</td>
+        <td>{element.international_count}</td>
+        <td>{element.kkson_count}</td>
+        <td>{element.scopus_count}</td>
+        <td>{element.wos_count}</td>
+        <td>{element.monograph_count}</td>
+        <td>{element.nirs_count}</td>
+        <td>{element.nirs_count_manager}</td>
+        <td>{element.tia_count}</td>
         <td>{element.h_index_scopus}</td>
         <td>{element.h_index_wos}</td>
     </tr>
@@ -80,7 +79,6 @@ const KPITopTen:FC = () => {
                     <th>№</th>
                     <th>ФИО</th>
                     <th>Кафедра</th>
-                    <th>Баллы общие</th>
                     <th>Баллы (базовый)</th>
                     <th>Баллы (расширенный)</th>
                     <th>Кол-во международных статей (+3 базовый)</th>
