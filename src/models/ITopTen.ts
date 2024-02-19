@@ -4,6 +4,8 @@ export default interface ICafedraStat {
     cafedraNameRU: string,
     fio: string,
     score: number,
+    score_base: number,
+    score_advanced: number,
     kkson_count: number,
     scopus_count: number,
     wos_count: number,

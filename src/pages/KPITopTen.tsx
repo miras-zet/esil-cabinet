@@ -42,11 +42,13 @@ const KPITopTen:FC = () => {
         <td>&nbsp;&nbsp;<a onClick={()=>redirectViewUser(element.userid, element.fio)}>{element.fio}</a></td>
         <td>&nbsp;&nbsp;{element.cafedraNameRU}</td>
         <td>{element.score}</td>
+        <td>{element.score_base}</td>
+        <td>{element.score_advanced}</td>
+        <td>{element.international_count} (+{element.international_count*3})</td>
         <td>{element.kkson_count} (+{element.kkson_count*7})</td>
         <td>{element.scopus_count} (+{element.scopus_count*10})</td>
         <td>{element.wos_count} (+{element.wos_count*10})</td>
         <td>{element.monograph_count} (+{element.monograph_count*10})</td>
-        <td>{element.international_count} (+{element.international_count*3})</td>
         <td>{element.nirs_count} (+{element.nirs_count*20})</td>
         <td>{element.nirs_count_manager} (+{element.nirs_count_manager*40})</td>
         <td>{element.tia_count} (+{element.tia_count*5})</td>
@@ -77,18 +79,20 @@ const KPITopTen:FC = () => {
                 <tr>
                     <th>№</th>
                     <th>ФИО</th>
-                    <th>&nbsp;&nbsp;Кафедра</th>
-                    <th>&nbsp;&nbsp;Баллы</th>
-                    <th>&nbsp;&nbsp;Кол-во публикаций ККСОН</th>
-                    <th>&nbsp;&nbsp;Кол-во публикаций Scopus</th>
-                    <th>&nbsp;&nbsp;Кол-во публикаций Web of Science</th>
-                    <th>&nbsp;&nbsp;Кол-во монографий</th>
-                    <th>&nbsp;&nbsp;Кол-во международных статей</th>
-                    <th>&nbsp;&nbsp;Кол-во участий в научно-исследовательских работах (исполнитель)</th>
-                    <th>&nbsp;&nbsp;Кол-во участий в научно-исследовательских работах (руководитель)</th>
-                    <th>&nbsp;&nbsp;Кол-во патентов</th>
-                    <th>&nbsp;&nbsp;Индекс Хирша (Scopus)</th>
-                    <th>&nbsp;&nbsp;Индекс Хирша (WoS)</th>
+                    <th>Кафедра</th>
+                    <th>Баллы общие</th>
+                    <th>Баллы (базовый)</th>
+                    <th>Баллы (расширенный)</th>
+                    <th>Кол-во международных статей (+3 базовый)</th>
+                    <th>Кол-во публикаций ККСОН (+7 базовый)</th>
+                    <th>Кол-во публикаций Scopus (+10)</th>
+                    <th>Кол-во публикаций Web of Science (+10)</th>
+                    <th>Кол-во монографий (+10)</th>
+                    <th>Кол-во участий в научно-исследовательских работах (исполнитель +20)</th>
+                    <th>Кол-во участий в научно-исследовательских работах (руководитель +40)</th>
+                    <th>Кол-во патентов (+5)</th>
+                    <th>Индекс Хирша (+5 Scopus)</th>
+                    <th>Индекс Хирша (+5 WoS)</th>
                 </tr>
                 {listTopTenItems}
 
