@@ -125,8 +125,6 @@ const KPIAdminViewUser:FC = () => {
             <div className="card-header"><h3>Список загруженных документов</h3></div>
             <h4><div>({localStorage.getItem('fio_view')})</div><br/></h4>
             {listFilesItems.length>0 ? (<div className="card mt-3">
-            
-            <center>{listFilesItems}</center>
             <table style={{textAlign: "center"}}><tbody>
               <tr>
                   <th>Показатель</th>
