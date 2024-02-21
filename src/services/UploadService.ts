@@ -34,6 +34,10 @@ const getPlatonusData = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id'); 
   return http.get(`/upload/getpltdata/${userid}`);
 }
+const getPlatonusDataForUser = () : Promise<any> =>{
+  const userid = localStorage.getItem('user_id_view'); 
+  return http.get(`/upload/getpltdata/${userid}`);
+}
 const getTutors = () : Promise<any> =>{
   const cafedra = localStorage.getItem('cafedraid'); 
   return http.get(`/upload/gettutors/${cafedra}`);
@@ -66,6 +70,7 @@ const UploadService = {
   getCategoryScores,
   getKpi,
   getPlatonusData,
+  getPlatonusDataForUser,
   getStats,
   getFilesForUser,
   getTopTen,
