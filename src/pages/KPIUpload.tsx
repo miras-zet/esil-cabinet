@@ -11,57 +11,59 @@ import ICategory from '../models/ICategory';
 import IPltData from '../models/IPltData';
 
 
-const KPIUpload:FC = () => {  
-    const [activity, setActivity] = useState<string>('notchosen');
-    const [info, setInfo] = useState<string>('');
-    const [currentFile, setCurrentFile] = useState<File>();
-    const [message, setMessage] = useState<string>("");
-    const [messagecolor, setMessageColor] = useState<string>("red");
-    const [fileInfos, setFileInfos] = useState<Array<IFile>>([]);
-    const [pltData, setPltData] = useState<Array<IPltData>>([]);
-    const [categoryInfos, setCategoryInfos] = useState<Array<ICategory>>([]);
-    const {store} = useContext(Context);  
+const KPIUpload: FC = () => {
+  const [activity, setActivity] = useState<string>('notchosen');
+  const [info, setInfo] = useState<string>('');
+  const [currentFile, setCurrentFile] = useState<File>();
+  const [message, setMessage] = useState<string>("");
+  const [messagecolor, setMessageColor] = useState<string>("red");
+  const [fileInfos, setFileInfos] = useState<Array<IFile>>([]);
+  const [pltData, setPltData] = useState<Array<IPltData>>([]);
+  const [categoryInfos, setCategoryInfos] = useState<Array<ICategory>>([]);
+  const { store } = useContext(Context);
 
-    const selectFile = (event: React.ChangeEvent<HTMLInputElement>) => {
-      const { files } = event.target;
-      const selectedFiles = files as FileList;
-      setCurrentFile(selectedFiles?.[0]);
-    };
-    // const clearInput = () => {
-    //   try{
-    //     this.setState({ inputVal: "" });
-    //   }
-    //   catch{
+  const selectFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = event.target;
+    const selectedFiles = files as FileList;
+    setCurrentFile(selectedFiles?.[0]);
+  };
+  // const clearInput = () => {
+  //   try{
+  //     this.setState({ inputVal: "" });
+  //   }
+  //   catch{
 
-    //   }
-    // }
-    // const onInputChange = (e) => {
-    //   this.setState({ inputVal: e.target.value });
-    // }
-    const help = () => {
-      alert('Выберите показатель из списка, затем выберите файл. Затем нажмите \"Отправить файл\". Загружаемый файл должен быть формата .pdf, размер файла не должен превышать 10 МБ.');
-    };
-    const featureNotReadyNotif =() =>{
-      alert('Функция в разработке');
-    }
-    const upload = () => {
-      if(activity=='notchosen') setMessage("Выберите показатель");
-        else{
-          // undecided if confirmation is necessary
-          // ...
-          // i decided it's necessary for people who like to spam the button
-          if (confirm("Вы уверены, что хотите загрузить файл \""+currentFile.name+"\"?") == true) {
+  //   }
+  // }
+  // const onInputChange = (e) => {
+  //   this.setState({ inputVal: e.target.value });
+  // }
+  const help = () => {
+    alert('Выберите показатель из списка, затем выберите файл. Затем нажмите \"Отправить файл\". Загружаемый файл должен быть формата .pdf, размер файла не должен превышать 10 МБ.');
+  };
+  const featureNotReadyNotif = () => {
+    alert('Функция в разработке');
+  }
+  const upload = () => {
+    if (activity == 'notchosen') setMessage("Выберите показатель");
+    else {
+      if (localStorage.getItem('categoryid') == '1' && info == '') setMessage("Введите количество студентов");
+      else {
+        // undecided if confirmation is necessary
+        // ...
+        // i decided it's necessary for people who like to spam the button
+        if (confirm("Вы уверены, что хотите загрузить файл \"" + currentFile.name + "\"?") == true) {
           //document.getElementById('extradatainput').value='';
           // cant clear input field hmmmmm
-          let activityid=1;
+          let activityid = 1;
           if (!currentFile) return;
-          activityid = parseInt(activity); 
+          activityid = parseInt(activity);
           UploadService.upload(currentFile, activityid, info)
             .then((response) => {
               setMessage(response.data.message);
-              if(response.data.message==="Файл был загружен"){
+              if (response.data.message === "Файл был загружен") {
                 setMessageColor("#2ecc71");
-              }else{
+              } else {
                 setMessageColor("red");
               }
               return UploadService.getFiles();
@@ -75,87 +77,88 @@ const KPIUpload:FC = () => {
               } else {
                 setMessage("Ошибка загрузки");
               }
-            
+
               setCurrentFile(undefined);
             });
         }
       }
-      };
-      // const download = async (filename: string) => {
-      //   UploadService.downloadFile(filename)
-      //     .then((response) => {
-      //       setMessage(response.data.message);
-      //       return UploadService.getFiles();
-      //     })
-      //     .then((files) => {
-      //       setFileInfos(files.data);
-      //     })
-      //     .catch((err) => {
-      //       if (err.response && err.response.data && err.response.data.message) {
-      //         setMessage(err.response.data.message);
-      //       } else {
-      //         setMessage("Ошибка загрузки");
-      //       }
-    
-      //       setCurrentFile(undefined);
-      //     });
-      //     return 'done';
-      // };
-      const deleteF = async (filename: string) => {
-        if(confirm('Вы уверены, что хотите удалить файл?')){
-        UploadService.deleteFile(filename, localStorage.getItem('user_id'))
-          .then((response) => {
-            setMessage(response.data.message);
-            return UploadService.getFiles();
-          })
-          .then((files) => {
-            setFileInfos(files.data);
-          })
-          .catch((err) => {
-            if (err.response && err.response.data && err.response.data.message) {
-              setMessage(err.response.data.message);
-            } else {
-              setMessage("Ошибка удаления");
-            }
-          });
-        }
+    }
+  };
+  // const download = async (filename: string) => {
+  //   UploadService.downloadFile(filename)
+  //     .then((response) => {
+  //       setMessage(response.data.message);
+  //       return UploadService.getFiles();
+  //     })
+  //     .then((files) => {
+  //       setFileInfos(files.data);
+  //     })
+  //     .catch((err) => {
+  //       if (err.response && err.response.data && err.response.data.message) {
+  //         setMessage(err.response.data.message);
+  //       } else {
+  //         setMessage("Ошибка загрузки");
+  //       }
 
-      };
- useEffect(() => {
-    if (localStorage.getItem('token')){
+  //       setCurrentFile(undefined);
+  //     });
+  //     return 'done';
+  // };
+  const deleteF = async (filename: string) => {
+    if (confirm('Вы уверены, что хотите удалить файл?')) {
+      UploadService.deleteFile(filename, localStorage.getItem('user_id'))
+        .then((response) => {
+          setMessage(response.data.message);
+          return UploadService.getFiles();
+        })
+        .then((files) => {
+          setFileInfos(files.data);
+        })
+        .catch((err) => {
+          if (err.response && err.response.data && err.response.data.message) {
+            setMessage(err.response.data.message);
+          } else {
+            setMessage("Ошибка удаления");
+          }
+        });
+    }
+
+  };
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
       store.checkAuth()
     }
     UploadService.getFiles().then((response) => {
-        setFileInfos(response.data);
-    }); 
+      setFileInfos(response.data);
+    });
     UploadService.getCategories().then((response) => {
-        setCategoryInfos(response.data);
-    });   
+      setCategoryInfos(response.data);
+    });
     UploadService.getPlatonusData().then((response) => {
       setPltData(response.data);
-  }); 
-    
-  },[]);
+    });
 
-  if (store.isLoading){
+  }, []);
+
+  if (store.isLoading) {
     return <div>Loading ...</div>
   }
 
-  const listFilesItems = fileInfos.map((element) =>  
+  const listFilesItems = fileInfos.map((element) =>
     <tr key={element.id}>
-        <td>{element.name}</td> 
-        <td>{moment(element.upload_date).format("DD.MM.YYYY")}</td>
-        <td>{element.extradata1}</td> 
-        <td> +{element.primaryscore}</td>
-        <td>&nbsp;&nbsp;<button onClick={() =>featureNotReadyNotif}>Скачать</button> | <button onClick={() =>deleteF(element.filename)}>Удалить</button></td>
+      <td>{element.name}</td>
+      <td>{moment(element.upload_date).format("DD.MM.YYYY")}</td>
+      <td>{element.extradata1}</td>
+      <td> +{element.primaryscore}</td>
+      <td>&nbsp;&nbsp;<button onClick={() => featureNotReadyNotif}>Скачать</button> | <button onClick={() => deleteF(element.filename)}>Удалить</button></td>
     </tr>
   );
 
-  const listCategoryItems = categoryInfos.map((element)=>
+  const listCategoryItems = categoryInfos.map((element) =>
     <option key={element.id} value={element.id}>{element.name}</option>
   );
 
-  const pltDataTable = pltData.map((element)=>
+  const pltDataTable = pltData.map((element) =>
     <div>
       <p>Кол-во международных статей: <b>{element.international_count}</b></p>
       <p>Кол-во статей ККСОН: <b>{element.kkson_count}</b></p>
@@ -171,75 +174,84 @@ const KPIUpload:FC = () => {
   );
   if (!store.isAuth) {
     return (
-        <div>
-            <LoginForm/>            
-        </div>
+      <div>
+        <LoginForm />
+      </div>
     );
-  } 
+  }
   const role = localStorage.getItem('role');
-  if(role==='plt_tutor') return ( <div>
+  const categoryid = localStorage.getItem('categoryid');
+  if (role === 'plt_tutor') return (<div>
     <Link to="/kpi"><button>Вернуться назад</button></Link>
-    <br/><br/><br/><br/><br/>
-    <select className='btn' style={{backgroundColor:'silver', color:'DimGray'}} name="categories" id="cat" onChange={event => setActivity(event.target.value)}>
-        <option value="notchosen">Выберите показатель...</option>
-        {listCategoryItems}
+    <br /><br /><br /><br /><br />
+    <select className='btn' style={{ backgroundColor: 'silver', color: 'DimGray' }} name="categories" id="cat" onChange={event => setActivity(event.target.value)}>
+      <option value="notchosen">Выберите показатель...</option>
+      {listCategoryItems}
     </select>
-    <br/><br/><br/>
-    Дополнительная информация (название, год выдачи, ...):
-    <br/><input className='btn' style={{width:'400px', fontSize:'14px', backgroundColor:'silver', color:'DimGray'}} id='extradatainput' type='text' onChange={event => setInfo(event.target.value)} minLength={3} maxLength={200}></input>
-    <br/><br/>
+    <br /><br /><br />
+    {categoryid != '1' ?
+      <div>
+        Дополнительная информация (название, год выдачи, ...):
+        <br /><input className='btn' style={{ width: '400px', fontSize: '14px', backgroundColor: 'silver', color: 'DimGray' }} id='extradatainput' type='text' onChange={event => setInfo(event.target.value)} minLength={3} maxLength={200}></input>
+      </div> :
+      <div>
+        Количество приведенных Вами абитуриентов:
+        <br /><input className='btn' style={{ width: '60px', fontSize: '14px', backgroundColor: 'silver', color: 'Black' }} id='extradatainput' type='number' onChange={event => setInfo(event.target.value)} maxLength={5}></input>
+      </div>}
+    <br /><h5>Документы должны быть не старше 5 лет</h5><br />
     <div className="row">
       <div className="col-8">
-        <label className="btn" style={{backgroundColor:'silver', color:'DimGray'}} >
-          {currentFile ? `Выбран файл:  ${currentFile.name}`:'Выберите файл...'}
-          <input type="file" hidden onChange={selectFile} style={{backgroundColor:'silver', color:'DimGray'}}/>
+        <label className="btn" style={{ backgroundColor: 'silver', color: 'DimGray' }} >
+          {currentFile ? `Выбран файл:  ${currentFile.name}` : 'Выберите файл...'}
+          <input type="file" hidden onChange={selectFile} style={{ backgroundColor: 'silver', color: 'DimGray' }} />
         </label>
       </div>
-        <br/>
+      <br />
       <div className="col-4">
         <button
           disabled={!currentFile}
           onClick={upload}
-          style={{backgroundColor:'gray'}}>
+          style={{ backgroundColor: 'gray' }}>
           Отправить файл
         </button>
-        <br/><br/>
-        <a onClick={help} style={{fontSize:"14px"}}>Помощь</a>
+        <br /><br />
+        <a onClick={help} style={{ fontSize: "14px" }}>Помощь</a>
+
       </div>
     </div>
     {message && (
       <div >
-        <br/>
-        <h4 style={{color: messagecolor}}>{message}</h4>
+        <br />
+        <h4 style={{ color: messagecolor }}>{message}</h4>
       </div>
     )}
-    <br/><br/>
-    {listFilesItems.length>0 ? (<div className="card mt-3">
-        <div className="card-header">Список загруженных документов</div><br/>
-        <center><table style={{textAlign: "center"}}><tbody>
-            <tr>
-                <th>Показатель</th>
-                <th>Дата загрузки</th>
-                <th>&nbsp;&nbsp;Информация</th>
-                <th>&nbsp;&nbsp;Баллы</th>
-                <th>&nbsp;&nbsp;Действия</th>
-            </tr>
-            {listFilesItems}
-          
-        </tbody>
-        </table></center>
-      </div>):''}
-      <br/><br/>
-    {(pltDataTable.length>0 && localStorage.getItem('categoryid')=='2')? (<div className="card mt-3">
-        <div className="card-header"><h3>Ваши публикации в Platonus</h3></div>
-        <center>{pltDataTable}</center>
-      </div>):''}
-    
-    </div>)
-    else{
-      return <div><button onClick={() => store.logout()}>Назад</button>  
+    <br /><br />
+    {listFilesItems.length > 0 ? (<div className="card mt-3">
+      <div className="card-header">Список загруженных документов</div><br />
+      <center><table style={{ textAlign: "center" }}><tbody>
+        <tr>
+          <th>Показатель</th>
+          <th>Дата загрузки</th>
+          <th>&nbsp;&nbsp;Информация</th>
+          <th>&nbsp;&nbsp;Баллы</th>
+          <th>&nbsp;&nbsp;Действия</th>
+        </tr>
+        {listFilesItems}
+
+      </tbody>
+      </table></center>
+    </div>) : ''}
+    <br /><br />
+    {(pltDataTable.length > 0 && localStorage.getItem('categoryid') == '2') ? (<div className="card mt-3">
+      <div className="card-header"><h3>Ваши публикации в Platonus</h3></div>
+      <center>{pltDataTable}</center>
+    </div>) : ''}
+
+  </div>)
+  else {
+    return <div><button onClick={() => store.logout()}>Назад</button>
       <h4>Нет доступа к странице</h4></div>
-    }
+  }
 }
 
 export default observer(KPIUpload)
