@@ -191,7 +191,7 @@ const KPIUpload: FC = () => {
     <br /><br /><br />
     {categoryid != '1' ?
       <div>
-        Дополнительная информация (название, год выдачи, ...):
+        Информация: название, год выдачи документа (обязательно), ...:
         <br /><input className='btn' style={{ width: '400px', fontSize: '14px', backgroundColor: 'silver', color: 'DimGray' }} id='extradatainput' type='text' onChange={event => setInfo(event.target.value)} minLength={3} maxLength={200}></input>
       </div> :
       <div>
