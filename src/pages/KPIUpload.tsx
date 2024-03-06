@@ -247,7 +247,7 @@ const KPIUpload: FC = () => {
       </tbody>
       </table></center>
     </div>) : ''}
-    <br /><br />
+    <br />
     {(pltDataTable.length > 0 && localStorage.getItem('categoryid') == '2') ? (<div className="card mt-3">
       <div className="card-header"><h3>Ваши публикации в Platonus</h3></div>
       <center>{pltDataTable}</center>
