@@ -17,11 +17,22 @@ const UMKDMoodle: FC = () => {
 
     const listCategoryItems = moodleData.map((element) =>  
       <div key={element.umkd_mdl_completion}>
-          Заполненность портала ДОТ: {element.umkd_mdl_completion}%, {(element.umkd_mdl_completion>=50)? `добавлено +${Math.round(15/50*element.umkd_mdl_completion-15)} баллов`:`отнято ${Math.round(15/50*element.umkd_mdl_completion-15)} баллов`}
+          {(element.umkd_mdl_completion!=50? 
+          <div>
+            Заполненность портала ДОТ: {element.umkd_mdl_completion}%, {(element.umkd_mdl_completion>50)? 
+            `добавлено +${Math.round(15/50*element.umkd_mdl_completion-15)} баллов`
+            :
+            `отнято ${Math.round(15/50*element.umkd_mdl_completion-15)} баллов`}
+          </div>
+          :
+          <div>
+            
+          </div>)}  
+          
       </div>
     );
     if(listCategoryItems.length>0)return (
-    <div> 
+    <div><br></br> 
         {listCategoryItems}
     </div>);
     else{
