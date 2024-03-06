@@ -149,7 +149,7 @@ const KPIUpload: FC = () => {
       <td>{element.name}</td>
       <td>{moment(element.upload_date).format("DD.MM.YYYY")}</td>
       <td>{element.extradata1}</td>
-      <td> +{element.primaryscore}</td>
+      <td> +{element.name!='Набор абитуриентов' ? element.primaryscore: (element.primaryscore*parseInt(element.extradata1)<=50? element.primaryscore*parseInt(element.extradata1):50)}</td>
       <td>&nbsp;&nbsp;<button onClick={() => featureNotReadyNotif}>Скачать</button> | <button onClick={() => deleteF(element.filename)}>Удалить</button></td>
     </tr>
   );
@@ -197,6 +197,12 @@ const KPIUpload: FC = () => {
       <div>
         Количество приведенных Вами абитуриентов:
         <br /><input className='btn' style={{ width: '60px', fontSize: '14px', backgroundColor: 'silver', color: 'Black' }} id='extradatainput' type='number' onChange={event => setInfo(event.target.value)} maxLength={5}></input>
+      </div>}
+      {categoryid != '1' ?
+      <div>
+      </div> :
+      <div>
+        Максимальный возможный балл: +50
       </div>}
     <br /><h5>Документы должны быть не старше 5 лет</h5><br />
     <div className="row">

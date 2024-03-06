@@ -88,15 +88,15 @@ const KPIAdminViewUser:FC = () => {
   const featureNotReadyNotif =() =>{
     alert('Функция в разработке');
   }
-  const listFilesItems = fileInfos.map((element) =>  
-    <tr key={element.id}>
-        <td>{element.name}</td> 
-        <td>{moment(element.upload_date).format("DD.MM.YYYY")}</td>
-        <td>{element.extradata1}</td> 
-        <td> +{element.primaryscore}</td>
-        <td>&nbsp;&nbsp;<button onClick={() =>featureNotReadyNotif}>Скачать</button> | <button onClick={() =>deleteF(element.filename)}>Удалить</button></td>
-    </tr>
-  );
+  const listFilesItems = fileInfos.map((element) =>
+  <tr key={element.id}>
+    <td>{element.name}</td>
+    <td>{moment(element.upload_date).format("DD.MM.YYYY")}</td>
+    <td>{element.extradata1}</td>
+    <td> +{element.name!='Набор абитуриентов' ? element.primaryscore: (element.primaryscore*parseInt(element.extradata1)<=50? element.primaryscore*parseInt(element.extradata1):50)}</td>
+    <td>&nbsp;&nbsp;<button onClick={() => featureNotReadyNotif}>Скачать</button> | <button onClick={() => deleteF(element.filename)}>Удалить</button></td>
+  </tr>
+);
 
   if (!store.isAuth) {
     return (
