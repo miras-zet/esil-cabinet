@@ -9,7 +9,6 @@ import '../App.css';
 import UploadService from '../services/UploadService';
 import IKPI from '../models/IKPI';
 import KPICategoryScores from '../components/KPICategoryScores';
-import UMKDMoodle from '../components/UMKDMoodle';
 
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -127,7 +126,6 @@ const HomePage:FC = () => {
               <Link to="/kpi"><button>Загрузить документы</button></Link>
               <br/><br/><br/>Каждый несёт персональную ответственность за ввод данных в систему оценки KPI.<br/><br/>
               <center>
-              <UMKDMoodle/>
               <KPICategoryScores/>
               </center>
               </div>

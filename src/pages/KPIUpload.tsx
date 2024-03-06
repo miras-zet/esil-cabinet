@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 import ICategory from '../models/ICategory';
 import IPltData from '../models/IPltData';
+import UMKDMoodle from '../components/UMKDMoodle';
 
 
 const KPIUpload: FC = () => {
@@ -221,7 +222,7 @@ const KPIUpload: FC = () => {
           Отправить файл
         </button>
         <br /><br />
-        <a onClick={help} style={{ fontSize: "14px" }}>Помощь</a>
+        {/* <a onClick={help} style={{ fontSize: "14px" }}>Помощь</a> */}
 
       </div>
     </div>
@@ -248,6 +249,9 @@ const KPIUpload: FC = () => {
       </table></center>
     </div>) : ''}
     <br />
+    {(localStorage.getItem('categoryid') == '3') ? (<div className="card mt-3">
+      <center><UMKDMoodle/></center>
+    </div>) : ''}
     {(pltDataTable.length > 0 && localStorage.getItem('categoryid') == '2') ? (<div className="card mt-3">
       <div className="card-header"><h3>Ваши публикации в Platonus</h3></div>
       <center>{pltDataTable}</center>
