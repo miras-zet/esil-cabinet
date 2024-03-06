@@ -9,6 +9,7 @@ import '../App.css';
 import UploadService from '../services/UploadService';
 import IKPI from '../models/IKPI';
 import KPICategoryScores from '../components/KPICategoryScores';
+import UMKDMoodle from '../components/UMKDMoodle';
 
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -125,7 +126,10 @@ const HomePage:FC = () => {
               <h4>{premiere ? `Премирование: ${premiere}`:''}</h4>
               <Link to="/kpi"><button>Загрузить документы</button></Link>
               <br/><br/><br/>Каждый несёт персональную ответственность за ввод данных в систему оценки KPI.<br/><br/>
-              <center><KPICategoryScores/></center>
+              <center>
+              <UMKDMoodle/>
+              <KPICategoryScores/>
+              </center>
               </div>
             }
             else if(role==='plt_kpiadmin'){
