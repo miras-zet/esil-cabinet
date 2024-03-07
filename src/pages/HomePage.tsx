@@ -164,9 +164,8 @@ const HomePage:FC = () => {
               </div>
             }
             else{
-              <h3>internal error</h3>
+              return <div><center><h3>Произошла внутренняя ошибка</h3><button onClick={() => store.logout()}>Выйти</button></center></div>
             }
-            return;
           } )()}
     </div>
   );
