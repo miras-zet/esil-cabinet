@@ -39,7 +39,7 @@ const KPIUpload: FC = () => {
   // const onInputChange = (e) => {
   //   this.setState({ inputVal: e.target.value });
   // }
-  
+
   // const help = () => {
   //   alert('Выберите показатель из списка, затем выберите файл. Затем нажмите \"Отправить файл\". Загружаемый файл должен быть формата .pdf, размер файла не должен превышать 10 МБ.');
   // };
@@ -185,7 +185,11 @@ const KPIUpload: FC = () => {
   const categoryid = localStorage.getItem('categoryid');
   if (role === 'plt_tutor') return (<div>
     <Link to="/kpi"><button>Вернуться назад</button></Link>
-    <br /><br /><br /><br /><br />
+    <br /><br />
+    {(localStorage.getItem('categoryid') == '3') ? (<div className="card mt-3">
+      <center><UMKDMoodle/></center>
+    </div>) : ''}
+    <br />
     <select className='btn' style={{ backgroundColor: 'silver', color: 'DimGray' }} name="categories" id="cat" onChange={event => setActivity(event.target.value)}>
       <option value="notchosen">Выберите показатель...</option>
       {listCategoryItems}
@@ -249,10 +253,7 @@ const KPIUpload: FC = () => {
       </tbody>
       </table></center>
     </div>) : ''}
-    <br />
-    {(localStorage.getItem('categoryid') == '3') ? (<div className="card mt-3">
-      <center><UMKDMoodle/></center>
-    </div>) : ''}
+    <br /> 
     {(pltDataTable.length > 0 && localStorage.getItem('categoryid') == '2') ? (<div className="card mt-3">
       <div className="card-header"><h3>Ваши публикации в Platonus</h3></div>
       <center>{pltDataTable}</center>
