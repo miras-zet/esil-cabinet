@@ -6,6 +6,7 @@ import UploadService from '../services/UploadService';
 import IFile from '../models/IFile';
 import { observer } from 'mobx-react-lite';
 import moment from 'moment';
+import IPltData from '../models/IPltData';
 
 
 const KPIAdminViewUser:FC = () => {  
@@ -13,7 +14,7 @@ const KPIAdminViewUser:FC = () => {
     const [message, setMessage] = useState<string>("");
     const [fileInfos, setFileInfos] = useState<Array<IFile>>([]);
     const {store} = useContext(Context);  
-    
+    const [pltData, setPltData] = useState<Array<IPltData>>([]);
       // const download = async (filename: string) => {
       //   UploadService.downloadFile(filename)
       //     .then((response) => {
@@ -56,8 +57,24 @@ const KPIAdminViewUser:FC = () => {
         UploadService.getFilesForUser().then((response) => {
             setFileInfos(response.data);
         }); 
-
+        UploadService.getPlatonusDataForUser().then((response) => {
+          setPltData(response.data);
+      }); 
       }
+      const pltDataTable = pltData.map((element)=>
+      <div>
+        <p>Кол-во международных статей: <b>{element.international_count}</b></p>
+        <p>Кол-во статей ККСОН: <b>{element.kkson_count}</b></p>
+        <p>Кол-во статей Scopus: <b>{element.scopus_count}</b></p>
+        <p>Кол-во статей Web of Science: <b>{element.wos_count}</b></p>
+        <p>Кол-во монографий: <b>{element.monograph_count}</b></p>
+        <p>Кол-во участий в научно-исследовательских работах (исполнитель): <b>{element.nirs_count}</b></p>
+        <p>Кол-во участий в научно-исследовательских работах (руководитель): <b>{element.nirs_count_manager}</b></p>
+        <p>Кол-во патентов: <b>{element.tia_count}</b></p>
+        <p>Индекс Хирша (Scopus): <b>{element.h_index_scopus}</b></p>
+        <p>Индекс Хирша (Web of Science): <b>{element.h_index_wos}</b></p>
+      </div>
+    );
  useEffect(() => {
     if (localStorage.getItem('token')){
       store.checkAuth()
@@ -71,15 +88,15 @@ const KPIAdminViewUser:FC = () => {
   const featureNotReadyNotif =() =>{
     alert('Функция в разработке');
   }
-  const listFilesItems = fileInfos.map((element) =>  
-    <tr key={element.id}>
-        <td>{element.name}</td> 
-        <td>{moment(element.upload_date).format("DD.MM.YYYY")}</td>
-        <td>{element.extradata1}</td> 
-        <td> +{element.primaryscore}</td>
-        <td>&nbsp;&nbsp;<button onClick={() =>featureNotReadyNotif}>Скачать</button> | <button onClick={() =>deleteF(element.filename)}>Удалить</button></td>
-    </tr>
-  );
+  const listFilesItems = fileInfos.map((element) =>
+  <tr key={element.id}>
+    <td>{element.name}</td>
+    <td>{moment(element.upload_date).format("DD.MM.YYYY")}</td>
+    <td>{element.extradata1}</td>
+    <td> +{element.name!='Набор абитуриентов' ? element.primaryscore: (element.primaryscore*parseInt(element.extradata1)<=50? element.primaryscore*parseInt(element.extradata1):50)}</td>
+    <td>&nbsp;&nbsp;<button onClick={() => featureNotReadyNotif}>Скачать</button> | <button onClick={() => deleteF(element.filename)}>Удалить</button></td>
+  </tr>
+);
 
   if (!store.isAuth) {
     return (
@@ -105,9 +122,10 @@ const KPIAdminViewUser:FC = () => {
         <br/><br/>
         <div className="card mt-3" onLoad={getfiles}>
             <div>{message}</div>
-            <h3><div>Список загруженных документов</div><br/></h3>
+            <div className="card-header"><h3>Список загруженных документов</h3></div>
             <h4><div>({localStorage.getItem('fio_view')})</div><br/></h4>
-            <center><table style={{textAlign: "center"}}><tbody>
+            {listFilesItems.length>0 ? (<div className="card mt-3">
+            <table style={{textAlign: "center"}}><tbody>
               <tr>
                   <th>Показатель</th>
                   <th>Дата загрузки</th>
@@ -119,9 +137,12 @@ const KPIAdminViewUser:FC = () => {
 
             </tbody>
             </table>
+            </div>):''}
             <br></br>
-            В этой таблице НЕ отображаются данные из Platonus.
-            </center>
+            {pltDataTable.length>0 ? (<div className="card mt-3">
+            <div className="card-header"><h3>Публикации в Platonus</h3></div>
+            <center>{pltDataTable}</center>
+          </div>):''}
           </div>
         </div>
         else{

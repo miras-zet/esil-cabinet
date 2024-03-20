@@ -125,7 +125,9 @@ const HomePage:FC = () => {
               <h4>{premiere ? `Премирование: ${premiere}`:''}</h4>
               <Link to="/kpi"><button>Загрузить документы</button></Link>
               <br/><br/><br/>Каждый несёт персональную ответственность за ввод данных в систему оценки KPI.<br/><br/>
+              <center>
               <KPICategoryScores/>
+              </center>
               </div>
             }
             else if(role==='plt_kpiadmin'){
@@ -162,9 +164,8 @@ const HomePage:FC = () => {
               </div>
             }
             else{
-              <h3>internal error</h3>
+              return <div><center><h3>Произошла внутренняя ошибка</h3><button onClick={() => store.logout()}>Выйти</button></center></div>
             }
-            return;
           } )()}
     </div>
   );

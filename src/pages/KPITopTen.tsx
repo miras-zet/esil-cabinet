@@ -49,10 +49,7 @@ const KPITopTen:FC = () => {
         <td>{element.wos_count}</td>
         <td>{element.monograph_count}</td>
         <td>{element.nirs_count}</td>
-        <td>{element.nirs_count_manager}</td>
         <td>{element.tia_count}</td>
-        <td>{element.h_index_scopus}</td>
-        <td>{element.h_index_wos}</td>
     </tr>
   );
 
@@ -87,10 +84,7 @@ const KPITopTen:FC = () => {
                     <th>Кол-во публикаций WoS (+10)</th>
                     <th>Кол-во монографий (+10)</th>
                     <th>Кол-во участий в НИР (исполнитель +20)</th>
-                    <th>Кол-во участий в НИР (руководитель +40)</th>
                     <th>Кол-во патентов (+5)</th>
-                    <th>Индекс Хирша (+5 Scopus)</th>
-                    <th>Индекс Хирша (+5 WoS)</th>
                 </tr>
                 {listTopTenItems}
 

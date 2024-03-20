@@ -26,12 +26,20 @@ const getCategoryScores = () : Promise<any> => {
   const userid = localStorage.getItem('user_id');  
   return http.get(`/upload/getcategoryscore/${userid}`);
 };
+const getUMKDMoodle = () : Promise<any> =>{
+  const userid = localStorage.getItem('user_id');
+  return http.get(`/upload/getumkdmoodle/${userid}`);
+};
 const getFilesForUser = () : Promise<any> => {
   const userid = localStorage.getItem('user_id_view');  
   return http.get(`/upload/files/${userid}`);
 };
 const getPlatonusData = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id'); 
+  return http.get(`/upload/getpltdata/${userid}`);
+}
+const getPlatonusDataForUser = () : Promise<any> =>{
+  const userid = localStorage.getItem('user_id_view'); 
   return http.get(`/upload/getpltdata/${userid}`);
 }
 const getTutors = () : Promise<any> =>{
@@ -64,8 +72,10 @@ const UploadService = {
   deleteFile,
   downloadFile,
   getCategoryScores,
+  getUMKDMoodle,
   getKpi,
   getPlatonusData,
+  getPlatonusDataForUser,
   getStats,
   getFilesForUser,
   getTopTen,
