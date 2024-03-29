@@ -53,6 +53,7 @@ const KPIPage:FC = () => {
         if(role=='plt_tutor') {
           return <div>
               <KPINavbar/>  
+              <br/><br/>
               <div className=''>
                 <h2>Загрузка документов</h2>     
                 <p><button onClick={() => redirect('1')}>Профориентация</button></p>
