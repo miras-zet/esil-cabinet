@@ -55,7 +55,7 @@ const KPIPage:FC = () => {
               <KPINavbar/>  
               <br/><br/>
               <div className=''>
-                <h2>Загрузка документов</h2>     
+                <h2>Загрузка документов</h2>
                 <p><button onClick={() => redirect('1')}>Профориентация</button></p>
                 <p><button onClick={() => redirect('2')}>Наука</button></p>
                 <p><button onClick={() => redirect('3')}>Разработка образовательных ресурсов и сопровождение</button></p>
