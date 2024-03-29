@@ -11,6 +11,7 @@ import IKPI from '../models/IKPI';
 import KPICategoryScores from '../components/KPICategoryScores';
 import KPINavbar from '../components/KPINavbar';
 import { HiSparkles } from "react-icons/hi2";
+import { FaUpload } from 'react-icons/fa';
 
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -128,7 +129,7 @@ const HomePage:FC = () => {
               <div className='tutorcontent'>
                 <h4 style={{fontSize:35}}>Баллы KPI: <b style={{color: textcolor}}>{kpiInfo.toString()}</b></h4>
                 <h4 style={{fontSize:20}}>{premiere ? `Премирование: ${premiere} `:''}{parseInt(KPIScore)>=200 ?<HiSparkles style={{verticalAlign:'middle', marginTop:'-7px'}}/>:''}</h4>
-                <Link to="/kpi"><button className='navbarbutton'>Загрузить документы</button></Link>
+                <Link to="/kpi"><button className='navbarbutton'>Загрузить документы &nbsp;&nbsp;<FaUpload /></button></Link>
                 <h5>* Каждый несёт персональную ответственность за ввод данных в систему оценки KPI.</h5>
                 <KPICategoryScores/>
                 </div>
