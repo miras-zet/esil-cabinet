@@ -44,13 +44,11 @@ const LoginForm: FC = () => {
         /> 
         <div>{store.errors === 401 && <span style={{color: 'red'}}>Не верно введен логин или пароль</span>} {store.errors === 500 && <span style={{color: 'red'}}>Ошибка сервера</span>} &nbsp;</div> 
           
-        <button onClick = {
+        <button className='navbarbutton' onClick = {
             () => store.login(username, password)
         }
         style={{padding: 10,
-            margin: 10,
-            background: "#47a847",
-            color: "white"}}> Войти</button>
+            margin: 10}}> Войти</button>
         {/* <button onClick = {
             () => debugAdmin()
         }

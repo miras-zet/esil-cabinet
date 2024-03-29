@@ -2,6 +2,7 @@ import {FC, useContext} from "react";
 import { observer } from "mobx-react-lite";
 import '../App.css';
 import { Context } from "../main";
+import { TbLogout } from "react-icons/tb";
 
 const KPINavbar: FC = () => {
     const {store} = useContext(Context); 
@@ -16,7 +17,7 @@ const KPINavbar: FC = () => {
             <div className="topnav2">
             {localStorage.getItem('role')!='plt_kpiadmin' ? <div className='navbarname'>Кафедра {localStorage.getItem('cafedraname')}</div>:<div></div>}
               <div className='navbarname'>{FIO}</div>     
-              <button className='navbarbutton' onClick={() => store.logout()}>Выйти</button>
+              <button className='navbarbutton' onClick={() => store.logout()}>Выйти <TbLogout  style={{verticalAlign:'middle', marginTop:'-3px'}}/></button>
             </div> 
         </div>
     )

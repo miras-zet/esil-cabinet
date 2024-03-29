@@ -11,6 +11,7 @@ import ICategory from '../models/ICategory';
 import IPltData from '../models/IPltData';
 import UMKDMoodle from '../components/UMKDMoodle';
 import KPINavbar from '../components/KPINavbar';
+import { FaDownload, FaTrashAlt } from "react-icons/fa";
 
 
 const KPIUpload: FC = () => {
@@ -153,7 +154,7 @@ const KPIUpload: FC = () => {
       <td>{moment(element.upload_date).format("DD.MM.YYYY")}</td>
       <td>{element.extradata1}</td>
       <td> +{element.name!='Набор абитуриентов' ? element.primaryscore: (element.primaryscore*parseInt(element.extradata1)<=50? element.primaryscore*parseInt(element.extradata1):50)}</td>
-      <td>&nbsp;&nbsp;<button onClick={() => featureNotReadyNotif}>Скачать</button> | <button onClick={() => deleteF(element.filename)}>Удалить</button></td>
+      <td>&nbsp;&nbsp;<button onClick={() => featureNotReadyNotif}><FaDownload/></button>&nbsp;&nbsp;<button onClick={() => deleteF(element.filename)}><FaTrashAlt /></button></td>
     </tr>
   );
 

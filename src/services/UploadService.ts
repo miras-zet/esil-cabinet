@@ -34,6 +34,10 @@ const getFilesForUser = () : Promise<any> => {
   const userid = localStorage.getItem('user_id_view');  
   return http.get(`/upload/files/${userid}`);
 };
+const getUMKDMoodleForUser = () : Promise<any> =>{
+  const userid = localStorage.getItem('user_id_view');
+  return http.get(`/upload/getumkdmoodle/${userid}`);
+};
 const getPlatonusData = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id'); 
   return http.get(`/upload/getpltdata/${userid}`);
@@ -74,6 +78,7 @@ const UploadService = {
   downloadFile,
   getCategoryScores,
   getUMKDMoodle,
+  getUMKDMoodleForUser,
   getKpi,
   getPlatonusData,
   getPlatonusDataForUser,

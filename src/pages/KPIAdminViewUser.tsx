@@ -8,6 +8,8 @@ import { observer } from 'mobx-react-lite';
 import moment from 'moment';
 import IPltData from '../models/IPltData';
 import KPINavbar from '../components/KPINavbar';
+import UMKDMoodle from '../components/UMKDMoodle';
+import { FaDownload, FaTrashAlt } from 'react-icons/fa';
 
 
 const KPIAdminViewUser:FC = () => {  
@@ -95,7 +97,7 @@ const KPIAdminViewUser:FC = () => {
     <td>{moment(element.upload_date).format("DD.MM.YYYY")}</td>
     <td>{element.extradata1}</td>
     <td> +{element.name!='Набор абитуриентов' ? element.primaryscore: (element.primaryscore*parseInt(element.extradata1)<=50? element.primaryscore*parseInt(element.extradata1):50)}</td>
-    <td>&nbsp;&nbsp;<button onClick={() => featureNotReadyNotif}>Скачать</button> | <button onClick={() => deleteF(element.filename)}>Удалить</button></td>
+    <td>&nbsp;&nbsp;<button onClick={() => featureNotReadyNotif}><FaDownload/></button>&nbsp;&nbsp;<button onClick={() => deleteF(element.filename)}><FaTrashAlt /></button></td>
   </tr>
 );
 
@@ -122,7 +124,7 @@ const KPIAdminViewUser:FC = () => {
         <KPINavbar/>
         <br/><br/><br/><br/><br/><br/>
         <button onClick={redirectDecider}>Вернуться назад</button>
-        <br/><br/>
+        <br/><UMKDMoodle/><br/>
         <div className="card mt-3" onLoad={getfiles}>
             <div>{message}</div>
             <div className="card-header"><h3>Список загруженных документов</h3></div>

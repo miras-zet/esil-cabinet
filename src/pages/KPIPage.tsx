@@ -59,6 +59,7 @@ const KPIPage:FC = () => {
                 <p><button onClick={() => redirect('3')}>Разработка образовательных ресурсов и сопровождение</button></p>
                 <p><button onClick={() => redirect('4')}>Профессиональное соответствие и экспертность</button></p>
                 <p><button onClick={() => redirect('5')}>Отраслевое и общественное призвание</button></p>
+                <br/>
                 <Link to={"/"}><button style={{backgroundColor:'silver'}}>Вернуться назад</button></Link> 
               </div>
         </div>

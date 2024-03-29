@@ -7,12 +7,20 @@ const UMKDMoodle: FC = () => {
     const [moodleData, setMoodleData] = useState<Array<IMoodlePercentage>>([]);
 
     useEffect(() => {
-        UploadService.getUMKDMoodle()
+        if(localStorage.getItem('role')!='plt_kpiadmin')UploadService.getUMKDMoodle()
         .then(
           (response) => {
             return setMoodleData(response.data);
           }
         )  
+        else{
+          UploadService.getUMKDMoodleForUser()
+        .then(
+          (response) => {
+            return setMoodleData(response.data);
+          }
+        )  
+        }
     },[])
 
     const listCategoryItems = moodleData.map((element) =>  
