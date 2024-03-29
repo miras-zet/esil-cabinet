@@ -14,7 +14,7 @@ const KPINavbar: FC = () => {
               <div className='navbartitle'>Система учета баллов KPI</div>
             </div> 
             <div className="topnav2">
-            <div className='navbarname'>Кафедра {localStorage.getItem('cafedraname')}</div>
+            {localStorage.getItem('role')!='plt_kpiadmin' ? <div className='navbarname'>Кафедра {localStorage.getItem('cafedraname')}</div>:<div></div>}
               <div className='navbarname'>{FIO}</div>     
               <button className='navbarbutton' onClick={() => store.logout()}>Выйти</button>
             </div> 

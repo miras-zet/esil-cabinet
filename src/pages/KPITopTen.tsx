@@ -6,6 +6,7 @@ import UploadService from '../services/UploadService';
 import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import ITopTen from '../models/ITopTen';
+import KPINavbar from '../components/KPINavbar';
 
 const KPITopTen:FC = () => {  
       
@@ -73,6 +74,8 @@ const KPITopTen:FC = () => {
         //getfiles();
         const role = localStorage.getItem('role');
     if(role==='plt_kpiadmin')return <div>
+        <KPINavbar/>
+        <br/><br/><br/><br/><br/><br/>
         <Link to="/"><button>Вернуться назад</button></Link>
         <br/><br/>
         <div className="card mt-3" onLoad={getstats}>

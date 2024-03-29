@@ -135,7 +135,8 @@ const HomePage:FC = () => {
             }
             else if(role==='plt_kpiadmin'){
               return <div className='root'>
-              <button onClick={() => store.logout()}>Выйти</button>
+              <KPINavbar/>
+              <br/><br/><br/><br/><br/>
               <h2>{store.isAuth ? `Кабинет администратора KPI`  : 'АВТОРИЗУЙТЕСЬ'}</h2> 
               <br/><br/>  
               <table>

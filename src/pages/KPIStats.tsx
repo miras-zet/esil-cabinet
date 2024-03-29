@@ -7,6 +7,7 @@ import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import ICafedraStat from '../models/ICafedraStat';
 import IFacultyStat from '../models/IFacultyStat';
+import KPINavbar from '../components/KPINavbar';
 
 const KPIStats:FC = () => {  
       
@@ -70,6 +71,8 @@ const KPIStats:FC = () => {
     {(() => {
       const role = localStorage.getItem('role');
       if(role==='plt_kpiadmin')return <div>
+        <KPINavbar/>
+        <br/><br/><br/><br/><br/><br/>
         <Link to="/"><button>Вернуться назад</button></Link>
         <br/><br/>
         <div className="card mt-3" onLoad={getstats}>

@@ -7,6 +7,7 @@ import IFile from '../models/IFile';
 import { observer } from 'mobx-react-lite';
 import moment from 'moment';
 import IPltData from '../models/IPltData';
+import KPINavbar from '../components/KPINavbar';
 
 
 const KPIAdminViewUser:FC = () => {  
@@ -118,6 +119,8 @@ const KPIAdminViewUser:FC = () => {
     {(() => {
        const role = localStorage.getItem('role');
        if(role==='plt_kpiadmin') return <div>
+        <KPINavbar/>
+        <br/><br/><br/><br/><br/><br/>
         <button onClick={redirectDecider}>Вернуться назад</button>
         <br/><br/>
         <div className="card mt-3" onLoad={getfiles}>
