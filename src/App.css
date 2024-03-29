@@ -88,7 +88,7 @@ ul {
 .topnav2 {
   position: fixed;
   top: 85px;
-  right: 20px;
+  right: 0px;
   display: grid;
   grid-auto-flow: column;
   column-gap: 2em;
