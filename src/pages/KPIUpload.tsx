@@ -11,7 +11,8 @@ import ICategory from '../models/ICategory';
 import IPltData from '../models/IPltData';
 import UMKDMoodle from '../components/UMKDMoodle';
 import KPINavbar from '../components/KPINavbar';
-import { FaDownload, FaTrashAlt } from "react-icons/fa";
+import { FaDownload, FaTrashAlt, FaUpload } from "react-icons/fa";
+import { TiArrowBack } from "react-icons/ti";
 
 
 const KPIUpload: FC = () => {
@@ -188,7 +189,7 @@ const KPIUpload: FC = () => {
   if (role === 'plt_tutor') return (<div>
     <KPINavbar/>
     <br/><br/><br/><br/><br/><br/>
-    <Link to="/kpi"><button>Вернуться назад</button></Link>
+    <Link to="/kpi"><button><TiArrowBack style={{verticalAlign:'middle'}}/> Вернуться назад</button></Link>
     <br /><br />
     {(localStorage.getItem('categoryid') == '3') ? (<div className="card mt-3">
       <center><UMKDMoodle/></center>
@@ -227,7 +228,7 @@ const KPIUpload: FC = () => {
         <button className='navbarbutton'
           disabled={!currentFile}
           onClick={upload}>
-          Отправить файл
+          Отправить файл <FaUpload />
         </button>
         <br /><br />
         {/* <a onClick={help} style={{ fontSize: "14px" }}>Помощь</a> */} 

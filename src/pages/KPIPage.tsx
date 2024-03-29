@@ -5,6 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { Link} from 'react-router-dom';
 import '../App.css';
 import KPINavbar from '../components/KPINavbar';
+import { TiArrowBack } from 'react-icons/ti';
 
 const KPIPage:FC = () => {  
   const {store} = useContext(Context);  
@@ -60,7 +61,7 @@ const KPIPage:FC = () => {
                 <p><button onClick={() => redirect('4')}>Профессиональное соответствие и экспертность</button></p>
                 <p><button onClick={() => redirect('5')}>Отраслевое и общественное призвание</button></p>
                 <br/>
-                <Link to={"/"}><button style={{backgroundColor:'silver'}}>Вернуться назад</button></Link> 
+                <Link to={"/"}><button style={{backgroundColor:'silver'}}><TiArrowBack style={{verticalAlign:'middle'}}/> Вернуться назад</button></Link> 
               </div>
         </div>
         }
