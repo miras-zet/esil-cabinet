@@ -128,7 +128,7 @@ const KPIAdminViewUser:FC = () => {
             <div className="card-header"><h3>Список загруженных документов</h3></div>
             <h4><div>({localStorage.getItem('fio_view')})</div><br/></h4>
             {listFilesItems.length>0 ? (<div className="card mt-3">
-            <table style={{textAlign: "center"}}><tbody>
+            <table style={{textAlign: "center"}}>
               <tr>
                   <th>Показатель</th>
                   <th>Дата загрузки</th>
@@ -137,8 +137,6 @@ const KPIAdminViewUser:FC = () => {
                   <th>&nbsp;&nbsp;Действия</th>
               </tr>
               {listFilesItems}
-
-            </tbody>
             </table>
             </div>):''}
             <br></br>

@@ -1,9 +1,9 @@
-import { CertResponse } from "../../models/response/CertResponse"
+//import { CertResponse } from "../../models/response/CertResponse"
 import '../Certificate.css'
 import html2pdf from 'html2pdf.js/dist/html2pdf.min';
 
 //export function AnketaRu(certificat:CertResponse)  {
-export function InventoryReceipt(certificate) {
+export function InventoryReceipt() {
     // const [certid] = useState<number>(id);
     // const [certificat, setCertificat] = useState<CertResponse>();
     
@@ -75,7 +75,7 @@ export function InventoryReceipt(certificate) {
     <>
    <div><button onClick={generatePdf}>save PDF</button></div>
     <div id="inventoryReceipt">
-    
+        {anketaMap}
     </div>
    </>
   )
