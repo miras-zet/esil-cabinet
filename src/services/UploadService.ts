@@ -53,7 +53,8 @@ const getFacultyStats = () :Promise<any> =>{
   return http.get(`/upload/getfacultystats`);
 }
 const getTopTen = () : Promise<any> =>{
-  return http.get(`/upload/gettopten`);
+  const toptentype = localStorage.getItem('toptentype');
+  return http.get(`/upload/gettopten/${toptentype}`);
 }
 const getCategories = () : Promise<any> => {
     const categoryid = localStorage.getItem('categoryid');  

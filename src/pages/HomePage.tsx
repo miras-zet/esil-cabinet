@@ -9,6 +9,7 @@ import '../App.css';
 import UploadService from '../services/UploadService';
 import IKPI from '../models/IKPI';
 import KPICategoryScores from '../components/KPICategoryScores';
+import KPINavbar from '../components/KPINavbar';
 
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -54,6 +55,11 @@ const HomePage:FC = () => {
     localStorage.setItem('cafedraid',id);
     localStorage.setItem('cafedraname',name);
     window.location.href=window.location.protocol + '//' + window.location.host +'/kpiadmin';
+    return;
+  }
+  function redirectTopTen(toptentype:string)  {
+    localStorage.setItem('toptentype',toptentype);
+    window.location.href=window.location.protocol + '//' + window.location.host +'/kpitopten';
     return;
   }
 
@@ -107,7 +113,7 @@ const HomePage:FC = () => {
               premiere="Нет";
             }
             if(role==='plt_student'){
-              return <div>
+              return <div className='root'>
               <button onClick={() => store.logout()}>Выйти</button>
               <h1>{store.isAuth ? `Добро пожаловать, ${store.user.lastname} ${store.user.name}`  : 'АВТОРИЗУЙТЕСЬ'}</h1>       
               <button onClick={open}>Получить новую справку</button>
@@ -116,22 +122,19 @@ const HomePage:FC = () => {
               {modal && <CreateCert />}  </div>
             }
             else if(role==='plt_tutor'){
-              return <div>
-              <button onClick={() => store.logout()}>Выйти</button>
-              <h2>{store.isAuth ? `Добро пожаловать, ${store.user.lastname} ${store.user.name}`  : 'АВТОРИЗУЙТЕСЬ'}</h2>       
-              <h3>Кафедра {localStorage.getItem('cafedraname')}</h3>
-              {/* <h4>Баллы KPI: <b style={{color: "yellow"}}>{localStorage.getItem('KPIScore')}</b></h4> */}
-              <h4>Баллы KPI: <b style={{color: textcolor}}>{kpiInfo.toString()}</b></h4>
-              <h4>{premiere ? `Премирование: ${premiere}`:''}</h4>
-              <Link to="/kpi"><button>Загрузить документы</button></Link>
-              <br/><br/><br/>Каждый несёт персональную ответственность за ввод данных в систему оценки KPI.<br/><br/>
-              <center>
-              <KPICategoryScores/>
-              </center>
+              return <div className='rootTutor'>
+              <KPINavbar/>       
+              <div className='tutorcontent'>
+                <h4 style={{fontSize:35}}>Баллы KPI: <b style={{color: textcolor}}>{kpiInfo.toString()}</b></h4>
+                <h4 style={{fontSize:20}}>{premiere ? `Премирование: ${premiere}`:''}</h4>
+                <Link to="/kpi"><button className='navbarbutton'>Загрузить документы</button></Link>
+                <h5>* Каждый несёт персональную ответственность за ввод данных в систему оценки KPI.</h5>
+                <KPICategoryScores/>
+                </div>
               </div>
             }
             else if(role==='plt_kpiadmin'){
-              return <div>
+              return <div className='root'>
               <button onClick={() => store.logout()}>Выйти</button>
               <h2>{store.isAuth ? `Кабинет администратора KPI`  : 'АВТОРИЗУЙТЕСЬ'}</h2> 
               <br/><br/>  
@@ -160,7 +163,11 @@ const HomePage:FC = () => {
               
               <br/><br/>
               <p><Link to="/kpistats"><button>Сводка по кафедрам</button></Link></p>
-              <p><Link to="/kpitopten"><button>Топ-10 преподавателей</button></Link></p>
+              <p><button onClick={() => redirectTopTen('6')}>Топ-10 преподавателей (все преподаватели)</button></p>
+              <br/>
+              <p><button onClick={() => redirectTopTen('0')}>Топ-10 преподавателей (без звания)</button></p>
+              <p><button onClick={() => redirectTopTen('2')}>Топ-10 преподавателей (доцент / ассоц. профессор)</button></p>
+              <p><button onClick={() => redirectTopTen('3')}>Топ-10 преподавателей (профессор)</button></p>
               </div>
             }
             else{

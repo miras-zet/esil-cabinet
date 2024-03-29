@@ -13,6 +13,7 @@ import KPIAdminPage from './pages/KPIAdminPage'
 import KPIAdminViewUser from './pages/KPIAdminViewUser'
 import KPIStats from './pages/KPIStats'
 import KPITopTen from './pages/KPITopTen'
+import { AnketaRu } from './pages/tamplate/AnketaRu'
 
   
 
@@ -48,6 +49,7 @@ const App:FC = () => {
     <>
       <Routes>
         <Route path="/" element={ <HomePage /> } />
+        <Route path="/test" element={<AnketaRu />}/>
         <Route path="/kpi" element={ <KPIPage /> } />
         <Route path="/kpiupload" element={ <KPIUpload /> } />
         <Route path="/kpiadmin" element={<KPIAdminPage />} />

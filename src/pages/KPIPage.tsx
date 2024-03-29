@@ -4,6 +4,7 @@ import LoginForm from '../components/LoginForm';
 import { observer } from 'mobx-react-lite';
 import { Link} from 'react-router-dom';
 import '../App.css';
+import KPINavbar from '../components/KPINavbar';
 
 const KPIPage:FC = () => {  
   const {store} = useContext(Context);  
@@ -50,14 +51,16 @@ const KPIPage:FC = () => {
         const role = localStorage.getItem('role');
         if(role=='plt_tutor') {
           return <div>
-              <Link to={"/"}><button style={{backgroundColor:'silver'}}>Вернуться назад</button></Link> 
-              <br/><br/>
-              <h2>Загрузка документов</h2>   
-              <p><button onClick={() => redirect('1')}>Профориентация</button></p>
-              <p><button onClick={() => redirect('2')}>Наука</button></p>
-              <p><button onClick={() => redirect('3')}>Разработка образовательных ресурсов и сопровождение</button></p>
-              <p><button onClick={() => redirect('4')}>Профессиональное соответствие и экспертность</button></p>
-              <p><button onClick={() => redirect('5')}>Отраслевое и общественное призвание</button></p>
+              <KPINavbar/>  
+              <div className=''>
+                <h2>Загрузка документов</h2>     
+                <p><button onClick={() => redirect('1')}>Профориентация</button></p>
+                <p><button onClick={() => redirect('2')}>Наука</button></p>
+                <p><button onClick={() => redirect('3')}>Разработка образовательных ресурсов и сопровождение</button></p>
+                <p><button onClick={() => redirect('4')}>Профессиональное соответствие и экспертность</button></p>
+                <p><button onClick={() => redirect('5')}>Отраслевое и общественное призвание</button></p>
+                <Link to={"/"}><button style={{backgroundColor:'silver'}}>Вернуться назад</button></Link> 
+              </div>
         </div>
         }
         else{

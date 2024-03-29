@@ -10,6 +10,7 @@ import moment from 'moment';
 import ICategory from '../models/ICategory';
 import IPltData from '../models/IPltData';
 import UMKDMoodle from '../components/UMKDMoodle';
+import KPINavbar from '../components/KPINavbar';
 
 
 const KPIUpload: FC = () => {
@@ -184,6 +185,8 @@ const KPIUpload: FC = () => {
   const role = localStorage.getItem('role');
   const categoryid = localStorage.getItem('categoryid');
   if (role === 'plt_tutor') return (<div>
+    <KPINavbar/>
+    <br/><br/><br/><br/><br/><br/>
     <Link to="/kpi"><button>Вернуться назад</button></Link>
     <br /><br />
     {(localStorage.getItem('categoryid') == '3') ? (<div className="card mt-3">
@@ -220,10 +223,9 @@ const KPIUpload: FC = () => {
       </div>
       <br />
       <div className="col-4">
-        <button
+        <button className='navbarbutton'
           disabled={!currentFile}
-          onClick={upload}
-          style={{ backgroundColor: 'gray' }}>
+          onClick={upload}>
           Отправить файл
         </button>
         <br /><br />

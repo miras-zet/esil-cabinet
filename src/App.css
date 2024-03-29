@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+.rootTutor {
+  text-align: left;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -43,4 +47,54 @@
 
 ul {
   list-style-type: none;
+}
+
+.navbarbutton{
+  background-color: #088c64;
+  color:white;
+}
+
+.navbarname{
+  padding-left: -10%;
+  color:white;
+}
+
+.navbartitle{
+  font-size:x-large;
+  font-weight: bold;
+  width: 2000px;
+}
+
+.tutorcontent{
+  margin-left: -30%;
+}
+
+.topnav {
+  position: fixed;
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 1em;
+  justify-content: start;
+  top: 0;
+  height: 80px;
+  left: 25%;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-left: -20%;
+  text-align: left;
+  background-color: white;
+}
+
+.topnav2 {
+  position: fixed;
+  top: 85px;
+  right: 20px;
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: 2em;
+  justify-content: end;
+  align-items: center;
+  height: 65px;
+  width: 100%;
+  background-color: #088c64;
 }

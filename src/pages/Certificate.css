@@ -49,3 +49,39 @@
       cursor: pointer;
       transition: border-color 0.25s;
   }
+
+#anketa{
+  font-family: 'Times New Roman', Times, serif;
+  background-color: white;
+  color: black;
+  width: 210mm;
+  height: 297mm;
+}
+#anketaPadding{
+  padding-left: 10mm;
+  padding-top: 10mm;
+  padding-right: 10mm;
+  padding-bottom: 5mm;
+}
+#anketaHeader{
+  font-size: 17pt;
+  text-align: center;
+  padding-left: 0;
+  padding-top: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
+#anketaTable{
+  
+  font-size: 11pt;
+  text-align: left;
+  border-color: black; 
+}
+ #anketaTable, #anketaTr, #anketaTd{
+  border-collapse:collapse;
+  border: 1px solid;
+  
+} 
+#anketaTr, #anketaTd{
+  width: 105mm;
+}
