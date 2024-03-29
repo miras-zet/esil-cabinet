@@ -7,6 +7,7 @@ import { observer } from 'mobx-react-lite';
 import { Link } from 'react-router-dom';
 import ITopTen from '../models/ITopTen';
 import KPINavbar from '../components/KPINavbar';
+import { TiArrowBack } from 'react-icons/ti';
 
 const KPITopTen:FC = () => {  
       
@@ -76,7 +77,7 @@ const KPITopTen:FC = () => {
     if(role==='plt_kpiadmin')return <div>
         <KPINavbar/>
         <br/><br/><br/><br/><br/><br/>
-        <Link to="/"><button>Вернуться назад</button></Link>
+        <Link to="/"><button><TiArrowBack style={{verticalAlign:'middle'}}/> Вернуться назад</button></Link>
         <br/><br/>
         <div className="card mt-3" onLoad={getstats}>
             <div className="card-header">Топ-10 преподавателей {toptentype}</div><br/>

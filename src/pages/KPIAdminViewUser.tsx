@@ -10,6 +10,7 @@ import IPltData from '../models/IPltData';
 import KPINavbar from '../components/KPINavbar';
 import UMKDMoodle from '../components/UMKDMoodle';
 import { FaDownload, FaTrashAlt } from 'react-icons/fa';
+import { TiArrowBack } from 'react-icons/ti';
 
 
 const KPIAdminViewUser:FC = () => {  
@@ -123,7 +124,7 @@ const KPIAdminViewUser:FC = () => {
        if(role==='plt_kpiadmin') return <div>
         <KPINavbar/>
         <br/><br/><br/><br/><br/><br/>
-        <button onClick={redirectDecider}>Вернуться назад</button>
+        <button onClick={redirectDecider}><TiArrowBack style={{verticalAlign:'middle'}}/> Вернуться назад</button>
         <br/><UMKDMoodle/><br/>
         <div className="card mt-3" onLoad={getfiles}>
             <div>{message}</div>

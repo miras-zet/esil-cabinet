@@ -7,6 +7,7 @@ import '../App.css';
 import ITutors from '../models/ITutors';
 import UploadService from '../services/UploadService';
 import KPINavbar from '../components/KPINavbar';
+import { TiArrowBack } from 'react-icons/ti';
 
 const KPIAdminPage:FC = () => {  
   const {store} = useContext(Context);  
@@ -71,7 +72,7 @@ function redirectViewUser(id:any, fio: any)  {
           return <div>
             <KPINavbar/>
               <br/><br/><br/><br/><br/><br/>
-              <Link to={"/"}><button>Вернуться назад</button></Link> 
+              <Link to={"/"}><button><TiArrowBack style={{verticalAlign:'middle'}}/> Вернуться назад</button></Link> 
               <br/><br/>
               <h3>Баллы ППС</h3> 
               <h4>Кафедра {cafedraname}</h4> 
