@@ -56,11 +56,11 @@ const KPIPage:FC = () => {
               <br/><br/>
               <div className=''>
                 <h2>Загрузка документов</h2>
-                <p><button onClick={() => redirect('1')}>Профориентация</button></p>
-                <p><button onClick={() => redirect('2')}>Наука</button></p>
-                <p><button onClick={() => redirect('3')}>Разработка образовательных ресурсов и сопровождение</button></p>
-                <p><button onClick={() => redirect('4')}>Профессиональное соответствие и экспертность</button></p>
-                <p><button onClick={() => redirect('5')}>Отраслевое и общественное призвание</button></p>
+                <p><button onClick = {() => redirect('1')}>Профориентация</button></p>
+                <p><button onClick = {() => redirect('2')}>Наука</button></p>
+                <p><button onClick = {() => redirect('3')}>Разработка образовательных ресурсов и сопровождение</button></p>
+                <p><button onClick = {() => redirect('4')}>Профессиональное соответствие и экспертность</button></p>
+                <p><button onClick = {() => redirect('5')}>Отраслевое и общественное призвание</button></p>
                 <br/>
                 <Link to={"/"}><button style={{backgroundColor:'silver'}}><TiArrowBack style={{verticalAlign:'middle'}}/> Вернуться назад</button></Link> 
               </div>
