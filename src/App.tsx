@@ -14,6 +14,8 @@ import KPIAdminViewUser from './pages/KPIAdminViewUser'
 import KPIStats from './pages/KPIStats'
 import KPITopTen from './pages/KPITopTen'
 import { AnketaRu } from './pages/tamplate/AnketaRu'
+import { InventoryReceiptRu } from './pages/tamplate/InventoryReceiptRu'
+import EBooks from './pages/EBooks'
 
   
 
@@ -49,7 +51,9 @@ const App:FC = () => {
     <>
       <Routes>
         <Route path="/" element={ <HomePage /> } />
-        <Route path="/test" element={<AnketaRu />}/>
+        <Route path="/testAnketa" element={<AnketaRu />}/>
+        <Route path="/testInventoryReceipt" element={<InventoryReceiptRu />}/>
+        <Route path="/ebooks" element={<EBooks />}/>
         <Route path="/kpi" element={ <KPIPage /> } />
         <Route path="/kpiupload" element={ <KPIUpload /> } />
         <Route path="/kpiadmin" element={<KPIAdminPage />} />

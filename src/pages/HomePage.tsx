@@ -11,7 +11,8 @@ import IKPI from '../models/IKPI';
 import KPICategoryScores from '../components/KPICategoryScores';
 import KPINavbar from '../components/KPINavbar';
 import { HiSparkles } from "react-icons/hi2";
-import { FaUpload } from 'react-icons/fa';
+import { FaArrowRight, FaBook, FaUpload } from 'react-icons/fa';
+import { IoIosAlarm } from "react-icons/io";
 
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -133,6 +134,35 @@ const HomePage:FC = () => {
                 <h5>* Каждый несёт персональную ответственность за ввод данных в систему оценки KPI.</h5>
                 <KPICategoryScores/>
                 </div>
+              </div>
+            }
+            else if (role==='admissionadmin'){
+              return <div className='root'>
+              <KPINavbar/>
+              <br/>
+              <h2>{store.isAuth ? `Кабинет сотрудника приёмной комиссии` : 'АВТОРИЗУЙТЕСЬ'}</h2> 
+              <Link to="/applicants"><button className='navbarbutton'>Список абитуриентов</button></Link>
+              </div>
+            }
+            else if (role==='reader'){
+              return <div className='root'>
+              <KPINavbar/>
+              <br/>
+              <h2>Добро пожаловать!</h2>
+              <h3>Электронная библиотека ESIL University</h3>
+              <Link to="/ebooks"><button className='navbarbutton'>Электронные книги &nbsp;<FaBook style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/>
+              </div>
+            }
+            else if (role==='librarian'){
+              return <div style={{textAlign:'left', width:'1000px'}}>
+              <KPINavbar/>
+              <br/>
+              <h2>Добро пожаловать!</h2>
+              <br/>
+              <Link to="/ebooks"><button className='navbarbutton'>Список электронных книг &nbsp;<FaBook style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/>
+              <Link to="/physicalbooks"><button className='navbarbutton'>Список книг &nbsp;<FaBook style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/><br/>
+              <Link to="/bookassignment"><button className='navbarbutton'>Выдать книгу &nbsp;<FaBook style={{verticalAlign:'middle', marginTop:'-4px'}}/><FaArrowRight style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/>
+              <Link to="/duebooks"><button className='redbutton'>Должники &nbsp;<IoIosAlarm style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link>
               </div>
             }
             else if(role==='plt_kpiadmin'){

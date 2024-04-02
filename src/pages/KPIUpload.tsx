@@ -243,7 +243,7 @@ const KPIUpload: FC = () => {
     )}
     <br /><br />
     {listFilesItems.length > 0 ? (<div className="card mt-3">
-      <div className="card-header">Список загруженных документов</div><br />
+      <div className="card-header"><h3>Список загруженных документов</h3></div><br />
       <center><table style={{ textAlign: "center" }}><tbody>
         <tr>
           <th>Показатель</th>

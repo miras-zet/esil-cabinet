@@ -1,8 +1,10 @@
-.shapka{
-    display: flex;
-    justify-content: flex-end;}
-.shapka p{
-    display: flex;
+.shapka {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.shapka p {
+  display: flex;
   justify-content: flex-end;
   width: 400px;
   height: 280px;
@@ -10,60 +12,121 @@
 
 }
 
-.qr{
-    display: flex;
+.qr {
+  display: flex;
   justify-content: flex-start;
   position: absolute;
   top: 80px;
   width: 150px;
 }
 
-.bodytext{
-    text-align: justify;
+.bodytext {
+  text-align: justify;
   text-indent: 15px;
 }
-.bodytext h3{
-    text-align: center;
+
+.bodytext h3 {
+  text-align: center;
 }
-.bodytext p{
-    text-align: justify;
+
+.bodytext p {
+  text-align: justify;
 }
-#report {width: auto;
-   background-color: white;
+
+#report {
+  width: auto;
+  background-color: white;
   color: black;
   padding: 20px 50px;
-    }
-     
-    .btn {
-      border-radius: 8px;
-      border: 1px solid transparent;
-        border-top-color: transparent;
-        border-right-color: transparent;
-        border-bottom-color: transparent;
-        border-left-color: transparent;
-      padding: 0.6em 1.2em;
-      font-size: 1em;
-      font-weight: 500;
-      font-family: inherit;
-      background-color: #1a1a1a;
-      cursor: pointer;
-      transition: border-color 0.25s;
-  }
+}
 
-#anketa{
+.btn {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+#inventoryReceipt {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: white;
+  color: black;
+  width: 297mm;
+  height: 210mm;
+}
+
+#inventoryReceiptPadding {
+  padding-left: 10mm;
+  padding-top: 10mm;
+  padding-right: 8mm;
+  padding-bottom: 5mm;
+}
+
+#inventoryReceiptTable {
+  font-size: 10.5pt;
+  text-align: left;
+  border-color: black;
+}
+#IRTableTR{
+  border-collapse: collapse;
+  border: 1px solid;
+}
+
+#IRTableHeader{
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid white;
+  border-collapse: collapse;
+}
+
+#IRTableNumber {
+  width: 13mm;
+  text-align: center;
+  border-collapse: collapse;
+  border: 1px solid;
+}
+
+#IRTableText {
+  width: 150mm;
+  border-collapse: collapse;
+  border: 1px solid;
+}
+
+#IRTableBlank {
+  width: 20mm;
+  border-collapse: collapse;
+  border: 1px solid;
+}
+td {
+  vertical-align: top;
+}
+
+#anketa {
+  overflow: hidden;
   font-family: 'Times New Roman', Times, serif;
   background-color: white;
   color: black;
   width: 210mm;
-  height: 297mm;
+  height: 290mm;
 }
-#anketaPadding{
+
+#anketaPadding {
   padding-left: 10mm;
   padding-top: 10mm;
   padding-right: 10mm;
   padding-bottom: 5mm;
 }
-#anketaHeader{
+
+#anketaHeader {
   font-size: 17pt;
   text-align: center;
   padding-left: 0;
@@ -71,17 +134,21 @@
   padding-right: 0;
   padding-bottom: 0;
 }
-#anketaTable{
-  
-  font-size: 11pt;
+
+#anketaTable {
+  font-size: 10.9pt;
   text-align: left;
-  border-color: black; 
+  border-color: black;
 }
- #anketaTable, #anketaTr, #anketaTd{
-  border-collapse:collapse;
+
+#anketaTable,
+#anketaTr,
+#anketaTd {
+  border-collapse: collapse;
   border: 1px solid;
-  
-} 
-#anketaTr, #anketaTd{
+}
+
+#anketaTr,
+#anketaTd {
   width: 105mm;
 }
