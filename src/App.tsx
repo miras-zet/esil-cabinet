@@ -16,6 +16,10 @@ import KPITopTen from './pages/KPITopTen'
 import { AnketaRu } from './pages/tamplate/AnketaRu'
 import { InventoryReceiptRu } from './pages/tamplate/InventoryReceiptRu'
 import EBooks from './pages/EBooks'
+import ApplicantList from './pages/ApplicantList'
+import AddApplicant from './pages/AddApplicant'
+import { AnketaKz } from './pages/tamplate/AnketaKz'
+import { InventoryReceiptKz } from './pages/tamplate/InventoryReceiptKz'
 
   
 
@@ -51,9 +55,13 @@ const App:FC = () => {
     <>
       <Routes>
         <Route path="/" element={ <HomePage /> } />
-        <Route path="/testAnketa" element={<AnketaRu />}/>
-        <Route path="/testInventoryReceipt" element={<InventoryReceiptRu />}/>
+        <Route path="/applicationRu" element={<AnketaRu />}/>
+        <Route path="/applicationKz" element={<AnketaKz />}/>
+        <Route path="/inventoryRu" element={<InventoryReceiptRu />}/>
+        <Route path="/inventoryKz" element={<InventoryReceiptKz />}/>
         <Route path="/ebooks" element={<EBooks />}/>
+        <Route path="/applicants" element={<ApplicantList />}/>
+        <Route path="/addapplicant" element={<AddApplicant/>}/>
         <Route path="/kpi" element={ <KPIPage /> } />
         <Route path="/kpiupload" element={ <KPIUpload /> } />
         <Route path="/kpiadmin" element={<KPIAdminPage />} />

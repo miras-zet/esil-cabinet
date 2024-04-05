@@ -137,12 +137,7 @@ const HomePage:FC = () => {
               </div>
             }
             else if (role==='admissionadmin'){
-              return <div className='root'>
-              <KPINavbar/>
-              <br/>
-              <h2>{store.isAuth ? `Кабинет сотрудника приёмной комиссии` : 'АВТОРИЗУЙТЕСЬ'}</h2> 
-              <Link to="/applicants"><button className='navbarbutton'>Список абитуриентов</button></Link>
-              </div>
+              return <Navigate to='/applicants'  />
             }
             else if (role==='reader'){
               return <div className='root'>

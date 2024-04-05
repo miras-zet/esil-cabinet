@@ -39,6 +39,16 @@
   color: black;
   padding: 20px 50px;
 }
+.btnNeutral {
+  border-radius: 8px;
+  border: 1px solid black;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
 
 .btn {
   border-radius: 8px;
@@ -99,6 +109,7 @@
   width: 150mm;
   border-collapse: collapse;
   border: 1px solid;
+  margin-left: 100px
 }
 
 #IRTableBlank {
@@ -139,6 +150,9 @@ td {
   font-size: 10.9pt;
   text-align: left;
   border-color: black;
+  background-color: white;
+  table-layout: fixed;
+  width: 210px;
 }
 
 #anketaTable,
@@ -150,5 +164,5 @@ td {
 
 #anketaTr,
 #anketaTd {
-  width: 105mm;
+  width: 95mm;
 }

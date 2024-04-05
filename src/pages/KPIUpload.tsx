@@ -195,7 +195,7 @@ const KPIUpload: FC = () => {
       <center><UMKDMoodle/></center>
     </div>) : ''}
     <br />
-    <select className='btn' style={{ backgroundColor: 'silver', color: 'DimGray' }} name="categories" id="cat" onChange={event => setActivity(event.target.value)}>
+    <select className='btnNeutral' style={{ backgroundColor: 'silver', color: 'DimGray' }} name="categories" id="cat" onChange={event => setActivity(event.target.value)}>
       <option value="notchosen">Выберите показатель...</option>
       {listCategoryItems}
     </select>
@@ -203,11 +203,11 @@ const KPIUpload: FC = () => {
     {categoryid != '1' ?
       <div>
         Информация: название, год выдачи документа (обязательно), ...:
-        <br /><input className='btn' style={{ width: '400px', fontSize: '14px', backgroundColor: 'silver', color: 'DimGray' }} id='extradatainput' type='text' onChange={event => setInfo(event.target.value)} minLength={3} maxLength={200}></input>
+        <br /><input className='btnNeutral' style={{ width: '400px', fontSize: '14px', backgroundColor: 'silver', color: 'DimGray' }} id='extradatainput' type='text' onChange={event => setInfo(event.target.value)} minLength={3} maxLength={200}></input>
       </div> :
       <div>
         Количество приведенных Вами абитуриентов:
-        <br /><input className='btn' style={{ width: '60px', fontSize: '14px', backgroundColor: 'silver', color: 'Black' }} id='extradatainput' type='number' onChange={event => setInfo(event.target.value)} maxLength={5}></input>
+        <br /><input className='btnNeutral' style={{ width: '60px', fontSize: '14px', backgroundColor: 'silver', color: 'Black' }} id='extradatainput' type='number' onChange={event => setInfo(event.target.value)} maxLength={5}></input>
       </div>}
       {categoryid != '1' ?
       <div>
@@ -218,7 +218,7 @@ const KPIUpload: FC = () => {
     <br /><h5>Документы должны быть не старше 5 лет</h5><br />
     <div className="row">
       <div className="col-8">
-        <label className="btn" style={{ backgroundColor: 'silver', color: 'DimGray' }} >
+        <label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'DimGray' }} >
           {currentFile ? `Выбран файл:  ${currentFile.name}` : 'Выберите файл...'}
           <input type="file" hidden onChange={selectFile} style={{ backgroundColor: 'silver', color: 'DimGray' }} />
         </label>
