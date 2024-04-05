@@ -5,14 +5,14 @@ const getApplicationDataRu = () : Promise<any> => {
     token: localStorage.getItem('token'),
   }
   const userid = localStorage.getItem('applicant_user_id');  
-  return http.get(`/docs/applicationru/${userid}`,{params});
+  return http.get(`/docs/application/ru/${userid}`,{params});
 };
 const getApplicationDataKz = () : Promise<any> => {
   const params = {
     token: localStorage.getItem('token'),
   }
   const userid = localStorage.getItem('applicant_user_id');  
-  return http.get(`/docs/applicationkz/${userid}`,{params});
+  return http.get(`/docs/application/kz/${userid}`,{params});
 };
 const getInventoryData = () : Promise<any> => {
   const params = {

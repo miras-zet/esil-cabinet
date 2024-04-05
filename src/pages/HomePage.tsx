@@ -80,8 +80,6 @@ const HomePage:FC = () => {
     <div>
         {(() => {
             countKpi();
-            //countCategoryScores();
-            //alert(categoryScores[0]);
             const role = localStorage.getItem('role');
             let KPIScore="0";
             let textcolor;
