@@ -5,6 +5,7 @@ import html2pdf from 'html2pdf.js/dist/html2pdf.min';
 import DocsService from '../../services/DocsService';
 import { ApplicationResponse } from '../../models/response/ApplicationResponse';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 //export function AnketaRu(certificat:CertResponse)  {
 export function AnketaRu() {
@@ -91,8 +92,8 @@ export function AnketaRu() {
   );
   
   return (
-    <>
-      <button onClick={generatePdf}>Скачать</button>
+    <><div><Link to="/applicants"><button>Назад</button></Link>
+      <button onClick={generatePdf}>Скачать</button></div>
       <div id="anketa">
         <div id="anketaPadding">
           <b><div id="anketaHeader">Анкета</div>

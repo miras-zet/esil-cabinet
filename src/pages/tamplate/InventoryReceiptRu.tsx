@@ -6,6 +6,7 @@ import DocsService from '../../services/DocsService';
 import { InventoryResponse } from '../../models/response/InventoryResponse';
 import moment from 'moment';
 import 'moment/dist/locale/ru';
+import { Link } from 'react-router-dom';
 
 //export function AnketaRu(certificat:CertResponse)  {
 export function InventoryReceiptRu() {
@@ -34,7 +35,8 @@ export function InventoryReceiptRu() {
 
     return (
         <>
-            <div><button onClick={generatePdf}>save PDF</button></div>
+            <div><Link to="/applicants"><button>Назад</button></Link>
+                <button onClick={generatePdf}>Скачать</button></div>
             <div id="inventoryReceipt">
                 <div id="inventoryReceiptPadding">
                     <div id="inventoryReceiptBody">

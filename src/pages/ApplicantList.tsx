@@ -71,15 +71,15 @@ const ApplicantList: FC = () => {
                     return <div style={{ textAlign: 'left', width: '1200px', marginTop:'10%'}}>
                         <KPINavbar />
                         <br /><br /><br /><br />
-                        <h2>Добро пожаловать, {user.lastname + ' ' + user.name + ' ' + user.middlename}</h2><br />
+                        <h3>Добро пожаловать, {user.lastname + ' ' + user.name + ' ' + user.middlename}</h3><br />
+                        <h2>Список абитуриентов</h2>
                         <Link to={"/addapplicant"}><button className='navbarbutton'>Копировать нового абитуриента из Platonus</button></Link> <br /><br />
-                        <h3>Список абитуриентов</h3>
                         <br />
-                        <table style={{width:'100%'}}>
+                        <table id='opaqueTable' style={{width:'100%'}}>
                             <tr>
-                                <th style={{textAlign:'center'}}>№</th>
-                                <th style={{textAlign:'center'}}>ФИО</th>
-                                <th style={{textAlign:'center'}}>Документы</th>
+                                <th style={{textAlign:'center'}}><br/>№<br/>&nbsp;</th>
+                                <th style={{textAlign:'center'}}><br/>ФИО<br/>&nbsp;</th>
+                                <th style={{textAlign:'center'}}><br/>Документы<br/>&nbsp;</th>
                             </tr>
                             {applicantList}
                         </table>

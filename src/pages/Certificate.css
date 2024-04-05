@@ -121,6 +121,11 @@ td {
   vertical-align: top;
 }
 
+#opaqueTable{
+  border-radius: 25px;
+  background: rgba(20, 50, 20, .08)
+}
+
 #anketa {
   overflow: hidden;
   font-family: 'Times New Roman', Times, serif;
