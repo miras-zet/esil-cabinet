@@ -2,7 +2,7 @@ import { FC, useContext, useEffect, useState } from 'react'
 import { Context } from '../main';
 import LoginForm from '../components/LoginForm';
 import { observer } from 'mobx-react-lite';
-import { Link} from 'react-router-dom';
+import { Link, Navigate} from 'react-router-dom';
 import '../App.css';
 import ITutors from '../models/ITutors';
 import UploadService from '../services/UploadService';
@@ -94,8 +94,7 @@ function redirectViewUser(id:any, fio: any)  {
         </div>
         }
         else{
-          return <div><button onClick={() => store.logout()}>Назад</button>  
-          <h4>Нет доступа к странице</h4></div>
+          return <Navigate to="/"/>
         }
       } )()}
         

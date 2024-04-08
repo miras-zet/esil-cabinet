@@ -11,6 +11,7 @@ import KPINavbar from '../components/KPINavbar';
 import UMKDMoodle from '../components/UMKDMoodle';
 import { FaDownload, FaTrashAlt } from 'react-icons/fa';
 import { TiArrowBack } from 'react-icons/ti';
+import { Navigate } from 'react-router-dom';
 
 
 const KPIAdminViewUser:FC = () => {  
@@ -150,8 +151,7 @@ const KPIAdminViewUser:FC = () => {
           </div>
         </div>
         else{
-          return <div><button onClick={() => store.logout()}>Назад</button>  
-          <h4>Нет доступа к странице</h4></div>
+          return <Navigate to="/"/>
         }
       } )()}
   </div>);

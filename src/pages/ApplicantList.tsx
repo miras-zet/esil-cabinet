@@ -2,7 +2,7 @@ import { FC, useContext, useEffect, useState } from 'react'
 import { Context } from '../main';
 import LoginForm from '../components/LoginForm';
 import { observer } from 'mobx-react-lite';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import DocsService from '../services/DocsService';
@@ -20,6 +20,9 @@ const ApplicantList: FC = () => {
         // const user = JSON.parse(localStorage.getItem('data'));
         DocsService.getApplicantData().then((response) => {
             setApplicantData(response.data);
+        }).catch((err) => {
+            console.log(err);
+            setApplicantData([]);
         });
         if (localStorage.getItem('token')) {
             store.checkAuth()
@@ -86,8 +89,7 @@ const ApplicantList: FC = () => {
                     </div>
                 }
                 else {
-                    return <div><button onClick={() => store.logout()}>Назад</button>
-                        <h4>Нет доступа к странице</h4></div>
+                    return <Navigate to="/"/>
                 }
             })()}
 

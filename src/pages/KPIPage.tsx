@@ -2,7 +2,7 @@ import { FC, useContext, useEffect } from 'react'
 import { Context } from '../main';
 import LoginForm from '../components/LoginForm';
 import { observer } from 'mobx-react-lite';
-import { Link} from 'react-router-dom';
+import { Link, Navigate} from 'react-router-dom';
 import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import { TiArrowBack } from 'react-icons/ti';
@@ -67,8 +67,7 @@ const KPIPage:FC = () => {
         </div>
         }
         else{
-          return <div><button onClick={() => store.logout()}>Назад</button>  
-          <h4>Нет доступа к странице</h4></div>
+          return <Navigate to="/"/>
         }
       } )()}
 

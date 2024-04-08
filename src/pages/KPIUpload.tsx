@@ -5,7 +5,7 @@ import '../App.css';
 import UploadService from '../services/UploadService';
 import IFile from '../models/IFile';
 import { observer } from 'mobx-react-lite';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import moment from 'moment';
 import ICategory from '../models/ICategory';
 import IPltData from '../models/IPltData';
@@ -265,8 +265,7 @@ const KPIUpload: FC = () => {
 
   </div>)
   else {
-    return <div><button onClick={() => store.logout()}>Назад</button>
-      <h4>Нет доступа к странице</h4></div>
+    return <Navigate to="/"/>
   }
 }
 
