@@ -3,7 +3,10 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  color:black;
 }
+
+:root { color-scheme: only light; }
 
 .rootTutor {
   text-align: left;
