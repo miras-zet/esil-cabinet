@@ -20,6 +20,8 @@ import ApplicantList from './pages/ApplicantList'
 import AddApplicant from './pages/AddApplicant'
 import { AnketaKz } from './pages/tamplate/AnketaKz'
 import { InventoryReceiptKz } from './pages/tamplate/InventoryReceiptKz'
+import { ContractRu } from './pages/tamplate/ContractRu'
+import { ContractKz } from './pages/tamplate/ContractKz'
 
   
 
@@ -59,6 +61,8 @@ const App:FC = () => {
         <Route path="/applicationKz" element={<AnketaKz />}/>
         <Route path="/inventoryRu" element={<InventoryReceiptRu />}/>
         <Route path="/inventoryKz" element={<InventoryReceiptKz />}/>
+        <Route path="/contractRu" element={<ContractRu/>}/>
+        <Route path="/contractKz" element={<ContractKz/>}/>
         <Route path="/ebooks" element={<EBooks />}/>
         <Route path="/applicants" element={<ApplicantList />}/>
         <Route path="/addapplicant" element={<AddApplicant/>}/>

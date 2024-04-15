@@ -7,6 +7,7 @@ import { InventoryResponse } from '../../models/response/InventoryResponse';
 import moment from 'moment';
 import 'moment/dist/locale/kk';
 import { Link } from 'react-router-dom';
+import { FaDownload } from 'react-icons/fa';
 
 //export function AnketaRu(certificat:CertResponse)  {
 export function InventoryReceiptKz() {
@@ -16,7 +17,7 @@ export function InventoryReceiptKz() {
     const [inventoryData, setInventoryData] = useState<InventoryResponse>();
     moment.locale('kk');
     useEffect(() => {
-        DocsService.getInventoryData().then((response) => {
+        DocsService.getInventoryDataKz().then((response) => {
             setInventoryData(response.data);
         });
     }, []);
@@ -35,9 +36,8 @@ export function InventoryReceiptKz() {
 
     return (
         <>
-            <div>
-                <Link to="/applicants"><button>Назад</button></Link>
-                <button onClick={generatePdf}>Скачать</button></div>
+            <div><Link to="/applicants"><button>Назад</button></Link><br style={{lineHeight:'50px'}}/>
+      <button onClick={generatePdf}>Скачать&nbsp;&nbsp;<FaDownload style={{fontSize:'11.5pt', marginTop:'5px'}}/></button></div>
             <div id="inventoryReceipt">
                 <div id="inventoryReceiptPadding">
                     <div id="inventoryReceiptBody">

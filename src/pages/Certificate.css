@@ -66,6 +66,29 @@
   cursor: pointer;
   transition: border-color 0.25s;
 }
+#contract {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: white;
+  color: black;
+  width: 297mm;
+  height: 210mm;
+}
+
+#contractPadding {
+  padding-left: 10mm;
+  padding-top: 10mm;
+  padding-right: 8mm;
+  padding-bottom: 5mm;
+}
+
+#contractTable{
+  text-align: left;
+}
+
+#contractTr{
+  width: 100px;
+}
+
 
 #inventoryReceipt {
   font-family: 'Times New Roman', Times, serif;

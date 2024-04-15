@@ -16,14 +16,14 @@ import { TiArrowBack } from "react-icons/ti";
 
 
 const KPIUpload: FC = () => {
-  const [activity, setActivity] = useState<string>('notchosen');
-  const [info, setInfo] = useState<string>('');
-  const [currentFile, setCurrentFile] = useState<File>();
-  const [message, setMessage] = useState<string>("");
-  const [messagecolor, setMessageColor] = useState<string>("red");
-  const [fileInfos, setFileInfos] = useState<Array<IFile>>([]);
-  const [pltData, setPltData] = useState<Array<IPltData>>([]);
-  const [categoryInfos, setCategoryInfos] = useState<Array<ICategory>>([]);
+  const [ activity, setActivity ] = useState<string>('notchosen');
+  const [ info, setInfo] = useState<string>('');
+  const [ currentFile, setCurrentFile ] = useState<File>();
+  const [ message, setMessage ] = useState<string>("");
+  const [ messagecolor, setMessageColor ] = useState<string>("red");
+  const [ fileInfos, setFileInfos ] = useState<Array<IFile>>([]);
+  const [ pltData, setPltData ] = useState<Array<IPltData>>([]);
+  const [ categoryInfos, setCategoryInfos ] = useState<Array<ICategory>>([]);
   const { store } = useContext(Context);
 
   const selectFile = (event: React.ChangeEvent<HTMLInputElement>) => {

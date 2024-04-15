@@ -6,6 +6,7 @@ import DocsService from '../../services/DocsService';
 import { ApplicationResponse } from '../../models/response/ApplicationResponse';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import { FaDownload } from 'react-icons/fa';
 
 //export function AnketaKz(certificat:CertResponse)  {
 export function AnketaKz() {
@@ -94,8 +95,8 @@ export function AnketaKz() {
   );
   return (
     <>
-      <div><Link to="/applicants"><button>Назад</button></Link>
-        <button onClick={generatePdf}>Скачать</button></div>
+      <div><Link to="/applicants"><button>Назад</button></Link><br style={{lineHeight:'50px'}}/>
+      <button onClick={generatePdf}>Скачать&nbsp;&nbsp;<FaDownload style={{fontSize:'11.5pt', marginTop:'5px'}}/></button></div>
       <div id="anketa">
         <div id="anketaPadding">
           <b><div id="anketaHeader">Сауалнама</div>
