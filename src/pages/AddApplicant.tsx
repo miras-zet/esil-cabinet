@@ -36,23 +36,23 @@ const ApplicantList: FC = () => {
             </div>
         );
     }
-    const addApplicant = () =>{
+    const addApplicant = () => {
         const iin = (document.getElementById("inputIIN") as HTMLInputElement).value
         DocsService.addApplicant(iin)
             .then((response) => {
-              setMessage(response.data.message);
-              if (response.data.message.indexOf('успешно')!==-1) {
-                setMessageColor("#2ecc71");
-              } else {
-                setMessageColor("red");
-              }
+                setMessage(response.data.message);
+                if (response.data.message.indexOf('успешно') !== -1) {
+                    setMessageColor("#2ecc71");
+                } else {
+                    setMessageColor("red");
+                }
             })
             .catch((err) => {
-              if (err.response && err.response.data && err.response.data.message) {
-                setMessage(err.response.data.message);
-              } else {
-                setMessage("Ошибка");
-              }
+                if (err.response && err.response.data && err.response.data.message) {
+                    setMessage(err.response.data.message);
+                } else {
+                    setMessage("Ошибка");
+                }
             });
     }
     return (
@@ -60,21 +60,19 @@ const ApplicantList: FC = () => {
             {(() => {
                 const role = localStorage.getItem('role');
                 if (role == 'admissionadmin') {
-                    
-
                     return <div style={{ textAlign: 'left', width: '1200px' }}>
                         <KPINavbar />
-                        <br /><br />                  
+                        <br /><br />
                         <Link to={"/applicants"}><button className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button></Link> <br /><br />
-                        <br/>
+                        <br />
                         <h3>Впишите ИИН студента, который уже добавлен в Platonus, затем нажмите "Добавить"</h3>
-                        <input id="inputIIN" className='btnNeutral' style={{width:'300px'}} type="text" maxLength={12} placeholder='Введите ИИН абитуриента...'></input><br/><br/>
-                        <button className="navbarbutton" onClick={()=>addApplicant()}>Добавить</button><br/><br/>
-                        <div style={{color:messagecolor, fontWeight:'bold'}}>{message}</div>
+                        <input id="inputIIN" className='btnNeutral' style={{ width: '300px' }} type="text" maxLength={12} placeholder='Введите ИИН абитуриента...'></input><br /><br />
+                        <button className="navbarbutton" onClick={() => addApplicant()}>Добавить</button><br /><br />
+                        <div style={{ color: messagecolor, fontWeight: 'bold' }}>{message}</div>
                     </div>
                 }
                 else {
-                    return <Navigate to="/"/>
+                    return <Navigate to="/" />
                 }
             })()}
 

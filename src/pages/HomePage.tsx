@@ -149,6 +149,9 @@ const HomePage:FC = () => {
             else if (role==='admissionadmin'){
               return <Navigate to='/applicants'  />
             }
+            else if (role==='admissionstats'){
+              return <Navigate to='/admission_statistics'  />
+            }
             else if (role==='reader'){
               return <div className='root'>
               <KPINavbar/>

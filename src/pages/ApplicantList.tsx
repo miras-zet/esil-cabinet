@@ -89,11 +89,11 @@ const ApplicantList: FC = () => {
                         <br /><br /><br /><br />
                         <h3>Добро пожаловать, {user.lastname + ' ' + user.name + ' ' + user.middlename}</h3><br />
                         <h2>Список абитуриентов</h2>
-                        <Link to={"/addapplicant"}><button className='navbarbutton'>Копировать нового абитуриента из Platonus</button></Link> <br /><br />
+                        <Link to={"/addapplicant"}><button className='navbarbutton'>Добавить нового абитуриента (из Platonus)</button></Link> <br /><br />
                         <br />
-                        <table id='opaqueTable' style={{ marginLeft: '-1%', paddingLeft: '15px', width: '107%' }}>
+                        <table id='opaqueTable' style={{ marginLeft: '-1.3%', paddingLeft: '15px', width: '107%' }}>
                             <tr>
-                                <th style={{ textAlign: 'center' }}><br />№<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center' }}><br />№&nbsp;&nbsp;<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />ФИО<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Специальность<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Форма обучения<br />&nbsp;</th>
