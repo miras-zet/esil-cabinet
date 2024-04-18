@@ -36,8 +36,8 @@ export function InventoryReceiptRu() {
 
     return (
         <>
-            <div><Link to="/applicants"><button>Назад</button></Link><br style={{lineHeight:'50px'}}/>
-      <button onClick={generatePdf}>Скачать&nbsp;&nbsp;<FaDownload style={{fontSize:'11.5pt', marginTop:'5px'}}/></button></div>
+            <div id='documentNavbar'><Link to="/applicants"><button id="documentNavbarButton">Назад</button></Link> &nbsp;
+      <button id="documentNavbarButton" onClick={generatePdf}>Скачать&nbsp;&nbsp;<FaDownload/></button></div>
             <div id="inventoryReceipt">
                 <div id="inventoryReceiptPadding">
                     <div id="inventoryReceiptBody">

@@ -64,9 +64,10 @@ const ApplicantList: FC = () => {
 
                     return <div style={{ textAlign: 'left', width: '1200px' }}>
                         <KPINavbar />
-                        <br /><br />
-                        <Link to={"/applicants"}><button><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button></Link> <br /><br />
+                        <br /><br />                  
+                        <Link to={"/applicants"}><button className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button></Link> <br /><br />
                         <br/>
+                        <h3>Впишите ИИН студента, который уже добавлен в Platonus, затем нажмите "Добавить"</h3>
                         <input id="inputIIN" className='btnNeutral' style={{width:'300px'}} type="text" maxLength={12} placeholder='Введите ИИН абитуриента...'></input><br/><br/>
                         <button className="navbarbutton" onClick={()=>addApplicant()}>Добавить</button><br/><br/>
                         <div style={{color:messagecolor, fontWeight:'bold'}}>{message}</div>

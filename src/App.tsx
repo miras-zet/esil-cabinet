@@ -22,6 +22,8 @@ import { AnketaKz } from './pages/tamplate/AnketaKz'
 import { InventoryReceiptKz } from './pages/tamplate/InventoryReceiptKz'
 import { ContractRu } from './pages/tamplate/ContractRu'
 import { ContractKz } from './pages/tamplate/ContractKz'
+import TechAddNewDocument from './pages/TechAddNewDocument'
+import TechDueDocuments from './pages/TechDueDocuments'
 
   
 
@@ -57,21 +59,30 @@ const App:FC = () => {
     <>
       <Routes>
         <Route path="/" element={ <HomePage /> } />
+
+        <Route path="/ebooks" element={<EBooks />}/>
+
+        <Route path="/applicants" element={<ApplicantList />}/>
+        <Route path="/addapplicant" element={<AddApplicant/>}/>
+
         <Route path="/applicationRu" element={<AnketaRu />}/>
         <Route path="/applicationKz" element={<AnketaKz />}/>
         <Route path="/inventoryRu" element={<InventoryReceiptRu />}/>
         <Route path="/inventoryKz" element={<InventoryReceiptKz />}/>
         <Route path="/contractRu" element={<ContractRu/>}/>
         <Route path="/contractKz" element={<ContractKz/>}/>
-        <Route path="/ebooks" element={<EBooks />}/>
-        <Route path="/applicants" element={<ApplicantList />}/>
-        <Route path="/addapplicant" element={<AddApplicant/>}/>
+        
+        <Route path="/techNewDocument" element={<TechAddNewDocument/>}/>
+        <Route path="/techDueDocuments" element={<TechDueDocuments/>}/>
+        <Route path="/techOldDocuments" element={<TechDueDocuments/>}/>
+
         <Route path="/kpi" element={ <KPIPage /> } />
         <Route path="/kpiupload" element={ <KPIUpload /> } />
         <Route path="/kpiadmin" element={<KPIAdminPage />} />
         <Route path="/kpiadminview" element={<KPIAdminViewUser/>} />
         <Route path="/kpistats" element={<KPIStats/>} />
         <Route path="/kpitopten" element={<KPITopTen/>} />
+
         <Route path="/certificate" element={ <CertificatePage /> } />
         <Route path="/list" element={ <CertificateListPage /> } />
         <Route path="/list/certificate/:id" element={ <CertificateLinkPage /> } />

@@ -13,6 +13,7 @@ import KPINavbar from '../components/KPINavbar';
 import { HiSparkles } from "react-icons/hi2";
 import { FaArrowRight, FaBook, FaUpload } from 'react-icons/fa';
 import { IoIosAlarm } from "react-icons/io";
+import { MdNoteAdd } from 'react-icons/md';
 
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -131,6 +132,17 @@ const HomePage:FC = () => {
                 <Link to="/kpi"><button className='navbarbutton'>Загрузить документы &nbsp;&nbsp;<FaUpload /></button></Link>
                 <h5>* Каждый несёт персональную ответственность за ввод данных в систему оценки KPI.</h5>
                 <KPICategoryScores/>
+                </div>
+              </div>
+            }
+            else if(role==='technician'){
+              return <div className='rootTutor'>
+              <KPINavbar/>       
+              <div className='tutorcontent'>
+                <h2>Кабинет ОТОиР</h2>
+                <Link to="/techNewDocument"><button className='navbarbutton'>Новое представление &nbsp;<MdNoteAdd style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link> <br/><br/><br/>
+                <Link to="/techDueDocuments"><button>Активные</button></Link><br/><br/>
+                <Link to="/techOldDocuments"><button>Завершенные</button></Link>
                 </div>
               </div>
             }

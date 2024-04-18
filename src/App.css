@@ -62,6 +62,11 @@ ul {
   color:white;
 }
 
+.backbutton{
+  background-color:silver;
+  color:black;
+}
+
 .navbarname{
   padding-left: -10%;
   color:white;
@@ -96,6 +101,7 @@ ul {
 }
 
 .topnav2 {
+  box-shadow: 0 5px 2px -2px rgb(196, 196, 196);
   position: fixed;
   top: 85px;
   right: 0px;

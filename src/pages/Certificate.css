@@ -121,7 +121,16 @@
   border: 1px solid white;
   border-collapse: collapse;
 }
-
+#documentNavbar{
+  border-radius: 10px;
+  background-color:#088c64;
+  height: 52px;
+  padding-top: 10px;
+}
+#documentNavbarButton{
+  color:black;
+  background-color: #e7e7e7;
+}
 #IRTableNumber {
   width: 13mm;
   text-align: center;
@@ -148,6 +157,12 @@ td {
 #opaqueTable{
   border-radius: 25px;
   background: rgba(20, 50, 20, .08)
+}
+
+#table-divider{
+  height: 60px;
+  border-radius: 12px;
+  background: rgba(84, 84, 84, 0.064)
 }
 
 #anketa {
