@@ -155,7 +155,7 @@ const KPIUpload: FC = () => {
       <td>{moment(element.upload_date).format("DD.MM.YYYY")}</td>
       <td>{element.extradata1}</td>
       <td> +{element.name!='Набор абитуриентов' ? element.primaryscore: (element.primaryscore*parseInt(element.extradata1)<=50? element.primaryscore*parseInt(element.extradata1):50)}</td>
-      <td>&nbsp;&nbsp;<button onClick={() => featureNotReadyNotif}><FaDownload/></button>&nbsp;&nbsp;<button onClick={() => deleteF(element.filename)}><FaTrashAlt /></button></td>
+      <td style={{width:'150px'}}>&nbsp;&nbsp;<button className="backbutton" onClick={() => featureNotReadyNotif}><FaDownload/></button>&nbsp;&nbsp;<button className="redbutton" onClick={() => deleteF(element.filename)}><FaTrashAlt /></button></td>
     </tr>
   );
 
@@ -189,7 +189,7 @@ const KPIUpload: FC = () => {
   if (role === 'plt_tutor') return (<div>
     <KPINavbar/>
     <br/><br/><br/><br/><br/><br/>
-    <Link to="/kpi"><button><TiArrowBack style={{verticalAlign:'middle'}}/> Вернуться назад</button></Link>
+    <Link to="/kpi"><button className="backbutton"><TiArrowBack style={{verticalAlign:'middle'}}/> Вернуться назад</button></Link>
     <br /><br />
     {(localStorage.getItem('categoryid') == '3') ? (<div className="card mt-3">
       <center><UMKDMoodle/></center>

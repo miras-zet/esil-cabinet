@@ -187,28 +187,28 @@ const HomePage:FC = () => {
                 </tr>
                 <tr>
                   <td>
-                    <p><button onClick={() => redirectCafedra('7','Информационных систем и технологий')}>Информационных систем и технологий</button></p>
-                    <p><button onClick={() => redirectCafedra('15','Социально-гуманитарных дисциплин')}>Социально-гуманитарных дисциплин</button></p>
-                    <p><button onClick={() => redirectCafedra('13','Международной торговли и Права')}>Международной торговли и Права</button></p>
-                    <p><button onClick={() => redirectCafedra('2','Социальная работа и туризм')}>Социальная работа и туризм</button></p>
+                    <p><button className="backbutton" onClick={() => redirectCafedra('7','Информационных систем и технологий')}>Информационных систем и технологий</button></p>
+                    <p><button className="backbutton" onClick={() => redirectCafedra('15','Социально-гуманитарных дисциплин')}>Социально-гуманитарных дисциплин</button></p>
+                    <p><button className="backbutton" onClick={() => redirectCafedra('13','Международной торговли и Права')}>Международной торговли и Права</button></p>
+                    <p><button className="backbutton" onClick={() => redirectCafedra('2','Социальная работа и туризм')}>Социальная работа и туризм</button></p>
                   </td>
                   <td>
-                    <p><button onClick={() => redirectCafedra('1','Финансы')}>Финансы</button></p>
-                    <p><button onClick={() => redirectCafedra('3','Экономика')}>Экономика</button></p>
-                    <p><button onClick={() => redirectCafedra('4','Менеджмент')}>Менеджмент</button></p>
-                    <p><button onClick={() => redirectCafedra('5','Учет и аудит')}>Учет и аудит</button></p>
+                    <p><button className="backbutton" onClick={() => redirectCafedra('1','Финансы')}>Финансы</button></p>
+                    <p><button className="backbutton" onClick={() => redirectCafedra('3','Экономика')}>Экономика</button></p>
+                    <p><button className="backbutton" onClick={() => redirectCafedra('4','Менеджмент')}>Менеджмент</button></p>
+                    <p><button className="backbutton" onClick={() => redirectCafedra('5','Учет и аудит')}>Учет и аудит</button></p>
                   </td>
                 </tr>
                 </tbody>
               </table>    
               
               <br/><br/>
-              <p><Link to="/kpistats"><button>Сводка по кафедрам</button></Link></p>
-              <p><button onClick={() => redirectTopTen('6')}>Топ-10 преподавателей (все преподаватели)</button></p>
+              <p><Link to="/kpistats"><button className="backbutton">Сводка по кафедрам</button></Link></p>
+              <p><button className="backbutton" onClick={() => redirectTopTen('6')}>Топ-10 преподавателей (все преподаватели)</button></p>
               <br/>
-              <p><button onClick={() => redirectTopTen('0')}>Топ-10 преподавателей (без звания)</button></p>
-              <p><button onClick={() => redirectTopTen('2')}>Топ-10 преподавателей (доцент / ассоц. профессор)</button></p>
-              <p><button onClick={() => redirectTopTen('3')}>Топ-10 преподавателей (профессор)</button></p>
+              <p><button className="backbutton" onClick={() => redirectTopTen('0')}>Топ-10 преподавателей (без звания)</button></p>
+              <p><button className="backbutton" onClick={() => redirectTopTen('2')}>Топ-10 преподавателей (доцент / ассоц. профессор)</button></p>
+              <p><button className="backbutton" onClick={() => redirectTopTen('3')}>Топ-10 преподавателей (профессор)</button></p>
               </div>
             }
             else{

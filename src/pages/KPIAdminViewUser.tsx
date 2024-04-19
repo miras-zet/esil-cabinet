@@ -82,7 +82,7 @@ const KPIAdminViewUser: FC = () => {
       <td>{moment(element.upload_date).format("DD.MM.YYYY")}</td>
       <td>{element.extradata1}</td>
       <td> +{element.name != 'Набор абитуриентов' ? element.primaryscore : (element.primaryscore * parseInt(element.extradata1) <= 50 ? element.primaryscore * parseInt(element.extradata1) : 50)}</td>
-      <td>&nbsp;&nbsp;<button onClick={() => featureNotReadyNotif}><FaDownload /></button>&nbsp;&nbsp;<button onClick={() => deleteF(element.filename)}><FaTrashAlt /></button></td>
+      <td style={{width:'150px'}}>&nbsp;&nbsp;<button className="backbutton" onClick={() => featureNotReadyNotif}><FaDownload/></button>&nbsp;&nbsp;<button className="redbutton" onClick={() => deleteF(element.filename)}><FaTrashAlt /></button></td>
     </tr>
   );
 
@@ -108,7 +108,7 @@ const KPIAdminViewUser: FC = () => {
       if (role === 'plt_kpiadmin') return <div>
         <KPINavbar />
         <br /><br /><br /><br /><br /><br />
-        <button onClick={redirectDecider}><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button>
+        <button className="backbutton" onClick={redirectDecider}><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button>
         <br /><UMKDMoodle /><br />
         <div className="card mt-3" onLoad={getfiles}>
           <div>{message}</div>

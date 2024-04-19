@@ -66,6 +66,16 @@ ul {
   background-color:silver;
   color:black;
 }
+#opaqueTable{
+  border-radius: 25px;
+  background: rgba(20, 50, 20, .08)
+}
+
+#table-divider{
+  height: 60px;
+  border-radius: 12px;
+  background: rgba(84, 84, 84, 0.064)
+}
 
 .navbarname{
   padding-left: -10%;

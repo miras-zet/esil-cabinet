@@ -60,7 +60,7 @@ const KPIAdminPage: FC = () => {
       {/* <td><a onClick={redirectViewUser(element.userid)}>{element.fio}</a></td>  */}
       <td>{element.fio}</td>
       <td><b>{element.score}</b></td>
-      <td>&nbsp;&nbsp;<button onClick={() => redirectViewUser(element.userid, element.fio)}>Просмотр</button></td>
+      <td>&nbsp;&nbsp;<button className="backbutton" onClick={() => redirectViewUser(element.userid, element.fio)}>Просмотр</button></td>
     </tr>
   );
   return (

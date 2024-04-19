@@ -45,19 +45,21 @@ const KPITopTen:FC = () => {
     return;
   }
   const listTopTenItems= topTenInfos.map((element) =>  
-    <tr key={element.userid}>
+    <tr key={element.userid} >
+        <td></td>
         <td>{element.counter}</td> 
-        <td><a onClick={()=>redirectViewUser(element.userid, element.fio)}>{element.fio}</a></td>
-        <td>{element.cafedraNameRU}</td>
-        <td>{element.score_base}</td>
-        <td>{element.score_advanced}</td>
-        <td>{element.international_count}</td>
-        <td>{element.kkson_count}</td>
-        <td>{element.scopus_count}</td>
-        <td>{element.wos_count}</td>
-        <td>{element.monograph_count}</td>
-        <td>{element.nirs_count}</td>
-        <td>{element.tia_count}</td>
+        <td id="table-divider" style={{verticalAlign:'middle'}}><a onClick={()=>redirectViewUser(element.userid, element.fio)}>{element.fio}</a></td>
+        <td id="table-divider" style={{verticalAlign:'middle'}}>&nbsp;{element.cafedraNameRU}&nbsp;</td>
+        <td id="table-divider" style={{verticalAlign:'middle'}}>{element.score_base}</td>
+        <td id="table-divider" style={{verticalAlign:'middle'}}>{element.score_advanced}</td>
+        <td id="table-divider" style={{verticalAlign:'middle'}}>{element.international_count}</td>
+        <td id="table-divider" style={{verticalAlign:'middle'}}>{element.kkson_count}</td>
+        <td id="table-divider" style={{verticalAlign:'middle'}}>{element.scopus_count}</td>
+        <td id="table-divider" style={{verticalAlign:'middle'}}>{element.wos_count}</td>
+        <td id="table-divider" style={{verticalAlign:'middle'}}>{element.monograph_count}</td>
+        <td id="table-divider" style={{verticalAlign:'middle'}}>{element.nirs_count}</td>
+        <td id="table-divider" style={{verticalAlign:'middle'}}>{element.tia_count}</td>
+        <td></td>
     </tr>
   );
 
@@ -77,12 +79,13 @@ const KPITopTen:FC = () => {
     if(role==='plt_kpiadmin')return <div>
         <KPINavbar/>
         <br/><br/><br/><br/><br/><br/>
-        <Link to="/"><button><TiArrowBack style={{verticalAlign:'middle'}}/> Вернуться назад</button></Link>
+        <Link to="/"><button className="backbutton"><TiArrowBack style={{verticalAlign:'middle'}}/> Вернуться назад</button></Link>
         <br/><br/>
         <div className="card mt-3" onLoad={getstats}>
             <div className="card-header">Топ-10 преподавателей {toptentype}</div><br/>
-            <center><table style={{textAlign: "center"}}><tbody>
+            <center><table id="opaqueTable" style={{textAlign: "center"}}><tbody>
                 <tr>
+                    <th>&nbsp;</th>
                     <th>№</th>
                     <th>ФИО</th>
                     <th>Кафедра</th>
@@ -95,9 +98,10 @@ const KPITopTen:FC = () => {
                     <th>Кол-во монографий (+10)</th>
                     <th>Кол-во участий в НИР (исполнитель +20)</th>
                     <th>Кол-во патентов (+5)</th>
+                    <th>&nbsp;</th>
                 </tr>
                 {listTopTenItems}
-
+                <tr><td>&nbsp;</td></tr>
             </tbody>
             </table></center>
           </div>

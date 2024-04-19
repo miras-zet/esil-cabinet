@@ -74,7 +74,7 @@ const KPIStats:FC = () => {
       if(role==='plt_kpiadmin')return <div>
         <KPINavbar/>
         <br/><br/><br/><br/><br/><br/>
-        <Link to="/"><button><TiArrowBack style={{verticalAlign:'middle'}}/> Вернуться назад</button></Link>
+        <Link to="/"><button className="backbutton"><TiArrowBack style={{verticalAlign:'middle'}}/> Вернуться назад</button></Link>
         <br/><br/>
         <div className="card mt-3" onLoad={getstats}>
           <div className="card-header">Статистика по факультетам</div><br/>
