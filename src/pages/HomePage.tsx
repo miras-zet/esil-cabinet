@@ -118,8 +118,8 @@ const HomePage:FC = () => {
               return <div className='root'>
               <button onClick={() => store.logout()}>Выйти</button>
               <h1>{store.isAuth ? `Добро пожаловать, ${store.user.lastname} ${store.user.name}`  : 'АВТОРИЗУЙТЕСЬ'}</h1>       
-              <button onClick={open}>Получить новую справку</button>
-              <Link to="/list"><button onClick={()=> store.getCert()}>История подачи справок</button></Link>
+              <button className='navbarbutton' onClick={open}>Получить новую справку</button>
+              <Link to="/list"><button className='navbarbutton' onClick={()=> store.getCert()}>История подачи справок</button></Link>
 
               {modal && <CreateCert />}  </div>
             }

@@ -16,7 +16,7 @@ export function Prilozhenie4(certificat:CertResponse)  {
     //     fetch(`${API_URL}/cert/${certid}`).then((response) => response.json()).then((data:CertResponse)=>setCertificat(data));
         
     //   },[]);      
-      const qrcodeValue = `${window.location.host}/certificate/student/${certificat.id}`; 
+      const qrcodeValue = `https://${window.location.host}/certificate/student/${certificat.id}`; 
       const generatePdf = () => {
         const report = document.getElementById('report');
         html2pdf().from(report).save()

@@ -66,29 +66,40 @@
   cursor: pointer;
   transition: border-color 0.25s;
 }
+#contractBackground{
+  background-color:darkgrey;
+}
 #contract {
   font-family: 'Times New Roman', Times, serif;
   background-color: white;
   color: black;
   width: 297mm;
-  height: 210mm;
+  font-size: 10pt;
+  line-height: 13pt;
 }
 
 #contractPadding {
-  padding-left: 10mm;
-  padding-top: 10mm;
-  padding-right: 8mm;
-  padding-bottom: 5mm;
+  padding-left: 20mm;
+  padding-top: 20mm;
+  padding-right: 10mm;
+  padding-bottom: 20mm;
 }
 
 #contractTable{
   text-align: left;
+  overflow: visible;
+  display: block;
+  text-align: justify;
+  text-indent:25px;
 }
 
-#contractTr{
+/* #contractTr{
   width: 100px;
+} */
+#contractTd{
+  max-width: 490px;
+  padding-right: 43px;
 }
-
 
 #inventoryReceipt {
   font-family: 'Times New Roman', Times, serif;
