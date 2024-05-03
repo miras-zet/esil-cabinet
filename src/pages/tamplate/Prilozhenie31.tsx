@@ -24,7 +24,7 @@ export function Prilozhenie31(certificat:CertResponse)  {
       
   return (
     <>
-    <div><button onClick={generatePdf}> save PDF</button></div>
+    <div><button className='navbarbutton' onClick={generatePdf}> save PDF</button></div>
     
     <div id="report">
         <div style={{float: "left", display: "flex",justifyContent: "flex-start"}}>{certificat?.id} / {moment(certificat?.created).format("DD.MM.YYYY")}</div>

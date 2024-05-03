@@ -47,7 +47,7 @@ const certificatePage:FC = () => {
 
   return (
     <div>
-      <button onClick={back}>Назад</button>
+      <button className='navbarbutton' onClick={back}>Назад</button><br/>
         {(() => {
         switch(certificate.cert_type) {
             case 1:
