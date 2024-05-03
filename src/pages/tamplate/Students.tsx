@@ -17,7 +17,7 @@ export function Students(certificat:CertResponse)  {
     //     fetch(`${API_URL}/cert/${certid}`).then((response) => response.json()).then((data:CertResponse)=>setCertificat(data));
         
     //   },[]);      
-      const qrcodeValue = `https://${window.location.host}/certificate/student/${certificat.id}`; 
+      const qrcodeValue = `${window.location.host}/certificate/student/${certificat.id}`; 
       const generatePdf = () => {
         const report = document.getElementById('report');
         html2pdf().from(report).save()     
@@ -61,7 +61,7 @@ export function Students(certificat:CertResponse)  {
 						<h3>СПРАВКА</h3>
 						<p>Дан(а) гражданину(ке) <b>{certificat?.lastname} {certificat?.name} {certificat?.middlename}  
                         , {moment(certificat?.birth_date).format("DD.MM.YYYY")} г.р. </b> в том, что он (а) действительно обучающим(ей)ся на <b>{certificat?.course_number}</b> курсе, образовательной программе  <b>{certificat?.specialization_code} - "{certificat?.specialization_name_ru}"</b>,
-                        <u><b> Учреждения "Esil University"</b> <b>лицензия № KZ08LAA00032358  от 01.04. 2022 г., без ограничения</b></u><br/> 
+                        <u><b> Учреждение "Esil University"</b> <b>лицензия № KZ08LAA00032358  от 01.04. 2022 г., без ограничения</b></u><br/> 
                         <br/>Факультет {certificat?.dekanat_ru}  
 						<br/>Форма обучения: {certificat?.study_form_name_ru} <br/>                         
                         {certificat.grant_type === -4 && <><b>Государственный грант</b> / На платной основе / Грант Акимата<br/></>}

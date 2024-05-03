@@ -36,10 +36,10 @@ const certificatePage:FC = () => {
     <div>
         <div>
             <img src="logo_new.png" width={300} /> 
-            <h1>Учреждения "Esil University"</h1>
+            <h1>Учреждение "Esil University"</h1>
             <p>{typeCert[certificate.cert_type-1]}</p>
             <p>ФИО обучающегося:  <u>  {certificate.lastname} {certificate.name} {certificate.middlename}   </u> </p>
-            <p>Образовательая программа:  <u> {certificate.specialization_code} {certificate.specialization_name_ru}</u></p>
+            <p>Образовательная программа:  <u> {certificate.specialization_code} {certificate.specialization_name_ru}</u></p>
             <p>Кафедра:   <u> {certificate.cafedra_ru}</u> </p>
             <p>Факультет:  <u> {certificate.dekanat_ru}</u> </p>
             <p>Форма обучения:  <u> {certificate.study_form_name_ru}</u>   </p>
