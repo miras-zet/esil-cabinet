@@ -40,7 +40,7 @@ const ApplicantList: FC = () => {
             <td style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>{index + 1}&nbsp;&nbsp;&nbsp;</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.lastname + ' ' + element.firstname + ' ' + element.patronymic}&nbsp;</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{element.specialization}</td>
-            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{element.study_form}</td>
+            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', width:'20%' }}>{element.study_form}</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{element.degree_type}</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{element.study_language}</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', textAlign: 'center' }}>
