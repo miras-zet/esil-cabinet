@@ -54,19 +54,19 @@ export function TitleKz() {
                     <table style={{ width: '100%', marginLeft:'-0.4%' }}>
                         <tr>
                             <td>Оқуға түскен жылы:</td>
-                            <td >{moment(Date.now()).format("YYYY")} ж.</td>
+                            <td>{moment(Date.now()).format("YYYY")} ж.</td>
                         </tr>
                         <tr>
                             <td>Басталды:</td>
-                            <td >{moment(Date.now()).format("YYYY")} ж.</td>
+                            <td>{moment(Date.now()).format("YYYY")} ж.</td>
                         </tr>
                         <tr>
                             <td>Аяқталды:</td>
-                            <td >20__ ж.</td>
+                            <td>20__ ж.</td>
                         </tr>
                         <tr>
                             <td>Мұрағатқа тапсырылды:</td>
-                            <td >20__ ж.</td>
+                            <td>20__ ж.</td>
                         </tr>
                     </table>
                     ЖСН &nbsp;<u>{titleData?.iin}</u><br /><br />

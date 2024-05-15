@@ -55,19 +55,19 @@ export function TitleRu() {
                     <table style={{ width: '100%', marginLeft:'-0.4%' }}>
                         <tr>
                             <td>Год поступления:</td>
-                            <td >{moment(Date.now()).format("YYYY")} ж.</td>
+                            <td>{moment(Date.now()).format("YYYY")} ж.</td>
                         </tr>
                         <tr>
                             <td>Заведено:</td>
-                            <td >{moment(Date.now()).format("YYYY")} ж.</td>
+                            <td>{moment(Date.now()).format("YYYY")} ж.</td>
                         </tr>
                         <tr>
                             <td>Закончено:</td>
-                            <td >20__ ж.</td>
+                            <td>20__ ж.</td>
                         </tr>
                         <tr>
                             <td>Передано в архив:</td>
-                            <td >20__ ж.</td>
+                            <td>20__ ж.</td>
                         </tr>
                     </table>
                     ИИН &nbsp;<u>{titleData?.iin}</u><br /><br />
