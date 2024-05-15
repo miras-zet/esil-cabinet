@@ -42,6 +42,20 @@ const getInventoryDataKz = () : Promise<any> => {
   const userid = localStorage.getItem('applicant_user_id');  
   return http.get(`/docs/inventory/kz/${userid}`,{params});
 };
+const getTitleDataRu = () : Promise<any> => {
+  const params = {
+    token: localStorage.getItem('token'),
+  }
+  const userid = localStorage.getItem('applicant_user_id');  
+  return http.get(`/docs/title/ru/${userid}`,{params});
+};
+const getTitleDataKz = () : Promise<any> => {
+  const params = {
+    token: localStorage.getItem('token'),
+  }
+  const userid = localStorage.getItem('applicant_user_id');  
+  return http.get(`/docs/title/kz/${userid}`,{params});
+};
 const getApplicantData = () : Promise<any>=>{ 
   const params = {
     token: localStorage.getItem('token'),
@@ -71,6 +85,8 @@ const DocsService = {
   addApplicant,
   getInventoryDataRu,
   getInventoryDataKz,
+  getTitleDataRu,
+  getTitleDataKz
 };
 
 export default DocsService;

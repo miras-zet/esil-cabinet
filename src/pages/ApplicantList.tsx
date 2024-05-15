@@ -10,7 +10,8 @@ import IApplicantList from '../models/IApplicantList';
 import { RiFileListFill } from "react-icons/ri";
 import { HiViewList } from "react-icons/hi";
 import { FaHandshake } from 'react-icons/fa';
-import { Tooltip } from 'react-tooltip'
+import { Tooltip } from 'react-tooltip';
+import { RiArchiveFill } from "react-icons/ri";
 
 const ApplicantList: FC = () => {
     const { store } = useContext(Context);
@@ -57,7 +58,16 @@ const ApplicantList: FC = () => {
                     <Tooltip id="contract-tooltip" /><a data-tooltip-id="contract-tooltip" data-tooltip-content={'Договор ('+element.lastname+')'}><button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#99373a', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Kz', 'contract')}><FaHandshake /></button></a>&nbsp;
                 </div>}
             </td>
-
+            <td  id="table-divider" style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+            {element.study_language == 'русский' ? 
+            <div>
+                <Tooltip id="title-tooltip" /><a data-tooltip-id="title-tooltip" data-tooltip-content={'Титульный лист ('+element.lastname+')'}><button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#A585C4', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Ru', 'title')}><RiArchiveFill/></button></a>&nbsp;
+            </div>
+            :
+            <div>
+                <Tooltip id="title-tooltip" /><a data-tooltip-id="title-tooltip" data-tooltip-content={'Титульный лист ('+element.lastname+')'}><button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#A585C4', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Kz', 'title')}><RiArchiveFill/></button></a>&nbsp;
+            </div>}
+            </td>
         </tr>
     );
     if (store.isLoading) {
@@ -100,6 +110,7 @@ const ApplicantList: FC = () => {
                                 <th style={{ textAlign: 'center' }}><br />Академическая степень<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Язык обучения<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center', width:'20%' }}><br />Документы<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center'}}><br />Титульный лист<br />&nbsp;</th>
                             </tr>
                             {applicantList}
                             <tr>

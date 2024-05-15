@@ -25,6 +25,8 @@ import { ContractKz } from './pages/tamplate/ContractKz'
 import TechAddNewDocument from './pages/TechAddNewDocument'
 import TechDueDocuments from './pages/TechDueDocuments'
 import AdmissionStats from './pages/AdmissionStats'
+import { TitleRu } from './pages/tamplate/TitleRu'
+import { TitleKz } from './pages/tamplate/TitleKz'
 
   
 
@@ -73,6 +75,8 @@ const App:FC = () => {
         <Route path="/inventoryKz" element={<InventoryReceiptKz />}/>
         <Route path="/contractRu" element={<ContractRu/>}/>
         <Route path="/contractKz" element={<ContractKz/>}/>
+        <Route path="/titleRu" element={<TitleRu/>}/>
+        <Route path="/titleKz" element={<TitleKz/>}/>
         
         <Route path="/techNewDocument" element={<TechAddNewDocument/>}/>
         <Route path="/techDueDocuments" element={<TechDueDocuments/>}/>

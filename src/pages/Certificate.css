@@ -84,6 +84,23 @@
   padding-right: 10mm;
   padding-bottom: 20mm;
 }
+#title {
+  overflow: hidden;
+  font-family: 'Times New Roman', Times, serif;
+  background-color: white;
+  color: black;
+  width: 210mm;
+  height: 290mm;
+  font-size: 14pt;
+  font-weight: bold;
+  text-align: left;
+}
+#titlePadding {
+  padding-left: 20mm;
+  padding-top: 20mm;
+  padding-right: 10mm;
+  padding-bottom: 20mm;
+}
 
 #contractTable{
   text-align: left;
