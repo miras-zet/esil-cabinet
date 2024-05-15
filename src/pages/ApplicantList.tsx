@@ -111,6 +111,7 @@ const ApplicantList: FC = () => {
                                 <th style={{ textAlign: 'center' }}><br />Язык обучения<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center', width:'20%' }}><br />Документы<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center'}}><br />Титульный лист<br />&nbsp;</th>
+                                <th>&nbsp;</th>
                             </tr>
                             {applicantList}
                             <tr>
