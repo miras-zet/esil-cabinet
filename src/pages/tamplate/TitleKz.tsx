@@ -74,7 +74,7 @@ export function TitleKz() {
                     Тұрғылықты мекен жайы &nbsp;<u>{titleData?.living_address}</u><br />	
                     Тіркелген мекен жайы &nbsp;<u>{titleData?.registration_address}</u><br />	
                     Телефон &nbsp;<u>{titleData?.phone}</u><br /><br />
-                    <p style={{ marginLeft: '45%' }}>Астана </p>
+                    <p style={{ marginLeft: '45%' }}>Астана</p>
                     Қабылдау комиссиясының техникалық хатшысы: <u>{data.lastname + ' ' + data.name + ' ' + data.middlename}</u>
                 </div>
             </div>
