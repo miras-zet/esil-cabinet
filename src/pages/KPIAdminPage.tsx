@@ -58,9 +58,9 @@ const KPIAdminPage: FC = () => {
   const listTutors = tutorInfos.map((element) =>
     <tr key={element.userid}>
       {/* <td><a onClick={redirectViewUser(element.userid)}>{element.fio}</a></td>  */}
-      <td>{element.fio}</td>
-      <td><b>{element.score}</b></td>
-      <td>&nbsp;&nbsp;<button className="backbutton" onClick={() => redirectViewUser(element.userid, element.fio)}>Просмотр</button></td>
+      <td><div style={{lineHeight:'200%'}}>{element.fio}</div></td>
+      <td><div style={{lineHeight:'200%'}}><b>{element.score}</b></div></td>
+      <td style={{alignItems:'center'}} >&nbsp;&nbsp;<button className="backbutton" onClick={() => redirectViewUser(element.userid, element.fio)}>Просмотр</button></td>
     </tr>
   );
   return (

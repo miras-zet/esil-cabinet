@@ -27,6 +27,8 @@ import TechDueDocuments from './pages/TechDueDocuments'
 import AdmissionStats from './pages/AdmissionStats'
 import { TitleRu } from './pages/tamplate/TitleRu'
 import { TitleKz } from './pages/tamplate/TitleKz'
+import TechPageConstructor from './pages/TechPageConstructor'
+import TechAct from './pages/TechAct'
 
   
 
@@ -81,6 +83,9 @@ const App:FC = () => {
         <Route path="/techNewDocument" element={<TechAddNewDocument/>}/>
         <Route path="/techDueDocuments" element={<TechDueDocuments/>}/>
         <Route path="/techOldDocuments" element={<TechDueDocuments/>}/>
+        <Route path="/techSpecifyDocument" element={<TechPageConstructor/>}/>
+        <Route path="/techActDocument" element={<TechAct/>}/>
+        
 
         <Route path="/kpi" element={ <KPIPage /> } />
         <Route path="/kpiupload" element={ <KPIUpload /> } />

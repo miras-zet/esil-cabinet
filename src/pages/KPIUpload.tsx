@@ -13,7 +13,8 @@ import UMKDMoodle from '../components/UMKDMoodle';
 import KPINavbar from '../components/KPINavbar';
 import { FaDownload, FaTrashAlt, FaUpload } from "react-icons/fa";
 import { TiArrowBack } from "react-icons/ti";
-
+import axios from 'axios';
+import config from "../http/config.json";
 
 const KPIUpload: FC = () => {
   const [ activity, setActivity ] = useState<string>('notchosen');
@@ -46,9 +47,6 @@ const KPIUpload: FC = () => {
   // const help = () => {
   //   alert('Выберите показатель из списка, затем выберите файл. Затем нажмите \"Отправить файл\". Загружаемый файл должен быть формата .pdf, размер файла не должен превышать 10 МБ.');
   // };
-  const featureNotReadyNotif = () => {
-    alert('Функция в разработке');
-  }
   const upload = () => {
     if (activity == 'notchosen') setMessage("Выберите показатель");
     else {
@@ -87,6 +85,24 @@ const KPIUpload: FC = () => {
             });
         }
       }
+    }
+  };
+  const handleFileDownload = async (fileId: number, filename: string) => {
+    try {
+      const response = await axios.get(`${config.API_URL}/upload/download/${fileId}`, {
+        responseType: 'blob',
+      });
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', filename);
+      document.body.appendChild(link);
+      link.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading file:', error);
+      alert('Ошибка загрузки файла.');
     }
   };
   // const download = async (filename: string) => {
@@ -155,7 +171,7 @@ const KPIUpload: FC = () => {
       <td>{moment(element.upload_date).format("DD.MM.YYYY")}</td>
       <td>{element.extradata1}</td>
       <td> +{element.name!='Набор абитуриентов' ? element.primaryscore: (element.primaryscore*parseInt(element.extradata1)<=50? element.primaryscore*parseInt(element.extradata1):50)}</td>
-      <td style={{width:'150px'}}>&nbsp;&nbsp;<button className="backbutton" onClick={() => featureNotReadyNotif}><FaDownload/></button>&nbsp;&nbsp;<button className="redbutton" onClick={() => deleteF(element.filename)}><FaTrashAlt /></button></td>
+      <td style={{width:'150px'}}>&nbsp;&nbsp;<button className="backbutton" onClick={() => handleFileDownload(element.id, element.filename)}><FaDownload/></button>&nbsp;&nbsp;<button className="redbutton" onClick={() => deleteF(element.filename)}><FaTrashAlt /></button></td>
     </tr>
   );
 

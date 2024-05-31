@@ -12,7 +12,8 @@ import UMKDMoodle from '../components/UMKDMoodle';
 import { FaDownload, FaTrashAlt } from 'react-icons/fa';
 import { TiArrowBack } from 'react-icons/ti';
 import { Navigate } from 'react-router-dom';
-
+import axios from 'axios';
+import config from "../http/config.json";
 
 const KPIAdminViewUser: FC = () => {
 
@@ -73,16 +74,31 @@ const KPIAdminViewUser: FC = () => {
   if (store.isLoading) {
     return <div>Loading ...</div>
   }
-  const featureNotReadyNotif = () => {
-    alert('Функция в разработке');
-  }
+  const handleFileDownload = async (fileId: number, filename: string) => {
+    try {
+      const response = await axios.get(`${config.API_URL}/upload/download/${fileId}`, {
+        responseType: 'blob',
+      });
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', filename);
+      document.body.appendChild(link);
+      link.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading file:', error);
+      alert('Ошибка загрузки файла.');
+    }
+  };
   const listFilesItems = fileInfos.map((element) =>
     <tr key={element.id}>
       <td>{element.name}</td>
       <td>{moment(element.upload_date).format("DD.MM.YYYY")}</td>
       <td>{element.extradata1}</td>
       <td> +{element.name != 'Набор абитуриентов' ? element.primaryscore : (element.primaryscore * parseInt(element.extradata1) <= 50 ? element.primaryscore * parseInt(element.extradata1) : 50)}</td>
-      <td style={{width:'150px'}}>&nbsp;&nbsp;<button className="backbutton" onClick={() => featureNotReadyNotif}><FaDownload/></button>&nbsp;&nbsp;<button className="redbutton" onClick={() => deleteF(element.filename)}><FaTrashAlt /></button></td>
+      <td style={{width:'150px'}}>&nbsp;&nbsp;<button className="backbutton" onClick={() => handleFileDownload(element.id, element.filename)}><FaDownload/></button>&nbsp;&nbsp;<button className="redbutton" onClick={() => deleteF(element.filename)}><FaTrashAlt /></button></td>
     </tr>
   );
 

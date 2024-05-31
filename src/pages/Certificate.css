@@ -101,7 +101,23 @@
   padding-right: 10mm;
   padding-bottom: 20mm;
 }
-
+#act{
+  overflow: hidden;
+  font-family: 'Times New Roman', Times, serif;
+  background-color: white;
+  color: black;
+  width: 210mm;
+  height: 290mm;
+  font-size: 12pt;
+  font-weight: bold;
+  text-align: left;
+}
+#actPadding{
+  padding-left: 20mm;
+  padding-top: 20mm;
+  padding-right: 10mm;
+  padding-bottom: 20mm;
+}
 #contractTable{
   text-align: left;
   overflow: visible;
@@ -241,6 +257,19 @@ td {
 #anketaTd {
   border-collapse: collapse;
   border: 1px solid;
+}
+
+#actTable{
+  border-collapse: collapse;
+  border: 1px solid;
+}
+#actTr,
+#actTd {
+  border-collapse: collapse;
+  border: 1px solid;
+}
+#actTd{
+  width: 14%;
 }
 
 #anketaTr,

@@ -52,6 +52,7 @@ const TechAddNewDocuments: FC = () => {
         if (info+'' == '0' && info+'' == '') setMessage("Введите количество");
         else {
             localStorage.setItem('techAmountInfo',info+'');
+            localStorage.setItem('receiverName', (document.getElementById('receiverName') as HTMLInputElement).value);
             window.location.href = window.location.protocol + '//' + window.location.host + '/techSpecifyDocument';
             return;
         }
@@ -66,10 +67,12 @@ const TechAddNewDocuments: FC = () => {
                         <br /><br />
                         <div className=''>
                         <Link to={"/"}><button style={{ backgroundColor: 'silver', color: 'black' }}><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link><br/><br /><br /><br /> 
-                            <h3>Создание нового представления</h3>
+                            <h3>Создание акта выдачи</h3>
                             <br />
-                            Выберите количество выдаваемой аппаратуры: &nbsp;<input className='btnNeutral' value={info} onChange={handleChange} pattern="[0-9*]" style={{ width: '80px', fontSize: '14px', backgroundColor: 'silver', color: 'Black' }} id='extradatainput' type='number' maxLength={2}></input><br /><br />
+                            Выберите количество выдаваемой аппаратуры: &nbsp;<input className='btn' value={info} onChange={handleChange} pattern="[0-9*]" style={{ width: '80px', fontSize: '14px', backgroundColor: 'silver', color: 'Black' }} id='extradatainput' type='number' maxLength={2}></input><br /><br />
                             {message ? <div><br></br>{message}</div>:''}
+                            Получатель (ФИО):<br/>
+                            <input className='btn' id="receiverName" style={{ backgroundColor: 'silver', color: 'black' }}></input><br/><br/>
                             <button className='navbarbutton' disabled={!info} onClick={create}>Далее</button>
                                    
                         </div>
