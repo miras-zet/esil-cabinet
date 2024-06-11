@@ -116,13 +116,15 @@ const HomePage:FC = () => {
               premiere="Нет";
             }
             if(role==='plt_student'){
-              return <div className='root'>
-              <button className='backbutton' onClick={() => store.logout()}>Выйти</button>
-              <h2>{store.isAuth ? `Добро пожаловать, ${store.user.lastname} ${store.user.name}`  : 'АВТОРИЗУЙТЕСЬ'}</h2>       
-              <button className='navbarbutton' onClick={open}>Получить новую справку</button>
-              &nbsp;&nbsp;<Link to="/list"><button className='navbarbutton' onClick={()=> store.getCert()}>История подачи справок</button></Link>
+              return <div className='root' style={{textAlign:'left'}}>
+                <KPINavbar/> <br/><br/><br/><br/><br/><br/><br/>
+                  <h2>{store.isAuth ? `Добро пожаловать, ${store.user.lastname} ${store.user.name}`  : 'АВТОРИЗУЙТЕСЬ'}</h2>       
+                  <button className='navbarbutton' onClick={open}>Получить новую справку</button>
+                  &nbsp;&nbsp;<Link to="/list"><button className='navbarbutton' onClick={()=> store.getCert()}>История подачи справок</button></Link>
+                  <br/><StudentDebt/>
+              
               <br/>
-              <StudentDebt/>
+              
 
               {modal && <CreateCert />}  </div>
             }

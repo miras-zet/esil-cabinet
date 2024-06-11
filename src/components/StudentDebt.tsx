@@ -21,13 +21,20 @@ const StudentDebt: FC = () => {
 
 
   if (debtItem.length > 0) return ( 
-  <div>
-    <br/>
-    {debtItem}
-    <i style={{fontSize:'10pt'}}>Подробности необходимо уточнить в бухгалтерии университета. Информация НЕ обновляется моментально после оплаты.</i>
-    <br/>
-    <img style={{marginLeft:'700px'}} src="kaspi_qr.png" width={400} />
-    
+  <div><table >
+    <tr>
+      <td style={{maxWidth:'350px', textAlign:'left'}}>
+      <br/>
+    {debtItem}<br/>
+    <i style={{fontSize:'9.5pt'}}>Подробности необходимо уточнить в бухгалтерии университета. Информация НЕ обновляется моментально после оплаты.</i>
+      </td>
+      <td style={{width:'100px'}}></td>
+      <td><br/>
+      <img src="kaspi_qr.png" width={400} />
+      </td>
+    </tr>
+  </table>
+ 
   </div>);
   else {
     return (<p>Долги по оплате учёбы не найдены.</p>);
