@@ -26,6 +26,10 @@ const getCategoryScores = () : Promise<any> => {
   const userid = localStorage.getItem('user_id');  
   return http.get(`/upload/getcategoryscore/${userid}`);
 };
+const getDebtData = () : Promise<any> =>{
+  const userid = localStorage.getItem('user_id');
+  return http.get(`/excel/getdebtdata/${userid}`);
+};
 const getUMKDMoodle = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id');
   return http.get(`/upload/getumkdmoodle/${userid}`);
@@ -75,6 +79,7 @@ const UploadService = {
   getTutors,
   getCategories,
   deleteFile,
+  getDebtData,
   downloadFile,
   getCategoryScores,
   getUMKDMoodle,

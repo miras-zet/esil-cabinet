@@ -14,6 +14,7 @@ import { HiSparkles } from "react-icons/hi2";
 import { FaArrowRight, FaBook, FaUpload } from 'react-icons/fa';
 import { IoIosAlarm } from "react-icons/io";
 import { MdNoteAdd } from 'react-icons/md';
+import StudentDebt from '../components/StudentDebt';
 
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -120,6 +121,8 @@ const HomePage:FC = () => {
               <h1>{store.isAuth ? `Добро пожаловать, ${store.user.lastname} ${store.user.name}`  : 'АВТОРИЗУЙТЕСЬ'}</h1>       
               <button className='navbarbutton' onClick={open}>Получить новую справку</button>
               &nbsp;&nbsp;<Link to="/list"><button className='navbarbutton' onClick={()=> store.getCert()}>История подачи справок</button></Link>
+              <br/>
+              <StudentDebt/>
 
               {modal && <CreateCert />}  </div>
             }
