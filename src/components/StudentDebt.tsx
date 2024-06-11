@@ -14,7 +14,7 @@ const StudentDebt: FC = () => {
 
   const debtItem = debtData.map((element) =>
     <div key={element.iin}>
-      <p>Ваш долг по оплате за образовательные услуги составляет <b>{element.debt}</b> тенге.</p> 
+      <p>Ваш долг по оплате за образовательные услуги составляет <b style={{color:'red'}}>{element.debt}</b> тенге.</p> 
       {element.overall!='undefined'? <div>Общая сумма за курс — <b>{element.overall}</b> тенге.</div>:''}
     </div>
   );
