@@ -118,7 +118,7 @@ const HomePage:FC = () => {
             if(role==='plt_student'){
               return <div className='root'>
               <button className='backbutton' onClick={() => store.logout()}>Выйти</button>
-              <h1>{store.isAuth ? `Добро пожаловать, ${store.user.lastname} ${store.user.name}`  : 'АВТОРИЗУЙТЕСЬ'}</h1>       
+              <h2>{store.isAuth ? `Добро пожаловать, ${store.user.lastname} ${store.user.name}`  : 'АВТОРИЗУЙТЕСЬ'}</h2>       
               <button className='navbarbutton' onClick={open}>Получить новую справку</button>
               &nbsp;&nbsp;<Link to="/list"><button className='navbarbutton' onClick={()=> store.getCert()}>История подачи справок</button></Link>
               <br/>
