@@ -15,7 +15,7 @@ const StudentDebt: FC = () => {
   const debtItem = debtData.map((element) =>
     <div key={element.iin}>
       <p>Ваш долг по оплате за образовательные услуги составляет <b style={{color:'red'}}>{element.debt}</b> тенге.</p> 
-      {element.overall!='undefined'? <div>Общая сумма за курс — <b>{element.overall}</b> тенге.</div>:''}
+      {element.overall!='undefined'? <div>Общая сумма за курс: <b>{element.overall}</b> тенге. <br/>Уже оплачено: <b>{parseInt(element.overall)-parseInt(element.debt)}</b> тенге.</div>:''}
     </div>
   );
 
@@ -24,11 +24,10 @@ const StudentDebt: FC = () => {
   <div>
     <br/>
     {debtItem}
-    <br/>
-    <p>Используйте приложение Kaspi, чтобы сканировать QR-код для оплаты долга за обучение.</p>
-    <img src="kaspi_qr.png" width={200} />
-    <br/>
     <i style={{fontSize:'10pt'}}>Подробности необходимо уточнить в бухгалтерии университета. Информация НЕ обновляется моментально после оплаты.</i>
+    <br/>
+    <img style={{marginLeft:'700px'}} src="kaspi_qr.png" width={400} />
+    
   </div>);
   else {
     return (<p>Долги по оплате учёбы не найдены.</p>);
