@@ -30,7 +30,7 @@ const StudentDebt: FC = () => {
       </td>
       <td style={{width:'100px'}}></td>
       <td><br/>
-      <img src="kaspi_qr.png" width={400} />
+      <img src="kaspi_qr.png" width={380} />
       </td>
     </tr>
   </table>
