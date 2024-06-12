@@ -28,7 +28,7 @@ const StudentDebt: FC = () => {
     {debtItem}<br/>
     <i style={{fontSize:'9.5pt'}}>Подробности необходимо уточнить в бухгалтерии университета. Информация НЕ обновляется моментально после оплаты.</i>
       </td>
-      <td style={{width:'150px'}}></td>
+      <td style={{width:'220px'}}></td>
       <td><br/>
       <img style={{marginTop:'-35%'}} src="kaspi_qr.png" alt='https://kaspi.kz/pay/Universities-v2?region_id=19&subservice_id=8221&started_from=?region_id=57&subservice_id=18241&started_from=instruction_qr' width={380} />
       </td>
