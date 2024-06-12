@@ -122,10 +122,13 @@ const HomePage:FC = () => {
                   <button className='navbarbutton' onClick={open}>Получить новую справку</button>
                   &nbsp;&nbsp;<Link to="/list"><button className='navbarbutton' onClick={()=> store.getCert()}>История подачи справок</button></Link>
                   <br/><StudentDebt/>
-              
-              <br/>
-              
+                  <br/>
 
+              <br/>
+              <p>Офис регистратура - +7 7172 725407, +7 7172 725410, +7 707 372-57-77</p>
+              <p>Деканат факультета прикладных наук - +7 7172 725406 (вн. 202)</p>
+              <p>Деканат факультет бизнеса и управления - + 7 7172 725405 (вн. 153)</p>
+              <p>Бухгалтерия - +7 7172 725409 (вн. 151)</p>
               {modal && <CreateCert />}  </div>
             }
             else if(role==='plt_tutor'){
