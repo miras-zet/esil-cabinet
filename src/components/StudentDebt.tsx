@@ -25,11 +25,14 @@ const StudentDebt: FC = () => {
   if (debtItem.length > 0) return ( 
   <div><table><tbody>
     <tr>
-      <td style={{maxWidth:'350px', textAlign:'left'}}>
+      <td style={{maxWidth:'350px', textAlign:'left', fontSize:'12pt'}}>
       <br/>
     {debtItem}<br/>
-    <i style={{fontSize:'9.5pt'}}>Подробности необходимо уточнить в бухгалтерии университета. Информация НЕ обновляется моментально после оплаты.</i>
-      </td>
+      Информация НЕ обновляется моментально после оплаты. По всем возникающим вопросам можно обратиться по следующим номерам:<br/>
+      Бухгалтерия - +7 7172 725409 (вн. 151)<br/>
+      Деканат факультета прикладных наук - +7 7172 725406 (вн. 202)<br/>
+      Деканат факультет бизнеса и управления - + 7 7172 725405 (вн. 153)<br/>
+      Офис регистратура - +7 7172 725407, +7 7172 725410, +7 707 372-57-77</td>
       <td style={{width:'255px'}}></td>
       <td><br/>
       <img style={{marginTop:margin}} src="kaspi_qr.png" alt='https://kaspi.kz/pay/Universities-v2?region_id=19&subservice_id=8221&started_from=?region_id=57&subservice_id=18241&started_from=instruction_qr' width={380} />
