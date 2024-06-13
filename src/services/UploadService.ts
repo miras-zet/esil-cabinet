@@ -30,6 +30,9 @@ const getDebtData = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id');
   return http.get(`/excel/getdebtdata/${userid}`);
 };
+const getExcelDate = () : Promise<any> =>{
+  return http.get(`/excel/getdocdate`);
+};
 const getUMKDMoodle = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id');
   return http.get(`/upload/getumkdmoodle/${userid}`);
@@ -82,6 +85,7 @@ const UploadService = {
   getDebtData,
   downloadFile,
   getCategoryScores,
+  getExcelDate,
   getUMKDMoodle,
   getUMKDMoodleForUser,
   getKpi,

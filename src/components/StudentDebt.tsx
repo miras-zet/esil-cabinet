@@ -2,32 +2,48 @@ import { FC, useState, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import UploadService from "../services/UploadService";
 import IDebtData from "../models/IDebtData";
+import IExcelUploadDate from "../models/IExcelUploadDate";
+import moment from "moment";
 
 const StudentDebt: FC = () => {
   const [debtData, setDebtData] = useState<Array<IDebtData>>([]);
+  const [excelDate, setExcelDate] = useState<Array<IExcelUploadDate>>([]);
   let [margin, setMargin] = useState<string>('-35%');
 
   useEffect(() => {
     setMargin('-35%');
     if(window.innerWidth<940) setMargin('0%');
+    UploadService.getExcelDate().then((response) => {
+      setExcelDate(response.data);
+    });
     UploadService.getDebtData().then((response) => {
       setDebtData(response.data);
     });
+    
+
   }, []);
 
   const debtItem = debtData.map((element) =>
     <div key={element.iin}>
-      <p>Ваш долг по оплате за образовательные услуги составляет <b style={{color:'red', fontSize:'14pt'}}>{element.debt}</b> тенге.</p> 
+      <p>Ваш долг по оплате за образовательные услуги составляет <b style={{color:'red', fontSize:'14pt'}}>{element.debt}</b> тенге.</p> <br/>
+      {/* Информация актуальна на {element.excelDate} */}
       {element.overall!='undefined'? <div>Общая сумма за курс: <b>{element.overall}</b> тенге. <br/>Уже оплачено: <b>{parseInt(element.overall)-parseInt(element.debt)}</b> тенге.</div>:''}
     </div>
   );
   
+  const excelDateData = excelDate.map((element) =>
+  <div key={element.upload_date}>
+    Актуально на {moment(element.upload_date).format("DD.MM.YYYY HH:mm")}.
+  </div>
+);
+
   if (debtItem.length > 0) return ( 
   <div><table><tbody>
     <tr>
       <td style={{maxWidth:'350px', textAlign:'left', fontSize:'12pt'}}>
       <br/>
-    {debtItem}<br/>
+      {debtItem}<br/>
+      {excelDateData}<br/>
       <i>Информация НЕ обновляется моментально после оплаты.</i><br/>
       По всем возникающим вопросам можно обратиться по следующим номерам:<br/>
       <b>Бухгалтерия</b> - +7 7172 725409 (вн. 151)<br/>
