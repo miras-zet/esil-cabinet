@@ -17,7 +17,7 @@ const StudentDebt: FC = () => {
 
   const debtItem = debtData.map((element) =>
     <div key={element.iin}>
-      <p>Ваш долг по оплате за образовательные услуги составляет <b style={{color:'red'}}>{element.debt}</b> тенге.</p> 
+      <p>Ваш долг по оплате за образовательные услуги составляет <b style={{color:'red', fontSize:'14pt'}}>{element.debt}</b> тенге.</p> 
       {element.overall!='undefined'? <div>Общая сумма за курс: <b>{element.overall}</b> тенге. <br/>Уже оплачено: <b>{parseInt(element.overall)-parseInt(element.debt)}</b> тенге.</div>:''}
     </div>
   );
@@ -28,11 +28,12 @@ const StudentDebt: FC = () => {
       <td style={{maxWidth:'350px', textAlign:'left', fontSize:'12pt'}}>
       <br/>
     {debtItem}<br/>
-      Информация НЕ обновляется моментально после оплаты. По всем возникающим вопросам можно обратиться по следующим номерам:<br/>
-      Бухгалтерия - +7 7172 725409 (вн. 151)<br/>
-      Деканат факультета прикладных наук - +7 7172 725406 (вн. 202)<br/>
-      Деканат факультет бизнеса и управления - + 7 7172 725405 (вн. 153)<br/>
-      Офис регистратура - +7 7172 725407, +7 7172 725410, +7 707 372-57-77</td>
+      <i>Информация НЕ обновляется моментально после оплаты.</i><br/>
+      По всем возникающим вопросам можно обратиться по следующим номерам:<br/>
+      <b>Бухгалтерия</b> - +7 7172 725409 (вн. 151)<br/>
+      <b>Деканат факультета прикладных наук</b> - +7 7172 725406 (вн. 202)<br/>
+      <b>Деканат факультет бизнеса и управления</b> - + 7 7172 725405 (вн. 153)<br/>
+      <b>Офис регистратура</b> - +7 7172 725407, +7 7172 725410, +7 707 372-57-77</td>
       <td style={{width:'255px'}}></td>
       <td><br/>
       <img style={{marginTop:margin}} src="kaspi_qr.png" alt='https://kaspi.kz/pay/Universities-v2?region_id=19&subservice_id=8221&started_from=?region_id=57&subservice_id=18241&started_from=instruction_qr' width={380} />
