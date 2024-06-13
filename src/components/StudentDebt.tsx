@@ -23,7 +23,7 @@ const StudentDebt: FC = () => {
   );
   
   if (debtItem.length > 0) return ( 
-  <div><table >
+  <div><table><tbody>
     <tr>
       <td style={{maxWidth:'350px', textAlign:'left'}}>
       <br/>
@@ -36,6 +36,7 @@ const StudentDebt: FC = () => {
       </td>
       {/* if window.innerWidth < 940 {marginTop:'-0%'} else {marginTop:'-35%'} */}
     </tr>
+    </tbody>
   </table>
  
   </div>);
