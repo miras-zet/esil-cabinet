@@ -5,8 +5,11 @@ import IDebtData from "../models/IDebtData";
 
 const StudentDebt: FC = () => {
   const [debtData, setDebtData] = useState<Array<IDebtData>>([]);
+  let [margin, setMargin] = useState<string>('-35%');
 
   useEffect(() => {
+    setMargin('-35%');
+    if(window.innerWidth<940) setMargin('0%');
     UploadService.getDebtData().then((response) => {
       setDebtData(response.data);
     });
@@ -18,8 +21,7 @@ const StudentDebt: FC = () => {
       {element.overall!='undefined'? <div>Общая сумма за курс: <b>{element.overall}</b> тенге. <br/>Уже оплачено: <b>{parseInt(element.overall)-parseInt(element.debt)}</b> тенге.</div>:''}
     </div>
   );
-
-
+  
   if (debtItem.length > 0) return ( 
   <div><table >
     <tr>
@@ -30,8 +32,9 @@ const StudentDebt: FC = () => {
       </td>
       <td style={{width:'255px'}}></td>
       <td><br/>
-      <img style={{marginTop:'-35%'}} src="kaspi_qr.png" alt='https://kaspi.kz/pay/Universities-v2?region_id=19&subservice_id=8221&started_from=?region_id=57&subservice_id=18241&started_from=instruction_qr' width={380} />
+      <img style={{marginTop:margin}} src="kaspi_qr.png" alt='https://kaspi.kz/pay/Universities-v2?region_id=19&subservice_id=8221&started_from=?region_id=57&subservice_id=18241&started_from=instruction_qr' width={380} />
       </td>
+      {/* if window.innerWidth < 940 {marginTop:'-0%'} else {marginTop:'-35%'} */}
     </tr>
   </table>
  
