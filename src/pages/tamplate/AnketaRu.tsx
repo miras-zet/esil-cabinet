@@ -7,7 +7,7 @@ import { ApplicationResponse } from '../../models/response/ApplicationResponse';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import { FaDownload } from 'react-icons/fa';
-
+// import { FaGear } from "react-icons/fa6";
 
 //export function AnketaRu(certificat:CertResponse)  {
 export function AnketaRu() {
@@ -88,7 +88,7 @@ export function AnketaRu() {
         </td>
         :
         <td id="anketaTd">
-          &nbsp;<span><input style={{ width: '95%', height: '15px', fontSize: '10.9pt', verticalAlign: 'middle', marginLeft: '-2px', marginTop: '-7px', overflow: 'visible', outline: 'none', border: 'none', backgroundColor: 'white', color: 'black', fontFamily: 'Times New Roman', fontWeight: 'bold' }} type="text"></input></span>
+          &nbsp;&nbsp;
         </td>)}
     </tr>;
   }
@@ -96,7 +96,9 @@ export function AnketaRu() {
 
   return (
     <><div id='documentNavbar'><Link to="/applicants"><button id="documentNavbarButton">Назад</button></Link> &nbsp;
-    <button id="documentNavbarButton" onClick={generatePdf}>Скачать&nbsp;&nbsp;<FaDownload/></button></div>
+    <button id="documentNavbarButton" onClick={generatePdf}>Скачать&nbsp;&nbsp;<FaDownload/> &nbsp;</button>
+    {/* &nbsp;&nbsp;<Link to="/applicants"><button id="documentNavbarButton"><FaGear /></button></Link> */}
+    </div>
       <div id="anketa">
         <div id="anketaPadding">
           <b><div id="anketaHeader">Анкета</div>

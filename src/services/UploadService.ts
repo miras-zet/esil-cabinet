@@ -10,7 +10,14 @@ const upload = (file: File,  activity_id: any, info: any): Promise<any> => {
   formData.append('info',info);  
   return http.post("/upload", formData);
 };
-
+const updateapplicant = (column: any, data: any): Promise<any> => {
+  let formData = new FormData();
+  const userid = localStorage.getItem('applicant_user_id');
+  formData.append('user_id',userid);
+  formData.append('column',column);  
+  formData.append('data',data);  
+  return http.post("/applicant/update", formData);
+};
 const downloadFile = (filename: string,): Promise<any> => {
     return http.get(`/upload/download/${filename}`);
 };
@@ -78,6 +85,7 @@ const getKpi = () : Promise<any> => {
 
 const UploadService = {
   upload,
+  updateapplicant,
   getFiles,
   getTutors,
   getCategories,
