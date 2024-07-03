@@ -10,7 +10,7 @@ import IApplicantList from '../models/IApplicantList';
 import { RiFileListFill } from "react-icons/ri";
 import { HiViewList } from "react-icons/hi";
 import { FaHandshake } from 'react-icons/fa';
-import { Tooltip } from 'react-tooltip';
+//import { Tooltip } from 'react-tooltip';
 import { RiArchiveFill } from "react-icons/ri";
 
 const ApplicantList: FC = () => {
@@ -47,25 +47,25 @@ const ApplicantList: FC = () => {
             <td id="table-divider" style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                 {element.study_language == 'русский' ? 
                 <div>
-                    <Tooltip id="application-tooltip" /><a data-tooltip-id="application-tooltip" data-tooltip-content={'Анкета ('+element.lastname+')'}><button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#52A177', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Ru', 'application')}><RiFileListFill /></button></a>&nbsp;
-                    <Tooltip id="inventory-tooltip" /><a data-tooltip-id="inventory-tooltip" data-tooltip-content={'Опись ('+element.lastname+')'}><button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#4587ba', color: 'white' }} onClick={() => redirect(element.id, element.lastname, 'Ru', 'inventory')}><HiViewList /><HiViewList /></button></a>&nbsp;
-                    <Tooltip id="contract-tooltip" /><a data-tooltip-id="contract-tooltip" data-tooltip-content={'Договор ('+element.lastname+')'}><button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#99373a', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Ru', 'contract')}><FaHandshake /></button></a>&nbsp;
+                    <button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#52A177', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Ru', 'application')}><RiFileListFill /></button>&nbsp;
+                    <button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#4587ba', color: 'white' }} onClick={() => redirect(element.id, element.lastname, 'Ru', 'inventory')}><HiViewList /><HiViewList /></button>&nbsp;
+                    <button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#99373a', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Ru', 'contract')}><FaHandshake /></button>&nbsp;
                 </div>
                     :
                 <div>
-                    <Tooltip id="application-tooltip" /><a data-tooltip-id="application-tooltip" data-tooltip-content={'Анкета ('+element.lastname+')'}><button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#52A177', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Kz', 'application')}><RiFileListFill /></button></a>&nbsp;
-                    <Tooltip id="inventory-tooltip" /><a data-tooltip-id="inventory-tooltip" data-tooltip-content={'Опись ('+element.lastname+')'}><button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#4587ba', color: 'white' }} onClick={() => redirect(element.id, element.lastname, 'Kz', 'inventory')}><HiViewList /><HiViewList /></button></a>&nbsp;
-                    <Tooltip id="contract-tooltip" /><a data-tooltip-id="contract-tooltip" data-tooltip-content={'Договор ('+element.lastname+')'}><button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#99373a', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Kz', 'contract')}><FaHandshake /></button></a>&nbsp;
+                    <button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#52A177', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Kz', 'application')}><RiFileListFill /></button>&nbsp;
+                    <button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#4587ba', color: 'white' }} onClick={() => redirect(element.id, element.lastname, 'Kz', 'inventory')}><HiViewList /><HiViewList /></button>&nbsp;
+                    <button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#99373a', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Kz', 'contract')}><FaHandshake /></button>&nbsp;
                 </div>}
             </td>
-            <td  id="table-divider" style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+            <td id="table-divider" style={{ verticalAlign: 'middle', textAlign: 'center' }}>
             {element.study_language == 'русский' ? 
             <div>
-                <Tooltip id="title-tooltip" /><a data-tooltip-id="title-tooltip" data-tooltip-content={'Титульный лист ('+element.lastname+')'}><button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#A585C4', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Ru', 'title')}><RiArchiveFill/></button></a>&nbsp;
+                <button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#A585C4', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Ru', 'title')}><RiArchiveFill/></button>&nbsp;
             </div>
             :
             <div>
-                <Tooltip id="title-tooltip" /><a data-tooltip-id="title-tooltip" data-tooltip-content={'Титульный лист ('+element.lastname+')'}><button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#A585C4', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Kz', 'title')}><RiArchiveFill/></button></a>&nbsp;
+                <button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#A585C4', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Kz', 'title')}><RiArchiveFill/></button>&nbsp;
             </div>}
             </td>
         </tr>
@@ -99,6 +99,7 @@ const ApplicantList: FC = () => {
                         <br /><br /><br /><br />
                         <h3>Добро пожаловать, {user.lastname + ' ' + user.name + ' ' + user.middlename}</h3><br />
                         <h2>Список абитуриентов</h2>
+                        <h4>({applicants.length} абитуриентов)</h4>
                         <Link to={"/addapplicant"}><button className='navbarbutton'>Добавить нового абитуриента (из Platonus)</button></Link> <br /><br />
                         <br />
                         <table id='opaqueTable' style={{ marginLeft: '-1.3%', paddingLeft: '15px', width: '107%' }}>
