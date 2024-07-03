@@ -7,7 +7,8 @@ import { TbLogout } from "react-icons/tb";
 const KPINavbar: FC = () => {
     const {store} = useContext(Context); 
     const data = JSON.parse(localStorage.getItem('data'));
-    const FIO = data.lastname+' '+data.name+' '+data.middlename;
+    let FIO="";
+    if(data) FIO = data.lastname+' '+data.name+' '+data.middlename;
     const role = localStorage.getItem('role');
     let headertext='';
     switch(role){

@@ -24,11 +24,13 @@ import { ContractRu } from './pages/tamplate/ContractRu'
 import { ContractKz } from './pages/tamplate/ContractKz'
 import TechAddNewDocument from './pages/TechAddNewDocument'
 import TechDueDocuments from './pages/TechDueDocuments'
-import AdmissionStats from './pages/AdmissionStats'
+//import AdmissionStats from './pages/AdmissionStats'
 import { TitleRu } from './pages/tamplate/TitleRu'
 import { TitleKz } from './pages/tamplate/TitleKz'
 import TechPageConstructor from './pages/TechPageConstructor'
 import TechAct from './pages/TechAct'
+import AdmissionStatsUpdated from './pages/AdmissionStatsUpdated'
+import AdmissionStatsMain from './pages/AdmissionStatsMain'
 
   
 
@@ -69,7 +71,9 @@ const App:FC = () => {
 
         <Route path="/applicants" element={<ApplicantList />}/>
         <Route path="/addapplicant" element={<AddApplicant/>}/>
-        <Route path="/admission_statistics" element={<AdmissionStats/>}/>
+        {/* <Route path="/statistics_specialization" element={<AdmissionStats/>}/> */}
+        <Route path="/statistics_weekly" element={<AdmissionStatsUpdated/>}/>
+        <Route path="/statistics_main" element={<AdmissionStatsMain/>}/>
 
         <Route path="/applicationRu" element={<AnketaRu />}/>
         <Route path="/applicationKz" element={<AnketaKz />}/>
