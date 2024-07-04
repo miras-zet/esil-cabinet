@@ -58,7 +58,7 @@ const AdmissionStats: FC = () => {
                         <h2 style={{ marginLeft: '-24%'}}>Статистика по абитуриентам (еженедельная)</h2>
                         <table id='opaqueTable' style={{ marginLeft: '-27%', paddingLeft: '15px', width: '107%' }}>
                             <tbody><tr>
-                                <th><br />&nbsp;&nbsp;Форма обучения<br />&nbsp;</th>
+                                <th style={{textAlign:'left'}}><br />&nbsp;&nbsp;Форма обучения<br />&nbsp;</th>
                                 <th><br />&nbsp;07.06.{current_year}<br />&nbsp;</th>   
                                 <th><br />&nbsp;14.06.{current_year}<br />&nbsp;</th>  
                                 <th><br />&nbsp;21.06.{current_year}<br />&nbsp;</th>  
