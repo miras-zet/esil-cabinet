@@ -53,9 +53,9 @@ const AdmissionStatsMain: FC = () => {
             <td id="table-divider-stats">{element.sf30_sl2}</td>
             <td id="table-divider-stats">{element.sf31_sl1}</td>
             <td id="table-divider-stats">{element.sf31_sl2}</td>
-            <td id="table-divider-stats">-</td>
-            <td id="table-divider-stats">-</td>
-            <td id="table-divider-stats">-</td>
+            <td id="table-divider-stats">{element.sf_fulltime}</td>
+            <td id="table-divider-stats">{element.sf_dl}</td>
+            <td id="table-divider-stats">{element.sf_overall}</td>
             <td></td>
         </tr>
     );

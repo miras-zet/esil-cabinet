@@ -25,5 +25,8 @@ export default interface IAdmissionStatsMain{
     sf30_sl1:number,
     sf30_sl2:number,
     sf31_sl1:number,
-    sf31_sl2:number
+    sf31_sl2:number,
+    sf_fulltime:number,
+    sf_dl:number,
+    sf_overall:number
 }
