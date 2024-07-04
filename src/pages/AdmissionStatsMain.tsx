@@ -117,12 +117,18 @@ const AdmissionStatsMain: FC = () => {
                                 <th id="table-divider-stats">(к.o.)</th>
                                 <th id="table-divider-stats">(р.o.)</th>   
                                 <th id="table-divider-stats">(к.o.)</th>
+                                <th id="table-divider-stats">(р.o.)</th>   
+                                <th id="table-divider-stats">(к.o.)</th>
                                 <th id="table-divider-stats">(Очная)</th>   
                                 <th id="table-divider-stats">(ДОТ)</th>
                             </tr>
                             {admissionStats}
                             <tr>
                                 <td id="table-divider-stats" style={{textAlign:'left', fontWeight:'bold'}}>Всего</td>
+                                <td id="table-divider-stats">-</td>
+                                <td id="table-divider-stats">-</td>   
+                                <td id="table-divider-stats">-</td>
+                                <td id="table-divider-stats">-</td>   
                                 <td id="table-divider-stats">-</td>
                                 <td id="table-divider-stats">-</td>   
                                 <td id="table-divider-stats">-</td>
