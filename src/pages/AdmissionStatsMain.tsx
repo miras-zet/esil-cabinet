@@ -124,38 +124,6 @@ const AdmissionStatsMain: FC = () => {
                             </tr>
                             {admissionStats}
                             <tr>
-                                <td id="table-divider-stats" style={{textAlign:'left', fontWeight:'bold'}}>Всего</td>
-                                <td id="table-divider-stats">-</td>
-                                <td id="table-divider-stats">-</td>   
-                                <td id="table-divider-stats">-</td>
-                                <td id="table-divider-stats">-</td>   
-                                <td id="table-divider-stats">-</td>
-                                <td id="table-divider-stats">-</td>   
-                                <td id="table-divider-stats">-</td>
-                                <td id="table-divider-stats">-</td>   
-                                <td id="table-divider-stats">-</td>
-                                <td id="table-divider-stats">-</td>   
-                                <td id="table-divider-stats">-</td>
-                                <td id="table-divider-stats">-</td>   
-                                <td id="table-divider-stats">-</td>
-                                <td id="table-divider-stats">-</td>   
-                                <td id="table-divider-stats">-</td>
-                                <td id="table-divider-stats">-</td>   
-                                <td id="table-divider-stats">-</td>
-                                <td id="table-divider-stats">-</td>   
-                                <td id="table-divider-stats">-</td>
-                                <td id="table-divider-stats">-</td>   
-                                <td id="table-divider-stats">-</td>
-                                <td id="table-divider-stats">-</td>   
-                                <td id="table-divider-stats">-</td>
-                                <td id="table-divider-stats">-</td>   
-                                <td id="table-divider-stats">-</td>
-                                <td id="table-divider-stats">-</td>   
-                                <td id="table-divider-stats">-</td>
-                                <td id="table-divider-stats">-</td>   
-                                <td id="table-divider-stats">-</td>
-                            </tr>
-                            <tr>
                                 <td><br/></td>
                             </tr>
                             </tbody>
