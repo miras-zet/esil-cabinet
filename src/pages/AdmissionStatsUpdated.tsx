@@ -55,7 +55,8 @@ const AdmissionStats: FC = () => {
                         <KPINavbar />
                         <br /><br /><br /><br />
                         {/* <h3>Добро пожаловать, {user.lastname + ' ' + user.name + ' ' + user.middlename}</h3><br /> */}
-                        <h2 style={{ marginLeft: '-24%'}}>Статистика по абитуриентам (еженедельная)</h2>
+                        <h2 style={{ marginLeft: '-24%'}}>Еженедельная статистика по абитуриентам</h2>
+                        <h3 style={{ marginLeft: '-24%'}}>Данные формируются по состоянию на последний день недели</h3>
                         <table id='opaqueTable' style={{ marginLeft: '-27%', paddingLeft: '15px', width: '107%' }}>
                             <tbody><tr>
                                 <th style={{textAlign:'left'}}><br />&nbsp;&nbsp;Форма обучения<br />&nbsp;</th>
