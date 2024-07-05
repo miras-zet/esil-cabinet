@@ -41,10 +41,6 @@ const AdmissionStatsMain: FC = () => {
             <td id="table-divider-stats">{element.sf15_sl2}</td>
             <td id="table-divider-stats">{element.sf17_sl1}</td>
             <td id="table-divider-stats">{element.sf17_sl2}</td>
-            <td id="table-divider-stats">{element.sf21_sl1}</td>
-            <td id="table-divider-stats">{element.sf21_sl2}</td>
-            <td id="table-divider-stats">{element.sf23_sl1}</td>
-            <td id="table-divider-stats">{element.sf23_sl2}</td>
             <td id="table-divider-stats">{element.sf24_sl1}</td>
             <td id="table-divider-stats">{element.sf24_sl2}</td>
             <td id="table-divider-stats">{element.sf29_sl1}</td>
@@ -71,7 +67,7 @@ const AdmissionStatsMain: FC = () => {
                         <br /><br /><br /><br />
                         {/* <h3>Добро пожаловать, {user.lastname + ' ' + user.name + ' ' + user.middlename}</h3><br /> */}
                         <h2 style={{ marginLeft: '-24%'}}>Статистика по абитуриентам ({current_year}-{current_year+1} учебный год)</h2>
-                        <table id='opaqueTable' style={{ marginLeft: '-26%', paddingLeft: '15px', width: '107%' }}>
+                        <table id='opaqueTable' style={{ fontSize:'8pt', marginLeft: '-26%', paddingLeft: '15px', width: '107%' }}>
                             <tbody><tr>
                                 <th style={{textAlign:'center'}}><br/><br/>ОП</th>
                                 {/* 1,3,4,5,8,15,17,21,23,24,29,30,31 */}
@@ -82,8 +78,6 @@ const AdmissionStatsMain: FC = () => {
                                 <th colSpan={2} id="table-divider-stats"><br />&nbsp;ДОТ (очное) 3 г.<br />&nbsp;</th>
                                 <th colSpan={2} id="table-divider-stats"><br />&nbsp;Научно-педагогическое<br />&nbsp;</th>
                                 <th colSpan={2} id="table-divider-stats"><br />&nbsp;Профильное<br />&nbsp;</th>
-                                <th colSpan={2} id="table-divider-stats"><br />&nbsp;Докторантура<br />&nbsp;</th>
-                                <th colSpan={2} id="table-divider-stats"><br />&nbsp;Профильное 1,5 г.<br />&nbsp;</th>
                                 <th colSpan={2} id="table-divider-stats"><br />&nbsp;Очное на базе Высшего<br />&nbsp;</th>
                                 <th colSpan={2} id="table-divider-stats"><br />&nbsp;Очное на базе Колледжа (2 г. обуч)<br />&nbsp;</th>
                                 <th colSpan={2} id="table-divider-stats"><br />&nbsp;ДОТ (очное) 2 г. на базе колледжа<br />&nbsp;</th>
@@ -93,10 +87,6 @@ const AdmissionStatsMain: FC = () => {
                             </tr>
                             <tr>
                                 <th></th>
-                                <th id="table-divider-stats">(р.o.)</th>   
-                                <th id="table-divider-stats">(к.o.)</th>
-                                <th id="table-divider-stats">(р.o.)</th>   
-                                <th id="table-divider-stats">(к.o.)</th>
                                 <th id="table-divider-stats">(р.o.)</th>   
                                 <th id="table-divider-stats">(к.o.)</th>
                                 <th id="table-divider-stats">(р.o.)</th>   
