@@ -27,7 +27,7 @@ const AdmissionStats: FC = () => {
     let current_year = d.getFullYear();
     const admissionStats = applicantStats.map((element) =>
         <tr key={element.StudyFormName}>
-            <td id="table-divider-stats">{element.StudyFormName}</td>
+            {element.StudyFormName!='Всего'? <td id="table-divider-stats">{element.StudyFormName}</td>:<td id="table-divider-stats" style={{fontWeight:'bold'}}>{element.StudyFormName}</td>}
             {date_seconds>Math.floor(new Date(`${current_year}.06.07`).getTime() / 1000)? <td id="table-divider-stats">{element.june7}</td>   :<td id="table-divider-stats"></td>}
             {date_seconds>Math.floor(new Date(`${current_year}.06.07`).getTime() / 1000)? <td id="table-divider-stats">{element.june14}</td>  :<td id="table-divider-stats"></td>}
             {date_seconds>Math.floor(new Date(`${current_year}.06.14`).getTime() / 1000)? <td id="table-divider-stats">{element.june21}</td>  :<td id="table-divider-stats"></td>}
@@ -55,11 +55,11 @@ const AdmissionStats: FC = () => {
                         <KPINavbar />
                         <br /><br /><br /><br />
                         {/* <h3>Добро пожаловать, {user.lastname + ' ' + user.name + ' ' + user.middlename}</h3><br /> */}
-                        <h2 style={{ marginLeft: '-23%'}}>Еженедельная статистика по абитуриентам</h2>
+                        <h2 style={{ marginLeft: '-23%'}}>Еженедельная статистика по абитуриентам ({current_year}-{current_year+1} учебный год)</h2>
                         <h3 style={{ marginLeft: '-23%'}}>Данные формируются по состоянию на последний день недели</h3>
                         <table id='opaqueTable' style={{ marginLeft: '-25%', paddingLeft: '15px', width: '107%' }}>
                             <tbody><tr>
-                                <th style={{textAlign:'left'}}><br />&nbsp;&nbsp;Форма обучения<br />&nbsp;</th>
+                                <th style={{textAlign:'left'}}><br />Форма обучения<br />&nbsp;</th>
                                 <th><br />&nbsp;07.06.{current_year}<br />&nbsp;</th>   
                                 <th><br />&nbsp;14.06.{current_year}<br />&nbsp;</th>  
                                 <th><br />&nbsp;21.06.{current_year}<br />&nbsp;</th>  

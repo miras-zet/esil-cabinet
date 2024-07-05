@@ -22,8 +22,8 @@ const AdmissionStatsMain: FC = () => {
     //   setModal(modals)
     // },[])
     //alert(date);
-    //const d = new Date();
-    //let current_year = d.getFullYear();
+    const d = new Date();
+    let current_year = d.getFullYear();
     const admissionStats = applicantStats.map((element) =>
         <tr key={element.specialization}>
             <td id="table-divider-stats" style={{textAlign:'left'}}>{element.specialization}</td>
@@ -70,7 +70,7 @@ const AdmissionStatsMain: FC = () => {
                         <KPINavbar />
                         <br /><br /><br /><br />
                         {/* <h3>Добро пожаловать, {user.lastname + ' ' + user.name + ' ' + user.middlename}</h3><br /> */}
-                        <h2 style={{ marginLeft: '-24%'}}>Статистика по абитуриентам</h2>
+                        <h2 style={{ marginLeft: '-24%'}}>Статистика по абитуриентам ({current_year}-{current_year+1} учебный год)</h2>
                         <table id='opaqueTable' style={{ marginLeft: '-26%', paddingLeft: '15px', width: '107%' }}>
                             <tbody><tr>
                                 <th style={{textAlign:'center'}}><br/><br/>ОП</th>
