@@ -26,6 +26,7 @@ const KPINavbar: FC = () => {
     return(
         <div>
             <div className="topnav">
+              <div style={{marginLeft:'-100px', backgroundColor:'white', height:'115%'}}>&nbsp;</div>
               <img src="logo_new.png" width={150}/>
               <div className='navbartitle'>{headertext}</div>      
             </div> 

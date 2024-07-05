@@ -71,7 +71,7 @@ const AdmissionStatsMain: FC = () => {
                         <br /><br /><br /><br />
                         {/* <h3>Добро пожаловать, {user.lastname + ' ' + user.name + ' ' + user.middlename}</h3><br /> */}
                         <h2 style={{ marginLeft: '-24%'}}>Статистика по абитуриентам</h2>
-                        <table id='opaqueTable' style={{ marginLeft: '-27%', paddingLeft: '15px', width: '107%' }}>
+                        <table id='opaqueTable' style={{ marginLeft: '-26%', paddingLeft: '15px', width: '107%' }}>
                             <tbody><tr>
                                 <th style={{textAlign:'center'}}><br/><br/>ОП</th>
                                 {/* 1,3,4,5,8,15,17,21,23,24,29,30,31 */}
