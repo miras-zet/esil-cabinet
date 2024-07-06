@@ -60,9 +60,9 @@ const AdmissionStats: FC = () => {
                         {/* <h3>Добро пожаловать, {user.lastname + ' ' + user.name + ' ' + user.middlename}</h3><br /> */}
                         <h2 style={{ marginLeft: margin}}>Еженедельная статистика по абитуриентам ({current_year}-{current_year+1} учебный год)</h2>
                         <h3 style={{ marginLeft: margin}}>Данные формируются по состоянию на последний день недели</h3>
-                        <table id='opaqueTable' style={{ marginLeft: margin, paddingLeft: '15px', width: '107%' }}>
+                        <table id='opaqueTable' style={{ marginLeft: margin, paddingLeft: '15px', width: '108%' }}>
                             <tbody><tr>
-                                <th style={{textAlign:'left'}}><br />Форма обучения<br />&nbsp;</th>
+                                <th style={{textAlign:'center'}}><br />Форма обучения<br />&nbsp;</th>
                                 <th><br />&nbsp;07.06.{current_year}<br />&nbsp;</th>   
                                 <th><br />&nbsp;14.06.{current_year}<br />&nbsp;</th>  
                                 <th><br />&nbsp;21.06.{current_year}<br />&nbsp;</th>  

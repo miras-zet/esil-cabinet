@@ -63,12 +63,15 @@ const AdmissionStatsMain: FC = () => {
     //const miniheader1 = lastelem.sf1_sl1+lastelem.sf1_sl2;
     //const miniheader2 = lastelem.sf5_sl1+lastelem.sf5_sl2;
     //const miniheader3 = lastelem.sf24_sl1+lastelem.sf24_sl2;
-    // const admissionStatsMini = applicantStats.map((element) =>
-    // <div key={element.specialization}>
-    //     На базе школы: {element.sf1_sl1+element.sf1_sl2}<br/>
-    //     На базе колледжа: {element.sf5_sl1+element.sf5_sl2}<br/>
-    //     На базе высшего: {element.sf24_sl1+element.sf24_sl2}<br/>{element.specialization}</div>
-    // );
+    const admissionStatsMini = applicantStats.map((element) =>
+    <div key={element.specialization}>
+        {element.specialization=='Всего'? <div>
+        <b>Количество абитуриентов по ОП:</b>
+        <br/>На базе школы: {parseInt(element.sf1_sl1+'')+parseInt(element.sf1_sl2+'')}<br/>
+        На базе колледжа: {parseInt(element.sf5_sl1+'')+parseInt(element.sf5_sl2+'')}<br/>
+        На базе высшего: {parseInt(element.sf24_sl1+'')+parseInt(element.sf24_sl2+'')}<br/></div>:''}
+        </div>
+    );
     return (
         <div>
             {(() => {
@@ -80,9 +83,9 @@ const AdmissionStatsMain: FC = () => {
                         <br /><br /><br /><br />
                         {/* <h3>Добро пожаловать, {user.lastname + ' ' + user.name + ' ' + user.middlename}</h3><br /> */}
                         <h2 style={{ marginLeft: margin}}>Статистика по абитуриентам ({current_year}-{current_year+1} учебный год)</h2>
-                        {/* <br/>
-                        <div id="table-divider-stats-header" style={{marginLeft: '-24%',textAlign:'left',paddingLeft:'4%',height:'100%',width:'25%'}}><br/>{admissionStatsMini}<br/></div>
-                        <br/> */}
+                        <br/>
+                        <div id="table-divider-stats-header" style={{marginLeft: margin,textAlign:'left',paddingLeft:'4%',height:'100%',width:'40%'}}><br/>{admissionStatsMini}<br/></div>
+                        <br/>
                         <table id='opaqueTable' style={{ fontSize:'8pt', marginLeft: margin, paddingLeft: '15px', width: '107%' }}>
                             <tbody>
                                 <tr><br/></tr>
