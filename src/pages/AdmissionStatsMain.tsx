@@ -8,7 +8,10 @@ import IAdmissionStatsMain from '../models/IAdmissionStatsMain';
 const AdmissionStatsMain: FC = () => {
     // const navigate = useNavigate();
     const [applicantStats, setApplicantStats] = useState<Array<IAdmissionStatsMain>>([]);
+    let [margin, setMargin] = useState<string>('-23%');
     useEffect(() => {
+        setMargin('-23%');
+        if(window.innerWidth<940) setMargin('0%');
         // const user = JSON.parse(localStorage.getItem('data'));
         DocsService.getAdmissionStatsMain().then((response) => {
             setApplicantStats(response.data);
@@ -60,12 +63,12 @@ const AdmissionStatsMain: FC = () => {
     //const miniheader1 = lastelem.sf1_sl1+lastelem.sf1_sl2;
     //const miniheader2 = lastelem.sf5_sl1+lastelem.sf5_sl2;
     //const miniheader3 = lastelem.sf24_sl1+lastelem.sf24_sl2;
-    const admissionStatsMini = applicantStats.map((element) =>
-    <div key={element.specialization}>
-        На базе школы: {element.sf1_sl1+element.sf1_sl2}<br/>
-        На базе колледжа: {element.sf5_sl1+element.sf5_sl2}<br/>
-        На базе высшего: {element.sf24_sl1+element.sf24_sl2}<br/>{element.specialization}</div>
-    );
+    // const admissionStatsMini = applicantStats.map((element) =>
+    // <div key={element.specialization}>
+    //     На базе школы: {element.sf1_sl1+element.sf1_sl2}<br/>
+    //     На базе колледжа: {element.sf5_sl1+element.sf5_sl2}<br/>
+    //     На базе высшего: {element.sf24_sl1+element.sf24_sl2}<br/>{element.specialization}</div>
+    // );
     return (
         <div>
             {(() => {
@@ -76,11 +79,11 @@ const AdmissionStatsMain: FC = () => {
                         <KPINavbar />
                         <br /><br /><br /><br />
                         {/* <h3>Добро пожаловать, {user.lastname + ' ' + user.name + ' ' + user.middlename}</h3><br /> */}
-                        <h2 style={{ marginLeft: '-24%'}}>Статистика по абитуриентам ({current_year}-{current_year+1} учебный год)</h2>
+                        <h2 style={{ marginLeft: margin}}>Статистика по абитуриентам ({current_year}-{current_year+1} учебный год)</h2>
                         {/* <br/>
                         <div id="table-divider-stats-header" style={{marginLeft: '-24%',textAlign:'left',paddingLeft:'4%',height:'100%',width:'25%'}}><br/>{admissionStatsMini}<br/></div>
                         <br/> */}
-                        <table id='opaqueTable' style={{ fontSize:'8pt', marginLeft: '-26%', paddingLeft: '15px', width: '107%' }}>
+                        <table id='opaqueTable' style={{ fontSize:'8pt', marginLeft: margin, paddingLeft: '15px', width: '107%' }}>
                             <tbody>
                                 <tr><br/></tr>
                                 <tr>
