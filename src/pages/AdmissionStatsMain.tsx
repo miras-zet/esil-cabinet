@@ -58,18 +58,14 @@ const AdmissionStatsMain: FC = () => {
             <td></td>
         </tr>
     );
-    //const lastelem = applicantStats[applicantStats.length];
-    //alert(applicantStats[applicantStats.length]);
-    //const miniheader1 = lastelem.sf1_sl1+lastelem.sf1_sl2;
-    //const miniheader2 = lastelem.sf5_sl1+lastelem.sf5_sl2;
-    //const miniheader3 = lastelem.sf24_sl1+lastelem.sf24_sl2;
     const admissionStatsMini = applicantStats.map((element) =>
     <div key={element.specialization}>
         {element.specialization=='Всего'? <div>
+            
         <b>Количество абитуриентов по ОП:</b>
-        <br/>На базе школы: {parseInt(element.sf1_sl1+'')+parseInt(element.sf1_sl2+'')}<br/>
-        На базе колледжа: {parseInt(element.sf5_sl1+'')+parseInt(element.sf5_sl2+'')}<br/>
-        На базе высшего: {parseInt(element.sf24_sl1+'')+parseInt(element.sf24_sl2+'')}<br/></div>:''}
+        <br/>На базе школы: {parseInt(element.sf1_sl1+'')+parseInt(element.sf1_sl2+'')+parseInt(element.sf31_sl1+'')+parseInt(element.sf31_sl2+'')}<br/>
+        На базе колледжа: {parseInt(element.sf5_sl1+'')+parseInt(element.sf5_sl2+'')+parseInt(element.sf4_sl1+'')+parseInt(element.sf4_sl2+'')+parseInt(element.sf29_sl1+'')+parseInt(element.sf29_sl2+'')+parseInt(element.sf30_sl1+'')+parseInt(element.sf30_sl2+'')}<br/>
+        На базе высшего: {parseInt(element.sf24_sl1+'')+parseInt(element.sf24_sl2+'')+parseInt(element.sf3_sl1+'')+parseInt(element.sf3_sl2+'')}<br/></div>:''}
         </div>
     );
     return (
