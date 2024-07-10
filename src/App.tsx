@@ -31,7 +31,9 @@ import TechPageConstructor from './pages/TechPageConstructor'
 import TechAct from './pages/TechAct'
 import AdmissionStatsUpdated from './pages/AdmissionStatsUpdated'
 import AdmissionStatsMain from './pages/AdmissionStatsMain'
-
+import PhysicalBooks from './pages/PhysicalBooks'
+import AddLibraryBook from './pages/AddLibraryBook'
+import DueBooks from './pages/DueBooks'
   
 
 const App:FC = () => {  
@@ -89,7 +91,10 @@ const App:FC = () => {
         <Route path="/techOldDocuments" element={<TechDueDocuments/>}/>
         <Route path="/techSpecifyDocument" element={<TechPageConstructor/>}/>
         <Route path="/techActDocument" element={<TechAct/>}/>
-        
+
+        <Route path="/physicalbooks" element={<PhysicalBooks/>}/>
+        <Route path="/addlibrarybook" element={<AddLibraryBook/>}/>
+        <Route path="/duebooks" element={<DueBooks/>}/>
 
         <Route path="/kpi" element={ <KPIPage /> } />
         <Route path="/kpiupload" element={ <KPIUpload /> } />
