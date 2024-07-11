@@ -17,6 +17,10 @@ const PhysicalBooks: FC = () => {
 
     let [margin, setMargin] = useState<string>('-23%');
     let [namefilter, setNameFilter] = useState<string>('');
+    let [authorfilter, setAuthorFilter] = useState<string>('');
+    let [subjectfilter, setSubjectFilter] = useState<string>('');
+    let [inumfilter, setINumFilter] = useState<string>('');
+
     useEffect(() => {
         setMargin('-23%');
         if (window.innerWidth < 940) setMargin('0%');
@@ -62,29 +66,86 @@ const PhysicalBooks: FC = () => {
         localStorage.setItem('transferingbookid', id + '');
         navigate(`/transferlibrarybook`);
     }
-    const clearNameFilter = async () => {
-        (document.getElementById("bookNameFilter") as HTMLInputElement).value='';
-        setNameFilter('');
+    const clearFilter = async (id:number) => {
+        switch(id){
+            case 1: {
+                (document.getElementById("bookNameFilter") as HTMLInputElement).value='';
+                setNameFilter('');
+            }
+            break;
+            case 2: {
+                (document.getElementById("bookAuthorFilter") as HTMLInputElement).value='';
+                setAuthorFilter('');
+            }
+            break;
+            case 3: {
+                (document.getElementById("bookSubjectFilter") as HTMLInputElement).value='';
+                setSubjectFilter('');
+            }
+            break;
+            case 4: {
+                (document.getElementById("bookInvNumFilter") as HTMLInputElement).value='';
+                setINumFilter('');
+            }
+            break;
+        }
+        
     }
-    const booklist = books.map((element) =>
-        (element.NameRuBook.toLowerCase().includes(namefilter.toLowerCase()) ? <tr key={element.id}>
+    const something = books.map((element) => {
+        let clearedname = '';
+        let clearedauthor = '';
+        let clearedsubject = '';
+        let clearedinum = '';
+        if(element.NameRuBook!=null)clearedname = element.NameRuBook;
+        if(element.Author!=null)clearedauthor = element.Author;
+        if(element.Subject!=null)clearedsubject = element.Subject;
+        if(element.InventoryNumber!=null)clearedinum= element.InventoryNumber;
+        if(clearedname.toLowerCase().includes(namefilter.toLowerCase())
+        && clearedauthor.toLowerCase().includes(authorfilter.toLowerCase())
+        && clearedsubject.toLowerCase().includes(subjectfilter.toLowerCase())
+        && clearedinum.toLowerCase().includes(inumfilter.toLowerCase())){
+            return <tr key={element.id}>
             <td id="table-divider-stats">{element.NameRuBook}</td>
             <td id="table-divider-stats">{element.Author}</td>
+            <td id="table-divider-stats">{element.Annotation}</td>
+            <td id="table-divider-stats">{element.Subject}</td>
             <td id="table-divider-stats">{element.InventoryNumber}</td>
             <td id="table-divider-stats">{element.KeyWords}</td>
             <td id="table-divider-stats">{element.Language == 'kaz' ? <div>Казахский</div> : element.Language == 'rus' ? <div>Русский</div> : element.Language == 'eng' ? <div>Английский</div> : ''}</td>
             <td id="table-divider-stats">{element.Pages}</td>
             <td id="table-divider-stats">{element.TypeOfBook}</td>
-            <td id="table-divider-stats">{element.bookcat}</td>
-            <td id="table-divider-stats">{element.Subject}</td>
+            <td id="table-divider-stats">{element.bookcat}</td>       
             <td id="table-divider-stats">{element.PublishedCountryCity}</td>
             <td id="table-divider-stats">{element.PublishedTime}</td>
             <td id="table-divider-stats">{element.PublishingHouse}</td>
-            <td id="table-divider-stats">{element.ISBN}</td>
-            <td id="table-divider-stats">{element.Annotation}</td>
+            <td id="table-divider-stats">{element.ISBN}</td>      
             <td id="table-divider-stats" style={{ whiteSpace: 'nowrap' }}><button className="greenbutton" onClick={() => transferBook(element.id)}><GrDocumentTransfer /></button>&nbsp;<button className="backbutton" onClick={() => editBook(element.id)}><FaPen /></button>&nbsp;<button className="redbutton" onClick={() => deleteBook(element.id, element.NameRuBook)}><FaTrashAlt /></button></td>
-        </tr>:<tr></tr>)
-    );
+        </tr>
+        }
+    });
+    // const booklist = books.map((element) =>
+    //     ((element.NameRuBook == null ? false:element.NameRuBook.toLowerCase().includes(namefilter.toLowerCase())) 
+    //     ? (element.Subject == null ? false: element.Subject.toLowerCase().includes(subjectfilter.toLowerCase())) 
+    //     ? (element.InventoryNumber == null ? false:element.InventoryNumber.toLowerCase().includes(inumfilter.toLowerCase())) 
+    //     ? (element.Author == null ? false:element.Author.toLowerCase().includes(authorfilter.toLowerCase()))
+    //     ? <tr key={element.id}>
+    //         <td id="table-divider-stats">{element.NameRuBook}</td>
+    //         <td id="table-divider-stats">{element.Author}</td>
+    //         <td id="table-divider-stats">{element.Annotation}</td>
+    //         <td id="table-divider-stats">{element.Subject}</td>
+    //         <td id="table-divider-stats">{element.InventoryNumber}</td>
+    //         <td id="table-divider-stats">{element.KeyWords}</td>
+    //         <td id="table-divider-stats">{element.Language == 'kaz' ? <div>Казахский</div> : element.Language == 'rus' ? <div>Русский</div> : element.Language == 'eng' ? <div>Английский</div> : ''}</td>
+    //         <td id="table-divider-stats">{element.Pages}</td>
+    //         <td id="table-divider-stats">{element.TypeOfBook}</td>
+    //         <td id="table-divider-stats">{element.bookcat}</td>       
+    //         <td id="table-divider-stats">{element.PublishedCountryCity}</td>
+    //         <td id="table-divider-stats">{element.PublishedTime}</td>
+    //         <td id="table-divider-stats">{element.PublishingHouse}</td>
+    //         <td id="table-divider-stats">{element.ISBN}</td>      
+    //         <td id="table-divider-stats" style={{ whiteSpace: 'nowrap' }}><button className="greenbutton" onClick={() => transferBook(element.id)}><GrDocumentTransfer /></button>&nbsp;<button className="backbutton" onClick={() => editBook(element.id)}><FaPen /></button>&nbsp;<button className="redbutton" onClick={() => deleteBook(element.id, element.NameRuBook)}><FaTrashAlt /></button></td>
+    //     </tr>:<tr></tr>:<tr></tr>:<tr></tr>:<tr></tr>)
+    // );
 
     return (
         <div>
@@ -106,28 +167,33 @@ const PhysicalBooks: FC = () => {
                         <tbody>
                             <tr><br /></tr>
                             <tr>
-                                <th id="table-divider-stats-header" style={{minWidth:'120px'}}><br />&nbsp;Название<br />&nbsp;</th>
+                                <th id="table-divider-stats-header" style={{minWidth:'120px'}}><br/>&nbsp;Название<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'80px'}}><br />&nbsp;Автор<br />&nbsp;</th>
+                                <th id="table-divider-stats-header" style={{minWidth:'140px'}}><br/>&nbsp;Аннотация<br />&nbsp;</th>
+                                <th id="table-divider-stats-header" style={{minWidth:'80px'}}><br />&nbsp;Предмет<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'50px'}}><br />&nbsp;Инвентарный номер<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'80px'}}><br />&nbsp;Ключевые слова<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'60px'}}><br />&nbsp;Язык<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'40px'}}><br />&nbsp;Кол-во страниц<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'60px'}}><br />&nbsp;Тип книги<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'60px'}}><br />&nbsp;Категория<br />&nbsp;</th>
-                                <th id="table-divider-stats-header" style={{minWidth:'80px'}}><br />&nbsp;Предмет<br />&nbsp;</th>
-                                <th id="table-divider-stats-header" style={{minWidth:'110px'}}><br />&nbsp;Страна публикации<br />&nbsp;</th>
+                                <th id="table-divider-stats-header" style={{minWidth:'110px'}}><br/>&nbsp;Страна публикации<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'50px'}}><br />&nbsp;Год публикации<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'70px'}}><br />&nbsp;Издательство<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'90px'}}><br />&nbsp;ISBN<br />&nbsp;</th>
-                                <th id="table-divider-stats-header" style={{minWidth:'140px'}}><br />&nbsp;Аннотация<br />&nbsp;</th>
-                                <th id="table-divider-stats-header" style={{minWidth:'180px'}}><br />&nbsp;Действия<br />&nbsp;</th>
+                                <th id="table-divider-stats-header" style={{minWidth:'180px'}}><br/>&nbsp;Действия<br />&nbsp;</th>
                                 <th>&nbsp;&nbsp;</th>
 
                             </tr>
                             <tr>
-                                <th><div className='btn' style={{whiteSpace:'nowrap', backgroundColor:'lightgrey', color:'black'}}><FaMagnifyingGlass />&nbsp;&nbsp;<input type="text" id="bookNameFilter" style={{backgroundColor:'lightgrey', color:'black'}} onChange={() => setNameFilter((document.getElementById("bookNameFilter") as HTMLInputElement).value)}></input>{namefilter.length>0?<b onClick={()=>clearNameFilter()} style={{ fontSize:'10pt', fontWeight:'bold', marginLeft:'-17px', marginTop:'-5px'}}><ImCross /></b>:''}</div></th>
+                                <th><div className='btn' style={{whiteSpace:'nowrap', backgroundColor:'lightgrey', color:'black'}}><FaMagnifyingGlass />&nbsp;&nbsp;<input type="text" id="bookNameFilter" style={{backgroundColor:'lightgrey', color:'black'}} onChange={() => setNameFilter((document.getElementById("bookNameFilter") as HTMLInputElement).value)}></input>{namefilter.length>0?<b onClick={()=>clearFilter(1)} style={{ fontSize:'10pt', fontWeight:'bold', marginLeft:'-16px', marginTop:'-5px'}}><ImCross /></b>:''}</div></th>
+                                <th><div className='btn' style={{whiteSpace:'nowrap', backgroundColor:'lightgrey', color:'black'}}><FaMagnifyingGlass />&nbsp;&nbsp;<input type="text" id="bookAuthorFilter" style={{backgroundColor:'lightgrey', color:'black'}} onChange={() => setAuthorFilter((document.getElementById("bookAuthorFilter") as HTMLInputElement).value)}></input>{authorfilter.length>0?<b onClick={()=>clearFilter(2)} style={{ fontSize:'10pt', fontWeight:'bold', marginLeft:'-16px', marginTop:'-5px'}}><ImCross /></b>:''}</div></th>
+                                <th></th>
+                                <th><div className='btn' style={{whiteSpace:'nowrap', backgroundColor:'lightgrey', color:'black'}}><FaMagnifyingGlass />&nbsp;&nbsp;<input type="text" id="bookSubjectFilter" style={{backgroundColor:'lightgrey', color:'black'}} onChange={() => setSubjectFilter((document.getElementById("bookSubjectFilter") as HTMLInputElement).value)}></input>{subjectfilter.length>0?<b onClick={()=>clearFilter(3)} style={{ fontSize:'10pt', fontWeight:'bold', marginLeft:'-16px', marginTop:'-5px'}}><ImCross /></b>:''}</div></th>
+                                <th><div className='btn' style={{whiteSpace:'nowrap', backgroundColor:'lightgrey', color:'black'}}><FaMagnifyingGlass />&nbsp;&nbsp;<input type="text" id="bookInvNumFilter" style={{backgroundColor:'lightgrey', color:'black'}} onChange={() => setINumFilter((document.getElementById("bookInvNumFilter") as HTMLInputElement).value)}></input>{inumfilter.length>0?<b onClick={()=>clearFilter(4)} style={{ fontSize:'10pt', fontWeight:'bold', marginLeft:'-16px', marginTop:'-5px'}}><ImCross /></b>:''}</div></th>
+                            
                             </tr>
-                            {booklist}
+                            {something}
                             <tr>
                                 <td><br /></td>
                             </tr>

@@ -3,12 +3,17 @@ import { observer } from "mobx-react-lite";
 import '../App.css';
 import { Context } from "../main";
 import { TbLogout } from "react-icons/tb";
+import { useNavigate } from "react-router-dom";
 
 const KPINavbar: FC = () => {
     const {store} = useContext(Context); 
     const data = JSON.parse(localStorage.getItem('data'));
-    let FIO="";
-    if(data) FIO = data.lastname+' '+data.name+' '+data.middlename;
+    const navigate = useNavigate();
+    const toMain = () =>{
+      navigate('/');
+    }
+    let FIO = '';
+    if (data) FIO = data.lastname+' '+data.name+' '+data.middlename;
     const role = localStorage.getItem('role');
     let headertext='';
     switch(role){
@@ -27,7 +32,7 @@ const KPINavbar: FC = () => {
         <div>
             <div className="topnav">
               <div style={{marginLeft:'-100px', backgroundColor:'white', height:'115%'}}>&nbsp;</div>
-              <img src="logo_new.png" width={150}/>
+              <img onClick={()=>toMain()} src="logo_new.png" width={150}/>
               <div className='navbartitle'>{headertext}</div>      
             </div> 
             <div className="topnav2">

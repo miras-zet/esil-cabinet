@@ -148,15 +148,7 @@ const AddLibraryBook: FC = () => {
                                 <td style={{ paddingTop: '10px' }}>LLC</td>
                                 <td><input id="inputLLC" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='LLC'></input></td>
                             </tr>
-                            <tr>
-                                <td style={{ paddingTop: '10px' }}>Язык</td>
-                                <td><select className='btnNeutral' style={{ width: '340px' }} name="languages" id="lang" onChange={event => setLang(event.target.value)}>
-                                    <option value="notchosen">Язык</option>
-                                    <option value="kaz">Казахский</option>
-                                    <option value="rus">Русский</option>
-                                    <option value="eng">Английский</option>
-                                </select></td>
-                            </tr>
+                            
                             <tr>
                                 <td style={{ paddingTop: '10px' }}>Цена</td>
                                 <td><input id="inputPrice" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Цена'></input></td>
@@ -174,19 +166,28 @@ const AddLibraryBook: FC = () => {
                                 <td><input id="inputPublishingHouse" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Издательство'></input></td>
                             </tr>
                             <tr>
-                                <td style={{ paddingTop: '10px' }}>Категория</td>
-                                <td><select className='btnNeutral' style={{ width: '340px' }} name="categories" id="cat" onChange={event => setCategory(event.target.value)}>
-                                    <option value="notchosen">Категория</option>
-                                    {listItemsCategory}
-                                </select></td>
-                            </tr>
-                            <tr>
                                 <td style={{ paddingTop: '10px' }}>Тип книги</td>
                                 <td><input id="inputTypeOfBook" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Тип книги'></input></td>
                             </tr>
                             <tr>
                                 <td style={{ paddingTop: '10px' }}>UDC</td>
                                 <td><input id="inputUDC" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='UDC'></input></td>
+                            </tr>
+                            <tr>
+                                <td style={{ paddingTop: '10px' }}>Язык</td>
+                                <td><select className='btnNeutral' style={{ width: '340px' }} name="languages" id="lang" onChange={event => setLang(event.target.value)}>
+                                    <option value="notchosen">Язык</option>
+                                    <option value="kaz">Казахский</option>
+                                    <option value="rus">Русский</option>
+                                    <option value="eng">Английский</option>
+                                </select></td>
+                            </tr>
+                            <tr>
+                                <td style={{ paddingTop: '10px' }}>Категория</td>
+                                <td><select className='btnNeutral' style={{ width: '340px' }} name="categories" id="cat" onChange={event => setCategory(event.target.value)}>
+                                    <option value="notchosen">Категория</option>
+                                    {listItemsCategory}
+                                </select></td>
                             </tr>
                         </table>
                         <button className="navbarbutton" onClick={() => addBook()}>Добавить</button><br />
