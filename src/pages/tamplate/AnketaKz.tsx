@@ -17,8 +17,6 @@ export function AnketaKz() {
   useEffect(() => { 
     DocsService.getApplicationDataKz().then((response) => {
       setApplicationData(response.data);
-      console.log(applicationData);
-      console.log('hey');
     });
     },[]);      
 

@@ -11,7 +11,8 @@ import IKPI from '../models/IKPI';
 import KPICategoryScores from '../components/KPICategoryScores';
 import KPINavbar from '../components/KPINavbar';
 import { HiSparkles } from "react-icons/hi2";
-import { FaArrowRight, FaBook, FaUpload } from 'react-icons/fa';
+import { FaBook, FaUpload } from 'react-icons/fa';
+import { FaDisplay } from "react-icons/fa6";
 import { IoIosAlarm } from "react-icons/io";
 import { MdNoteAdd } from 'react-icons/md';
 import StudentDebt from '../components/StudentDebt';
@@ -27,8 +28,6 @@ const HomePage:FC = () => {
   
  useEffect(() => {
     setKpiInfo([]);
-    //setCategoryScores([]);
-    // USEEFFECT DOES NOT WORK ON FIRST RENDER (FIX ASAP)
 
     if (localStorage.getItem('token')){
       store.checkAuth()
@@ -172,9 +171,9 @@ const HomePage:FC = () => {
               <br/>
               <h2>Добро пожаловать!</h2>
               <br/>
-              <Link to="/ebooks"><button className='navbarbutton'>Список электронных книг &nbsp;<FaBook style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/>
-              <Link to="/physicalbooks"><button className='navbarbutton'>Список книг &nbsp;<FaBook style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/><br/>
-              <Link to="/bookassignment"><button className='navbarbutton'>Выдать книгу &nbsp;<FaBook style={{verticalAlign:'middle', marginTop:'-4px'}}/><FaArrowRight style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/>
+              <Link to="/physicalbooks"><button className='navbarbutton'>Список книг &nbsp;<FaBook style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/>
+              <Link to="/ebooks"><button className='navbarbutton'>Список электронных книг &nbsp;<FaDisplay style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/><br/>
+              <br/>
               <Link to="/duebooks"><button className='redbutton'>Должники &nbsp;<IoIosAlarm style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link>
               </div>
             }

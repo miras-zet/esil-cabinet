@@ -32,18 +32,6 @@ const KPIUpload: FC = () => {
     const selectedFiles = files as FileList;
     setCurrentFile(selectedFiles?.[0]);
   };
-  // const clearInput = () => {
-  //   try{
-  //     this.setState({ inputVal: "" });
-  //   }
-  //   catch{
-
-  //   }
-  // }
-  // const onInputChange = (e) => {
-  //   this.setState({ inputVal: e.target.value });
-  // }
-
   // const help = () => {
   //   alert('Выберите показатель из списка, затем выберите файл. Затем нажмите \"Отправить файл\". Загружаемый файл должен быть формата .pdf, размер файла не должен превышать 10 МБ.');
   // };
@@ -69,6 +57,9 @@ const KPIUpload: FC = () => {
               } else {
                 setMessageColor("red");
               }
+              (document.getElementById("extradatainput") as HTMLInputElement).value='';
+              setInfo('');
+
               return UploadService.getFiles();
             })
             .then((files) => {
@@ -105,26 +96,6 @@ const KPIUpload: FC = () => {
       alert('Ошибка загрузки файла.');
     }
   };
-  // const download = async (filename: string) => {
-  //   UploadService.downloadFile(filename)
-  //     .then((response) => {
-  //       setMessage(response.data.message);
-  //       return UploadService.getFiles();
-  //     })
-  //     .then((files) => {
-  //       setFileInfos(files.data);
-  //     })
-  //     .catch((err) => {
-  //       if (err.response && err.response.data && err.response.data.message) {
-  //         setMessage(err.response.data.message);
-  //       } else {
-  //         setMessage("Ошибка загрузки");
-  //       }
-
-  //       setCurrentFile(undefined);
-  //     });
-  //     return 'done';
-  // };
   const deleteF = async (filename: string) => {
     if (confirm('Вы уверены, что хотите удалить файл?')) {
       UploadService.deleteFile(filename, localStorage.getItem('user_id'))

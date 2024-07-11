@@ -38,4 +38,5 @@ export default interface ILibraryBook {
     Subject: string,
     TypeOfBook: string,
     UDC: string,
+    bookcat: string,
 }  

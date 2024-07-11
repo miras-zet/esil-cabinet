@@ -34,6 +34,7 @@ import AdmissionStatsMain from './pages/AdmissionStatsMain'
 import PhysicalBooks from './pages/PhysicalBooks'
 import AddLibraryBook from './pages/AddLibraryBook'
 import DueBooks from './pages/DueBooks'
+import EditLibraryBook from './pages/EditLibraryBook'
   
 
 const App:FC = () => {  
@@ -94,6 +95,7 @@ const App:FC = () => {
 
         <Route path="/physicalbooks" element={<PhysicalBooks/>}/>
         <Route path="/addlibrarybook" element={<AddLibraryBook/>}/>
+        <Route path="/editlibrarybook" element={<EditLibraryBook/>}/>
         <Route path="/duebooks" element={<DueBooks/>}/>
 
         <Route path="/kpi" element={ <KPIPage /> } />
