@@ -11,7 +11,7 @@ const AdmissionStatsMain: FC = () => {
     let [margin, setMargin] = useState<string>('-23%');
     useEffect(() => {
         setMargin('-23%');
-        if(window.innerWidth<940) setMargin('0%');
+        if(window.innerWidth<1317) setMargin('0%');
         // const user = JSON.parse(localStorage.getItem('data'));
         DocsService.getAdmissionStatsMain().then((response) => {
             setApplicantStats(response.data);
