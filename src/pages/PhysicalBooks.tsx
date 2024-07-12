@@ -62,8 +62,9 @@ const PhysicalBooks: FC = () => {
         localStorage.setItem('editingbookid', id + '');
         navigate(`/editlibrarybook`);
     }
-    const transferBook = async (id: number) => {
+    const transferBook = async (id: number, name:string) => {
         localStorage.setItem('transferingbookid', id + '');
+        localStorage.setItem('transferingBookName', name + '');
         navigate(`/transferlibrarybook`);
     }
     const clearFilter = async (id:number) => {
@@ -91,7 +92,7 @@ const PhysicalBooks: FC = () => {
         }
         
     }
-    const something = books.map((element) => {
+    const booklist = books.map((element) => {
         let clearedname = '';
         let clearedauthor = '';
         let clearedsubject = '';
@@ -119,7 +120,7 @@ const PhysicalBooks: FC = () => {
             <td id="table-divider-stats">{element.PublishedTime}</td>
             <td id="table-divider-stats">{element.PublishingHouse}</td>
             <td id="table-divider-stats">{element.ISBN}</td>      
-            <td id="table-divider-stats" style={{ whiteSpace: 'nowrap' }}><button className="greenbutton" onClick={() => transferBook(element.id)}><GrDocumentTransfer /></button>&nbsp;<button className="backbutton" onClick={() => editBook(element.id)}><FaPen /></button>&nbsp;<button className="redbutton" onClick={() => deleteBook(element.id, element.NameRuBook)}><FaTrashAlt /></button></td>
+            <td id="table-divider-stats" style={{ whiteSpace: 'nowrap' }}><button className="greenbutton" onClick={() => transferBook(element.id, element.NameRuBook)}><GrDocumentTransfer /></button>&nbsp;<button className="backbutton" onClick={() => editBook(element.id)}><FaPen /></button>&nbsp;<button className="redbutton" onClick={() => deleteBook(element.id, element.NameRuBook)}><FaTrashAlt /></button></td>
         </tr>
         }
     });
@@ -165,7 +166,7 @@ const PhysicalBooks: FC = () => {
 
                     {books.length > 0 ? <table id='opaqueTable' style={{ fontSize: '10.5pt', marginLeft: '-30%', paddingLeft: '15px', maxWidth: '107%', tableLayout:'fixed'}}>
                         <tbody>
-                            <tr><br /></tr>
+                            <tr><br/></tr>
                             <tr>
                                 <th id="table-divider-stats-header" style={{minWidth:'120px'}}><br/>&nbsp;Название<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'80px'}}><br />&nbsp;Автор<br />&nbsp;</th>
@@ -193,7 +194,7 @@ const PhysicalBooks: FC = () => {
                                 <th><div className='btn' style={{whiteSpace:'nowrap', backgroundColor:'lightgrey', color:'black'}}><FaMagnifyingGlass />&nbsp;&nbsp;<input type="text" id="bookInvNumFilter" style={{backgroundColor:'lightgrey', color:'black'}} onChange={() => setINumFilter((document.getElementById("bookInvNumFilter") as HTMLInputElement).value)}></input>{inumfilter.length>0?<b onClick={()=>clearFilter(4)} style={{ fontSize:'10pt', fontWeight:'bold', marginLeft:'-16px', marginTop:'-5px'}}><ImCross /></b>:''}</div></th>
                             
                             </tr>
-                            {something}
+                            {booklist}
                             <tr>
                                 <td><br /></td>
                             </tr>

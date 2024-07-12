@@ -72,8 +72,7 @@ const DueBooks: FC = () => {
                         <br />
                         <h2>Список должников по книгам</h2>
                         <br/>
-                        <Link to={"/bookassignment"}><button className='navbarbutton'>Выдать книгу студенту</button></Link> <br /><br />
-
+                        
                         {dueData.length>0?<table id='opaqueTable' style={{ fontSize:'12pt', paddingLeft: '15px', width: '107%' }}>
                             <tbody>
                                 <tr><br/></tr>
@@ -90,7 +89,7 @@ const DueBooks: FC = () => {
                                 <td><br/></td>
                             </tr>
                             </tbody>
-                        </table>:<h3 style={{marginLeft: margin}}>Не удалось получить список должников. Обратитесь в 125 кабинет</h3>}
+                        </table>:<h3>Должников нет</h3>}
                     </div>   
                 
             })()}

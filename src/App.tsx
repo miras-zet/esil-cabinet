@@ -35,6 +35,7 @@ import PhysicalBooks from './pages/PhysicalBooks'
 import AddLibraryBook from './pages/AddLibraryBook'
 import DueBooks from './pages/DueBooks'
 import EditLibraryBook from './pages/EditLibraryBook'
+import TransferBook from './pages/TransferBook'
   
 
 const App:FC = () => {  
@@ -96,6 +97,7 @@ const App:FC = () => {
         <Route path="/physicalbooks" element={<PhysicalBooks/>}/>
         <Route path="/addlibrarybook" element={<AddLibraryBook/>}/>
         <Route path="/editlibrarybook" element={<EditLibraryBook/>}/>
+        <Route path="/transferlibrarybook" element={<TransferBook/>}/>
         <Route path="/duebooks" element={<DueBooks/>}/>
 
         <Route path="/kpi" element={ <KPIPage /> } />

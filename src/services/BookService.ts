@@ -60,6 +60,13 @@ const editBook = (id, Name, Author, Pages, Annotation, Barcode, Subject, Copyrig
     }
     return http.get(`/books/editbook`, { params });
 };
+const transferBook = (iin,bookid): Promise<any> => {
+    const params = {
+        iin: iin, 
+        bookid: bookid
+    }
+    return http.get(`/books/transferbook`, { params });
+};
 const deleteBook = (id): Promise<any> => {
     const params = {
         id: id,
@@ -85,6 +92,7 @@ const BookService = {
     editBook,
     getBookCategories,
     addBook,
+    transferBook,
     deleteBook,
     getDueBooks,
     resolveBookTransfer

@@ -171,10 +171,10 @@ const HomePage:FC = () => {
               <br/>
               <h2>Добро пожаловать!</h2>
               <br/>
-              <Link to="/physicalbooks"><button className='navbarbutton'>Список книг &nbsp;<FaBook style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/>
-              <Link to="/ebooks"><button className='navbarbutton'>Список электронных книг &nbsp;<FaDisplay style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/><br/>
+              <Link to="/physicalbooks"><button className='navbarbutton' style={{fontSize:'16pt'}}>Список книг &nbsp;<FaBook style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/>
+              <Link to="/ebooks"><button className='navbarbutton' style={{fontSize:'16pt'}}>Список электронных книг &nbsp;<FaDisplay style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/><br/>
               <br/>
-              <Link to="/duebooks"><button className='redbutton'>Должники &nbsp;<IoIosAlarm style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link>
+              <Link to="/duebooks"><button className='redbutton' style={{fontSize:'14pt'}}>Должники &nbsp;<IoIosAlarm style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link>
               </div>
             }
             else if(role==='plt_kpiadmin'){
