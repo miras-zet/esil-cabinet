@@ -82,6 +82,12 @@ const resolveBookTransfer = (id): Promise<any> => {
 const getDueBooks = (): Promise<any> => {
     return http.get(`/books/getduebooks`);
 };
+const getDueBookForStudent = (): Promise<any> => {
+    const params = {
+        user_id: localStorage.getItem('user_id')
+    }
+    return http.get(`/books/getduebooksforstudent`, { params });
+};
 const getBookCategories = (): Promise<any> => {
     return http.get(`/books/getbookcategories`);
 };
@@ -95,6 +101,7 @@ const BookService = {
     transferBook,
     deleteBook,
     getDueBooks,
+    getDueBookForStudent,
     resolveBookTransfer
 };
 
