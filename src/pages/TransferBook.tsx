@@ -75,7 +75,7 @@ const TransferBook: FC = () => {
                         <br />
                         <h3>Впишите ИИН студента, которому выдаётся книга "{bookname}".</h3>
                         <input id="inputIIN" className='btnNeutral' style={{ width: '300px' }} type="text" maxLength={12} placeholder='Введите ИИН'></input><br /><br />
-                        {buttonPressed=='false'?<button className="navbarbutton" onClick={() => transfer()}>Добавить</button>:<button disabled id="backbutton">Выполнено</button>}<br /><br />
+                        {buttonPressed=='false'?<button className="navbarbutton" onClick={() => transfer()}>Выдать книгу</button>:<button disabled id="backbutton">Выполнено</button>}<br /><br />
                         <div style={{ color: messagecolor, fontWeight: 'bold' }}>{message}</div>
                     </div>
                 }

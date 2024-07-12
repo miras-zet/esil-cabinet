@@ -7,7 +7,6 @@ import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import { TiArrowBack } from 'react-icons/ti';
 import BookService from '../services/BookService';
-import IBookCategory from '../models/IBookCategory';
 import ILibraryBook from '../models/ILibraryBook';
 
 const EditLibraryBook: FC = () => {
@@ -15,7 +14,6 @@ const EditLibraryBook: FC = () => {
     const [message, setMessage] = useState<string>('');
     let [category, setCategory] = useState<string>('notchosen');
     let [lang, setLang] = useState<string>('notchosen');
-    const [bookCategories, setBookCategories] = useState<Array<IBookCategory>>([]);
     const [bookData, setBookData] = useState<ILibraryBook>();
     const [messagecolor, setMessageColor] = useState<string>("red");
     useEffect(() => {
@@ -26,10 +24,10 @@ const EditLibraryBook: FC = () => {
         BookService.getBook(localStorage.getItem('editingbookid')).then((response) => {
             setBookData(response.data);
         });
-        BookService.getBookCategories().then((response) => {
-            setBookCategories(response.data);
-        });
-
+        setTimeout(function () {
+            document.getElementById('toClick').click();
+            console.log('clicked');
+          }, 400)
     }, [])
 
     // useEffect(()=>{
@@ -48,9 +46,9 @@ const EditLibraryBook: FC = () => {
             </div>
         );
     }
-    const listItemsCategory = bookCategories.map((element) =>
-        <option key={element.id} value={element.id}>{element.name}</option>
-    );
+    // const listItemsCategory = bookCategories.map((element) =>
+    //     <option key={element.id} value={element.id}>{element.name}</option>
+    // );
 
     const saveBook = () => {
         if (lang != 'notchosen' && category != 'notchosen') {
@@ -99,34 +97,44 @@ const EditLibraryBook: FC = () => {
 
     }
     const inputValues = [
-        ['Name','Название',bookData?.NameRuBook],
-        ['Author','Автор',bookData?.Author],
-        ['Pages','Кол-во страниц',bookData?.Pages],
-        ['Annotation','Аннотация',bookData?.Annotation],
-        ['Barcode','Штрихкод',bookData?.Barcode],
-        ['Subject','Предмет',bookData?.Subject],
-        ['CopyrightSigns','Авторские права',bookData?.CopyrightSigns],
-        ['Heading','Heading',bookData?.Heading],
-        ['ISBN','ISBN',bookData?.ISBN],
-        ['InventoryNumber','Инвентарный номер',bookData?.InventoryNumber],
-        ['KeyWords','Ключевые слова',bookData?.KeyWords],
-        ['LLC','LLC',bookData?.LLC],
-        ['Price','Цена',bookData?.Price],
-        ['PublishedCountryCity','Страна, город публикации',bookData?.PublishedCountryCity],
-        ['PublishedTime','Год публикации',bookData?.PublishedTime],
-        ['PublishingHouse','Издательство',bookData?.PublishingHouse],
-        ['TypeOfBook','Тип книги',bookData?.TypeOfBook],
-        ['UDC','UDC',bookData?.UDC]
+        ['Name', 'Название', bookData?.NameRuBook],
+        ['Author', 'Автор', bookData?.Author],
+        ['Pages', 'Кол-во страниц', bookData?.Pages],
+        ['Annotation', 'Аннотация', bookData?.Annotation],
+        ['Barcode', 'Штрихкод', bookData?.Barcode],
+        ['Subject', 'Предмет', bookData?.Subject],
+        ['CopyrightSigns', 'Авторские права', bookData?.CopyrightSigns],
+        ['Heading', 'Heading', bookData?.Heading],
+        ['ISBN', 'ISBN', bookData?.ISBN],
+        ['InventoryNumber', 'Инвентарный номер', bookData?.InventoryNumber],
+        ['KeyWords', 'Ключевые слова', bookData?.KeyWords],
+        ['LLC', 'LLC', bookData?.LLC],
+        ['Price', 'Цена', bookData?.Price],
+        ['PublishedCountryCity', 'Страна, город публикации', bookData?.PublishedCountryCity],
+        ['PublishedTime', 'Год публикации', bookData?.PublishedTime],
+        ['PublishingHouse', 'Издательство', bookData?.PublishingHouse],
+        ['TypeOfBook', 'Тип книги', bookData?.TypeOfBook],
+        ['UDC', 'UDC', bookData?.UDC]
     ];
     const inputMap = inputValues.map((element) => {
-        const [a,b] = element;
+        const [a, b] = element;
         return <tr key={a}>
-          <td style={{ paddingTop: '10px' }}>{b}</td>
-          <td><input id={'input'+a} className='btnNeutral' style={{ width: '300px' }} type="text" placeholder={b+''}></input></td>
-          </tr>
-      }
+            <td style={{ paddingTop: '10px' }}>{b}</td>
+            <td><input id={'input' + a} className='btnNeutral' style={{ width: '300px' }} type="text" placeholder={b + ''}></input></td>
+        </tr>
+    }
     );
-    const setvalues = () => {
+    const loadvalues = () => {
+        switch (bookData?.Language) {
+            case 'kaz': setLang('kaz');
+                break;
+            case 'rus': setLang('rus');
+                break;
+            case 'eng': setLang('eng');
+                break;
+            default: setLang('notchosen');
+        }
+        setCategory(bookData?.RLibraryCategoryRLibraryBook + '');
         (document.getElementById("inputName") as HTMLInputElement).value = bookData?.NameRuBook;
         (document.getElementById("inputAuthor") as HTMLInputElement).value = bookData?.Author;
         (document.getElementById("inputPages") as HTMLInputElement).value = bookData?.Pages;
@@ -145,7 +153,9 @@ const EditLibraryBook: FC = () => {
         (document.getElementById("inputPublishingHouse") as HTMLInputElement).value = bookData?.PublishingHouse;
         (document.getElementById("inputTypeOfBook") as HTMLInputElement).value = bookData?.TypeOfBook;
         (document.getElementById("inputUDC") as HTMLInputElement).value = bookData?.UDC;
-    };
+    }
+
+
     return (
         <div>
             {(() => {
@@ -158,8 +168,9 @@ const EditLibraryBook: FC = () => {
                         <Link to={"/physicalbooks"}><button className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button></Link> <br /><br />
                         <br />
                         <h3>Редактировать книгу "{bookData?.NameRuBook}"</h3>
-                        <table ><tbody>
-                        {inputMap}
+                        <button id='toClick' style={{visibility:'hidden'}} onLoad={()=>alert('a')} onClick={() => loadvalues()}>загрузить</button>
+                        <table><tbody>
+                            {inputMap}
                             <tr>
                                 <td style={{ paddingTop: '10px' }}>Язык</td>
                                 <td><select className='btnNeutral' style={{ width: '340px' }} name="languages" id="lang" onChange={event => setLang(event.target.value)}>
@@ -173,13 +184,17 @@ const EditLibraryBook: FC = () => {
                                 <td style={{ paddingTop: '10px' }}>Категория</td>
                                 <td><select className='btnNeutral' style={{ width: '340px' }} name="categories" id="cat" onChange={event => setCategory(event.target.value)}>
                                     <option value="notchosen">Категория</option>
-                                    {listItemsCategory}
+                                    {bookData?.RLibraryCategoryRLibraryBook == 1 ? <option value="1" selected>Книги</option>:<option value="1" >Книги</option>}
+                                    {bookData?.RLibraryCategoryRLibraryBook == 2 ? <option value="2" selected>Статьи</option>:<option value="2" >Статьи</option>}
+                                    {bookData?.RLibraryCategoryRLibraryBook == 3 ? <option value="3" selected>Авторефераты</option>:<option value="3" >Авторефераты</option>}
+                                    {bookData?.RLibraryCategoryRLibraryBook == 4 ? <option value="4" selected>Электронная база</option>:<option value="4" >Электронная база</option>}
+                                    {bookData?.RLibraryCategoryRLibraryBook == 5 ? <option value="5" selected>Аудит</option>:<option value="5" >Аудит</option>}
                                 </select></td>
                             </tr>
-                            </tbody>  
+                        </tbody>
                         </table>
-                        
-                        <button onLoad={()=>setvalues()} className="navbarbutton" onClick={() => saveBook()}>Сохранить</button><br />
+
+                        <button className="navbarbutton" onClick={() => saveBook()}>Сохранить</button><br />
                         <div style={{ color: messagecolor, fontWeight: 'bold' }}>{message}</div>
                     </div>
 
