@@ -28,7 +28,7 @@ const TransferBook: FC = () => {
     if (store.isLoading) {
         return <div>Loading ...</div>
     }
-    const bookname_original = localStorage.getItem('transferingBookName');
+    const bookname_original = localStorage.getItem('transferringBookName');
     let bookname='';
     for(let i=0; i<25; i++){
         if(bookname_original[i]!=undefined)bookname=bookname+bookname_original[i];
@@ -44,7 +44,7 @@ const TransferBook: FC = () => {
     }
     const transfer = () => {
         const iin = (document.getElementById("inputIIN") as HTMLInputElement).value;
-        const bookid = localStorage.getItem('transferingbookid');
+        const bookid = localStorage.getItem('transferringbookid');
         BookService.transferBook(iin, bookid)
             .then((response) => {
                 setMessage(response.data.message);

@@ -63,8 +63,8 @@ const PhysicalBooks: FC = () => {
         navigate(`/editlibrarybook`);
     }
     const transferBook = async (id: number, name:string) => {
-        localStorage.setItem('transferingbookid', id + '');
-        localStorage.setItem('transferingBookName', name + '');
+        localStorage.setItem('transferringbookid', id + '');
+        localStorage.setItem('transferringBookName', name + '');
         navigate(`/transferlibrarybook`);
     }
     const clearFilter = async (id:number) => {
