@@ -68,7 +68,7 @@ const HomePage:FC = () => {
     return;
   }
 
-  const countKpi = ()=>{
+  const countKpi = () =>{
     UploadService.getKpi()
     .then(
       (response) => {
@@ -76,6 +76,20 @@ const HomePage:FC = () => {
         return setKpiInfo(response.data.score);
       }
     );
+  }
+  const findBook = () =>{
+    let bookName = (document.getElementById("inputSearchBookByName") as HTMLInputElement).value;
+    bookName = bookName.trim();
+    (document.getElementById("inputSearchBookByName") as HTMLInputElement).value=bookName;
+    if(bookName!=undefined && bookName.length>=4){
+      localStorage.setItem('bookSearchName',bookName+'');
+      localStorage.setItem('prevLibrarianPage','home');
+      window.location.href=window.location.protocol + '//' + window.location.host +'/searchbookbyname';
+    }
+    else{
+      alert('Введите как минимум 4 символа в поле поиска');
+    }
+    
   }
   
   return (
@@ -173,10 +187,10 @@ const HomePage:FC = () => {
               <br/>
               <h2>Добро пожаловать!</h2>
               <br/>
-              <Link to="/physicalbooks"><button className='navbarbutton' style={{fontSize:'16pt'}}>Список книг &nbsp;<FaBook style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/>
-              <Link to="/ebooks"><button className='navbarbutton' style={{fontSize:'16pt'}}>Список электронных книг &nbsp;<FaDisplay style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/><br/>
+              <Link to="/physicalbooksPages"><button className='navbarbutton'>Список книг &nbsp;<FaBook style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link> &nbsp;<input type="text" id='inputSearchBookByName' className='btnNeutral' maxLength={100} placeholder='Поиск по названию'></input>&nbsp;<button onClick={()=>findBook()}>Найти</button><br/><br/><br/>
+              <Link to="/ebooks"><button className='navbarbutton' >Список электронных книг &nbsp;<FaDisplay style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/><br/>
               <br/>
-              <Link to="/duebooks"><button className='redbutton' style={{fontSize:'14pt'}}>Должники &nbsp;<IoIosAlarm style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link>
+              <Link to="/duebooks"><button className='redbutton' >Должники &nbsp;<IoIosAlarm style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link>
               </div>
             }
             else if(role==='plt_kpiadmin'){

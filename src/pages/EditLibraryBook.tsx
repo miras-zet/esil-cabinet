@@ -2,7 +2,7 @@ import { FC, useContext, useEffect, useState } from 'react'
 import { Context } from '../main';
 import LoginForm from '../components/LoginForm';
 import { observer } from 'mobx-react-lite';
-import { Link, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import { TiArrowBack } from 'react-icons/ti';
@@ -16,8 +16,38 @@ const EditLibraryBook: FC = () => {
     let [lang, setLang] = useState<string>('notchosen');
     const [bookData, setBookData] = useState<ILibraryBook>();
     const [messagecolor, setMessageColor] = useState<string>("red");
+    const loadvalues = () => {
+        switch (bookData?.Language) {
+            case 'kaz': setLang('kaz');
+                break;
+            case 'rus': setLang('rus');
+                break;
+            case 'eng': setLang('eng');
+                break;
+            default: setLang('notchosen');
+        }
+        setCategory(bookData?.RLibraryCategoryRLibraryBook + '');
+        (document.getElementById("inputName") as HTMLInputElement).value = bookData?.NameRuBook;
+        (document.getElementById("inputAuthor") as HTMLInputElement).value = bookData?.Author;
+        (document.getElementById("inputPages") as HTMLInputElement).value = bookData?.Pages;
+        (document.getElementById("inputAnnotation") as HTMLInputElement).value = bookData?.Annotation;
+        (document.getElementById("inputBarcode") as HTMLInputElement).value = bookData?.Barcode;
+        (document.getElementById("inputSubject") as HTMLInputElement).value = bookData?.Subject;
+        (document.getElementById("inputCopyrightSigns") as HTMLInputElement).value = bookData?.CopyrightSigns;
+        (document.getElementById("inputHeading") as HTMLInputElement).value = bookData?.Heading;
+        (document.getElementById("inputISBN") as HTMLInputElement).value = bookData?.ISBN;
+        (document.getElementById("inputInventoryNumber") as HTMLInputElement).value = bookData?.InventoryNumber;
+        (document.getElementById("inputKeyWords") as HTMLInputElement).value = bookData?.KeyWords;
+        (document.getElementById("inputLLC") as HTMLInputElement).value = bookData?.LLC;
+        (document.getElementById("inputPrice") as HTMLInputElement).value = bookData?.Price;
+        (document.getElementById("inputPublishedCountryCity") as HTMLInputElement).value = bookData?.PublishedCountryCity;
+        (document.getElementById("inputPublishedTime") as HTMLInputElement).value = bookData?.PublishedTime;
+        (document.getElementById("inputPublishingHouse") as HTMLInputElement).value = bookData?.PublishingHouse;
+        (document.getElementById("inputTypeOfBook") as HTMLInputElement).value = bookData?.TypeOfBook;
+        (document.getElementById("inputUDC") as HTMLInputElement).value = bookData?.UDC;
+    }
+
     useEffect(() => {
-        // const user = JSON.parse(localStorage.getItem('data'));
         if (localStorage.getItem('token')) {
             store.checkAuth()
         }
@@ -49,7 +79,16 @@ const EditLibraryBook: FC = () => {
     // const listItemsCategory = bookCategories.map((element) =>
     //     <option key={element.id} value={element.id}>{element.name}</option>
     // );
-
+    const goBack = () =>{
+        let prevpage = localStorage.getItem('prevLibrarianPage');
+        switch(prevpage){
+            case 'search': window.location.href=window.location.protocol + '//' + window.location.host +'/searchbookbyname';
+            break;
+            case 'pages': window.location.href=window.location.protocol + '//' + window.location.host +'/physicalbooksPages';
+            break;
+            default: window.location.href=window.location.protocol + '//' + window.location.host +'/';
+        }
+    }
     const saveBook = () => {
         if (lang != 'notchosen' && category != 'notchosen') {
             if (confirm('Вы уверены, что хотите сохранить изменения?')) {
@@ -104,7 +143,7 @@ const EditLibraryBook: FC = () => {
         ['Barcode', 'Штрихкод', bookData?.Barcode],
         ['Subject', 'Предмет', bookData?.Subject],
         ['CopyrightSigns', 'Авторские права', bookData?.CopyrightSigns],
-        ['Heading', 'Heading', bookData?.Heading],
+        ['Heading', 'Направление', bookData?.Heading],
         ['ISBN', 'ISBN', bookData?.ISBN],
         ['InventoryNumber', 'Инвентарный номер', bookData?.InventoryNumber],
         ['KeyWords', 'Ключевые слова', bookData?.KeyWords],
@@ -124,38 +163,8 @@ const EditLibraryBook: FC = () => {
         </tr>
     }
     );
-    const loadvalues = () => {
-        switch (bookData?.Language) {
-            case 'kaz': setLang('kaz');
-                break;
-            case 'rus': setLang('rus');
-                break;
-            case 'eng': setLang('eng');
-                break;
-            default: setLang('notchosen');
-        }
-        setCategory(bookData?.RLibraryCategoryRLibraryBook + '');
-        (document.getElementById("inputName") as HTMLInputElement).value = bookData?.NameRuBook;
-        (document.getElementById("inputAuthor") as HTMLInputElement).value = bookData?.Author;
-        (document.getElementById("inputPages") as HTMLInputElement).value = bookData?.Pages;
-        (document.getElementById("inputAnnotation") as HTMLInputElement).value = bookData?.Annotation;
-        (document.getElementById("inputBarcode") as HTMLInputElement).value = bookData?.Barcode;
-        (document.getElementById("inputSubject") as HTMLInputElement).value = bookData?.Subject;
-        (document.getElementById("inputCopyrightSigns") as HTMLInputElement).value = bookData?.CopyrightSigns;
-        (document.getElementById("inputHeading") as HTMLInputElement).value = bookData?.Heading;
-        (document.getElementById("inputISBN") as HTMLInputElement).value = bookData?.ISBN;
-        (document.getElementById("inputInventoryNumber") as HTMLInputElement).value = bookData?.InventoryNumber;
-        (document.getElementById("inputKeyWords") as HTMLInputElement).value = bookData?.KeyWords;
-        (document.getElementById("inputLLC") as HTMLInputElement).value = bookData?.LLC;
-        (document.getElementById("inputPrice") as HTMLInputElement).value = bookData?.Price;
-        (document.getElementById("inputPublishedCountryCity") as HTMLInputElement).value = bookData?.PublishedCountryCity;
-        (document.getElementById("inputPublishedTime") as HTMLInputElement).value = bookData?.PublishedTime;
-        (document.getElementById("inputPublishingHouse") as HTMLInputElement).value = bookData?.PublishingHouse;
-        (document.getElementById("inputTypeOfBook") as HTMLInputElement).value = bookData?.TypeOfBook;
-        (document.getElementById("inputUDC") as HTMLInputElement).value = bookData?.UDC;
-    }
-
-
+    
+    
     return (
         <div>
             {(() => {
@@ -165,7 +174,7 @@ const EditLibraryBook: FC = () => {
                     return <div style={{ textAlign: 'left', width: '1200px' }}>
                         <KPINavbar />
                         <br /><br /><br /><br /><br /><br />
-                        <Link to={"/physicalbooks"}><button className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button></Link> <br /><br />
+                        <button onClick={()=>goBack()}className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button><br /><br />
                         <br />
                         <h3>Редактировать книгу "{bookData?.NameRuBook}"</h3>
                         <button id='toClick' style={{visibility:'hidden'}} onLoad={()=>alert('a')} onClick={() => loadvalues()}>загрузить</button>
@@ -193,7 +202,7 @@ const EditLibraryBook: FC = () => {
                             </tr>
                         </tbody>
                         </table>
-
+                        
                         <button className="navbarbutton" onClick={() => saveBook()}>Сохранить</button><br />
                         <div style={{ color: messagecolor, fontWeight: 'bold' }}>{message}</div>
                     </div>

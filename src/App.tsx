@@ -36,6 +36,8 @@ import AddLibraryBook from './pages/AddLibraryBook'
 import DueBooks from './pages/DueBooks'
 import EditLibraryBook from './pages/EditLibraryBook'
 import TransferBook from './pages/TransferBook'
+import PhysicalBooksPages from './pages/PhysicalBooksPages'
+import PhysicalBooksSearch from './pages/PhysicalBooksSearch'
   
 
 const App:FC = () => {  
@@ -95,6 +97,8 @@ const App:FC = () => {
         <Route path="/techActDocument" element={<TechAct/>}/>
 
         <Route path="/physicalbooks" element={<PhysicalBooks/>}/>
+        <Route path="/physicalbooksPages" element={<PhysicalBooksPages/>}/>
+        <Route path="/searchbookbyname" element={<PhysicalBooksSearch/>}/>
         <Route path="/addlibrarybook" element={<AddLibraryBook/>}/>
         <Route path="/editlibrarybook" element={<EditLibraryBook/>}/>
         <Route path="/transferlibrarybook" element={<TransferBook/>}/>

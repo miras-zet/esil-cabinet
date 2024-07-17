@@ -2,7 +2,7 @@ import { FC, useContext, useEffect, useState } from 'react'
 import { Context } from '../main';
 import LoginForm from '../components/LoginForm';
 import { observer } from 'mobx-react-lite';
-import { Link, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import { TiArrowBack } from 'react-icons/ti';
@@ -63,6 +63,16 @@ const TransferBook: FC = () => {
                 }
             });
     }
+    const goBack = () =>{
+        let prevpage = localStorage.getItem('prevLibrarianPage');
+        switch(prevpage){
+            case 'search': window.location.href=window.location.protocol + '//' + window.location.host +'/searchbookbyname';
+            break;
+            case 'pages': window.location.href=window.location.protocol + '//' + window.location.host +'/physicalbooksPages';
+            break;
+            default: window.location.href=window.location.protocol + '//' + window.location.host +'/';
+        }
+    }
     return (
         <div>
             {(() => {
@@ -71,7 +81,7 @@ const TransferBook: FC = () => {
                     return <div style={{ textAlign: 'left', width: '1200px' }}>
                         <KPINavbar />
                         <br /><br />
-                        <Link to={"/physicalbooks"}><button className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button></Link> <br /><br />
+                        <button onClick={()=>goBack()}className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button> <br /><br />
                         <br />
                         <h3>Впишите ИИН студента, которому выдаётся книга "{bookname}".</h3>
                         <input id="inputIIN" className='btnNeutral' style={{ width: '300px' }} type="text" maxLength={12} placeholder='Введите ИИН'></input><br /><br />

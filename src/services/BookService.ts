@@ -3,6 +3,22 @@ import http from "../http-common";
 const getAllBooks = (): Promise<any> => {
     return http.get(`/books/allbooks`);
 };
+const getPhysicalBookPageCount = (): Promise<any> => {
+    return http.get(`/books/getphysicalbookpagecount`);
+};
+const getBooksByName = (): Promise<any> => {
+    const params = {
+        name: localStorage.getItem('bookSearchName'),
+    }
+    return http.get(`/books/getbooksbyname`,{params});
+};
+const getBooksPerPage = (page:number): Promise<any> => {
+    if (!Number.isNaN(parseInt(localStorage.getItem('currentPage')))) page = parseInt((localStorage.getItem('currentPage')));
+    const params = {
+        page: page,
+    }
+    return http.get(`/books/booksperpage`,{params});
+};
 const getBook = (id): Promise<any> => {
     const params = {
         id: id,
@@ -94,6 +110,9 @@ const getBookCategories = (): Promise<any> => {
 
 const BookService = {
     getAllBooks,
+    getPhysicalBookPageCount,
+    getBooksByName,
+    getBooksPerPage,
     getBook,
     editBook,
     getBookCategories,

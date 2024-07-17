@@ -2,7 +2,7 @@ import { FC, useContext, useEffect, useState } from 'react'
 import { Context } from '../main';
 import LoginForm from '../components/LoginForm';
 import { observer } from 'mobx-react-lite';
-import { Link, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import { TiArrowBack } from 'react-icons/ti';
@@ -88,6 +88,16 @@ const AddLibraryBook: FC = () => {
         }
 
     }
+    const goBack = () =>{
+        let prevpage = localStorage.getItem('prevLibrarianPage');
+        switch(prevpage){
+            case 'search': window.location.href=window.location.protocol + '//' + window.location.host +'/searchbookbyname';
+            break;
+            case 'pages': window.location.href=window.location.protocol + '//' + window.location.host +'/physicalbooksPages';
+            break;
+            default: window.location.href=window.location.protocol + '//' + window.location.host +'/';
+        }
+    }
     return (
         <div>
             {(() => {
@@ -96,7 +106,7 @@ const AddLibraryBook: FC = () => {
                     return <div style={{ textAlign: 'left', width: '1200px' }}>
                         <KPINavbar />
                         <br /><br /><br /><br /><br /><br />
-                        <Link to={"/physicalbooks"}><button className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button></Link> <br /><br />
+                        <button onClick={()=>goBack()}className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button><br /><br />
                         <br />
                         <h3>Добавить новую книгу</h3>
                         <table >
@@ -129,8 +139,8 @@ const AddLibraryBook: FC = () => {
                                 <td><input id="inputCopyrightSigns" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Авторские права'></input></td>
                             </tr>
                             <tr>
-                                <td style={{ paddingTop: '10px' }}>Heading</td>
-                                <td><input id="inputHeading" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Heading'></input></td>
+                                <td style={{ paddingTop: '10px' }}>Направление</td>
+                                <td><input id="inputHeading" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Направление'></input></td>
                             </tr>
                             <tr>
                                 <td style={{ paddingTop: '10px' }}>ISBN</td>
