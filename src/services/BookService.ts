@@ -8,10 +8,29 @@ const getPhysicalBookPageCount = (): Promise<any> => {
 };
 const getBooksByName = (): Promise<any> => {
     const params = {
-        name: localStorage.getItem('bookSearchName'),
+        name: localStorage.getItem('bookSearch'),
     }
     return http.get(`/books/getbooksbyname`,{params});
 };
+const getBooksByISBN = (): Promise<any> => {
+    const params = {
+        ISBN: localStorage.getItem('bookSearch'),
+    }
+    return http.get(`/books/getbooksbyisbn`,{params});
+};
+const getBooksByKeyWords = (): Promise<any> => {
+    const params = {
+        keywords: localStorage.getItem('bookSearch'),
+    }
+    return http.get(`/books/getbooksbykeywords`,{params});
+};
+const getBooksByInventory = (): Promise<any> => {
+    const params = {
+        inventory: localStorage.getItem('bookSearch'),
+    }
+    return http.get(`/books/getbooksbyinventory`,{params});
+};
+
 const getBooksPerPage = (page:number): Promise<any> => {
     if (!Number.isNaN(parseInt(localStorage.getItem('currentPage')))) page = parseInt((localStorage.getItem('currentPage')));
     const params = {
@@ -112,6 +131,9 @@ const BookService = {
     getAllBooks,
     getPhysicalBookPageCount,
     getBooksByName,
+    getBooksByISBN,
+    getBooksByKeyWords,
+    getBooksByInventory,
     getBooksPerPage,
     getBook,
     editBook,

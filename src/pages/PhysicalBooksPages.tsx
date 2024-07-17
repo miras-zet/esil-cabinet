@@ -134,7 +134,7 @@ const PhysicalBooksPages: FC = () => {
                     <h2 style={{ marginLeft: margin }}>Список книг</h2>
                     <br />
                     <Link to={"/addlibrarybook"}><button style={{ marginLeft: margin }} className='navbarbutton'>Добавить новую книгу</button></Link> <br /><br />
-                    {books.length > 0 ? <div style={{ marginLeft: margin }}><button onClick={()=>firstPage()}>1</button>&nbsp;<button onClick={()=>previousPage()}><GrFormPrevious /></button>&nbsp;<button onClick={()=>nextPage()}><GrFormNext /></button>&nbsp;<button onClick={()=>lastPage()}>{bookPageCount}</button>&nbsp;<input className='btnNeutral' maxLength={5} type='text' id='inputPageSearch' placeholder='Введите страницу'></input>&nbsp;<button onClick={()=>goToPage()}>Перейти</button><br />
+                    {books.length > 0 ? <div style={{ marginLeft: margin }}><button id="graybutton" onClick={()=>firstPage()}>1</button>&nbsp;<button id="graybutton" onClick={()=>previousPage()}><GrFormPrevious /></button>&nbsp;<button id="graybutton" onClick={()=>nextPage()}><GrFormNext /></button>&nbsp;<button id="graybutton" onClick={()=>lastPage()}>{bookPageCount}</button>&nbsp;<input className='btnNeutral' maxLength={5} style={{color:'black'}} type='text' id='inputPageSearch' placeholder='Введите страницу'></input>&nbsp;<button id="graybutton" onClick={()=>goToPage()}>Перейти</button><br />
                     <h4>Страница {page}</h4></div>:''}
                     <br/>
                     {books.length > 0 ? <table id='opaqueTable' style={{ fontSize: '10.5pt', marginLeft: '-30%', paddingLeft: '15px', maxWidth: '107%', tableLayout:'fixed'}}>

@@ -13,14 +13,46 @@ const PhysicalBooksSearch: FC = () => {
     const navigate = useNavigate();
     const [books, setBookData] = useState<Array<ILibraryBook>>([]);
     let [margin] = useState<string>('-23%');
+    let [specificLabel, setLabel] = useState<string>('')
     useEffect(() => {  
         // const user = JSON.parse(localStorage.getItem('data'));
-        BookService.getBooksByName().then((response) => {
-            setBookData(response.data);
-        }).catch((err) => {
-            console.log(err);
-            setBookData([]);
-        });
+        const searchType = localStorage.getItem('searchType');
+        switch(searchType){
+            case 'name':BookService.getBooksByName().then((response) => {
+                setBookData(response.data);
+                setLabel('в названии');
+            }).catch((err) => {
+                console.log(err);
+                setBookData([]);
+            });
+            break;
+            case 'isbn':BookService.getBooksByISBN().then((response) => {
+                setBookData(response.data);
+                setLabel('в ISBN');
+            }).catch((err) => {
+                console.log(err);
+                setBookData([]);
+            });
+            break;
+            case 'keywords':BookService.getBooksByKeyWords().then((response) => {
+                setBookData(response.data);
+                setLabel('в ключевых словах');
+            }).catch((err) => {
+                console.log(err);
+                setBookData([]);
+            });
+            break;
+            case 'inventory':BookService.getBooksByInventory().then((response) => {
+                setBookData(response.data);
+                setLabel('в инвентарном номере');
+            }).catch((err) => {
+                console.log(err);
+                setBookData([]);
+            });
+            break;
+            default: setBookData([]);
+        }
+        
     }, [])
     //alert(date);
     //const d = new Date();
@@ -87,8 +119,8 @@ const PhysicalBooksSearch: FC = () => {
                     <br /><br /><br />
                     <Link to={"/"}><button style={{ marginLeft: margin }} className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button></Link> <br /><br />
                     <br />
-                    <h2 style={{ marginLeft: margin }}>Список книг по запросу "{localStorage.getItem('bookSearchName')}"</h2>
-                    <h4 style={{ marginLeft: margin }}>Максимальное количество результатов - 1000</h4><br/>
+                    <h3 style={{ marginLeft: margin }}>Список книг по совпадениям "{localStorage.getItem('bookSearch')}" {specificLabel}</h3>
+                    <h5 style={{ marginLeft: margin }}>Максимальное количество результатов - 1000</h5><br/>
                     {books.length > 0 ? <table id='opaqueTable' style={{ fontSize: '10.5pt', marginLeft: '-30%', paddingLeft: '15px', maxWidth: '107%', tableLayout:'fixed'}}>
                         <tbody>
                             <tr><br/></tr>

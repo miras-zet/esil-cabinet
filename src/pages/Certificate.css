@@ -226,7 +226,10 @@ td {
   vertical-align: middle;
   text-align: center;
 }
-
+#graybutton{
+  background-color: lightgray;
+  color:black;
+}
 #anketa {
   overflow: hidden;
   font-family: 'Times New Roman', Times, serif;

@@ -26,7 +26,7 @@ const HomePage:FC = () => {
   const {store} = useContext(Context);  
   const {modal, open} = useContext(ModalContext); 
   const [kpiInfo, setKpiInfo] = useState<Array<IKPI>>([]);
-  
+  let [searchtype, setSearchType] = useState<string>('name');
  useEffect(() => {
     setKpiInfo([]);
 
@@ -77,20 +77,63 @@ const HomePage:FC = () => {
       }
     );
   }
-  const findBook = () =>{
+  const findBookName = () =>{
+    localStorage.setItem('searchType','name');
     let bookName = (document.getElementById("inputSearchBookByName") as HTMLInputElement).value;
     bookName = bookName.trim();
     (document.getElementById("inputSearchBookByName") as HTMLInputElement).value=bookName;
     if(bookName!=undefined && bookName.length>=4){
-      localStorage.setItem('bookSearchName',bookName+'');
+      localStorage.setItem('bookSearch',bookName+'');
       localStorage.setItem('prevLibrarianPage','home');
       window.location.href=window.location.protocol + '//' + window.location.host +'/searchbookbyname';
     }
     else{
       alert('Введите как минимум 4 символа в поле поиска');
     }
-    
   }
+  const findBookISBN = () =>{
+    localStorage.setItem('searchType','isbn');
+    let bookISBN = (document.getElementById("inputSearchBookByISBN") as HTMLInputElement).value;
+    bookISBN = bookISBN.trim();
+    (document.getElementById("inputSearchBookByISBN") as HTMLInputElement).value=bookISBN;
+    if(bookISBN!=undefined && bookISBN.length>=4){
+      localStorage.setItem('bookSearch',bookISBN+'');
+      localStorage.setItem('prevLibrarianPage','home');
+      window.location.href=window.location.protocol + '//' + window.location.host +'/searchbookbyname';
+    }
+    else{
+      alert('Введите как минимум 4 символа в поле поиска');
+    }
+  }
+  const findBookKeyWords = () =>{
+    localStorage.setItem('searchType','keywords');
+    let bookKeyWords = (document.getElementById("inputSearchBookByKeyWords") as HTMLInputElement).value;
+    bookKeyWords = bookKeyWords.trim();
+    (document.getElementById("inputSearchBookByKeyWords") as HTMLInputElement).value=bookKeyWords;
+    if(bookKeyWords!=undefined && bookKeyWords.length>=4){
+      localStorage.setItem('bookSearch',bookKeyWords+'');
+      localStorage.setItem('prevLibrarianPage','home');
+      window.location.href=window.location.protocol + '//' + window.location.host +'/searchbookbyname';
+    }
+    else{
+      alert('Введите как минимум 4 символа в поле поиска');
+    }
+  }
+  const findBookInventory = () =>{
+    localStorage.setItem('searchType','inventory');
+    let bookInventory = (document.getElementById("inputSearchBookByInventory") as HTMLInputElement).value;
+    bookInventory = bookInventory.trim();
+    (document.getElementById("inputSearchBookByInventory") as HTMLInputElement).value=bookInventory;
+    if(bookInventory!=undefined && bookInventory.length>=4){
+      localStorage.setItem('bookSearch',bookInventory+'');
+      localStorage.setItem('prevLibrarianPage','home');
+      window.location.href=window.location.protocol + '//' + window.location.host +'/searchbookbyname';
+    }
+    else{
+      alert('Введите как минимум 4 символа в поле поиска');
+    }
+  }
+  
   
   return (
     <div>
@@ -184,11 +227,23 @@ const HomePage:FC = () => {
             else if (role==='librarian'){
               return <div style={{textAlign:'left', width:'1000px'}}>
               <KPINavbar/>
-              <br/>
+              <br/><br/><br/><br/><br/><br/>
               <h2>Добро пожаловать!</h2>
               <br/>
-              <Link to="/physicalbooksPages"><button className='navbarbutton'>Список книг &nbsp;<FaBook style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link> &nbsp;<input type="text" id='inputSearchBookByName' className='btnNeutral' maxLength={100} placeholder='Поиск по названию'></input>&nbsp;<button onClick={()=>findBook()}>Найти</button><br/><br/><br/>
-              <Link to="/ebooks"><button className='navbarbutton' >Список электронных книг &nbsp;<FaDisplay style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/><br/>
+              <Link to="/physicalbooksPages"><button className='navbarbutton'>Список книг &nbsp;<FaBook style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link> <br/><br/>
+              Выберите настройки поиска<br/>
+              <select className='btnNeutral'>
+                <option onClick={()=>setSearchType('name')}>По названию</option>
+                <option onClick={()=>setSearchType('keywords')}>По ключевым словам</option>
+                <option onClick={()=>setSearchType('isbn')}>По ISBN</option>
+                <option onClick={()=>setSearchType('inventory')}>По инвентарному номеру</option>
+              </select><br/><br/>
+              {searchtype=='name'?<div><input type="text" id='inputSearchBookByName' className='btnNeutral' maxLength={100} placeholder='Поиск по названию'></input>&nbsp;<button id="graybutton" onClick={()=>findBookName()}>Найти</button></div>:''}
+              {searchtype=='keywords'?<div><input type="text" id='inputSearchBookByKeyWords' className='btnNeutral' maxLength={100} placeholder='Поиск по ключевым словам'></input>&nbsp;<button id="graybutton" onClick={()=>findBookKeyWords()}>Найти</button></div>:''}
+              {searchtype=='isbn'?<div><input type="text" id='inputSearchBookByISBN' className='btnNeutral' maxLength={100} placeholder='Поиск по ISBN'></input>&nbsp;<button id="graybutton" onClick={()=>findBookISBN()}>Найти</button></div>:''}
+              {searchtype=='inventory'?<div><input type="text" id='inputSearchBookByInventory' className='btnNeutral' maxLength={100} placeholder='Поиск по инвентарному номеру'></input>&nbsp;<button id="graybutton" onClick={()=>findBookInventory()}>Найти</button></div>:''} 
+              <br/><br/><br/>
+              <Link to="/ebooks"><button className='navbarbutton' >Список электронных книг &nbsp;<FaDisplay style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/>
               <br/>
               <Link to="/duebooks"><button className='redbutton' >Должники &nbsp;<IoIosAlarm style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link>
               </div>
