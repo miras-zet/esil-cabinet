@@ -39,10 +39,7 @@ const PhysicalBooksPages: FC = () => {
         if (confirm(`Вы уверены, что хотите удалить книгу "${name}"?`)) {
             BookService.deleteBook(id)
                 .then(() => {
-                    return BookService.getAllBooks();
-                })
-                .then((books) => {
-                    setBookData(books.data);
+                    location.reload();
                 })
                 .catch((err) => {
                     if (err.response && err.response.data && err.response.data.message) {

@@ -14,9 +14,9 @@ const PhysicalBooksSearch: FC = () => {
     const [books, setBookData] = useState<Array<ILibraryBook>>([]);
     let [margin] = useState<string>('-23%');
     let [specificLabel, setLabel] = useState<string>('')
+    const searchType = localStorage.getItem('searchType');
     useEffect(() => {  
         // const user = JSON.parse(localStorage.getItem('data'));
-        const searchType = localStorage.getItem('searchType');
         switch(searchType){
             case 'name':BookService.getBooksByName().then((response) => {
                 setBookData(response.data);
@@ -61,10 +61,7 @@ const PhysicalBooksSearch: FC = () => {
         if (confirm(`Вы уверены, что хотите удалить книгу "${name}"?`)) {
             BookService.deleteBook(id)
                 .then(() => {
-                    return BookService.getAllBooks();
-                })
-                .then((books) => {
-                    setBookData(books.data);
+                    location.reload();
                 })
                 .catch((err) => {
                     if (err.response && err.response.data && err.response.data.message) {
