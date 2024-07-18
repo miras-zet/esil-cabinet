@@ -33,6 +33,7 @@ const HomePage:FC = () => {
     if (localStorage.getItem('token')){
       store.checkAuth()
     }    
+    
   },[])
   
   // const kpiItems = kpiInfo.map((element)=>
@@ -85,7 +86,7 @@ const HomePage:FC = () => {
     if(bookName!=undefined && bookName.length>=4){
       localStorage.setItem('bookSearch',bookName+'');
       localStorage.setItem('prevLibrarianPage','home');
-      window.location.href=window.location.protocol + '//' + window.location.host +'/searchbookbyname';
+      window.location.href=window.location.protocol + '//' + window.location.host +'/searchbook';
     }
     else{
       alert('Введите как минимум 4 символа в поле поиска');
@@ -99,7 +100,7 @@ const HomePage:FC = () => {
     if(bookISBN!=undefined && bookISBN.length>=4){
       localStorage.setItem('bookSearch',bookISBN+'');
       localStorage.setItem('prevLibrarianPage','home');
-      window.location.href=window.location.protocol + '//' + window.location.host +'/searchbookbyname';
+      window.location.href=window.location.protocol + '//' + window.location.host +'/searchbook';
     }
     else{
       alert('Введите как минимум 4 символа в поле поиска');
@@ -113,7 +114,7 @@ const HomePage:FC = () => {
     if(bookKeyWords!=undefined && bookKeyWords.length>=4){
       localStorage.setItem('bookSearch',bookKeyWords+'');
       localStorage.setItem('prevLibrarianPage','home');
-      window.location.href=window.location.protocol + '//' + window.location.host +'/searchbookbyname';
+      window.location.href=window.location.protocol + '//' + window.location.host +'/searchbook';
     }
     else{
       alert('Введите как минимум 4 символа в поле поиска');
@@ -127,14 +128,45 @@ const HomePage:FC = () => {
     if(bookInventory!=undefined && bookInventory.length>=4){
       localStorage.setItem('bookSearch',bookInventory+'');
       localStorage.setItem('prevLibrarianPage','home');
-      window.location.href=window.location.protocol + '//' + window.location.host +'/searchbookbyname';
+      window.location.href=window.location.protocol + '//' + window.location.host +'/searchbook';
     }
     else{
       alert('Введите как минимум 4 символа в поле поиска');
     }
   }
   
+  const searchTypeSelected = (type:string) => {
+    localStorage.setItem('searchType',type);
+    setSearchType(type);
+    return 1;
+  }
+  interface Option {
+    id: number;
+    value: string;
+  }
   
+  const options: Option[] = [
+    { id: 1, value: "По названию" },
+    { id: 2, value: "По ключевым словам" },
+    { id: 3, value: "По ISBN" },
+    { id: 4, value: "По инвентарному номеру" }
+  ];
+
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedId = parseInt(event.target.value);
+    switch(selectedId){
+      case 1: searchTypeSelected('name');
+        break;
+      case 2: searchTypeSelected('keywords');
+        break;
+      case 3: searchTypeSelected('isbn');
+        break;
+      case 4: searchTypeSelected('inventory');
+        break;
+      default: searchTypeSelected('name');
+    }
+  };
+
   return (
     <div>
         {(() => {
@@ -232,12 +264,22 @@ const HomePage:FC = () => {
               <br/>
               <Link to="/physicalbooksPages"><button className='navbarbutton'>Список книг &nbsp;<FaBook style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link> <br/><br/>
               Выберите настройки поиска<br/>
-              <select className='btnNeutral'>
-                <option onClick={()=>setSearchType('name')}>По названию</option>
-                <option onClick={()=>setSearchType('keywords')}>По ключевым словам</option>
-                <option onClick={()=>setSearchType('isbn')}>По ISBN</option>
-                <option onClick={()=>setSearchType('inventory')}>По инвентарному номеру</option>
-              </select><br/><br/>
+              {/* <select id="searchSelector" onChange={()=>handleSearchSelector()} className='btnNeutral'>
+                <option id="optionName">По названию</option>
+                <option id="optionKeyWords">По ключевым словам</option>
+                <option id="optionISBN">По ISBN</option>
+                <option id="optionInventory">По инвентарному номеру</option>
+              </select> */}
+              <select onChange={handleSelectChange} className='btnNeutral' >
+
+        {options.map((option) => (
+          <option key={option.id} value={option.id}>
+            {option.value}
+          </option>
+        ))}
+      </select>
+      
+              <br/><br/>
               {searchtype=='name'?<div><input type="text" id='inputSearchBookByName' className='btnNeutral' maxLength={100} placeholder='Поиск по названию'></input>&nbsp;<button id="graybutton" onClick={()=>findBookName()}>Найти</button></div>:''}
               {searchtype=='keywords'?<div><input type="text" id='inputSearchBookByKeyWords' className='btnNeutral' maxLength={100} placeholder='Поиск по ключевым словам'></input>&nbsp;<button id="graybutton" onClick={()=>findBookKeyWords()}>Найти</button></div>:''}
               {searchtype=='isbn'?<div><input type="text" id='inputSearchBookByISBN' className='btnNeutral' maxLength={100} placeholder='Поиск по ISBN'></input>&nbsp;<button id="graybutton" onClick={()=>findBookISBN()}>Найти</button></div>:''}

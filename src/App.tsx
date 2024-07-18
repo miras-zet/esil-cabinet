@@ -98,7 +98,7 @@ const App:FC = () => {
 
         <Route path="/physicalbooks" element={<PhysicalBooks/>}/>
         <Route path="/physicalbooksPages" element={<PhysicalBooksPages/>}/>
-        <Route path="/searchbookbyname" element={<PhysicalBooksSearch/>}/>
+        <Route path="/searchbook" element={<PhysicalBooksSearch/>}/>
         <Route path="/addlibrarybook" element={<AddLibraryBook/>}/>
         <Route path="/editlibrarybook" element={<EditLibraryBook/>}/>
         <Route path="/transferlibrarybook" element={<TransferBook/>}/>
