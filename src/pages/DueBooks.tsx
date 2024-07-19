@@ -73,6 +73,7 @@ const DueBooks: FC = () => {
             && clearedbookname.toLowerCase().includes(booknamefilter.toLowerCase())) return <tr key={element.id}>
                 <td id="table-divider-stats">{element.fio}</td>
                 <td id="table-divider-stats">{element.bookname}</td>
+                <td id="table-divider-stats">{element.role=='plt_tutor'?'Преподаватель':'Студент'}</td> 
                 <td id="table-divider-stats">{moment(element.DateCreated).format("DD.MM.YYYY HH:mm")}</td>
                 <td id="table-divider-stats"><button className="redbutton" onClick={() => deleteBook(element.id, element.fio)}><FaTrashAlt /></button></td>
             </tr>
@@ -99,8 +100,9 @@ const DueBooks: FC = () => {
                         <tbody>
                             <tr><br /></tr>
                             <tr>
-                                <th id="table-divider-stats-header"><br />&nbsp;ФИО студента<br />&nbsp;</th>
+                                <th id="table-divider-stats-header"><br />&nbsp;ФИО<br />&nbsp;</th>
                                 <th id="table-divider-stats-header"><br />&nbsp;Название книги<br />&nbsp;</th>
+                                <th id="table-divider-stats-header"><br />&nbsp;Роль<br />&nbsp;</th>
                                 <th id="table-divider-stats-header"><br />&nbsp;Дата выдачи<br />&nbsp;</th>
                                 <th id="table-divider-stats-header"><br />&nbsp;Действия<br />&nbsp;</th>
                                 <th>&nbsp;&nbsp;</th>

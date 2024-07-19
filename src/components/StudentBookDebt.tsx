@@ -11,7 +11,7 @@ const StudentBookDebt: FC = () => {
   useEffect(() => {
     //setMargin('-35%');
     //if(window.innerWidth<940) setMargin('0%');
-    BookService.getDueBookForStudent().then((response) => {
+    BookService.getDueBookForUser().then((response) => {
       setDueData(response.data);
     });
     // UploadService.getDebtData().then((response) => {
