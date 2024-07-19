@@ -91,7 +91,7 @@ const AddLibraryBook: FC = () => {
     const goBack = () =>{
         let prevpage = localStorage.getItem('prevLibrarianPage');
         switch(prevpage){
-            case 'search': window.location.href=window.location.protocol + '//' + window.location.host +'/searchbookbyname';
+            case 'search': window.location.href=window.location.protocol + '//' + window.location.host +'/searchbook';
             break;
             case 'pages': window.location.href=window.location.protocol + '//' + window.location.host +'/physicalbooksPages';
             break;

@@ -116,6 +116,10 @@ const PhysicalBooksPages: FC = () => {
         }
         
     }
+    const addBookRedirect = () =>{
+        localStorage.setItem('prevLibrarianPage','pages');
+        navigate(`/addlibrarybook`);
+    }
     return (
         <div>
             {(() => {
@@ -130,7 +134,7 @@ const PhysicalBooksPages: FC = () => {
                     <br />
                     <h2 style={{ marginLeft: margin }}>Список книг</h2>
                     <br />
-                    <Link to={"/addlibrarybook"}><button style={{ marginLeft: margin }} className='navbarbutton'>Добавить новую книгу</button></Link> <br /><br />
+                    <button onClick={()=>addBookRedirect()}style={{ marginLeft: margin }} className='navbarbutton'>Добавить новую книгу</button><br /><br />
                     {books.length > 0 ? <div style={{ marginLeft: margin }}><button id="graybutton" onClick={()=>firstPage()}>1</button>&nbsp;<button id="graybutton" onClick={()=>previousPage()}><GrFormPrevious /></button>&nbsp;<button id="graybutton" onClick={()=>nextPage()}><GrFormNext /></button>&nbsp;<button id="graybutton" onClick={()=>lastPage()}>{bookPageCount}</button>&nbsp;<input className='btnNeutral' maxLength={5} style={{color:'black'}} type='text' id='inputPageSearch' placeholder='Введите страницу'></input>&nbsp;<button id="graybutton" onClick={()=>goToPage()}>Перейти</button><br />
                     <h4>Страница {page}</h4></div>:''}
                     <br/>
