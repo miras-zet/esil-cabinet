@@ -51,9 +51,7 @@ const AddLibraryBook: FC = () => {
             const Author = (document.getElementById("inputAuthor") as HTMLInputElement).value;
             const Pages = (document.getElementById("inputPages") as HTMLInputElement).value;
             const Annotation = (document.getElementById("inputAnnotation") as HTMLInputElement).value;
-            const Barcode = (document.getElementById("inputBarcode") as HTMLInputElement).value;
-            const Subject = (document.getElementById("inputSubject") as HTMLInputElement).value;
-            const CopyrightSigns = (document.getElementById("inputCopyrightSigns") as HTMLInputElement).value;
+            const Barcode = (document.getElementById("inputBarcode") as HTMLInputElement).value;  
             const Heading = (document.getElementById("inputHeading") as HTMLInputElement).value;
             const ISBN = (document.getElementById("inputISBN") as HTMLInputElement).value;
             const InventoryNumber = (document.getElementById("inputInventoryNumber") as HTMLInputElement).value;
@@ -67,7 +65,7 @@ const AddLibraryBook: FC = () => {
             const RLibraryCategoryRLibraryBook = category;
             const TypeOfBook = (document.getElementById("inputTypeOfBook") as HTMLInputElement).value;
             const UDC = (document.getElementById("inputUDC") as HTMLInputElement).value;
-            BookService.addBook(Name, Author, Pages, Annotation, Barcode, Subject, CopyrightSigns, Heading, ISBN, InventoryNumber, KeyWords, LLC, Language, Price, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, TypeOfBook, UDC).then((response) => {
+            BookService.addBook(Name, Author, Pages, Annotation, Barcode, Heading, ISBN, InventoryNumber, KeyWords, LLC, Language, Price, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, TypeOfBook, UDC).then((response) => {
                 setMessage(response.data.message);
                 if (response.data.message.indexOf('успешно') !== -1) {
                     setMessageColor("#2ecc71");
@@ -131,16 +129,8 @@ const AddLibraryBook: FC = () => {
                                 <td><input id="inputBarcode" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Штрихкод'></input></td>
                             </tr>
                             <tr>
-                                <td style={{ paddingTop: '10px' }}>Предмет</td>
-                                <td><input id="inputSubject" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Предмет'></input></td>
-                            </tr>
-                            <tr>
-                                <td style={{ paddingTop: '10px' }}>Авторские права</td>
-                                <td><input id="inputCopyrightSigns" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Авторские права'></input></td>
-                            </tr>
-                            <tr>
-                                <td style={{ paddingTop: '10px' }}>Направление</td>
-                                <td><input id="inputHeading" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Направление'></input></td>
+                                <td style={{ paddingTop: '10px' }}>ОП</td>
+                                <td><input id="inputHeading" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='ОП'></input></td>
                             </tr>
                             <tr>
                                 <td style={{ paddingTop: '10px' }}>ISBN</td>
@@ -155,8 +145,8 @@ const AddLibraryBook: FC = () => {
                                 <td><input id="inputKeyWords" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Ключевые слова'></input></td>
                             </tr>
                             <tr>
-                                <td style={{ paddingTop: '10px' }}>LLC</td>
-                                <td><input id="inputLLC" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='LLC'></input></td>
+                                <td style={{ paddingTop: '10px' }}>ББК</td>
+                                <td><input id="inputLLC" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='ББК'></input></td>
                             </tr>
                             
                             <tr>
@@ -180,8 +170,8 @@ const AddLibraryBook: FC = () => {
                                 <td><input id="inputTypeOfBook" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Тип книги'></input></td>
                             </tr>
                             <tr>
-                                <td style={{ paddingTop: '10px' }}>UDC</td>
-                                <td><input id="inputUDC" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='UDC'></input></td>
+                                <td style={{ paddingTop: '10px' }}>УДК</td>
+                                <td><input id="inputUDC" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='УДК'></input></td>
                             </tr>
                             <tr>
                                 <td style={{ paddingTop: '10px' }}>Язык</td>

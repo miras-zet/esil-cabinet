@@ -16,6 +16,7 @@ const DueBooks: FC = () => {
     const [dueData, setDueData] = useState<Array<IBookTransfer>>([]);
     let [fiofilter, setFioFilter] = useState<string>('');
     let [booknamefilter, setBookNameFilter] = useState<string>('');
+    let [bookbarcodefilter, setBookBarcodeFilter] = useState<string>('');
     //let [margin, setMargin] = useState<string>('-15%');
     useEffect(() => {
         // setMargin('-15%');
@@ -41,13 +42,18 @@ const DueBooks: FC = () => {
                 setBookNameFilter('');
             }
                 break;
+            case 3: {
+                (document.getElementById("bookBarcodeFilter") as HTMLInputElement).value = '';
+                setBookBarcodeFilter('');
+            }
+                break;
         }
     }
     //alert(date);
     //const d = new Date();
     //let current_year = d.getFullYear();
     const deleteBook = async (id: number, name: string) => {
-        if (confirm(`Вы уверены, что хотите удалить закрепление для студента ${name}?`)) {
+        if (confirm(`Вы уверены, что хотите вернуть книгу от пользователя ${name}?`)) {
             BookService.resolveBookTransfer(id)
                 .then(() => {
                     return BookService.getDueBooks();
@@ -67,12 +73,16 @@ const DueBooks: FC = () => {
     const booklist = dueData.map((element) => {
         let clearedfio = '';
         let clearedbookname = '';
+        let clearedbarcode = '';
         if (element.fio != null) clearedfio = element.fio;
         if (element.bookname != null) clearedbookname = element.bookname;
+        if (element.barcode != null) clearedbarcode = element.barcode;
         if (clearedfio.toLowerCase().includes(fiofilter.toLowerCase())
-            && clearedbookname.toLowerCase().includes(booknamefilter.toLowerCase())) return <tr key={element.id}>
+            && clearedbookname.toLowerCase().includes(booknamefilter.toLowerCase())
+            && clearedbarcode.toLowerCase().includes(bookbarcodefilter.toLowerCase())) return <tr key={element.id}>
                 <td id="table-divider-stats">{element.fio}</td>
                 <td id="table-divider-stats">{element.bookname}</td>
+                <td id="table-divider-stats">{element.barcode}</td>
                 <td id="table-divider-stats">{element.role=='plt_tutor'?'Преподаватель':'Студент'}</td> 
                 <td id="table-divider-stats">{moment(element.DateCreated).format("DD.MM.YYYY HH:mm")}</td>
                 <td id="table-divider-stats"><button className="redbutton" onClick={() => deleteBook(element.id, element.fio)}><FaTrashAlt /></button></td>
@@ -102,14 +112,16 @@ const DueBooks: FC = () => {
                             <tr>
                                 <th id="table-divider-stats-header"><br />&nbsp;ФИО<br />&nbsp;</th>
                                 <th id="table-divider-stats-header"><br />&nbsp;Название книги<br />&nbsp;</th>
+                                <th id="table-divider-stats-header"><br />&nbsp;Штрихкод<br />&nbsp;</th>
                                 <th id="table-divider-stats-header"><br />&nbsp;Роль<br />&nbsp;</th>
                                 <th id="table-divider-stats-header"><br />&nbsp;Дата выдачи<br />&nbsp;</th>
                                 <th id="table-divider-stats-header"><br />&nbsp;Действия<br />&nbsp;</th>
                                 <th>&nbsp;&nbsp;</th>
                             </tr>
                             <tr>
-                                <th><div className='btn' style={{ paddingLeft: '15%', whiteSpace: 'nowrap', backgroundColor: 'lightgrey', color: 'black' }}><FaMagnifyingGlass />&nbsp;&nbsp;<input type="text" id="fioFilter" style={{ backgroundColor: 'lightgrey', color: 'black' }} onChange={() => setFioFilter((document.getElementById("fioFilter") as HTMLInputElement).value)}></input>{fiofilter.length > 0 ? <b onClick={() => clearFilter(1)} style={{ fontSize: '10pt', fontWeight: 'bold', marginLeft: '-16px', marginTop: '-5px' }}><ImCross /></b> : ''}</div></th>
-                                <th><div className='btn' style={{ paddingLeft: '15%', whiteSpace: 'nowrap', backgroundColor: 'lightgrey', color: 'black' }}><FaMagnifyingGlass />&nbsp;&nbsp;<input type="text" id="bookNameFilter" style={{ backgroundColor: 'lightgrey', color: 'black' }} onChange={() => setBookNameFilter((document.getElementById("bookNameFilter") as HTMLInputElement).value)}></input>{booknamefilter.length > 0 ? <b onClick={() => clearFilter(2)} style={{ fontSize: '10pt', fontWeight: 'bold', marginLeft: '-16px', marginTop: '-5px' }}><ImCross /></b> : ''}</div></th>
+                                <th><div className='btn' style={{ paddingLeft: '5%', whiteSpace: 'nowrap', backgroundColor: 'lightgrey', color: 'black' }}><FaMagnifyingGlass />&nbsp;&nbsp;<input type="text" id="fioFilter" style={{ backgroundColor: 'lightgrey', color: 'black' }} onChange={() => setFioFilter((document.getElementById("fioFilter") as HTMLInputElement).value)}></input>{fiofilter.length > 0 ? <b onClick={() => clearFilter(1)} style={{ fontSize: '10pt', fontWeight: 'bold', marginLeft: '-16px', marginTop: '-5px' }}><ImCross /></b> : ''}</div></th>
+                                <th><div className='btn' style={{ paddingLeft: '5%', whiteSpace: 'nowrap', backgroundColor: 'lightgrey', color: 'black' }}><FaMagnifyingGlass />&nbsp;&nbsp;<input type="text" id="bookNameFilter" style={{ backgroundColor: 'lightgrey', color: 'black' }} onChange={() => setBookNameFilter((document.getElementById("bookNameFilter") as HTMLInputElement).value)}></input>{booknamefilter.length > 0 ? <b onClick={() => clearFilter(2)} style={{ fontSize: '10pt', fontWeight: 'bold', marginLeft: '-16px', marginTop: '-5px' }}><ImCross /></b> : ''}</div></th>
+                                <th><div className='btn' style={{ paddingLeft: '5%', whiteSpace: 'nowrap', backgroundColor: 'lightgrey', color: 'black' }}><FaMagnifyingGlass />&nbsp;&nbsp;<input type="text" id="bookBarcodeFilter" style={{ backgroundColor: 'lightgrey', color: 'black' }} onChange={() => setBookBarcodeFilter((document.getElementById("bookBarcodeFilter") as HTMLInputElement).value)}></input>{bookbarcodefilter.length > 0 ? <b onClick={() => clearFilter(3)} style={{ fontSize: '10pt', fontWeight: 'bold', marginLeft: '-16px', marginTop: '-5px' }}><ImCross /></b> : ''}</div></th>
                             </tr>
                             {booklist}
                             <tr>

@@ -32,8 +32,6 @@ const EditLibraryBook: FC = () => {
         (document.getElementById("inputPages") as HTMLInputElement).value = bookData?.Pages;
         (document.getElementById("inputAnnotation") as HTMLInputElement).value = bookData?.Annotation;
         (document.getElementById("inputBarcode") as HTMLInputElement).value = bookData?.Barcode;
-        (document.getElementById("inputSubject") as HTMLInputElement).value = bookData?.Subject;
-        (document.getElementById("inputCopyrightSigns") as HTMLInputElement).value = bookData?.CopyrightSigns;
         (document.getElementById("inputHeading") as HTMLInputElement).value = bookData?.Heading;
         (document.getElementById("inputISBN") as HTMLInputElement).value = bookData?.ISBN;
         (document.getElementById("inputInventoryNumber") as HTMLInputElement).value = bookData?.InventoryNumber;
@@ -82,7 +80,7 @@ const EditLibraryBook: FC = () => {
     const goBack = () =>{
         let prevpage = localStorage.getItem('prevLibrarianPage');
         switch(prevpage){
-            case 'search': window.location.href=window.location.protocol + '//' + window.location.host +'/searchbookbyname';
+            case 'search': window.location.href=window.location.protocol + '//' + window.location.host +'/searchbook';
             break;
             case 'pages': window.location.href=window.location.protocol + '//' + window.location.host +'/physicalbooksPages';
             break;
@@ -97,9 +95,7 @@ const EditLibraryBook: FC = () => {
                 const Author = (document.getElementById("inputAuthor") as HTMLInputElement).value;
                 const Pages = (document.getElementById("inputPages") as HTMLInputElement).value;
                 const Annotation = (document.getElementById("inputAnnotation") as HTMLInputElement).value;
-                const Barcode = (document.getElementById("inputBarcode") as HTMLInputElement).value;
-                const Subject = (document.getElementById("inputSubject") as HTMLInputElement).value;
-                const CopyrightSigns = (document.getElementById("inputCopyrightSigns") as HTMLInputElement).value;
+                const Barcode = (document.getElementById("inputBarcode") as HTMLInputElement).value;  
                 const Heading = (document.getElementById("inputHeading") as HTMLInputElement).value;
                 const ISBN = (document.getElementById("inputISBN") as HTMLInputElement).value;
                 const InventoryNumber = (document.getElementById("inputInventoryNumber") as HTMLInputElement).value;
@@ -113,7 +109,7 @@ const EditLibraryBook: FC = () => {
                 const RLibraryCategoryRLibraryBook = category;
                 const TypeOfBook = (document.getElementById("inputTypeOfBook") as HTMLInputElement).value;
                 const UDC = (document.getElementById("inputUDC") as HTMLInputElement).value;
-                BookService.editBook(id, Name, Author, Pages, Annotation, Barcode, Subject, CopyrightSigns, Heading, ISBN, InventoryNumber, KeyWords, LLC, Language, Price, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, TypeOfBook, UDC).then((response) => {
+                BookService.editBook(id, Name, Author, Pages, Annotation, Barcode, Heading, ISBN, InventoryNumber, KeyWords, LLC, Language, Price, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, TypeOfBook, UDC).then((response) => {
                     setMessage(response.data.message);
                     if (response.data.message.indexOf('успешно') !== -1) {
                         setMessageColor("#2ecc71");
@@ -141,19 +137,17 @@ const EditLibraryBook: FC = () => {
         ['Pages', 'Кол-во страниц', bookData?.Pages],
         ['Annotation', 'Аннотация', bookData?.Annotation],
         ['Barcode', 'Штрихкод', bookData?.Barcode],
-        ['Subject', 'Предмет', bookData?.Subject],
-        ['CopyrightSigns', 'Авторские права', bookData?.CopyrightSigns],
-        ['Heading', 'Направление', bookData?.Heading],
+        ['Heading', 'ОП', bookData?.Heading],
         ['ISBN', 'ISBN', bookData?.ISBN],
         ['InventoryNumber', 'Инвентарный номер', bookData?.InventoryNumber],
         ['KeyWords', 'Ключевые слова', bookData?.KeyWords],
-        ['LLC', 'LLC', bookData?.LLC],
+        ['LLC', 'ББК', bookData?.LLC],
         ['Price', 'Цена', bookData?.Price],
         ['PublishedCountryCity', 'Страна, город публикации', bookData?.PublishedCountryCity],
         ['PublishedTime', 'Год публикации', bookData?.PublishedTime],
         ['PublishingHouse', 'Издательство', bookData?.PublishingHouse],
         ['TypeOfBook', 'Тип книги', bookData?.TypeOfBook],
-        ['UDC', 'UDC', bookData?.UDC]
+        ['UDC', 'УДК', bookData?.UDC]
     ];
     const inputMap = inputValues.map((element) => {
         const [a, b] = element;
@@ -198,6 +192,9 @@ const EditLibraryBook: FC = () => {
                                     {bookData?.RLibraryCategoryRLibraryBook == 7 ? <option value="7" selected>Авторефераты</option>:<option value="7" >Авторефераты</option>}
                                     {bookData?.RLibraryCategoryRLibraryBook == 8 ? <option value="8" selected>Электронная база</option>:<option value="8" >Электронная база</option>}
                                     {bookData?.RLibraryCategoryRLibraryBook == 23 ? <option value="23" selected>Аудит</option>:<option value="23" >Аудит</option>}
+                                    {bookData?.RLibraryCategoryRLibraryBook == 25 ? <option value="25" selected>Монографии</option>:<option value="25" >Монографии</option>}
+                                    {bookData?.RLibraryCategoryRLibraryBook == 26 ? <option value="26" selected>Учебники</option>:<option value="26" >Учебники</option>}
+                                    {bookData?.RLibraryCategoryRLibraryBook == 27 ? <option value="27" selected>Учебные пособия</option>:<option value="27" >Учебные пособия</option>}
                                 </select></td>
                             </tr>
                         </tbody>

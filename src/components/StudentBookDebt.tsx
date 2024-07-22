@@ -30,7 +30,7 @@ const StudentBookDebt: FC = () => {
 
   if (dueData.length > 0) return (
     <div>
-      <h3><center>Текущие долги по книгам:</center></h3><br/>
+      <h4>Текущие долги по книгам:</h4>
       <table id='opaqueTable' style={{ fontSize: '12pt', paddingLeft: '15px', width: '107%' }}>
       <tbody>
         <tr><br /></tr>

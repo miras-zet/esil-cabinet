@@ -87,11 +87,12 @@ const PhysicalBooksPages: FC = () => {
     }
     const booklist = books.map((element) => {
             return <tr key={element.id}>
+            <td id="table-divider-stats" style={{ whiteSpace: 'nowrap' }}><button className="greenbutton" onClick={() => transferBook(element.id, element.NameRuBook)}><GrDocumentTransfer /></button>&nbsp;<button className="backbutton" onClick={() => editBook(element.id)}><FaPen /></button>&nbsp;<button className="redbutton" onClick={() => deleteBook(element.id, element.NameRuBook)}><FaTrashAlt /></button></td>
             <td id="table-divider-stats">{element.NameRuBook}</td>
             <td id="table-divider-stats">{element.Author}</td>
             <td id="table-divider-stats">{element.Annotation}</td>
-            <td id="table-divider-stats">{element.Subject}</td>
             <td id="table-divider-stats">{element.InventoryNumber}</td>
+            <td id="table-divider-stats">{element.Barcode}</td>
             <td id="table-divider-stats">{element.KeyWords}</td>
             <td id="table-divider-stats">{element.Language == 'kaz' ? <div>Казахский</div> : element.Language == 'rus' ? <div>Русский</div> : element.Language == 'eng' ? <div>Английский</div> : ''}</td>
             <td id="table-divider-stats">{element.Pages}</td>
@@ -101,7 +102,6 @@ const PhysicalBooksPages: FC = () => {
             <td id="table-divider-stats">{element.PublishedTime}</td>
             <td id="table-divider-stats">{element.PublishingHouse}</td>
             <td id="table-divider-stats">{element.ISBN}</td>      
-            <td id="table-divider-stats" style={{ whiteSpace: 'nowrap' }}><button className="greenbutton" onClick={() => transferBook(element.id, element.NameRuBook)}><GrDocumentTransfer /></button>&nbsp;<button className="backbutton" onClick={() => editBook(element.id)}><FaPen /></button>&nbsp;<button className="redbutton" onClick={() => deleteBook(element.id, element.NameRuBook)}><FaTrashAlt /></button></td>
         </tr>
         
     });
@@ -142,11 +142,12 @@ const PhysicalBooksPages: FC = () => {
                         <tbody>
                             <tr><br/></tr>
                             <tr>
+                                <th id="table-divider-stats-header" style={{minWidth:'180px'}}><br/>&nbsp;Действия<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'120px'}}><br/>&nbsp;Название<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'80px'}}><br />&nbsp;Автор<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'140px'}}><br/>&nbsp;Аннотация<br />&nbsp;</th>
-                                <th id="table-divider-stats-header" style={{minWidth:'80px'}}><br />&nbsp;Предмет<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'50px'}}><br />&nbsp;Инвентарный номер<br />&nbsp;</th>
+                                <th id="table-divider-stats-header" style={{minWidth:'50px'}}><br />&nbsp;Штрихкод<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'80px'}}><br />&nbsp;Ключевые слова<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'60px'}}><br />&nbsp;Язык<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'40px'}}><br />&nbsp;Кол-во страниц<br />&nbsp;</th>
@@ -155,8 +156,7 @@ const PhysicalBooksPages: FC = () => {
                                 <th id="table-divider-stats-header" style={{minWidth:'110px'}}><br/>&nbsp;Страна публикации<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'50px'}}><br />&nbsp;Год публикации<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'70px'}}><br />&nbsp;Издательство<br />&nbsp;</th>
-                                <th id="table-divider-stats-header" style={{minWidth:'90px'}}><br />&nbsp;ISBN<br />&nbsp;</th>
-                                <th id="table-divider-stats-header" style={{minWidth:'180px'}}><br/>&nbsp;Действия<br />&nbsp;</th>
+                                <th id="table-divider-stats-header" style={{minWidth:'90px'}}><br />&nbsp;ISBN<br />&nbsp;</th>   
                                 <th>&nbsp;&nbsp;</th>
 
                             </tr>

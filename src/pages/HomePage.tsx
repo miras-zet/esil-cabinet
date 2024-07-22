@@ -134,7 +134,20 @@ const HomePage:FC = () => {
       alert('Введите как минимум 4 символа в поле поиска');
     }
   }
-  
+  const findBookBarcode = () =>{
+    localStorage.setItem('searchType','barcode');
+    let bookBarcode = (document.getElementById("inputSearchBookByBarcode") as HTMLInputElement).value;
+    bookBarcode = bookBarcode.trim();
+    (document.getElementById("inputSearchBookByBarcode") as HTMLInputElement).value=bookBarcode;
+    if(bookBarcode!=undefined && bookBarcode.length>=3){
+      localStorage.setItem('bookSearch',bookBarcode+'');
+      localStorage.setItem('prevLibrarianPage','home');
+      window.location.href=window.location.protocol + '//' + window.location.host +'/searchbook';
+    }
+    else{
+      alert('Введите как минимум 3 символа в поле поиска');
+    }
+  }
   const searchTypeSelected = (type:string) => {
     localStorage.setItem('searchType',type);
     setSearchType(type);
@@ -149,7 +162,8 @@ const HomePage:FC = () => {
     { id: 1, value: "По названию" },
     { id: 2, value: "По ключевым словам" },
     { id: 3, value: "По ISBN" },
-    { id: 4, value: "По инвентарному номеру" }
+    { id: 4, value: "По инвентарному номеру" },
+    { id: 5, value: "По штрихкоду" }
   ];
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -163,17 +177,19 @@ const HomePage:FC = () => {
         break;
       case 4: searchTypeSelected('inventory');
         break;
+      case 5: searchTypeSelected('barcode');
+        break;
       default: searchTypeSelected('name');
     }
   };
 
   return (
     <div>
-        {(() => {
-            countKpi();
-            const role = localStorage.getItem('role');
+        {(() => {         
+            const role = localStorage.getItem('role');       
             let KPIScore="0";
             let textcolor;
+            if(role=='plt_tutor')countKpi();
             if(kpiInfo===undefined && role==='plt_tutor'){
               location.reload();
             }
@@ -284,6 +300,7 @@ const HomePage:FC = () => {
               {searchtype=='keywords'?<div><input type="text" id='inputSearchBookByKeyWords' className='btnNeutral' maxLength={100} placeholder='Поиск по ключевым словам'></input>&nbsp;<button id="graybutton" onClick={()=>findBookKeyWords()}>Найти</button></div>:''}
               {searchtype=='isbn'?<div><input type="text" id='inputSearchBookByISBN' className='btnNeutral' maxLength={100} placeholder='Поиск по ISBN'></input>&nbsp;<button id="graybutton" onClick={()=>findBookISBN()}>Найти</button></div>:''}
               {searchtype=='inventory'?<div><input type="text" id='inputSearchBookByInventory' className='btnNeutral' maxLength={100} placeholder='Поиск по инвентарному номеру'></input>&nbsp;<button id="graybutton" onClick={()=>findBookInventory()}>Найти</button></div>:''} 
+              {searchtype=='barcode'?<div><input type="text" id='inputSearchBookByBarcode' className='btnNeutral' maxLength={100} placeholder='Поиск по штрихкоду'></input>&nbsp;<button id="graybutton" onClick={()=>findBookBarcode()}>Найти</button></div>:''} 
               <br/><br/><br/>
               <Link to="/ebooks"><button className='navbarbutton' >Список электронных книг &nbsp;<FaDisplay style={{verticalAlign:'middle', marginTop:'-4px'}}/></button></Link><br/><br/>
               <br/>

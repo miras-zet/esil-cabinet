@@ -38,21 +38,25 @@ const getBooksPerPage = (page:number): Promise<any> => {
     }
     return http.get(`/books/booksperpage`,{params});
 };
+const getBooksByBarcode = (): Promise<any> => {
+    const params = {
+        barcode: localStorage.getItem('bookSearch'),
+    }
+    return http.get(`/books/getbooksbybarcode`,{params});
+};
 const getBook = (id): Promise<any> => {
     const params = {
         id: id,
     }
     return http.get(`/books/getbook`, { params });
 };
-const addBook = (Name, Author, Pages, Annotation, Barcode, Subject, CopyrightSigns, Heading, ISBN, InventoryNumber, KeyWords, LLC, Language, Price, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, TypeOfBook, UDC): Promise<any> => {
+const addBook = (Name, Author, Pages, Annotation, Barcode, Heading, ISBN, InventoryNumber, KeyWords, LLC, Language, Price, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, TypeOfBook, UDC): Promise<any> => {
     const params = {
         Name: Name,
         Author: Author,
         Pages: Pages,
         Annotation: Annotation,
         Barcode: Barcode,
-        Subject: Subject,
-        CopyrightSigns: CopyrightSigns,
         Heading: Heading,
         ISBN: ISBN,
         InventoryNumber: InventoryNumber,
@@ -69,7 +73,7 @@ const addBook = (Name, Author, Pages, Annotation, Barcode, Subject, CopyrightSig
     }
     return http.get(`/books/addbook`, { params });
 };
-const editBook = (id, Name, Author, Pages, Annotation, Barcode, Subject, CopyrightSigns, Heading, ISBN, InventoryNumber, KeyWords, LLC, Language, Price, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, TypeOfBook, UDC): Promise<any> => {
+const editBook = (id, Name, Author, Pages, Annotation, Barcode, Heading, ISBN, InventoryNumber, KeyWords, LLC, Language, Price, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, TypeOfBook, UDC): Promise<any> => {
     const params = {
         id: id,
         Name: Name,
@@ -77,8 +81,6 @@ const editBook = (id, Name, Author, Pages, Annotation, Barcode, Subject, Copyrig
         Pages: Pages,
         Annotation: Annotation,
         Barcode: Barcode,
-        Subject: Subject,
-        CopyrightSigns: CopyrightSigns,
         Heading: Heading,
         ISBN: ISBN,
         InventoryNumber: InventoryNumber,
@@ -134,6 +136,7 @@ const BookService = {
     getBooksByISBN,
     getBooksByKeyWords,
     getBooksByInventory,
+    getBooksByBarcode,
     getBooksPerPage,
     getBook,
     editBook,
