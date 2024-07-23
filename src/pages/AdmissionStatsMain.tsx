@@ -4,11 +4,14 @@ import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import DocsService from '../services/DocsService';
 import IAdmissionStatsMain from '../models/IAdmissionStatsMain';
+import moment from 'moment';
+import { exportHtmlTableToExcel } from '../models/exportHtmlTableToExcel';
 
 const AdmissionStatsMain: FC = () => {
     // const navigate = useNavigate();
     const [applicantStats, setApplicantStats] = useState<Array<IAdmissionStatsMain>>([]);
     let [margin, setMargin] = useState<string>('-23%');
+    moment.locale('ru');
     useEffect(() => {
         setMargin('-23%');
         if(window.innerWidth<1317) setMargin('0%');
@@ -25,6 +28,9 @@ const AdmissionStatsMain: FC = () => {
     //   setModal(modals)
     // },[])
     //alert(date);
+    const handleExport = () => {
+        exportHtmlTableToExcel('opaqueTable', `Статистика по ОП ${moment(Date.now()).format("LL")}`, [310, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80, 80],[1,2,3,4,5,6,7,8,9,10]);
+    };
     const d = new Date();
     let current_year = d.getFullYear();
     const admissionStats = applicantStats.map((element) =>
@@ -82,6 +88,7 @@ const AdmissionStatsMain: FC = () => {
                         <br/>
                         <div id="table-divider-stats-header" style={{marginLeft: margin,textAlign:'left',paddingLeft:'4%',height:'100%',width:'40%'}}><br/>{admissionStatsMini}<br/></div>
                         <br/>
+                        <button className='greenbutton' style={{ marginLeft: margin }} onClick={handleExport}>Экспортировать в Excel</button><br /><br />
                         <table id='opaqueTable' style={{ fontSize:'8pt', marginLeft: margin, paddingLeft: '15px', width: '107%' }}>
                             <tbody>
                                 <tr><br/></tr>

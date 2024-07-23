@@ -33,7 +33,7 @@ const AdmissionStats: FC = () => {
     const d = new Date();
     let current_year = d.getFullYear();
     const handleExport = () => {
-        exportHtmlTableToExcel('opaqueTable', `Статистика по неделям ${moment(Date.now()).format("LL")}`, [260, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60]);
+        exportHtmlTableToExcel('opaqueTable', `Статистика по неделям ${moment(Date.now()).format("LL")}`, [260, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60],[]);
     };
     const admissionStats = applicantStats.map((element) =>
         <tr key={element.StudyFormName}>
