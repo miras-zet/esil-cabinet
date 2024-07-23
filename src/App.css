@@ -65,6 +65,10 @@ ul {
   background-color:#088c64;
   color:white;
 }
+.webviewer{
+  height:100vh;
+  width: 1200px;
+}
 
 .backbutton{
   background-color:silver;

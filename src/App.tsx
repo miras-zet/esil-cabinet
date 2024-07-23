@@ -31,13 +31,14 @@ import TechPageConstructor from './pages/TechPageConstructor'
 import TechAct from './pages/TechAct'
 import AdmissionStatsUpdated from './pages/AdmissionStatsUpdated'
 import AdmissionStatsMain from './pages/AdmissionStatsMain'
-import PhysicalBooks from './pages/PhysicalBooks'
+//import PhysicalBooks from './pages/[unused]PhysicalBooks'
 import AddLibraryBook from './pages/AddLibraryBook'
 import DueBooks from './pages/DueBooks'
 import EditLibraryBook from './pages/EditLibraryBook'
 import TransferBook from './pages/TransferBook'
 import PhysicalBooksPages from './pages/PhysicalBooksPages'
 import PhysicalBooksSearch from './pages/PhysicalBooksSearch'
+import ReadEBook from './pages/ReadEBook'
   
 
 const App:FC = () => {  
@@ -73,7 +74,7 @@ const App:FC = () => {
       <Routes>
         <Route path="/" element={ <HomePage /> } />
 
-        <Route path="/ebooks" element={<EBooks />}/>
+        
 
         <Route path="/applicants" element={<ApplicantList />}/>
         <Route path="/addapplicant" element={<AddApplicant/>}/>
@@ -96,7 +97,9 @@ const App:FC = () => {
         <Route path="/techSpecifyDocument" element={<TechPageConstructor/>}/>
         <Route path="/techActDocument" element={<TechAct/>}/>
 
-        <Route path="/physicalbooks" element={<PhysicalBooks/>}/>
+        {/* <Route path="/physicalbooks" element={<PhysicalBooks/>}/> */}
+        <Route path="/ebooks" element={<EBooks />}/>
+        <Route path="/readPDF" element={<ReadEBook />}/>
         <Route path="/physicalbooksPages" element={<PhysicalBooksPages/>}/>
         <Route path="/searchbook" element={<PhysicalBooksSearch/>}/>
         <Route path="/addlibrarybook" element={<AddLibraryBook/>}/>

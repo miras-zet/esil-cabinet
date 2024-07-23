@@ -6,6 +6,9 @@ const getAllBooks = (): Promise<any> => {
 const getPhysicalBookPageCount = (): Promise<any> => {
     return http.get(`/books/getphysicalbookpagecount`);
 };
+const getEBookPageCount = (): Promise<any> => {
+    return http.get(`/books/getebookpagecount`);
+};
 const getBooksByName = (): Promise<any> => {
     const params = {
         name: localStorage.getItem('bookSearch'),
@@ -38,6 +41,13 @@ const getBooksPerPage = (page:number): Promise<any> => {
     }
     return http.get(`/books/booksperpage`,{params});
 };
+const getEBooksPerPage = (page:number): Promise<any> => {
+    if (!Number.isNaN(parseInt(localStorage.getItem('currentEPage')))) page = parseInt((localStorage.getItem('currentEPage')));
+    const params = {
+        page: page,
+    }
+    return http.get(`/books/ebooksperpage`,{params});
+};
 const getBooksByBarcode = (): Promise<any> => {
     const params = {
         barcode: localStorage.getItem('bookSearch'),
@@ -49,6 +59,12 @@ const getBook = (id): Promise<any> => {
         id: id,
     }
     return http.get(`/books/getbook`, { params });
+};
+const getEBook = (id): Promise<any> => {
+    const params = {
+        id: id,
+    }
+    return http.get(`/books/getebook`, { params });
 };
 const addBook = (Name, Author, Pages, Annotation, Barcode, Heading, ISBN, InventoryNumber, KeyWords, LLC, Language, Price, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, TypeOfBook, UDC): Promise<any> => {
     const params = {
@@ -132,13 +148,16 @@ const getBookCategories = (): Promise<any> => {
 const BookService = {
     getAllBooks,
     getPhysicalBookPageCount,
+    getEBookPageCount,
     getBooksByName,
     getBooksByISBN,
     getBooksByKeyWords,
     getBooksByInventory,
     getBooksByBarcode,
     getBooksPerPage,
+    getEBooksPerPage,
     getBook,
+    getEBook,
     editBook,
     getBookCategories,
     addBook,

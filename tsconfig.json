@@ -6,7 +6,7 @@
     "module": "ESNext",
     "skipLibCheck": true,
     "esModuleInterop": true,
-
+    "types": ["node"],
     /* Bundler mode */
     "moduleResolution": "Node",
     "allowImportingTsExtensions": true,
@@ -24,4 +24,5 @@
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
+  
 }
