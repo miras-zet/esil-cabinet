@@ -87,7 +87,7 @@ const AdmissionStatsMain: FC = () => {
                         <h2 style={{ marginLeft: margin}}>Статистика по абитуриентам ({current_year}-{current_year+1} учебный год)</h2>
                         <br/>
                         <div id="table-divider-stats-header" style={{marginLeft: margin,textAlign:'left',paddingLeft:'4%',height:'100%',width:'40%'}}><br/>{admissionStatsMini}<br/></div>
-                        <br/>
+                        <br/> 
                         <button className='greenbutton' style={{ marginLeft: margin }} onClick={handleExport}>Экспортировать в Excel</button><br /><br />
                         <table id='opaqueTable' style={{ fontSize:'8pt', marginLeft: margin, paddingLeft: '15px', width: '107%' }}>
                             <tbody>
