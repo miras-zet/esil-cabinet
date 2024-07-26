@@ -71,7 +71,7 @@ export function Prilozhenie29(certificat:CertResponse)  {
 						Справка выдана для предъявления в 
 						<br/>отделение Государственной корпорации.<br/>
 						Срок обучения в учебном заведении {certificat?.course_count} года.<br/>
-						Период обучения с {moment(certificat?.start_date).format("DD.MM.YYYY")} года по 30.06.{2024+certificat!.course_count-certificat!.course_number} года. <br/>
+						Период обучения с {moment(certificat?.start_date).format("DD.MM.YYYY")} года по 30.06.{2025+certificat!.course_count-certificat!.course_number} года. <br/>
 						Примечание: справка действительна 1 год. В случаях отчисления обучающегося из учебного заведения или перевода на заочную форму обучения, руководитель учебного заведения извещает отделение Государственной корпорации по месту жительства получателя пособия. 
 						</p>
 					</div>
