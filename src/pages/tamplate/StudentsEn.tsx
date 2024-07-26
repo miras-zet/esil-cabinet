@@ -64,7 +64,7 @@ export function StudentsEn(certificat:CertResponse)  {
                         <br/>{certificat?.study_form_name_en} <br/>                         
                         {certificat.grant_type === -4 && <><b>State grant</b> / On a paid basis <br/></>}
                         {certificat.grant_type === -7 && <>State grant / <b>On a paid basis </b><br/></>}
-						Present reference is valid for  2023/2024 academic year.<br/>						
+						Present reference is valid for  2024/2025 academic year.<br/>						
 						The term of study at the university is – {certificat?.course_count} years.<br/>
 						Duration of study  {moment(certificat?.start_date).format("DD.MM.YYYY")} - 30.06.{2024+certificat!.course_count-certificat!.course_number}. <br/>
                         The certificate was issued for presentation at the place of claim.

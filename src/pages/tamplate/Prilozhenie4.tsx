@@ -74,7 +74,7 @@ export function Prilozhenie4(certificat:CertResponse)  {
                         , {moment(certificat?.birth_date).format("DD.MM.YYYY")} г.р. </b> в том, что он(а) действительно является  обучающим(ей)ся в <u><b> Учреждения "Esil University"</b> <b>лицензия № KZ08LAA00032358  от 01.04. 2022 г., без ограничения</b></u><br/> 
                         <b>{certificat?.course_number}</b> курса специальность/ОП <b>{certificat?.specialization_code} - "{certificat?.specialization_name_ru}" </b>,
 						<br/>Форма обучения: {certificat?.study_form_name_ru} <br/> 
-						Справка действительна на 2023/2024 учебный год.<br/>
+						Справка действительна на 2024/2025 учебный год.<br/>
 						Справка выдана для предъявления центр обслуживания населения отделение Государственной корпорации.<br/>
 						Срок обучения в учебном заведении {certificat?.course_count} года.<br/>
 						Период обучения с {moment(certificat?.start_date).format("DD.MM.YYYY")} года по 30.06.{2024+certificat!.course_count-certificat!.course_number} года. <br/>

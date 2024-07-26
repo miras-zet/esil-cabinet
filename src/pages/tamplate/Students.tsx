@@ -66,7 +66,7 @@ export function Students(certificat:CertResponse)  {
 						<br/>Форма обучения: {certificat?.study_form_name_ru} <br/>                         
                         {certificat.grant_type === -4 && <><b>Государственный грант</b> / На платной основе / Грант Акимата<br/></>}
                         {certificat.grant_type === -7 && <>Государственный грант / <b>На платной основе </b>/ Грант Акимата<br/></>}
-						Справка действительна на 2023/2024 учебный год.<br/>						
+						Справка действительна на 2024/2025 учебный год.<br/>						
 						Срок обучения в учебном заведении {certificat?.course_count} года.<br/>
 						Период обучения с {moment(certificat?.start_date).format("DD.MM.YYYY")} года по 30.06.{2024+certificat!.course_count-certificat!.course_number} года. <br/>
 						Справка выдана для предъявления по месту требования.
