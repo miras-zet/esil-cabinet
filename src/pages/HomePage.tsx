@@ -226,7 +226,7 @@ const HomePage:FC = () => {
                   <h2>{store.isAuth ? `Добро пожаловать, ${store.user.lastname} ${store.user.name}`  : 'АВТОРИЗУЙТЕСЬ'}</h2>       
                   <button className='navbarbutton' onClick={open}>Получить новую справку</button>
                   &nbsp;&nbsp;<Link to="/list"><button className='navbarbutton' onClick={()=> store.getCert()}>История подачи справок</button></Link>
-                  &nbsp;&nbsp;<Link to="/ebooks"><button className='navbarbutton'>Электронная библиотека</button></Link>
+                  {/* &nbsp;&nbsp;<Link to="/ebooks"><button className='navbarbutton'>Электронная библиотека</button></Link> */}
                   <br/><br/><StudentBookDebt/>
                   <br/><StudentDebt/>
                   <br/>
