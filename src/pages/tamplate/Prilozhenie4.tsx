@@ -19,7 +19,12 @@ export function Prilozhenie4(certificat:CertResponse)  {
       const qrcodeValue = `${window.location.host}/certificate/student/${certificat.id}`; 
       const generatePdf = () => {
         const report = document.getElementById('report');
-        html2pdf().from(report).save()
+        var opt = {
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2.5 },
+          jsPDF: { orientation: 'portrait' },
+      };
+        html2pdf().set(opt).from(report).save()
       };
 
   return (
@@ -39,7 +44,7 @@ export function Prilozhenie4(certificat:CertResponse)  {
          <div className="qr">   
             <QRCode value={qrcodeValue} />
         </div>
-        <div className="shapka" >
+        <div className="shapka-small" >
 				<p>
                 Приложение 4<br/>
                 к Правилам исчисления<br/>
@@ -68,18 +73,18 @@ export function Prilozhenie4(certificat:CertResponse)  {
                         flexDirection: "column", 
                         marginBottom: 70
                     }}>
-					<div className="bodytext">
+					<div className="bodytext-small">
 						<h3>СПРАВКА</h3>
 						<p>Дан(а) гражданину(ке) <b>{certificat?.lastname} {certificat?.name} {certificat?.middlename}  
                         , {moment(certificat?.birth_date).format("DD.MM.YYYY")} г.р. </b> в том, что он(а) действительно является  обучающим(ей)ся в <u><b> Учреждения "Esil University"</b> <b>лицензия № KZ08LAA00032358  от 01.04. 2022 г., без ограничения</b></u><br/> 
-                        <b>{certificat?.course_number}</b> курса специальность/ОП <b>{certificat?.specialization_code} - "{certificat?.specialization_name_ru}" </b>,
-						<br/>Форма обучения: {certificat?.study_form_name_ru} <br/> 
+                        <b>{certificat?.course_number}</b> класса/курса, форма обучения: {certificat?.study_form_name_ru}<br/> 
 						Справка действительна на 2024/2025 учебный год.<br/>
-						Справка выдана для предъявления центр обслуживания населения отделение Государственной корпорации.<br/>
-						Срок обучения в учебном заведении {certificat?.course_count} года.<br/>
-						Период обучения с {moment(certificat?.start_date).format("DD.MM.YYYY")} года по 30.06.{2025+certificat!.course_count-certificat!.course_number} года. <br/>
-						Примечание: справка действительна 1 год. В случаях отчисления обучающегося из учебного заведения или перевода на заочную форму обучения, руководитель учебного заведения извещает отделение Государственной корпорации по месту жительства получателя пособия.
-						
+						Справка выдана для предъявления в центр обслуживания населения <br/>отделение Государственной корпорации.<br/>
+						Срок обучения в организации образования {certificat?.course_count} лет,<br/>
+						период обучения с {moment(certificat?.start_date).format("DD.MM.YYYY")} года по 30.06.{2025+certificat!.course_count-certificat!.course_number} года. <br/>
+						Примечание: справка действительна 1 год. <br/>В случаях отчисления обучающегося из организации образования или перевода на
+заочную форму обучения, руководитель организации образования извещает отделение
+Государственной корпорации по местожительству получателя социальной выплаты.
 						</p>
 					</div>
 				</div>
