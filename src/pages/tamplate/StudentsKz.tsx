@@ -6,7 +6,7 @@ import html2pdf from 'html2pdf.js/dist/html2pdf.min';
 
 
 
-export function StudentsEn(certificat:CertResponse)  {
+export function StudentsKz(certificat:CertResponse)  {
     // const [certid] = useState<number>(id);
     // const [certificat, setCertificat] = useState<CertResponse>();
     
@@ -62,34 +62,30 @@ export function StudentsEn(certificat:CertResponse)  {
                         marginBottom: 70
                     }}>
 					<div className="bodytext">
-						<h3>REFERENCE</h3>
-						<p>This reference is given to  <b>{certificat?.lastname} {certificat?.name}</b> , date of birth {moment(certificat?.birth_date).format("DD.MM.YYYY")} to confirm that he(she) is a  <b>{certificat?.course_number}</b> year student of the specialty   <b>{certificat?.specialization_code} - "{certificat?.specialization_name_en}" </b>,
-                        <u><b> «Esil University» State license № KZ08LAA00032358, date of issue 01.04.2022 (without time limitation)</b></u><br/> 
-                        <br/>{certificat?.study_form_name_en} <br/>                         
-                        {certificat.grant_type === -4 && <><b>State grant</b> / On a paid basis <br/></>}
-                        {certificat.grant_type === -7 && <>State grant / <b>On a paid basis </b><br/></>}
-						Present reference is valid for  2024/2025 academic year.<br/>						
-						The term of study at the university is – {certificat?.course_count} years.<br/>
-						Duration of study  {moment(certificat?.start_date).format("DD.MM.YYYY")} - 30.06.{2025+certificat!.course_count-certificat!.course_number}. <br/>
-                        The certificate was issued for presentation at the place of claim.
+						<h3>Анықтама</h3>
+						<p>Азамат (ша) <b><u>{certificat?.lastname} {certificat?.name} {certificat?.middlename}</u></b>, {moment(certificat?.birth_date).format("DD.MM.YYYY")} ж.т., "Esil University" мекемесінің <b><u>{certificat?.specialization_code} - {certificat?.specialization_name_kz} {certificat?.course_number}</u></b> курс студенті болып табылады,
+                        (мемлекеттік лицензия № KZ08LAA00032358, берілген күні 01.04.2022 жыл, мерзім шектеусіз).<br/> 
+                        <br/>
+                        Оқыту нысаны: <b><u>{certificat?.study_form_name_kz}</u></b><br/>                         
+                        {certificat.grant_type === -4 && <><b><u>Мемлекеттік грант</u></b> / Ақылы негізде / Әкімшілік гранты<br/></>}
+                        {certificat.grant_type === -7 && <>Мемлекеттік грант / <b><u>Ақылы негізде</u></b> / Әкімшілік гранты<br/></>}
+						Анықтама 2024/2025 оқу жылына жарамды.<br/>						
+						Оқу орнында оқу мерзімі – {certificat?.course_count} жыл.<br/>
+						Оқу кезеңі  {moment(certificat?.start_date).format("DD.MM.YYYY")} жылдан 30.06.{2025+certificat!.course_count-certificat!.course_number} жылға дейін.<br/>
                         </p>
 					</div>
 				</div>
-			    <div style={{marginBottom: 30, textAlign: "left"}}> 
-                    P.P.:
-				</div>
 				<div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "0 10%"}}>
-					<div> 
-						<b>Chief Specialist of the Registration <br />
-and Student Service Department
-</b>
+					<div style={{textAlign:'left', marginLeft:'-12.5%'}}> 
+						Білім алушыларға қызмет көрсету<br />
+                        және тіркеу орталығының бас маманы
 					</div>
 					<div>
-						<b>S. Ablkasenova</b>
+						<b>Аблкасенова С.Г.</b>
 					</div>
 				</div>
 				<div style={{float:"left", fontSize:14, marginTop:30, textAlign:"left"}}>
-					<p>8 (7172) 72-54-07 (internal 143)</p>
+					<p>8 (7172) 72-54-07 (вн 143)</p>
 				</div>
 			</div>           
 
