@@ -40,6 +40,27 @@ const getDebtData = () : Promise<any> =>{
 const getExcelDate = () : Promise<any> =>{
   return http.get(`/excel/getdocdate`);
 };
+const getDormRequestForUser = () : Promise<any> =>{
+  const userid = localStorage.getItem('user_id');
+  return http.get(`/upload/getdormrequest/${userid}`);
+};
+const getDormRequestsData = () : Promise<any> =>{
+  return http.get(`/upload/getalldormrequests`);
+};
+const approveDormRequestForUser = (iin) : Promise<any> =>{
+  return http.get(`/upload/approvedormrequest/${iin}`);
+};
+const createDormRequestForUser = () : Promise<any> =>{
+  const userid = localStorage.getItem('user_id');
+  return http.get(`/upload/createdormrequest/${userid}`);
+};
+const createDormRequestForUserSelected = (id) : Promise<any> =>{
+  return http.get(`/upload/createdormrequest/${id}`);
+};
+const deleteDormRequestForUser = () : Promise<any> =>{
+  const userid = localStorage.getItem('user_id');
+  return http.get(`/upload/deletedormrequest/${userid}`);
+};
 const getUMKDMoodle = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id');
   return http.get(`/upload/getumkdmoodle/${userid}`);
@@ -95,6 +116,12 @@ const UploadService = {
   getCategoryScores,
   getExcelDate,
   getUMKDMoodle,
+  getDormRequestsData,
+  getDormRequestForUser,
+  createDormRequestForUser,
+  createDormRequestForUserSelected,
+  approveDormRequestForUser,
+  deleteDormRequestForUser,
   getUMKDMoodleForUser,
   getKpi,
   getPlatonusData,

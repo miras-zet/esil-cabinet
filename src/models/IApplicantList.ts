@@ -7,5 +7,6 @@ export default interface IApplicantList {
     study_form: string,
     degree_type: string,
     study_language: string,
-    iin: string
+    iin: string,
+    approved: string,
   }  

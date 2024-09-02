@@ -17,6 +17,7 @@ import { IoIosAlarm } from "react-icons/io";
 import { MdNoteAdd } from 'react-icons/md';
 import StudentDebt from '../components/StudentDebt';
 import StudentBookDebt from '../components/StudentBookDebt';
+import StudentDormRequest from '../components/StudentDormRequest';
 
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -226,6 +227,7 @@ const HomePage:FC = () => {
                   <h2>{store.isAuth ? `Добро пожаловать, ${store.user.lastname} ${store.user.name}`  : 'АВТОРИЗУЙТЕСЬ'}</h2>       
                   <button className='navbarbutton' onClick={open}>Получить новую справку</button>
                   &nbsp;&nbsp;<Link to="/list"><button className='navbarbutton' onClick={()=> store.getCert()}>История подачи справок</button></Link>
+                  <br/><StudentDormRequest/>
                   {/* &nbsp;&nbsp;<Link to="/ebooks"><button className='navbarbutton'>Электронная библиотека</button></Link> */}
                   <br/><br/><StudentBookDebt/>
                   <br/><StudentDebt/>

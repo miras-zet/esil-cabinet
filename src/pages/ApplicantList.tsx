@@ -9,9 +9,11 @@ import DocsService from '../services/DocsService';
 import IApplicantList from '../models/IApplicantList';
 import { RiFileListFill } from "react-icons/ri";
 import { HiViewList } from "react-icons/hi";
-import { FaHandshake } from 'react-icons/fa';
+import { FaCheck, FaHandshake, FaRegClock } from 'react-icons/fa';
 //import { Tooltip } from 'react-tooltip';
 import { RiArchiveFill } from "react-icons/ri";
+import { FaHouseChimney } from 'react-icons/fa6';
+import UploadService from '../services/UploadService';
 
 const ApplicantList: FC = () => {
     const { store } = useContext(Context);
@@ -35,6 +37,16 @@ const ApplicantList: FC = () => {
     // useEffect(()=>{
     //   setModal(modals)
     // },[])
+
+    const redirectDorms = (id,lastname,firstname) => {
+        if (confirm(`Вы уверены, что хотите подать заявку на общежитие для ${lastname} ${firstname}?`)) {
+          UploadService.createDormRequestForUserSelected(id).then(() => {
+            location.reload();
+          }).catch((err) => {
+            console.log(err);
+        });
+        }
+      }
 
     const applicantList = applicants.map((element, index) =>
         <tr key={element.id} style={{ textAlign: 'center' }}>
@@ -67,6 +79,22 @@ const ApplicantList: FC = () => {
             <div>
                 <button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#A585C4', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Kz', 'title')}><RiArchiveFill/></button>&nbsp;
             </div>}
+            </td>
+            <td id="table-divider" style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+            <div>
+                {element.approved=='0'?
+                <><button disabled style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#e88c56', color: 'white', width: '73px' }} onClick={() => redirectDorms(element.id,element.lastname,element.firstname)}><FaRegClock /></button>&nbsp;
+                </> 
+                : element.approved=='1'?
+                <>
+                <button disabled style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#52A177', color: 'white', width: '73px' }} onClick={() => redirectDorms(element.id,element.lastname,element.firstname)}><FaCheck /></button>&nbsp;
+                </>
+                :
+                <>
+                <button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#e8bc56', color: 'white', width: '73px' }} onClick={() => redirectDorms(element.id,element.lastname,element.firstname)}><FaHouseChimney /></button>&nbsp;</>
+                }
+                
+            </div>
             </td>
         </tr>
     );
@@ -101,6 +129,7 @@ const ApplicantList: FC = () => {
                         <h2>Список абитуриентов</h2>
                         <h4>({applicants.length} абитуриентов)</h4>
                         <Link to={"/addapplicant"}><button className='navbarbutton'>Добавить нового абитуриента (из Platonus)</button></Link> <br /><br />
+                        <Link to={"/dormrequests"}><button className='greybutton'>Заявки на общежитие</button></Link> <br /><br />
                         <br />
                         <table id='opaqueTable' style={{ marginLeft: '-1.3%', paddingLeft: '15px', width: '107%' }}>
                             <tr>
@@ -112,6 +141,7 @@ const ApplicantList: FC = () => {
                                 <th style={{ textAlign: 'center' }}><br />Язык обучения<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center', width:'20%' }}><br />Документы<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center'}}><br />Титульный лист<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center'}}><br />Общежитие<br />&nbsp;</th>
                                 <th>&nbsp;</th>
                             </tr>
                             {applicantList}

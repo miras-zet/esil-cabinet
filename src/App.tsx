@@ -39,6 +39,7 @@ import TransferBook from './pages/TransferBook'
 import PhysicalBooksPages from './pages/PhysicalBooksPages'
 import PhysicalBooksSearch from './pages/PhysicalBooksSearch'
 import ReadEBook from './pages/ReadEBook'
+import DormList from './pages/DormList'
   
 
 const App:FC = () => {  
@@ -77,6 +78,7 @@ const App:FC = () => {
         
 
         <Route path="/applicants" element={<ApplicantList />}/>
+        <Route path="/dormrequests" element={<DormList />}/>
         <Route path="/addapplicant" element={<AddApplicant/>}/>
         {/* <Route path="/statistics_specialization" element={<AdmissionStats/>}/> */}
         <Route path="/statistics_weekly" element={<AdmissionStatsUpdated/>}/>
