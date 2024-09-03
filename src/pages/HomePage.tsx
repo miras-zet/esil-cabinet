@@ -240,7 +240,7 @@ const HomePage:FC = () => {
             else if(role==='plt_applicant'){
               return <center>
               <h2>Ваш статус в системе: абитуриент. <br/>После зачисления будут доступен сервис выдачи справок.</h2>
-              <br/><br/><button onClick={() => store.logout()}>Выйти</button>
+              <br/><button onClick={() => store.logout()}>Выйти</button>
               </center>
             }
             else if(role==='plt_tutor'){
