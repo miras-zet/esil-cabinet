@@ -238,9 +238,10 @@ const HomePage:FC = () => {
               {modal && <CreateCert />}  </div>
             }
             else if(role==='plt_applicant'){
-              return <div>
+              return <center>
               <h2>Ваш статус в системе: абитуриент. <br/>После зачисления будут доступен сервис выдачи справок.</h2>
-              </div>
+              <br/><br/><button onClick={() => store.logout()}>Выйти</button>
+              </center>
             }
             else if(role==='plt_tutor'){
               return <div className='rootTutor'>
