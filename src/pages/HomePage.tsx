@@ -237,6 +237,11 @@ const HomePage:FC = () => {
               
               {modal && <CreateCert />}  </div>
             }
+            else if(role==='plt_applicant'){
+              return <div>
+              <h2>Ваш статус в системе: абитуриент. <br/>После зачисления будут доступен сервис выдачи справок.</h2>
+              </div>
+            }
             else if(role==='plt_tutor'){
               return <div className='rootTutor'>
               <KPINavbar/>       
