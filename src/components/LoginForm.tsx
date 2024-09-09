@@ -22,8 +22,6 @@ const LoginForm: FC = () => {
     
         const sanitizedUsername = removeForbiddenChars(username);
         const sanitizedPassword = removeForbiddenChars(password);
-        alert(sanitizedUsername);
-        alert(sanitizedPassword);
         store.login(sanitizedUsername, sanitizedPassword);
     }
     
