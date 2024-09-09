@@ -12,6 +12,21 @@ const LoginForm: FC = () => {
     // const debugTutor = () => {
     //     store.login('730705301528', '730705301528');
     // }
+    function sanitizeInput(username, password) {
+        const forbiddenChars = "'`!@#$%^&*()+=<>?/{}[]\\/";
+        const forbiddenSet = new Set(forbiddenChars);
+
+        const removeForbiddenChars = (input) => {
+            return [...input].filter(char => !forbiddenSet.has(char)).join('');
+        };
+    
+        const sanitizedUsername = removeForbiddenChars(username);
+        const sanitizedPassword = removeForbiddenChars(password);
+        alert(sanitizedUsername);
+        alert(sanitizedPassword);
+        store.login(sanitizedUsername, sanitizedPassword);
+    }
+    
     return (
     <div> 
         <img src="logo_new.png" width={300} /> 
@@ -45,7 +60,7 @@ const LoginForm: FC = () => {
         <div>{store.errors === 401 && <span style={{color: 'red'}}>Не верно введен логин или пароль</span>} {store.errors === 500 && <span style={{color: 'red'}}>Ошибка сервера</span>} &nbsp;</div> 
           
         <button className='navbarbutton' onClick = {
-            () => store.login(username, password)
+            () => sanitizeInput(username, password)
         }
         style={{padding: 10,
             margin: 10}}> Войти</button>
