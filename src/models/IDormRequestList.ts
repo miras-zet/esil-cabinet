@@ -7,6 +7,7 @@ export default interface IDormRequestList {
     specialization:string,
     grant_type:string,
     study_form:string,
+    benefits:string,
     phone:string,
     datecreated:string,
     datemodified:string,

@@ -1,4 +1,4 @@
-import { FC, useContext, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import './CreateCert.css';
 import { ModalContext } from "../http/ModalContext";
@@ -11,31 +11,31 @@ const ModalDorm: FC = () => {
     const [roomnumber, setRoomNumber] = useState<string>('');
     const { close } = useContext(ModalContext);
 
+    useEffect(() => {
+        if(localStorage.getItem('editMode')=='true'){
+            localStorage.setItem('editMode','false');
+            setDormType(localStorage.getItem('dormType'));
+            setMessage(localStorage.getItem('dormMessage'));
+            setRoomNumber(localStorage.getItem('dormRoomNumber'));
+            
+        }
+        
+    })
     const redirectApprove = () => {
-        if (roomnumber != '') {
-            setButtonPressed(true);
-            localStorage.setItem('dormType', dormtype);
-            localStorage.setItem('dormMessage', message);
-            localStorage.setItem('dormRoomNumber', roomnumber);
-            UploadService.approveDormRequestForUser().then(() => {
-                location.reload();
-            });
-        }
-        else {
-            alert('Необходимо заполнить поле "Номер комнаты"');
-        }
+        setButtonPressed(true);
+        localStorage.setItem('dormType', dormtype);
+        localStorage.setItem('dormMessage', message);
+        localStorage.setItem('dormRoomNumber', roomnumber);
+        UploadService.approveDormRequestForUser().then(() => {
+            location.reload();
+        });
     }
     const redirectDeny = () => {
-        if (message != '') {
-            setButtonPressed(true);
-            localStorage.setItem('dormMessage', message);
-            UploadService.denyDormRequestForUser().then(() => {
-                location.reload();
-            });
-        }
-        else {
-            alert('Необходимо указать причину');
-        }
+        setButtonPressed(true);
+        localStorage.setItem('dormMessage', message);
+        UploadService.denyDormRequestForUser().then(() => {
+            location.reload();
+        });
     }
 
     return (
@@ -45,8 +45,8 @@ const ModalDorm: FC = () => {
                     <h3>{localStorage.getItem('dormFIO')}</h3>
                     <p style={{ color: "black" }}>Вид общежития</p>
                     <select className="btn" style={{ color: 'black', backgroundColor: 'white', border: 'solid 1px', borderColor: 'gray' }} value={dormtype} onChange={event => setDormType(event.target.value)}>
-                        <option key='1' value='dorm'>Собственное общежитие</option>
-                        <option key='2' value='hostel'>Хостел</option>
+                        <option key='1' selected={localStorage.getItem('dormType')=='dorm'} value='dorm'>Собственное общежитие</option>
+                        <option key='2' selected={localStorage.getItem('dormType')=='hostel'} value='hostel'>Хостел</option>
                     </select>
                     <br /><br />
                     <p style={{ color: "black" }}>Номер комнаты</p>
