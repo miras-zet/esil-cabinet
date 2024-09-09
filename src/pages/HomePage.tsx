@@ -283,6 +283,9 @@ const HomePage: FC = () => {
         else if (role === 'admissionstats') {
           return <Navigate to='/admission_statistics' />
         }
+        else if (role === 'dean_students') {
+          return <Navigate to='/dormrequests' />
+        }
         else if (role === 'reader') {
           return <div className='root'>
             <KPINavbar />

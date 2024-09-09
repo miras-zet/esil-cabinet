@@ -129,7 +129,7 @@ const ApplicantList: FC = () => {
                         <h2>Список абитуриентов</h2>
                         <h4>({applicants.length} абитуриентов)</h4>
                         <Link to={"/addapplicant"}><button className='navbarbutton'>Добавить нового абитуриента (из Platonus)</button></Link> <br /><br />
-                        <Link to={"/dormrequests"}><button className='graybutton'>Заявки на общежитие</button></Link> <br /><br />
+                        {/* <Link to={"/dormrequests"}><button className='graybutton'>Заявки на общежитие</button></Link> <br /><br /> */}
                         <br />
                         <table id='opaqueTable' style={{ marginLeft: '-1.3%', paddingLeft: '15px', width: '107%' }}>
                             <tr>

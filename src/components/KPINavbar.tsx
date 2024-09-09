@@ -23,6 +23,7 @@ const KPINavbar: FC = () => {
         case 'plt_student': headertext='Кабинет студента ESIL University'; break;
         case 'admissionadmin': headertext='Приёмная комиссия ESIL University'; break;
         case 'admissionstats': headertext='Статистика абитуриентов ESIL University'; break;
+        case 'dean_students': headertext='Кабинет декана по работе со студентами'; break;
         case 'reader': headertext='Электронная библиотека ESIL University'; break;
         case 'technician': headertext='Отдел технического обслуживания и ремонта'; break;
         case 'librarian': headertext='Электронная библиотека и система учёта книг ESIL University'; break;
