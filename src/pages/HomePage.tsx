@@ -242,7 +242,6 @@ const HomePage: FC = () => {
             <KPINavbar /> <br /><br /><br /><br /><br /><br /><br />
             <h2>{store.isAuth ? `Добро пожаловать, ${store.user.lastname} ${store.user.name}` : 'АВТОРИЗУЙТЕСЬ'}</h2>
             <h3>Статус в системе: выпускник</h3>
-            <Link to="/list"><button className='navbarbutton' onClick={() => store.getCert()}>История подачи справок</button></Link>
             <br /><br /><StudentBookDebt />
             <br /><StudentDebt />
             <br />
