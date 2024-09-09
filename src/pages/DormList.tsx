@@ -5,14 +5,17 @@ import { observer } from 'mobx-react-lite';
 import { Link, Navigate } from 'react-router-dom';
 import '../App.css';
 import KPINavbar from '../components/KPINavbar';
-
 //import { Tooltip } from 'react-tooltip';
 import UploadService from '../services/UploadService';
 import IDormRequestList from '../models/IDormRequestList';
 import moment from 'moment';
+import ModalDorm from '../components/ModalDorm';
+import { ModalContext } from '../http/ModalContext';
+
 
 const DormList: FC = () => {
     const { store } = useContext(Context);
+    const { modal, open } = useContext(ModalContext);
     //const navigate = useNavigate();
     const [dormRequests, setDormRequestsData] = useState<Array<IDormRequestList>>([]);
 
@@ -34,6 +37,18 @@ const DormList: FC = () => {
     //   setModal(modals)
     // },[])
 
+    const displayMessageApproved = (fio,datecreated,datemodified,ishostel,roomnumber) => {
+        let dormtype=''
+        if (ishostel==0) {dormtype='Собственное общежитие';}
+        else{
+            dormtype='Хостел';
+        }
+        alert(`${fio} \nЗаявка создана: ${moment(datecreated).format("DD.MM.YYYY")} \nЗаявка принята: ${moment(datemodified).format("DD.MM.YYYY")} \nВид общежития: ${dormtype} \nНомер комнаты: ${roomnumber}`);
+    }
+
+    const displayMessageDenied = (fio,datecreated,datemodified,notification_message) => {
+        alert(`${fio} \nЗаявка создана: ${moment(datecreated).format("DD.MM.YYYY")} \nЗаявка отклонена: ${moment(datemodified).format("DD.MM.YYYY")} \nПричина: ${notification_message}`);
+    }
     const dormRequestsList = dormRequests.map((element, index) =>
         <tr key={element.id} style={{ textAlign: 'center' }}>
             <td style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>{index + 1}&nbsp;&nbsp;&nbsp;</td>
@@ -42,15 +57,30 @@ const DormList: FC = () => {
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{element.study_form}</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{element.iin}</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{element.phone}</td>
+            
+                {
+                element.grant_type == '-7' ?
+                <><td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>Платное обучение</td></>
+                :
+                <><td id="table-divider" style={{ backgroundColor:'#e39d81', verticalAlign: 'middle', fontSize: '13pt' }}>Грант</td></>
+                }
+            
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{moment(element.datecreated).format("DD.MM.YYYY")}</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                 {
                     element.approved == '1' ?
                     <>
-                    Принято
+                    Принято<br/><button style={{backgroundColor:'#088c64'}} onClick={()=>displayMessageApproved(element.lastname+' '+element.firstname+' '+element.patronymic, element.datecreated,element.datemodified,element.ishostel,element.roomnumber)}>Детали</button>
                     </>:
+                    element.approved == '0' ?
                     <>
-                    <button onClick={() => redirect(element.iin)}>Принять</button>&nbsp;
+                    <br/><button onClick={() => redirect(element.iin, element.lastname+' '+element.firstname)}>Действия</button>&nbsp;
+                    {/* <button onClick={open}>Принять</button>&nbsp; */}
+                    </>
+                    :
+                    <>
+                    <b style={{color:'red'}}>Отклонено</b>
+                    <br/><button style={{backgroundColor: 'crimson'}} onClick={()=>displayMessageDenied(element.lastname+' '+element.firstname+' '+element.patronymic, element.datecreated,element.datemodified,element.notification_message)}>Причина</button>
                     </>
                 }
                 
@@ -70,22 +100,33 @@ const DormList: FC = () => {
         );
     }
 
-    const redirect = (iin: any) => {
-        UploadService.approveDormRequestForUser(iin).then(() => {
-            location.reload();
-          });
+    const redirect = (iin: any, fio:string) => {
+        localStorage.setItem('dormIIN', iin);
+        localStorage.setItem('dormFIO', fio);
+        open();
+        // UploadService.approveDormRequestForUser(iin).then(() => {
+        //     location.reload();
+        //   });
     }
     return (
         <div>
             {(() => {
                 const role = localStorage.getItem('role');
+                let grammar_corrected='';
+                switch (dormRequestsList.length % 10){
+                    case 1: grammar_corrected='заявка'; break;
+                    case 2: grammar_corrected='заявки'; break;
+                    case 3: grammar_corrected='заявки'; break;
+                    case 4: grammar_corrected='заявки'; break;
+                    default: grammar_corrected='заявок';
+                }
                 if (role == 'admissionadmin') {
                     return <div style={{ textAlign: 'left', width: '1200px', marginTop: '10%' }}>
                         <KPINavbar />
                         <br /><br /><br /><br />
                         <Link to={"/applicants"}><button className='navbarbutton'>Вернуться назад</button></Link><br />
                         <h2>Список заявок на общежитие</h2>
-                        <h4>({dormRequestsList.length} заявок)</h4>
+                        <h3>{dormRequestsList.length} {grammar_corrected}</h3>
                         <br />
                         <br />
                         <table id='opaqueTable' style={{ marginLeft: '-1.3%', paddingLeft: '15px', width: '107%' }}>
@@ -96,6 +137,7 @@ const DormList: FC = () => {
                                 <th style={{ textAlign: 'center' }}><br />Форма обучения<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />ИИН<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Номер телефона<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center' }}><br />Оплата<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Дата заявки<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Статус заявки<br />&nbsp;</th>
                                 <th>&nbsp;</th>
@@ -105,6 +147,7 @@ const DormList: FC = () => {
                                 <td>&nbsp;</td>
                             </tr>
                         </table>
+                        {modal && <ModalDorm />}
                     </div>
                 }
                 else {

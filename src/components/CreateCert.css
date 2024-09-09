@@ -17,6 +17,29 @@
   padding: 25px;
   z-index: 99999;
 }
+
+.modal_new{
+  position: absolute;
+top: 0;
+width: 100%;
+height: 120%;
+background: #00000091;
+left: 0;
+z-index: 0;
+}
+
+.modalblock_new{
+  border-radius: 20px;
+  background: aliceblue;
+width: 25%;
+margin-left: auto;
+margin-right: auto;
+position: relative;
+margin-top: 10%;
+padding: 25px;
+z-index: 99999;
+}
+
 .modalblock h1{
   color: black;
 }
@@ -42,6 +65,9 @@
 
 @media only screen and (max-width: 479px){
   .modalblock{
+    width: auto;
+  }
+  .modalblock_new{
     width: auto;
   }
 }

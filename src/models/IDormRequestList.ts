@@ -5,8 +5,13 @@ export default interface IDormRequestList {
     firstname:string,
     patronymic:string,
     specialization:string,
+    grant_type:string,
     study_form:string,
     phone:string,
     datecreated:string,
+    datemodified:string,
     approved:string,
+    roomnumber:string,
+    ishostel:string,
+    notification_message:string,
   }  

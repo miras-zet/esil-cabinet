@@ -47,8 +47,23 @@ const getDormRequestForUser = () : Promise<any> =>{
 const getDormRequestsData = () : Promise<any> =>{
   return http.get(`/upload/getalldormrequests`);
 };
-const approveDormRequestForUser = (iin) : Promise<any> =>{
-  return http.get(`/upload/approvedormrequest/${iin}`);
+const approveDormRequestForUser = () : Promise<any> =>{
+  //return http.get(`/upload/approvedormrequest/${iin}`);
+  const params = {
+    iin: localStorage.getItem('dormIIN'),
+    dormType: localStorage.getItem('dormType'),
+    dormMessage: localStorage.getItem('dormMessage'),
+    dormRoomNumber: localStorage.getItem('dormRoomNumber'),
+  }
+  return http.get(`/upload/approvedormrequest`,{params});
+};
+const denyDormRequestForUser = () : Promise<any> =>{
+  //return http.get(`/upload/approvedormrequest/${iin}`);
+  const params = {
+    iin: localStorage.getItem('dormIIN'),
+    dormMessage: localStorage.getItem('dormMessage'),
+  }
+  return http.get(`/upload/denydormrequest`,{params});
 };
 const createDormRequestForUser = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id');
@@ -110,6 +125,7 @@ const UploadService = {
   getFiles,
   getTutors,
   getCategories,
+  denyDormRequestForUser,
   deleteFile,
   getDebtData,
   downloadFile,
