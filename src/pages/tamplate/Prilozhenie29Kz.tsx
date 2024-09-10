@@ -5,7 +5,7 @@ import '../Certificate.css'
 import html2pdf from 'html2pdf.js/dist/html2pdf.min';
 
 
-export function Prilozhenie29(certificat:CertResponse)  {
+export function Prilozhenie29Kz(certificat:CertResponse)  {
     // const [certid] = useState<number>(id);
     // const [certificat, setCertificat] = useState<CertResponse>();
     
@@ -45,13 +45,16 @@ export function Prilozhenie29(certificat:CertResponse)  {
         </div>
         <div className="shapka">
 				<p><center>
-                Приложение 29<br/>
-                к Правилам назначения<br/>
-                и осуществления выплаты<br/>
-                государственного пособия<br/>
-                на рождение, пособия по уходу,<br/>
-                пособия многодетным семьям,<br/>
-                пособия награжденной матери <br/>
+        Бала туғанда берілетін мемлекеттік<br/>
+        жәрдемақыны, бала күтіміне<br/>
+        байланысты  жәрдемақыны,<br/>
+        көпбалалы отбасыларға берілетін<br/>
+        жәрдемақыны, наградталған анаға<br/>
+        берілетін жәрдемақыны тағайындау<br/>
+        және төлеуді жүзеге асыру<br/>
+        қағидаларына<br/>
+        29-қосымша<br/>
+        Нысан<br/>
                 </center></p>
 			</div>
 			
@@ -67,24 +70,23 @@ export function Prilozhenie29(certificat:CertResponse)  {
                         marginBottom: 70
                     }}>
 					<div className="bodytext">
-						<h3>СПРАВКА</h3>
-						<p>Дана гражданину <b>{certificat?.lastname} {certificat?.name} {certificat?.middlename}  
-                        , {moment(certificat?.birth_date).format("DD.MM.YYYY")} г.р. </b><br/>в том, что он(а) действительно является обучающим(ей)ся <br/>
-                        <u><b> Учреждение "Esil University"</b> <b>лицензия № KZ08LAA00032358  от 01.04.2022 г., без ограничения</b></u><br/> 
-                        <b><u>{certificat?.course_number}</u></b> класса/курса,
-						<br/><u>{certificat?.study_form_name_ru}</u> форма обучения<br/> 
-						Справка действительна на 2024/2025 учебный год.<br/><br/>
-						Справка выдана для предъявления в ______________________________
-						<br/>отделение Государственной корпорации.<br/><br/>
-						Срок обучения в учебном заведении {certificat?.course_count} лет,<br/>
-						период обучения с {moment(certificat?.start_date).format("DD.MM.YYYY")} года по 30.06.{2025+certificat!.course_count-certificat!.course_number} года<br/><br/>
-						Примечание: справка действительна 1 год.
-            <br/>В случаях отчисления обучающегося из учебного заведения или перевода на заочную форму обучения, руководитель учебного заведения извещает отделение Государственной корпорации по месту жительства получателя пособия. 
+						<h3>АНЫҚТАМА</h3>
+						<p>Азамат <b>{certificat?.lastname} {certificat?.name} {certificat?.middlename}  
+                        , {moment(certificat?.birth_date).format("DD.MM.YYYY")}</b> ол iс жүзiнде<br/>
+                        <u><b>"Esil University" мекемесінің</b> <b>мемлекеттік лицензия № KZ08LAA00032358, берілген күні 01.04.2022 жыл, мерзім шектеусіз</b></u><br/> 
+                        <b><u>{certificat?.course_number}</u></b> сыныбының/курсының оқушысы болып табылады,
+						<br/>оқу нысаны <u>{certificat?.study_form_name_ru}</u><br/> 
+						Анықтама 2024/2025 оқу жылына жарамды.<br/><br/>
+						Анықтама Мемлекеттiк корпорацияның ___________________ бөлiмшесiне ұсыну үшiн берiлдi.<br/><br/>
+						Оқу орнындағы оқу мерзiмi {certificat?.course_count} жыл<br/>
+						оқу кезеңi {moment(certificat?.start_date).format("DD.MM.YYYY")}-нан(-нен) 30.06.{2025+certificat!.course_count-certificat!.course_number} дейiн.<br/><br/>
+						Ескертпе: анықтама 1 жылға жарамды.
+            <br/>Білім алушы оқу орнынан шығарылған немесе сырттай оқу нысанына ауыстырылған жағдайларда, оқу орнының басшысы жәрдемақы алушының тұрғылықты жерi бойынша Мемлекеттiк корпорацияның бөлiмшесiн хабардар етедi. 
 						</p>
 					</div>
 				</div>
 			    <div style={{marginBottom: 20, textAlign: "left"}}> 
-					Документ подписан:
+					Оқу орнының басшысы
 				</div>
 				<div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "0 10%"}}>
 					<div> 

@@ -10,6 +10,7 @@ import { Students } from './tamplate/Students';
 import { Prilozhenie29 } from './tamplate/Prilozhenie29';
 import { StudentsEn } from './tamplate/StudentsEn';
 import { StudentsKz } from './tamplate/StudentsKz';
+import { Prilozhenie29Kz } from './tamplate/Prilozhenie29Kz';
 
 
 
@@ -58,7 +59,12 @@ const certificatePage:FC = () => {
           // case 3:
           //   return  Prilozhenie6(certificate);
           case 3:
-            return  Prilozhenie29(certificate);
+            if (certificate.language === 'en')
+                  return  Prilozhenie29(certificate);
+                else if (certificate.language === 'kz')
+                  return Prilozhenie29Kz(certificate);
+                else
+                  return Prilozhenie29(certificate);
           // case 5:
           //   return  Prilozhenie31(certificate);
             case 4:
