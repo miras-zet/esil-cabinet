@@ -83,7 +83,7 @@ const TransferBook: FC = () => {
                         <br /><br />
                         <button onClick={()=>goBack()}className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button> <br /><br />
                         <br />
-                        <h3>Впишите ИИН студента, которому выдаётся книга "{bookname}".</h3>
+                        <h3>Впишите ИИН студента/преподавателя, которому выдаётся книга "{bookname}".</h3>
                         <input id="inputIIN" className='btnNeutral' style={{ width: '300px' }} type="text" maxLength={12} placeholder='Введите ИИН'></input><br /><br />
                         {buttonPressed=='false'?<button className="navbarbutton" onClick={() => transfer()}>Выдать книгу</button>:<button disabled id="backbutton">Выполнено</button>}<br /><br />
                         <div style={{ color: messagecolor, fontWeight: 'bold' }}>{message}</div>

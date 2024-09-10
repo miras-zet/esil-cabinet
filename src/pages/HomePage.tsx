@@ -192,7 +192,7 @@ const HomePage: FC = () => {
         let textcolor;
         if (role == 'plt_tutor') countKpi();
         if (kpiInfo === undefined && role === 'plt_tutor') {
-          location.reload();
+          //location.reload();
         }
         if (role === 'plt_tutor') KPIScore = localStorage.getItem('KPIScore');
         let premiere = "";
@@ -258,7 +258,7 @@ const HomePage: FC = () => {
           return <div className='rootTutor'>
             <KPINavbar />
             <div className='tutorcontent'>
-              <h4 style={{ fontSize: 35 }}>Баллы KPI: <b style={{ color: textcolor }}>{kpiInfo.toString()}</b></h4>
+              <h4 style={{ fontSize: 35 }}>Баллы KPI: <b style={{ color: textcolor }}>{kpiInfo ? kpiInfo.toString():<></>}</b></h4>
               <h4 style={{ fontSize: 20 }}>{premiere ? `Премирование: ${premiere} ` : ''}{parseInt(KPIScore) >= 200 ? <HiSparkles style={{ verticalAlign: 'middle', marginTop: '-7px' }} /> : ''}</h4>
               <Link to="/kpi"><button className='navbarbutton'>Загрузить документы &nbsp;&nbsp;<FaUpload /></button></Link>
               <h5>* Каждый несёт персональную ответственность за ввод данных в систему оценки KPI.</h5>
