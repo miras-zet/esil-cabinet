@@ -120,6 +120,13 @@ const transferBook = (iin,bookid): Promise<any> => {
     }
     return http.get(`/books/transferbook`, { params });
 };
+const transferBookBatch = (iin,bookidsJSON): Promise<any> => {
+    const params = {
+        iin: iin, 
+        bookidsJSON: bookidsJSON
+    }
+    return http.get(`/books/transferbookbatch`, { params });
+};
 const deleteBook = (id): Promise<any> => {
     const params = {
         id: id,
@@ -162,6 +169,7 @@ const BookService = {
     getBookCategories,
     addBook,
     transferBook,
+    transferBookBatch,
     deleteBook,
     getDueBooks,
     getDueBookForUser,

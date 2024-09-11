@@ -26,7 +26,7 @@ export function Prilozhenie29Kz(certificat:CertResponse)  {
       };
       html2pdf().set(opt).from(report).save()
       };
-      
+      const masters_degree_ids=[7,12,15,17,23,25];
   return (
     <>
     <div><button className='navbarbutton' onClick={generatePdf}> save PDF</button></div>
@@ -73,20 +73,21 @@ export function Prilozhenie29Kz(certificat:CertResponse)  {
 						<h3>АНЫҚТАМА</h3>
 						<p>Азамат <b>{certificat?.lastname} {certificat?.name} {certificat?.middlename}  
                         , {moment(certificat?.birth_date).format("DD.MM.YYYY")}</b> ол iс жүзiнде<br/>
-                        <u><b>"Esil University" мекемесінің</b> <b>мемлекеттік лицензия № KZ08LAA00032358, берілген күні 01.04.2022 жыл, мерзім шектеусіз</b></u><br/> 
-                        <b><u>{certificat?.course_number}</u></b> сыныбының/курсының оқушысы болып табылады,
-						<br/>оқу нысаны <u>{certificat?.study_form_name_ru}</u><br/> 
+                        <u><b>"Esil University" мекемесінің</b></u><br/> 
+                        <b><u>{certificat?.course_number}</u></b> курсының {masters_degree_ids.includes(certificat?.study_form_id)?<>магистранты</>:<>студентi</>} болып табылады,
+						<br/>оқу нысаны <u>{certificat?.study_form_name_kz}</u><br/> 
 						Анықтама 2024/2025 оқу жылына жарамды.<br/><br/>
-						Анықтама Мемлекеттiк корпорацияның ___________________ бөлiмшесiне ұсыну үшiн берiлдi.<br/><br/>
+						Анықтама Мемлекеттiк корпорацияның бөлiмшесiне ұсыну үшiн берiлдi.<br/><br/>
 						Оқу орнындағы оқу мерзiмi {certificat?.course_count} жыл<br/>
-						оқу кезеңi {moment(certificat?.start_date).format("DD.MM.YYYY")}-нан(-нен) 30.06.{2025+certificat!.course_count-certificat!.course_number} дейiн.<br/><br/>
+						оқу кезеңi {moment(certificat?.start_date).format("DD.MM.YYYY")} жылдан 30.06.{2025+certificat!.course_count-certificat!.course_number} жылға дейiн.<br/><br/>
 						Ескертпе: анықтама 1 жылға жарамды.
             <br/>Білім алушы оқу орнынан шығарылған немесе сырттай оқу нысанына ауыстырылған жағдайларда, оқу орнының басшысы жәрдемақы алушының тұрғылықты жерi бойынша Мемлекеттiк корпорацияның бөлiмшесiн хабардар етедi. 
 						</p>
 					</div>
 				</div>
 			    <div style={{marginBottom: 20, textAlign: "left"}}> 
-					Оқу орнының басшысы
+					Оқу орнының мөрi басылатын орын<br/>
+          Оқу орнының басшысы
 				</div>
 				<div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "0 10%"}}>
 					<div> 
