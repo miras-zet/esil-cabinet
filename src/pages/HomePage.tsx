@@ -11,13 +11,14 @@ import IKPI from '../models/IKPI';
 import KPICategoryScores from '../components/KPICategoryScores';
 import KPINavbar from '../components/KPINavbar';
 import { HiSparkles } from "react-icons/hi2";
-import { FaBook, FaUpload } from 'react-icons/fa';
+import { FaBook, FaTrashAlt, FaUpload } from 'react-icons/fa';
 import { FaDisplay } from "react-icons/fa6";
 import { IoIosAlarm } from "react-icons/io";
 import { MdNoteAdd } from 'react-icons/md';
 import StudentDebt from '../components/StudentDebt';
 import StudentBookDebt from '../components/StudentBookDebt';
 import StudentDormRequest from '../components/StudentDormRequest';
+import IBookCart from '../models/IBookCart';
 
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -35,9 +36,17 @@ const HomePage: FC = () => {
   const { modal, open } = useContext(ModalContext);
   const [kpiInfo, setKpiInfo] = useState<Array<IKPI>>([]);
   let [searchtype, setSearchType] = useState<string>('name');
+  const [booksParsed, setParsedBooks] = useState<Array<IBookCart>>([]);
+
   useEffect(() => {
     setKpiInfo([]);
-
+    let books = JSON.parse(localStorage.getItem('bookCartJSON'));
+    if (books!=null) setParsedBooks(books)
+    else {
+      localStorage.setItem('bookCartJSON','[]');
+      setParsedBooks([])
+    };
+    if (!booksParsed) setParsedBooks([]);
     if (localStorage.getItem('token')) {
       store.checkAuth()
     }
@@ -77,6 +86,35 @@ const HomePage: FC = () => {
     return;
   }
 
+  const bookCart = booksParsed.map((element) =>
+    <tr key={element.id}>
+      <td></td>
+      <td id="table-divider" style={{ textAlign: 'center', verticalAlign: 'middle' }}>{element.name}</td>
+      <td id="table-divider" style={{ textAlign: 'center', verticalAlign: 'middle' }}>{element.barcode}</td>
+      <td id="table-divider" style={{ textAlign: 'center', verticalAlign: 'middle' }}><button className='redbutton' onClick={() => deleteFromCart(element.id)}><FaTrashAlt /></button></td>
+    </tr>
+  );
+  const deleteFromCart = (id) => {
+    for (var i = booksParsed.length - 1; i >= 0; --i) {
+      if (booksParsed[i].id == id) {
+        booksParsed.splice(i, 1);
+      }
+    }
+    setParsedBooks(booksParsed);
+    localStorage.setItem('bookCartJSON', JSON.stringify(booksParsed));
+    setParsedBooks(JSON.parse(localStorage.getItem('bookCartJSON')));
+  }
+  const clearCart = () => {
+    if (confirm('Вы уверены, что хотите очистить корзину?')) {
+      for (var i = booksParsed.length - 1; i >= 0; --i) {
+        booksParsed.splice(i, 1);
+      }
+      setParsedBooks(booksParsed);
+      localStorage.setItem('bookCartJSON', JSON.stringify(booksParsed));
+      setParsedBooks(JSON.parse(localStorage.getItem('bookCartJSON')));
+    }
+
+  }
   const countKpi = () => {
     UploadService.getKpi()
       .then(
@@ -258,7 +296,7 @@ const HomePage: FC = () => {
         else if (role === 'plt_applicant') {
           return <center>
             <h2>Ваш статус в системе: абитуриент. <br />После зачисления будут доступен сервис выдачи справок.</h2>
-            <br /><button onClick={() => store.logout()}>Выйти</button>
+            <br /><button id="graybutton" onClick={() => store.logout()}>Выйти</button>
           </center>
         }
         else if (role === 'plt_tutor') {
@@ -303,38 +341,69 @@ const HomePage: FC = () => {
           </div>
         }
         else if (role === 'librarian') {
-          return <div style={{ textAlign: 'left', width: '1000px' }}>
+          return <div style={{ textAlign: 'left', width: '700px' }}>
             <KPINavbar />
             <br /><br /><br /><br /><br /><br />
-            <h2>Добро пожаловать!</h2>
-            <br />
-            <Link to="/physicalbooksPages"><button className='navbarbutton'>Список книг &nbsp;<FaBook style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link> <br /><br />
-            Выберите настройки поиска<br />
-            {/* <select id="searchSelector" onChange={()=>handleSearchSelector()} className='btnNeutral'>
-                <option id="optionName">По названию</option>
-                <option id="optionKeyWords">По ключевым словам</option>
-                <option id="optionISBN">По ISBN</option>
-                <option id="optionInventory">По инвентарному номеру</option>
-              </select> */}
-            <select onChange={handleSelectChange} className='btnNeutral' >
+            <table style={{ width: '110%' }}>
+              <tbody>
+                <td>
+                  <h2>Добро пожаловать!</h2>
+                  <br />
+                  <Link to="/physicalbooksPages"><button className='navbarbutton'>Список книг &nbsp;<FaBook style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link> <br /><br />
+                  Выберите настройки поиска<br />
+                  <select onChange={handleSelectChange} className='btnNeutral' >
 
-              {options.map((option) => (
-                <option key={option.id} value={option.id}>
-                  {option.value}
-                </option>
-              ))}
-            </select>
+                    {options.map((option) => (
+                      <option key={option.id} value={option.id}>
+                        {option.value}
+                      </option>
+                    ))}
+                  </select>
 
-            <br /><br />
-            {searchtype == 'name' ? <div><input type="text" id='inputSearchBookByName' className='btnNeutral' maxLength={100} placeholder='Поиск по названию'></input>&nbsp;<button id="graybutton" onClick={() => findBookName()}>Найти</button></div> : ''}
-            {searchtype == 'keywords' ? <div><input type="text" id='inputSearchBookByKeyWords' className='btnNeutral' maxLength={100} placeholder='Поиск по ключевым словам'></input>&nbsp;<button id="graybutton" onClick={() => findBookKeyWords()}>Найти</button></div> : ''}
-            {searchtype == 'isbn' ? <div><input type="text" id='inputSearchBookByISBN' className='btnNeutral' maxLength={100} placeholder='Поиск по ISBN'></input>&nbsp;<button id="graybutton" onClick={() => findBookISBN()}>Найти</button></div> : ''}
-            {searchtype == 'inventory' ? <div><input type="text" id='inputSearchBookByInventory' className='btnNeutral' maxLength={100} placeholder='Поиск по инвентарному номеру'></input>&nbsp;<button id="graybutton" onClick={() => findBookInventory()}>Найти</button></div> : ''}
-            {searchtype == 'barcode' ? <div><input type="text" id='inputSearchBookByBarcode' className='btnNeutral' maxLength={100} placeholder='Поиск по штрихкоду'></input>&nbsp;<button id="graybutton" onClick={() => findBookBarcode()}>Найти</button></div> : ''}
-            <br /><br /><br />
-            <Link to="/ebooks"><button className='navbarbutton' >Список электронных книг &nbsp;<FaDisplay style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link><br /><br />
-            <br />
-            <Link to="/duebooks"><button className='redbutton' >Должники &nbsp;<IoIosAlarm style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link>
+                  <br /><br />
+                  {searchtype == 'name' ? <div><input type="text" id='inputSearchBookByName' className='btnNeutral' maxLength={100} placeholder='Поиск по названию'></input>&nbsp;<button id="graybutton" onClick={() => findBookName()}>Найти</button></div> : ''}
+                  {searchtype == 'keywords' ? <div><input type="text" id='inputSearchBookByKeyWords' className='btnNeutral' maxLength={100} placeholder='Поиск по ключевым словам'></input>&nbsp;<button id="graybutton" onClick={() => findBookKeyWords()}>Найти</button></div> : ''}
+                  {searchtype == 'isbn' ? <div><input type="text" id='inputSearchBookByISBN' className='btnNeutral' maxLength={100} placeholder='Поиск по ISBN'></input>&nbsp;<button id="graybutton" onClick={() => findBookISBN()}>Найти</button></div> : ''}
+                  {searchtype == 'inventory' ? <div><input type="text" id='inputSearchBookByInventory' className='btnNeutral' maxLength={100} placeholder='Поиск по инвентарному номеру'></input>&nbsp;<button id="graybutton" onClick={() => findBookInventory()}>Найти</button></div> : ''}
+                  {searchtype == 'barcode' ? <div><input type="text" id='inputSearchBookByBarcode' className='btnNeutral' maxLength={100} placeholder='Поиск по штрихкоду'></input>&nbsp;<button id="graybutton" onClick={() => findBookBarcode()}>Найти</button></div> : ''}
+                  <br /><br /><br />
+                  <Link to="/ebooks"><button className='navbarbutton' >Список электронных книг &nbsp;<FaDisplay style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link><br /><br />
+                  <br />
+                  <Link to="/duebooks"><button className='redbutton' >Должники &nbsp;<IoIosAlarm style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link>
+                </td>
+                <td style={{ width: '15%' }}></td>
+                <td>
+                  {booksParsed.length > 0 ? <>
+                    <br/>
+                    <h3 style={{ textAlign: 'center' }}>Корзина</h3>
+                    <table id='opaqueTable'>
+                      <thead>
+                        <tr><br /></tr>
+                        <tr>
+                          <th>&nbsp;</th>
+                          <th style={{ textAlign: 'center', width: '400px' }}>
+                            &nbsp;Название&nbsp;
+                          </th>
+                          <th style={{ textAlign: 'center' }}>
+                            &nbsp;Штрихкод&nbsp;
+                          </th>
+                          <th style={{ textAlign: 'center' }}>
+                            &nbsp;Действия&nbsp;
+                          </th>
+                          <th>&nbsp;<br /></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {bookCart != null ? bookCart : <></>}
+                        <tr><br /></tr>
+                      </tbody>
+                    </table>
+                    <br />
+                    <center><Link to='/transferlibrarybookJSON'><button className='greenbutton'>Выдать книги</button></Link> <button className='redbutton' onClick={() => clearCart()}>Очистить</button></center>
+                  </> : <></>}
+                </td>
+              </tbody>
+            </table>
           </div>
         }
         else if (role === 'plt_kpiadmin') {
@@ -376,7 +445,7 @@ const HomePage: FC = () => {
           </div>
         }
         else {
-          return <div><center><h3>Произошла внутренняя ошибка</h3><button onClick={() => store.logout()}>Выйти</button></center></div>
+          return <div><center><h3>Произошла внутренняя ошибка</h3><button id="graybutton" onClick={() => store.logout()}>Выйти</button></center></div>
         }
       })()}
     </div>

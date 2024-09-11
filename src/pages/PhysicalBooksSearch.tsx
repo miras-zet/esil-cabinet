@@ -5,18 +5,21 @@ import KPINavbar from '../components/KPINavbar';
 import BookService from '../services/BookService';
 import ILibraryBook from '../models/ILibraryBook';
 import { Link, useNavigate } from 'react-router-dom';
-import { FaPen, FaTrashAlt } from 'react-icons/fa';
+import { FaCartPlus, FaPen, FaTrashAlt } from 'react-icons/fa';
 import { TiArrowBack } from 'react-icons/ti';
 import { GrDocumentTransfer } from "react-icons/gr";
+import IBookCart from '../models/IBookCart';
 
 const PhysicalBooksSearch: FC = () => {
     const navigate = useNavigate();
     const [books, setBookData] = useState<Array<ILibraryBook>>([]);
+    const [booksCart, setBooksCart] = useState<Array<IBookCart>>([]);
     let [margin] = useState<string>('-23%');
     let [specificLabel, setLabel] = useState<string>('')
     const searchType = localStorage.getItem('searchType');
     useEffect(() => {  
         // const user = JSON.parse(localStorage.getItem('data'));
+        setBooksCart(JSON.parse(localStorage.getItem('bookCartJSON')));
         switch(searchType){
             case 'name':BookService.getBooksByName().then((response) => {
                 setBookData(response.data);
@@ -92,10 +95,29 @@ const PhysicalBooksSearch: FC = () => {
         localStorage.setItem('prevLibrarianPage','search');
         navigate(`/transferlibrarybook`);
     }
-    
+    const addToCart = (id, name, barcode) => {
+        setBooksCart(JSON.parse(localStorage.getItem('bookCartJSON')));
+        booksCart.push({ id, name, barcode });  
+        setBooksCart(booksCart);  
+        localStorage.setItem('bookCartJSON', JSON.stringify(booksCart));
+        let button = (document.getElementById(`cartbutton${id}`) as HTMLButtonElement);
+        button.disabled=true;
+        button.innerText='  +  ';
+        button.style.backgroundColor='green';
+    }
     const booklist = books.map((element) => {
             return <tr key={element.id}>
-            <td id="table-divider-stats" style={{ whiteSpace: 'nowrap' }}><button className="greenbutton" onClick={() => transferBook(element.id, element.NameRuBook)}><GrDocumentTransfer /></button>&nbsp;<button className="backbutton" onClick={() => editBook(element.id)}><FaPen /></button>&nbsp;<button className="redbutton" onClick={() => deleteBook(element.id, element.NameRuBook)}><FaTrashAlt /></button></td>
+            <td id="table-divider-stats" style={{ whiteSpace: 'nowrap' }}>
+                <button className="greenbutton" onClick={() => transferBook(element.id, element.NameRuBook)}><GrDocumentTransfer /></button>&nbsp;
+                {localStorage.getItem('bookCartJSON').includes(`"id":${element.id}`)?
+                <><button style={{ backgroundColor: 'green' }} onClick={()=>alert('Уже добавлено в корзину')}>  +  </button>&nbsp;
+                </>
+                :
+                <><button id={`cartbutton${element.id}`} style={{ backgroundColor: 'orange' }} onClick={() => {addToCart(element.id, element.NameRuBook, element.Barcode);}}><FaCartPlus /></button>&nbsp;
+                </>
+                }
+                <button className="backbutton" onClick={() => editBook(element.id)}><FaPen /></button>&nbsp;
+                <button className="redbutton" onClick={() => deleteBook(element.id, element.NameRuBook)}><FaTrashAlt /></button></td>
             <td id="table-divider-stats">{element.NameRuBook}</td>
             <td id="table-divider-stats">{element.Author}</td>
             <td id="table-divider-stats">{element.Annotation}</td>

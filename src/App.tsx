@@ -40,6 +40,7 @@ import PhysicalBooksPages from './pages/PhysicalBooksPages'
 import PhysicalBooksSearch from './pages/PhysicalBooksSearch'
 import ReadEBook from './pages/ReadEBook'
 import DormList from './pages/DormList'
+import TransferBookJSON from './pages/TransferBookJSON'
   
 
 const App:FC = () => {  
@@ -107,6 +108,7 @@ const App:FC = () => {
         <Route path="/addlibrarybook" element={<AddLibraryBook/>}/>
         <Route path="/editlibrarybook" element={<EditLibraryBook/>}/>
         <Route path="/transferlibrarybook" element={<TransferBook/>}/>
+        <Route path="/transferlibrarybookJSON" element={<TransferBookJSON/>}/>
         <Route path="/duebooks" element={<DueBooks/>}/>
 
         <Route path="/kpi" element={ <KPIPage /> } />
