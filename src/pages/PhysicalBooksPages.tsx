@@ -26,7 +26,7 @@ const PhysicalBooksPages: FC = () => {
         // window.addEventListener('scroll', handleScroll);
         setBooksCart(JSON.parse(localStorage.getItem('bookCartJSON')));
         //if (!booksParsed) setParsedBooks([]);
-
+        if(!localStorage.getItem('bookCartJSON')) localStorage.setItem('bookCartJSON','[]');
         setPage(parseInt(localStorage.getItem('currentPage')));
         if (Number.isNaN(parseInt(localStorage.getItem('currentPage')))) setPage(1);
         BookService.getPhysicalBookPageCount().then((response) => {

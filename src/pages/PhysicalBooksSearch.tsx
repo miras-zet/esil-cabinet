@@ -20,6 +20,7 @@ const PhysicalBooksSearch: FC = () => {
     useEffect(() => {  
         // const user = JSON.parse(localStorage.getItem('data'));
         setBooksCart(JSON.parse(localStorage.getItem('bookCartJSON')));
+        if(!localStorage.getItem('bookCartJSON')) localStorage.setItem('bookCartJSON','[]');
         switch(searchType){
             case 'name':BookService.getBooksByName().then((response) => {
                 setBookData(response.data);
