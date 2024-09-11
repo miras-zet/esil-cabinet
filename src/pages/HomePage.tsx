@@ -24,6 +24,13 @@ import StudentDormRequest from '../components/StudentDormRequest';
 // const api_url=process.env.REACT_APP_API_URL;
 
 const HomePage: FC = () => {
+  const currentVersion = '1.0.0';
+  const cachedVersion = localStorage.getItem('appVersion');
+
+  if (cachedVersion !== currentVersion) {
+    localStorage.setItem('appVersion', currentVersion);
+    window.location.reload();
+  }
   const { store } = useContext(Context);
   const { modal, open } = useContext(ModalContext);
   const [kpiInfo, setKpiInfo] = useState<Array<IKPI>>([]);
@@ -258,7 +265,7 @@ const HomePage: FC = () => {
           return <div className='rootTutor'>
             <KPINavbar />
             <div className='tutorcontent'>
-              <h4 style={{ fontSize: 35 }}>Баллы KPI: <b style={{ color: textcolor }}>{kpiInfo ? kpiInfo.toString():<></>}</b></h4>
+              <h4 style={{ fontSize: 35 }}>Баллы KPI: <b style={{ color: textcolor }}>{kpiInfo ? kpiInfo.toString() : <></>}</b></h4>
               <h4 style={{ fontSize: 20 }}>{premiere ? `Премирование: ${premiere} ` : ''}{parseInt(KPIScore) >= 200 ? <HiSparkles style={{ verticalAlign: 'middle', marginTop: '-7px' }} /> : ''}</h4>
               <Link to="/kpi"><button className='navbarbutton'>Загрузить документы &nbsp;&nbsp;<FaUpload /></button></Link>
               <h5>* Каждый несёт персональную ответственность за ввод данных в систему оценки KPI.</h5>
