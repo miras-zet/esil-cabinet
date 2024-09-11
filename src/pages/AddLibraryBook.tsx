@@ -63,7 +63,7 @@ const AddLibraryBook: FC = () => {
             const PublishedTime = (document.getElementById("inputPublishedTime") as HTMLInputElement).value;
             const PublishingHouse = (document.getElementById("inputPublishingHouse") as HTMLInputElement).value;
             const RLibraryCategoryRLibraryBook = category;
-            const TypeOfBook = (document.getElementById("inputTypeOfBook") as HTMLInputElement).value;
+            const TypeOfBook = '';
             const UDC = (document.getElementById("inputUDC") as HTMLInputElement).value;
             BookService.addBook(Name, Author, Pages, Annotation, Barcode, Heading, ISBN, InventoryNumber, KeyWords, LLC, Language, Price, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, TypeOfBook, UDC).then((response) => {
                 setMessage(response.data.message);
@@ -117,12 +117,28 @@ const AddLibraryBook: FC = () => {
                                 <td><input id="inputAuthor" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Автор книги'></input></td>
                             </tr>
                             <tr>
-                                <td style={{ paddingTop: '10px' }}>Количество страниц</td>
-                                <td><input id="inputPages" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Количество страниц'></input></td>
+                                <td style={{ paddingTop: '10px' }}>УДК</td>
+                                <td><input id="inputUDC" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='УДК'></input></td>
+                            </tr>
+                            <tr>
+                                <td style={{ paddingTop: '10px' }}>ББК</td>
+                                <td><input id="inputLLC" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='ББК'></input></td>
+                            </tr>
+                            <tr>
+                                <td style={{ paddingTop: '10px' }}>ISBN</td>
+                                <td><input id="inputISBN" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='ISBN'></input></td>
                             </tr>
                             <tr>
                                 <td style={{ paddingTop: '10px' }}>Аннотация</td>
                                 <td><input id="inputAnnotation" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Аннотация'></input></td>
+                            </tr>
+                            <tr>
+                                <td style={{ paddingTop: '10px' }}>Ключевые слова</td>
+                                <td><input id="inputKeyWords" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Ключевые слова'></input></td>
+                            </tr>
+                            <tr>
+                                <td style={{ paddingTop: '10px' }}>Инвентарный номер</td>
+                                <td><input id="inputInventoryNumber" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Инвентарный номер'></input></td>
                             </tr>
                             <tr>
                                 <td style={{ paddingTop: '10px' }}>Штрихкод</td>
@@ -131,47 +147,6 @@ const AddLibraryBook: FC = () => {
                             <tr>
                                 <td style={{ paddingTop: '10px' }}>ОП</td>
                                 <td><input id="inputHeading" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='ОП'></input></td>
-                            </tr>
-                            <tr>
-                                <td style={{ paddingTop: '10px' }}>ISBN</td>
-                                <td><input id="inputISBN" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='ISBN'></input></td>
-                            </tr>
-                            <tr>
-                                <td style={{ paddingTop: '10px' }}>Инвентарный номер</td>
-                                <td><input id="inputInventoryNumber" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Инвентарный номер'></input></td>
-                            </tr>
-                            <tr>
-                                <td style={{ paddingTop: '10px' }}>Ключевые слова</td>
-                                <td><input id="inputKeyWords" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Ключевые слова'></input></td>
-                            </tr>
-                            <tr>
-                                <td style={{ paddingTop: '10px' }}>ББК</td>
-                                <td><input id="inputLLC" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='ББК'></input></td>
-                            </tr>
-                            
-                            <tr>
-                                <td style={{ paddingTop: '10px' }}>Цена</td>
-                                <td><input id="inputPrice" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Цена'></input></td>
-                            </tr>
-                            <tr>
-                                <td style={{ paddingTop: '10px' }}>Страна, город публикации&nbsp;&nbsp;&nbsp;</td>
-                                <td><input id="inputPublishedCountryCity" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Страна, город публикации'></input></td>
-                            </tr>
-                            <tr>
-                                <td style={{ paddingTop: '10px' }}>Год публикации</td>
-                                <td><input id="inputPublishedTime" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Год публикации'></input></td>
-                            </tr>
-                            <tr>
-                                <td style={{ paddingTop: '10px' }}>Издательство</td>
-                                <td><input id="inputPublishingHouse" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Издательство'></input></td>
-                            </tr>
-                            <tr>
-                                <td style={{ paddingTop: '10px' }}>Тип книги</td>
-                                <td><input id="inputTypeOfBook" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Тип книги'></input></td>
-                            </tr>
-                            <tr>
-                                <td style={{ paddingTop: '10px' }}>УДК</td>
-                                <td><input id="inputUDC" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='УДК'></input></td>
                             </tr>
                             <tr>
                                 <td style={{ paddingTop: '10px' }}>Язык</td>
@@ -189,6 +164,27 @@ const AddLibraryBook: FC = () => {
                                     {listItemsCategory}
                                 </select></td>
                             </tr>
+                            <tr>
+                                <td style={{ paddingTop: '10px' }}>Издательство</td>
+                                <td><input id="inputPublishingHouse" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Издательство'></input></td>
+                            </tr>
+                            <tr>
+                                <td style={{ paddingTop: '10px' }}>Страна, город публикации&nbsp;&nbsp;&nbsp;</td>
+                                <td><input id="inputPublishedCountryCity" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Страна, город публикации'></input></td>
+                            </tr>
+                            <tr>
+                                <td style={{ paddingTop: '10px' }}>Год публикации</td>
+                                <td><input id="inputPublishedTime" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Год публикации'></input></td>
+                            </tr>
+                            <tr>
+                                <td style={{ paddingTop: '10px' }}>Цена</td>
+                                <td><input id="inputPrice" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Цена'></input></td>
+                            </tr>
+                            <tr>
+                                <td style={{ paddingTop: '10px' }}>Количество страниц</td>
+                                <td><input id="inputPages" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Количество страниц'></input></td>
+                            </tr>
+                            
                         </table>
                         <button className="navbarbutton" onClick={() => addBook()}>Добавить</button><br />
                         <div style={{ color: messagecolor, fontWeight: 'bold' }}>{message}</div>

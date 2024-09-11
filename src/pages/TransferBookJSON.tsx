@@ -37,6 +37,7 @@ const TransferBookJSON: FC = () => {
     }
     const transfer = () => {
         const iin = (document.getElementById("inputIIN") as HTMLInputElement).value;
+        if (iin != '') {
         const bookidsJSON = localStorage.getItem('bookCartJSON');
         BookService.transferBookBatch(iin, bookidsJSON)
             .then((response) => {
@@ -56,6 +57,10 @@ const TransferBookJSON: FC = () => {
                     setMessage("Ошибка");
                 }
             });
+        }
+        else{
+            alert('Впишите ИИН');
+        }
     }
     const goBack = () =>{
         let prevpage = localStorage.getItem('prevLibrarianPage');

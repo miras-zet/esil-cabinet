@@ -41,7 +41,6 @@ const EditLibraryBook: FC = () => {
         (document.getElementById("inputPublishedCountryCity") as HTMLInputElement).value = bookData?.PublishedCountryCity;
         (document.getElementById("inputPublishedTime") as HTMLInputElement).value = bookData?.PublishedTime;
         (document.getElementById("inputPublishingHouse") as HTMLInputElement).value = bookData?.PublishingHouse;
-        (document.getElementById("inputTypeOfBook") as HTMLInputElement).value = bookData?.TypeOfBook;
         (document.getElementById("inputUDC") as HTMLInputElement).value = bookData?.UDC;
     }
 
@@ -107,7 +106,7 @@ const EditLibraryBook: FC = () => {
                 const PublishedTime = (document.getElementById("inputPublishedTime") as HTMLInputElement).value;
                 const PublishingHouse = (document.getElementById("inputPublishingHouse") as HTMLInputElement).value;
                 const RLibraryCategoryRLibraryBook = category;
-                const TypeOfBook = (document.getElementById("inputTypeOfBook") as HTMLInputElement).value;
+                const TypeOfBook = '';
                 const UDC = (document.getElementById("inputUDC") as HTMLInputElement).value;
                 BookService.editBook(id, Name, Author, Pages, Annotation, Barcode, Heading, ISBN, InventoryNumber, KeyWords, LLC, Language, Price, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, TypeOfBook, UDC).then((response) => {
                     setMessage(response.data.message);
@@ -134,20 +133,19 @@ const EditLibraryBook: FC = () => {
     const inputValues = [
         ['Name', 'Название', bookData?.NameRuBook],
         ['Author', 'Автор', bookData?.Author],
-        ['Pages', 'Кол-во страниц', bookData?.Pages],
+        ['UDC', 'УДК', bookData?.UDC],
+        ['LLC', 'ББК', bookData?.LLC],
+        ['ISBN', 'ISBN', bookData?.ISBN],
         ['Annotation', 'Аннотация', bookData?.Annotation],
+        ['KeyWords', 'Ключевые слова', bookData?.KeyWords],
+        ['InventoryNumber', 'Инвентарный номер', bookData?.InventoryNumber],
         ['Barcode', 'Штрихкод', bookData?.Barcode],
         ['Heading', 'ОП', bookData?.Heading],
-        ['ISBN', 'ISBN', bookData?.ISBN],
-        ['InventoryNumber', 'Инвентарный номер', bookData?.InventoryNumber],
-        ['KeyWords', 'Ключевые слова', bookData?.KeyWords],
-        ['LLC', 'ББК', bookData?.LLC],
-        ['Price', 'Цена', bookData?.Price],
+        ['PublishingHouse', 'Издательство', bookData?.PublishingHouse],
         ['PublishedCountryCity', 'Страна, город публикации', bookData?.PublishedCountryCity],
         ['PublishedTime', 'Год публикации', bookData?.PublishedTime],
-        ['PublishingHouse', 'Издательство', bookData?.PublishingHouse],
-        ['TypeOfBook', 'Тип книги', bookData?.TypeOfBook],
-        ['UDC', 'УДК', bookData?.UDC]
+        ['Price', 'Цена', bookData?.Price],
+        ['Pages', 'Кол-во страниц', bookData?.Pages],
     ];
     const inputMap = inputValues.map((element) => {
         const [a, b] = element;
