@@ -113,6 +113,12 @@ const editBook = (id, Name, Author, Pages, Annotation, Barcode, Heading, ISBN, I
     }
     return http.get(`/books/editbook`, { params });
 };
+const findUser = (iin): Promise<any> => {
+    const params = {
+        iin: iin
+    }
+    return http.get(`/books/getuserdata`, { params });
+};
 const transferBook = (iin,bookid): Promise<any> => {
     const params = {
         iin: iin, 
@@ -168,6 +174,7 @@ const BookService = {
     editBook,
     getBookCategories,
     addBook,
+    findUser,
     transferBook,
     transferBookBatch,
     deleteBook,
