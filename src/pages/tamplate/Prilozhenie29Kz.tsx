@@ -45,6 +45,9 @@ export function Prilozhenie29Kz(certificat:CertResponse)  {
         </div>
         <div className="shapka">
 				<p><center>
+        Бұйрыққа 6-қосымша/<br/>
+2024 жылғы 17 маусымдағы №196<br/>
+<br/>
         Бала туғанда берілетін мемлекеттік<br/>
         жәрдемақыны, бала күтіміне<br/>
         байланысты  жәрдемақыны,<br/>

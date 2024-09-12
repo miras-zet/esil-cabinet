@@ -63,7 +63,7 @@ export function StudentsEn(certificat:CertResponse)  {
                     }}>
 					<div className="bodytext">
 						<h3>REFERENCE</h3>
-						<p>This reference is given to  <b>{certificat?.lastname} {certificat?.name}</b> , date of birth {moment(certificat?.birth_date).format("DD.MM.YYYY")} to confirm that he(she) is a  <b>{certificat?.course_number}</b> year student of the specialty   <b>{certificat?.specialization_code} - "{certificat?.specialization_name_en}" </b>,
+						<p>This reference is given to  <b>{certificat?.lastname} {certificat?.name} {certificat?.middlename}</b>, date of birth {moment(certificat?.birth_date).format("DD.MM.YYYY")} to confirm that he(she) is a  <b>{certificat?.course_number}</b> year student of the specialty   <b>{certificat?.specialization_code} - "{certificat?.specialization_name_en}" </b>,
                         <u><b> «Esil University» State license № KZ08LAA00032358, date of issue 01.04.2022 (without time limitation)</b></u><br/> 
                         <br/>{certificat?.study_form_name_en} <br/>                         
                         {certificat.grant_type === -4 && <><b>State grant</b> / On a paid basis <br/></>}

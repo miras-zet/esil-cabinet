@@ -1,48 +1,82 @@
-import {FC, useContext} from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
 import '../App.css';
 import { Context } from "../main";
 import { TbLogout } from "react-icons/tb";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import INotificationIconData from "../models/INotificationIconData";
+import NotificationService from "../services/NotificationService";
+import { FaBell } from "react-icons/fa";
 
 const KPINavbar: FC = () => {
-    const {store} = useContext(Context); 
-    const data = JSON.parse(localStorage.getItem('data'));
-    const navigate = useNavigate();
-    const toMain = () =>{
-      navigate('/');
-    }
-    let FIO = '';
-    if (data) FIO = data.lastname+' '+data.name+' '+data.middlename;
-    const role = localStorage.getItem('role');
-    let headertext='';
-    switch(role){
-        case 'plt_tutor': headertext='Система учета баллов KPI'; break;
-        case 'plt_kpiadmin': headertext='Администратор системы KPI'; break;
-        case 'plt_applicant': headertext='Кабинет абитуриента ESIL University'; break;
-        case 'plt_student': headertext='Кабинет студента ESIL University'; break;
-        case 'admissionadmin': headertext='Приёмная комиссия ESIL University'; break;
-        case 'admissionstats': headertext='Статистика абитуриентов ESIL University'; break;
-        case 'dean_students': headertext='Кабинет декана по работе со студентами'; break;
-        case 'reader': headertext='Электронная библиотека ESIL University'; break;
-        case 'technician': headertext='Отдел технического обслуживания и ремонта'; break;
-        case 'librarian': headertext='Электронная библиотека и система учёта книг ESIL University'; break;
-        default: headertext='ESIL University';
-    }
-    return(
+  const { store } = useContext(Context);
+  const [notificationData, setNotificationData] = useState<Array<INotificationIconData>>([]);
+  useEffect(() => {
+    NotificationService.getIconData().then((response) => {
+      setNotificationData(response.data);
+    });
+
+  }, []);
+  const data = JSON.parse(localStorage.getItem('data'));
+  const navigate = useNavigate();
+  const toMain = () => {
+    navigate('/');
+  }
+
+
+  let FIO = '';
+  if (data) FIO = data.lastname + ' ' + data.name + ' ' + data.middlename;
+  const role = localStorage.getItem('role');
+  let headertext = '';
+  switch (role) {
+    case 'plt_tutor': headertext = 'Система учета баллов KPI'; break;
+    case 'plt_kpiadmin': headertext = 'Администратор системы KPI'; break;
+    case 'plt_applicant': headertext = 'Кабинет абитуриента ESIL University'; break;
+    case 'plt_student': headertext = 'Кабинет студента ESIL University'; break;
+    case 'admissionadmin': headertext = 'Приёмная комиссия ESIL University'; break;
+    case 'admissionstats': headertext = 'Статистика абитуриентов ESIL University'; break;
+    case 'dean_students': headertext = 'Кабинет декана по работе со студентами'; break;
+    case 'reader': headertext = 'Электронная библиотека ESIL University'; break;
+    case 'technician': headertext = 'Отдел технического обслуживания и ремонта'; break;
+    case 'librarian': headertext = 'Электронная библиотека и система учёта книг ESIL University'; break;
+    default: headertext = 'ESIL University';
+  }
+
+  return (
+    <div>
+      <div className="topnav">
+        <div style={{ marginLeft: '-100px', backgroundColor: 'white', height: '115%' }}>&nbsp;</div>
+        <img onClick={() => toMain()} src="logo_new.png" width={150} />
+        <div className='navbartitle'>{headertext}</div>
+      </div>
+      <div className="topnav2">
         <div>
-            <div className="topnav">
-              <div style={{marginLeft:'-100px', backgroundColor:'white', height:'115%'}}>&nbsp;</div>
-              <img onClick={()=>toMain()} src="logo_new.png" width={150}/>
-              <div className='navbartitle'>{headertext}</div>      
-            </div> 
-            <div className="topnav2">
-            {localStorage.getItem('role')=='plt_tutor' ? <div className='navbarname'>Кафедра {localStorage.getItem('cafedraname')}</div>:<div></div>}
-              <div className='navbarname'>{FIO}</div>     
-              <button className='navbarbutton' onClick={() => store.logout()}>Выйти <TbLogout  style={{verticalAlign:'middle', marginTop:'-3px'}}/></button>
-            </div> 
+          {notificationData[0]?.unread_count > 0 ?
+            <><Link style={{ color: 'white' }} to='/notifications'>
+              <div>
+                <div style={{ borderRadius: '100px', backgroundColor: 'red', verticalAlign: 'middle', textAlign: 'center', marginTop: '-29px', paddingTop:'2px',width: '30px', height: '30px'}}><b>{notificationData[0].unread_count}</b></div>
+                <button style={{ backgroundColor: '#0b9e72', borderRadius: '100px', verticalAlign: 'middle' }}>
+                  <FaBell style={{ fontSize: '15pt', backgroundColor: '#0b9e72' }} />
+                </button>
+              </div>
+            </Link></>
+            :
+            <><Link style={{ color: 'white' }} to='/notifications'>
+              <div>
+                <button style={{ backgroundColor: '#0b9e72', borderRadius: '100px', verticalAlign: 'middle' }}>
+                  <FaBell style={{ fontSize: '15pt', backgroundColor: '#0b9e72' }} />
+                </button>
+              </div>
+            </Link></>
+          }
+
         </div>
-    )
+        {localStorage.getItem('role') == 'plt_tutor' ? <div className='navbarname'>Кафедра {localStorage.getItem('cafedraname')}</div> : <div></div>}
+        <div className='navbarname'>{FIO}</div>
+        <button className='navbarbutton' onClick={() => store.logout()}>Выйти <TbLogout style={{ verticalAlign: 'middle', marginTop: '-3px' }} /></button>
+      </div>
+    </div>
+  )
 };
 
 export default observer(KPINavbar);
