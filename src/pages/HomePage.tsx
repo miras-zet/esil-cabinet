@@ -25,7 +25,7 @@ import IBookCart from '../models/IBookCart';
 // const api_url=process.env.REACT_APP_API_URL;
 
 const HomePage: FC = () => {
-  const currentVersion = '1.0.6';
+  const currentVersion = '1.0.7';
   const cachedVersion = localStorage.getItem('appVersion');
 
   if (cachedVersion !== currentVersion) {

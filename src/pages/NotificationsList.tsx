@@ -50,12 +50,11 @@ const NotificationsList: FC = () => {
     // }
 
     const notificationList = notifications.map((element, index) => {
-        return element.viewed == 0 ? <div style={{alignItems:'center'}}><br />
+        return element.viewed == 0 ? <div style={{ alignItems: 'center' }}><br />
             <div key={index} style={{ alignItems: 'center', width: '93%', height: '10%', padding: '20px 20px 20px 20px', backgroundColor: '#dbdbdb', borderRadius: '20px' }}>
                 <h3>{element.notification_name}</h3>
-                {element.isimportant==1? <b style={{color:'red'}}>Важное уведомление <MdOutlineNotificationImportant /><br/></b>:''}
+                {element.isimportant == 1 ? <b style={{ color: 'red' }}>Важное уведомление <MdOutlineNotificationImportant /><br /></b> : ''}
                 {element.ispersonal == 1 ? <>Отправитель: <b>{element.lastname} {element.name}</b><br /></> : <></>}
-
                 {element.ispersonal == 1 ? <>Текст сообщения: "{element.message}"<br /></> : <>{element.message}</>}<br /><br />
                 Дата уведомления: {moment(element.date_sent).format("DD.MM.YYYY")}<br /><br />
                 <button className='greenbutton' onClick={() => markAsRead(element.id)}>Прочитано</button>
@@ -77,6 +76,13 @@ const NotificationsList: FC = () => {
         </div> : <></>
     }
     );
+    let hasUnread=false;
+    for(let i=0; i<notifications.length; i++){
+        if(notifications[i].viewed==0){
+            hasUnread=true;
+            break;
+        }
+    }
     if (store.isLoading) {
         return <div>Loading ...</div>
     }
@@ -99,25 +105,27 @@ const NotificationsList: FC = () => {
         <div>
             {(() => {
                 //const role = localStorage.getItem('role');
-                return <div style={{ textAlign: 'left', width: '1200px', marginTop: '10%', marginLeft:'15%' }}>
+                return <div style={{ textAlign: 'left', width: '1200px', marginTop: '10%', marginLeft: '15%' }}>
                     <KPINavbar />
                     <br /><br /><br /><br />
                     <Link to={"/"}><button className='backbutton'>Вернуться назад</button></Link> <br /><br />
                     <h2>Список уведомлений</h2>
 
                     <br />
-                    {notificationList.length > 0 ?
+                    {hasUnread ?
                         <div>
                             <div id='opaqueTable' style={{ marginLeft: '-1.3%', paddingLeft: '15px', width: '70%' }}>
                                 {notificationList}<br />
                             </div>
-                            <br /><br /><br />
-                            <h3>Прочитанные уведомления</h3>
-                            <div id='opaqueTable' style={{ marginLeft: '-1.3%', paddingLeft: '15px', width: '70%' }}>
-                                {notificationListRead}<br />
-                            </div>
-                        </div> : <h3>Уведомлений нет</h3>
+                            <br /><br /><br /></div> : ''
                     }
+                    {notificationListRead.length > 0 ? <div><h3>Прочитанные уведомления</h3>
+                        <div id='opaqueTable' style={{ marginLeft: '-1.3%', paddingLeft: '15px', width: '70%' }}>
+                            {notificationListRead}<br />
+                        </div>
+                    </div> : <h3>Уведомлений нет</h3>
+                    }
+                    
 
                 </div>
             })()}
