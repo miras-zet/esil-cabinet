@@ -84,8 +84,8 @@ const TransferBook: FC = () => {
                     setMessage(response.data.message);
                     if (response.data.message.indexOf('успешно') !== -1) {
                         setMessageColor("#2ecc71");
-                        localStorage.removeItem('transferringbookid');
-                        localStorage.removeItem('transferringBookName');
+                        alert('Успешно выдано');
+                        goBack();
                     } else {
                         setMessageColor("red");
                     }
