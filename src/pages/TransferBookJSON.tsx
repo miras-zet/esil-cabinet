@@ -40,27 +40,33 @@ const TransferBookJSON: FC = () => {
     const transfer = () => {
         const iin = userdata[0]?.iin;
         if (iin != '') {
-        const bookidsJSON = localStorage.getItem('bookCartJSON');
-        BookService.transferBookBatch(iin, bookidsJSON)
-            .then((response) => {
-                setMessage(response.data.message);
-                if (response.data.message.indexOf('успешно') !== -1) {
-                    setMessageColor("#2ecc71");
-                    localStorage.setItem('bookCartJSON','[]');
-                } else {
-                    setMessageColor("red");
-                }
-                setButtonPressed('true');
-            })
-            .catch((err) => {
-                if (err.response && err.response.data && err.response.data.message) {
-                    setMessage(err.response.data.message);
-                } else {
-                    setMessage("Ошибка");
-                }
-            });
+            const bookidsJSON = localStorage.getItem('bookCartJSON');
+            if (bookidsJSON != '[]') {
+                BookService.transferBookBatch(iin, bookidsJSON)
+                    .then((response) => {
+                        setMessage(response.data.message);
+                        if (response.data.message.indexOf('успешно') !== -1) {
+                            setMessageColor("#2ecc71");
+                            localStorage.setItem('bookCartJSON', '[]');
+                        } else {
+                            setMessageColor("red");
+                        }
+                        setButtonPressed('true');
+                    })
+                    .catch((err) => {
+                        if (err.response && err.response.data && err.response.data.message) {
+                            setMessage(err.response.data.message);
+                        } else {
+                            setMessage("Ошибка");
+                        }
+                    });
+            }
+            else{
+                alert('Корзина пуста');
+            }
         }
-        else{
+
+        else {
             alert('Впишите ИИН');
         }
     }
@@ -75,7 +81,7 @@ const TransferBookJSON: FC = () => {
                         setMessage('Пользователь не найден');
                         setMessageColor("red");
                     }
-                    else{
+                    else {
                         setMessage('');
                         setMessageColor("#2ecc71");
                     }
@@ -95,8 +101,8 @@ const TransferBookJSON: FC = () => {
             alert('Впишите ИИН');
         }
     }
-    const goBack = () =>{
-        window.location.href=window.location.protocol + '//' + window.location.host +'/';
+    const goBack = () => {
+        window.location.href = window.location.protocol + '//' + window.location.host + '/';
     }
     return (
         <div>
@@ -106,39 +112,39 @@ const TransferBookJSON: FC = () => {
                     return <div style={{ textAlign: 'left', width: '1200px' }}>
                         <KPINavbar />
                         <br /><br /><br />
-                        
+
                         <table style={{ width: '110%' }}>
                             <thead></thead>
                             <tbody>
                                 <tr>
-                                    <td style={{width:'20%'}}>
-                                    <br/><br/><br/>
-                                    <button onClick={() => goBack()} className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button> <br /><br />
+                                    <td style={{ width: '20%' }}>
+                                        <br /><br /><br />
+                                        <button onClick={() => goBack()} className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button> <br /><br />
                                         <br />
                                         <h3>Впишите ИИН студента/преподавателя, которому выдаются все книги из корзины</h3>
                                         <input id="inputIIN" className='btnNeutral' style={{ width: '300px' }} type="text" maxLength={12} placeholder='Введите ИИН'></input><br /><br />
                                         <button className="navbarbutton" onClick={() => findUser()}>Найти</button><br /><br />
                                         <div style={{ color: messagecolor, fontWeight: 'bold' }}>{message}</div>
                                     </td>
-                                    <td style={{width:'10%'}}></td>
-                                    <td style={{width:'30%'}}>
-                                        <br/>
-                                        {userdata.length>0?<div id='opaqueTable'>
-                                            <div style={{padding:'8% 8% 8% 8%', fontWeight:'normal'}}>
-                                                <h4>Карточка {userdata[0]?.extradata?'студента':'преподавателя'}</h4>
+                                    <td style={{ width: '10%' }}></td>
+                                    <td style={{ width: '30%' }}>
+                                        <br />
+                                        {userdata.length > 0 ? <div id='opaqueTable'>
+                                            <div style={{ padding: '8% 8% 8% 8%', fontWeight: 'normal' }}>
+                                                <h4>Карточка {userdata[0]?.extradata ? 'студента' : 'преподавателя'}</h4>
                                                 <p>ФИО: <u>{userdata[0]?.lastname} {userdata[0]?.firstname} {userdata[0]?.patronymic}</u></p>
-                                                <p>{userdata[0]?.extradata?'Специальность':'Кафедра'}: <u>{userdata[0]?.specialization}</u></p>
-                                                {userdata[0]?.extradata?<p>Форма обучения: <u>{userdata[0]?.extradata}</u></p>:''}
-                                                {userdata[0]?.extradata?<p>Группа: <u>{userdata[0]?.extradata2}</u></p>:<p>Факультет: <u>{userdata[0]?.extradata2}</u></p>}
-                                                <p>Номер: <u>{userdata[0]?.phone.length>0?userdata[0]?.phone:' --- '}</u></p>
-                                                <p>Статус: <u>{userdata[0]?.extradata?
-                                                <>{userdata[0]?.status==1?'Учится':'Выпускник/отчислен'}</>
-                                                :
-                                                <>{userdata[0]?.status==1?'Уволен':'Работает'}</>
+                                                <p>{userdata[0]?.extradata ? 'Специальность' : 'Кафедра'}: <u>{userdata[0]?.specialization}</u></p>
+                                                {userdata[0]?.extradata ? <p>Форма обучения: <u>{userdata[0]?.extradata}</u></p> : ''}
+                                                {userdata[0]?.extradata ? <p>Группа: <u>{userdata[0]?.extradata2}</u></p> : <p>Факультет: <u>{userdata[0]?.extradata2}</u></p>}
+                                                <p>Номер: <u>{userdata[0]?.phone.length > 0 ? userdata[0]?.phone : ' --- '}</u></p>
+                                                <p>Статус: <u>{userdata[0]?.extradata ?
+                                                    <>{userdata[0]?.status == 1 ? 'Учится' : 'Выпускник/отчислен'}</>
+                                                    :
+                                                    <>{userdata[0]?.status == 1 ? 'Уволен' : 'Работает'}</>
                                                 }</u></p>
                                                 {buttonPressed == 'false' ? <button className="navbarbutton" onClick={() => transfer()}>Выдать книги из корзины</button> : <button disabled id="backbutton">Выполнено</button>}
                                             </div>
-                                        </div>:''}
+                                        </div> : ''}
                                     </td>
                                 </tr>
                             </tbody>
