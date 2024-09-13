@@ -1,5 +1,12 @@
 export default interface INotificationData {
-    notif_count:number,
-    unread_count:number,
-    important_unread_count:number,
+    id: number,
+    lastname: string,
+    name: string,
+    notification_name: string,
+    message,
+    ispersonal: number,
+    isimportant: number,
+    date_sent: string,
+    date_viewed: string,
+    viewed: number
 }

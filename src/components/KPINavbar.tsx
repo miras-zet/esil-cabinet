@@ -51,10 +51,10 @@ const KPINavbar: FC = () => {
       </div>
       <div className="topnav2">
         <div>
-          {notificationData[0]?.unread_count > 0 ?
+          {!window.location.href.includes('notifications') ? notificationData[0]?.unread_count > 0 ?
             <><Link style={{ color: 'white' }} to='/notifications'>
               <div>
-                <div style={{ borderRadius: '100px', backgroundColor: 'red', verticalAlign: 'middle', textAlign: 'center', marginTop: '-29px', paddingTop:'2px',width: '30px', height: '30px'}}><b>{notificationData[0].unread_count}</b></div>
+                <div style={{ position: 'absolute', fontSize:'9pt', borderRadius: '100px', backgroundColor: 'red', verticalAlign: 'middle', textAlign: 'center', marginTop: '-12px', marginLeft: '44px', paddingTop: '2px', width: '20px', height: '20px' }}><b>{notificationData[0].unread_count}</b></div>
                 <button style={{ backgroundColor: '#0b9e72', borderRadius: '100px', verticalAlign: 'middle' }}>
                   <FaBell style={{ fontSize: '15pt', backgroundColor: '#0b9e72' }} />
                 </button>
@@ -68,7 +68,10 @@ const KPINavbar: FC = () => {
                 </button>
               </div>
             </Link></>
+            : ''
+
           }
+
 
         </div>
         {localStorage.getItem('role') == 'plt_tutor' ? <div className='navbarname'>Кафедра {localStorage.getItem('cafedraname')}</div> : <div></div>}

@@ -72,7 +72,7 @@ const KPIAdminPage: FC = () => {
           return <div>
             <KPINavbar />
             <br /><br /><br /><br /><br /><br />
-            <Link to={"/"}><button><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link>
+            <Link to={"/"}><button id='graybutton'><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link>
             <br /><br />
             <h3>Баллы ППС</h3>
             <h4>Кафедра {cafedraname}</h4>

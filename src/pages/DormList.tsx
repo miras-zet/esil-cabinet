@@ -98,7 +98,7 @@ const DormList: FC = () => {
                         </> :
                         element.approved == '0' ?
                             <>
-                                <br /><button className='graybutton' onClick={() => redirect(element.iin, element.lastname + ' ' + element.firstname)}>Действия</button>&nbsp;
+                                <br /><button className='backbutton' onClick={() => redirect(element.iin, element.lastname + ' ' + element.firstname)}>Действия</button>&nbsp;
                                 {/* <button onClick={open}>Принять</button>&nbsp; */}
                             </>
                             :
@@ -165,9 +165,9 @@ const DormList: FC = () => {
                         <h3>{dormRequestsList.length} {grammar_corrected}</h3>
                         <br />
                         {approvedHidden ?
-                            <button className='graybutton' onClick={() => switchButton()}><FaRegEye /> Показать принятые</button>
+                            <button className='backbutton' onClick={() => switchButton()}><FaRegEye /> Показать принятые</button>
                             :
-                            <button className='graybutton' onClick={() => switchButton()}><FaRegEyeSlash /> Скрыть принятые</button>
+                            <button className='backbutton' onClick={() => switchButton()}><FaRegEyeSlash /> Скрыть принятые</button>
                         }
                         <br /><br />
                         <table id='opaqueTable' style={{ marginLeft: '-1.3%', paddingLeft: '15px', width: '107%' }}>

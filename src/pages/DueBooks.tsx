@@ -10,6 +10,7 @@ import IBookTransfer from '../models/IBookTransfer';
 import moment from 'moment';
 import { ImCross } from 'react-icons/im';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
+import { IoIosMail } from 'react-icons/io';
 
 const DueBooks: FC = () => {
     // const navigate = useNavigate();
@@ -70,6 +71,27 @@ const DueBooks: FC = () => {
                 });
         }
     };
+    const notifydebtor = (userid,bookname,fio) =>{
+        if (confirm(`Вы уверены, что хотите уведомить пользователя о необходимости возвращения этой книги?`)) {
+            BookService.notifyDebtor(userid,bookname)
+                .then(() => {
+                    return BookService.getDueBooks();
+                })
+                .then((due) => {
+                    setDueData(due.data);
+                    alert(`Пользователю ${fio} отправлено уведомление`);
+                })
+                .catch((err) => {
+                    if (err.response && err.response.data && err.response.data.message) {
+                        alert(err.response.data.message);
+                    } else {
+                        alert("Ошибка удаления");
+                    }
+                });
+                
+        }
+    };
+    
     const booklist = dueData.map((element) => {
         let clearedfio = '';
         let clearedbookname = '';
@@ -85,7 +107,10 @@ const DueBooks: FC = () => {
                 <td id="table-divider-stats">{element.barcode}</td>
                 <td id="table-divider-stats">{element.role=='plt_tutor'?'Преподаватель':'Студент'}</td> 
                 <td id="table-divider-stats">{moment(element.DateCreated).format("DD.MM.YYYY HH:mm")}</td>
-                <td id="table-divider-stats"><button className="redbutton" onClick={() => deleteBook(element.id, element.fio)}><FaTrashAlt /></button></td>
+                <td id="table-divider-stats" style={{whiteSpace:'nowrap'}}>
+                    <button className="redbutton" onClick={() => deleteBook(element.id, element.fio)}><FaTrashAlt /></button>
+                    &nbsp;<button style={{backgroundColor:'#e8b641',color:'white'}} onClick={() => notifydebtor(element.userid, element.bookname, element.fio)}><IoIosMail  /></button>
+                </td>
             </tr>
     }
 
@@ -97,7 +122,7 @@ const DueBooks: FC = () => {
                 //const role = localStorage.getItem('role');
                 //const user = JSON.parse(localStorage.getItem('data'));
 
-                return <div style={{ textAlign: 'left', width: '900px', marginTop: '10%' }}>
+                return <div style={{ textAlign: 'left', width: '1200px', marginTop: '10%' }}>
                     <KPINavbar />
                     <br /><br /><br />
                     {/* <h3>Добро пожаловать, {user.lastname + ' ' + user.name + ' ' + user.middlename}</h3><br /> */}
@@ -106,7 +131,7 @@ const DueBooks: FC = () => {
                     <h2>Список должников по книгам</h2>
                     <br />
 
-                    {dueData.length > 0 ? <table id='opaqueTable' style={{ fontSize: '12pt', paddingLeft: '15px', width: '107%' }}>
+                    {dueData.length > 0 ? <table id='opaqueTable' style={{ fontSize: '12pt', paddingLeft: '15px', width: '105%' }}>
                         <tbody>
                             <tr><br /></tr>
                             <tr>

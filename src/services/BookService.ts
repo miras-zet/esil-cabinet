@@ -126,6 +126,13 @@ const transferBook = (iin,bookid): Promise<any> => {
     }
     return http.get(`/books/transferbook`, { params });
 };
+const notifyDebtor = (userid,bookname): Promise<any> => {
+    const params = {
+        userid: userid, 
+        bookname: bookname
+    }
+    return http.get(`/books/notifydebtor`, { params });
+};
 const transferBookBatch = (iin,bookidsJSON): Promise<any> => {
     const params = {
         iin: iin, 
@@ -175,6 +182,7 @@ const BookService = {
     getBookCategories,
     addBook,
     findUser,
+    notifyDebtor,
     transferBook,
     transferBookBatch,
     deleteBook,

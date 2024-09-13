@@ -25,7 +25,7 @@ import IBookCart from '../models/IBookCart';
 // const api_url=process.env.REACT_APP_API_URL;
 
 const HomePage: FC = () => {
-  const currentVersion = '1.0.5';
+  const currentVersion = '1.0.6';
   const cachedVersion = localStorage.getItem('appVersion');
 
   if (cachedVersion !== currentVersion) {
@@ -318,8 +318,8 @@ const HomePage: FC = () => {
             <div className='tutorcontent'>
               <h2>Кабинет ОТОиР</h2>
               <Link to="/techNewDocument"><button className='navbarbutton'>Новое представление &nbsp;<MdNoteAdd style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link> <br /><br /><br />
-              <Link to="/techDueDocuments"><button>Активные</button></Link><br /><br />
-              <Link to="/techOldDocuments"><button>Завершенные</button></Link>
+              <Link to="/techDueDocuments"><button id='graybutton'>Активные</button></Link><br /><br />
+              <Link to="/techOldDocuments"><button id='graybutton'>Завершенные</button></Link>
             </div>
           </div>
         }

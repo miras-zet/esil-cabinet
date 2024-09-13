@@ -41,6 +41,7 @@ import PhysicalBooksSearch from './pages/PhysicalBooksSearch'
 import ReadEBook from './pages/ReadEBook'
 import DormList from './pages/DormList'
 import TransferBookJSON from './pages/TransferBookJSON'
+import NotificationsList from './pages/NotificationsList'
   
 
 const App:FC = () => {  
@@ -75,7 +76,7 @@ const App:FC = () => {
     <>
       <Routes>
         <Route path="/" element={ <HomePage /> } />
-
+        <Route path="/notifications" element={ <NotificationsList/>} />
         
 
         <Route path="/applicants" element={<ApplicantList />}/>
