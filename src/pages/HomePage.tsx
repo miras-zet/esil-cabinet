@@ -19,13 +19,16 @@ import StudentDebt from '../components/StudentDebt';
 import StudentBookDebt from '../components/StudentBookDebt';
 import StudentDormRequest from '../components/StudentDormRequest';
 import IBookCart from '../models/IBookCart';
+import config from "../http/version.json";
+
+export const buildVer = config.buildVer;
 
 // import dotenv from 'dotenv';
 // dotenv.config();
 // const api_url=process.env.REACT_APP_API_URL;
 
 const HomePage: FC = () => {
-  const currentVersion = '1.0.7';
+  const currentVersion = buildVer;
   const cachedVersion = localStorage.getItem('appVersion');
 
   if (cachedVersion !== currentVersion) {
