@@ -12,8 +12,8 @@ const LoginForm: FC = () => {
     // const debugTutor = () => {
     //     store.login('730705301528', '730705301528');
     // }
-    function sanitizeInput(username, password) {
-        const forbiddenChars = "'`!@#$%^&*()+=<>?/{}[]\\/";
+    function sanitizeInput(username) {
+        const forbiddenChars = "'`,+=<>?{}";
         const forbiddenSet = new Set(forbiddenChars);
 
         const removeForbiddenChars = (input) => {
@@ -21,8 +21,7 @@ const LoginForm: FC = () => {
         };
     
         const sanitizedUsername = removeForbiddenChars(username);
-        const sanitizedPassword = removeForbiddenChars(password);
-        store.login(sanitizedUsername, sanitizedPassword);
+        return sanitizedUsername;
     }
     
     return (
@@ -55,27 +54,13 @@ const LoginForm: FC = () => {
             margin: 5,
           }}
         /> 
-        <div>{store.errors === 401 && <span style={{color: 'red'}}>Не верно введен логин или пароль</span>} {store.errors === 500 && <span style={{color: 'red'}}>Ошибка сервера</span>} &nbsp;</div> 
+        <div>{store.errors === 401 && <span style={{color: 'red'}}>Не верно введен логин или пароль</span>} {store.errors === 500 && <span style={{color: 'red'}}>Ошибка сервера</span>} {store.errors === 400 && <span style={{color: 'red'}}>Не верно введен логин или пароль</span>} &nbsp;</div> 
           
         <button className='navbarbutton' onClick = {
-            () => sanitizeInput(username, password)
+            () => store.login(sanitizeInput(username), password)
         }
         style={{padding: 10,
             margin: 10}}> Войти</button>
-        {/* <button onClick = {
-            () => debugAdmin()
-        }
-        style={{padding: 10,
-            margin: 10,
-            background: "#47a847",
-            color: "white"}}> Тест (админ KPI)</button>
-        <button onClick = {
-            () => debugTutor()
-        }
-        style={{padding: 10,
-            margin: 10,
-            background: "#47a847",
-            color: "white"}}> Тест (ППС)</button> */}
              
         <p>Если вы на сайте в первый раз, ваш ИИН - ваши логин и пароль</p>
     </div>);

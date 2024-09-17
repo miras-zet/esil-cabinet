@@ -11,18 +11,22 @@ import moment from 'moment';
 import { ImCross } from 'react-icons/im';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { IoIosMail } from 'react-icons/io';
+import ILibraryStats from '../models/ILibraryStats';
 
 const DueBooks: FC = () => {
-    // const navigate = useNavigate();
     const [dueData, setDueData] = useState<Array<IBookTransfer>>([]);
+    const [libraryStats, setLibraryStats] = useState<Array<ILibraryStats>>([]);
     let [fiofilter, setFioFilter] = useState<string>('');
     let [booknamefilter, setBookNameFilter] = useState<string>('');
     let [bookbarcodefilter, setBookBarcodeFilter] = useState<string>('');
-    //let [margin, setMargin] = useState<string>('-15%');
+
     useEffect(() => {
-        // setMargin('-15%');
-        // if(window.innerWidth<940) setMargin('0%');
-        // const user = JSON.parse(localStorage.getItem('data'));
+        BookService.getLibraryStats(new Date().getFullYear()).then((response) => {
+            setLibraryStats(response.data);
+        }).catch((err) => {
+            console.log(err);
+            setLibraryStats([]);
+        });
         BookService.getDueBooks().then((response) => {
             setDueData(response.data);
         }).catch((err) => {
@@ -115,6 +119,14 @@ const DueBooks: FC = () => {
     }
 
     );
+    const libraryStatsMini = libraryStats.map((element) =>
+        <div key={element.booksonhand}>
+            <h3>Статистика на {new Date().getFullYear()}-{new Date().getFullYear()+1} год обучения</h3>
+           <p>Выдано книг: {element.booksgiven}</p>
+           <p>Возвращено книг: {element.booksreturned}</p>
+           <p>Книги "на руках": {element.booksonhand}</p>
+        </div>
+    );
 
     return (
         <div>
@@ -130,7 +142,8 @@ const DueBooks: FC = () => {
                     <br />
                     <h2>Список должников по книгам</h2>
                     <br />
-
+                    <div id="table-divider-stats-header" style={{ marginLeft: '0px', textAlign: 'left', paddingLeft: '4%', height: '100%', width: '40%' }}><br />{libraryStatsMini}<br /></div>
+                    <br />
                     {dueData.length > 0 ? <table id='opaqueTable' style={{ fontSize: '12pt', paddingLeft: '15px', width: '105%' }}>
                         <tbody>
                             <tr><br /></tr>
