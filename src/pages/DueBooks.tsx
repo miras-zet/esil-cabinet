@@ -110,7 +110,7 @@ const DueBooks: FC = () => {
                 <td id="table-divider-stats">{element.bookname}</td>
                 <td id="table-divider-stats">{element.barcode}</td>
                 <td id="table-divider-stats">{element.role=='plt_tutor'?'Преподаватель':'Студент'}</td> 
-                <td id="table-divider-stats">{moment(element.DateCreated).format("DD.MM.YYYY HH:mm")}</td>
+                <td id="table-divider-stats">{}{element.DateCreated!='2024-08-31T18:59:00.000Z'? moment(element.DateCreated).format("DD.MM.YYYY HH:mm"):'e-university'}</td>
                 <td id="table-divider-stats" style={{whiteSpace:'nowrap'}}>
                     <button className="redbutton" onClick={() => deleteBook(element.id, element.fio)}><FaTrashAlt /></button>
                     &nbsp;<button style={{backgroundColor:'#e8b641',color:'white'}} onClick={() => notifydebtor(element.userid, element.bookname, element.fio)}><IoIosMail  /></button>

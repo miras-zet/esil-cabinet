@@ -62,7 +62,7 @@ const EBooks: FC = () => {
     );
   }
   const openPDF = (url) =>{
-    localStorage.setItem('pdfURL','http://10.0.1.22'+url);
+    localStorage.setItem('pdfURL',url.split('/')[url.split('/').length-1]);
     window.location.href=window.location.protocol + '//' + window.location.host +'/readPDF';
   }
   const previousPage = () => {

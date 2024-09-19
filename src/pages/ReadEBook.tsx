@@ -3,6 +3,9 @@ import { observer } from 'mobx-react-lite';
 import '../App.css';
 import { pdfjs } from 'react-pdf';
 import { Document, Page } from 'react-pdf';
+import config from "../http/config.json";
+
+export const path = config.eBookPath;
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -14,7 +17,8 @@ const ReadEBook: FC = () => {
     const [pageNumber, setPageNumber] = useState<number>(1);
 
     //const navigate = useNavigate();
-    let fileUrl = localStorage.getItem('pdfURL');
+    let fileUrl = path+'eLibraryBooks/'+localStorage.getItem('pdfURL');
+    alert(fileUrl);
     //fileUrl = 'http://10.0.1.22/CSP/euniversity/img/eLibraryBooks/Qatarlar.Eselik%20intervaldar.%20Oris%20teoriasinin%20elementterie.pdf';
     //fileUrl = 'http://arxiv.org/pdf/2407.15633';
     useEffect(() => {
@@ -31,7 +35,7 @@ const ReadEBook: FC = () => {
         <div>
             {(() => {
                 return <div>
-                    <button onClick={()=>pageNumber>1?setPageNumber(pageNumber-1):setPageNumber(1)}>Назад</button>&nbsp;<button onClick={()=>pageNumber<numPages?setPageNumber(pageNumber+1):setPageNumber(numPages)}>Вперед</button>
+                    <button onClick={()=>pageNumber>1?setPageNumber(pageNumber-1):setPageNumber(1)}>Пред. страница</button>&nbsp;<button onClick={()=>pageNumber<numPages?setPageNumber(pageNumber+1):setPageNumber(numPages)}>След. страница</button>
                     <p>
                         Страница {pageNumber} из {numPages}
                     </p>

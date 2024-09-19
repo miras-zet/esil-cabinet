@@ -56,7 +56,7 @@ const NotificationsList: FC = () => {
                 {element.isimportant == 1 ? <b style={{ color: 'red' }}>Важное уведомление <MdOutlineNotificationImportant /><br /></b> : ''}
                 {element.ispersonal == 1 ? <>Отправитель: <b>{element.lastname} {element.name}</b><br /></> : <></>}
                 {element.ispersonal == 1 ? <>Текст сообщения: "{element.message}"<br /></> : <>{element.message}</>}<br /><br />
-                Дата уведомления: {moment(element.date_sent).format("DD.MM.YYYY")}<br /><br />
+                Дата уведомления: {moment(element.date_sent).format("DD.MM.YYYY HH:MM")}<br /><br />
                 <button className='greenbutton' onClick={() => markAsRead(element.id)}>Прочитано</button>
             </div>
         </div> : <></>
@@ -68,7 +68,6 @@ const NotificationsList: FC = () => {
             <div key={index} style={{ alignItems: 'center', width: '93%', height: '10%', padding: '20px 20px 20px 20px', backgroundColor: '#dbdbdb', borderRadius: '20px' }}>
                 <h3>{element.notification_name}</h3>
                 {element.ispersonal == 1 ? <>Отправитель: <b>{element.lastname} {element.name}</b><br /></> : <></>}
-
                 {element.ispersonal == 1 ? <>Текст сообщения: "{element.message}"<br /></> : <>{element.message}</>}<br /><br />
                 Прочитано: {moment(element.date_viewed).format("DD.MM.YYYY")}<br /><br />
             </div>
@@ -76,10 +75,10 @@ const NotificationsList: FC = () => {
         </div> : <></>
     }
     );
-    let hasUnread=false;
-    for(let i=0; i<notifications.length; i++){
-        if(notifications[i].viewed==0){
-            hasUnread=true;
+    let hasUnread = false;
+    for (let i = 0; i < notifications.length; i++) {
+        if (notifications[i].viewed == 0) {
+            hasUnread = true;
             break;
         }
     }
@@ -125,7 +124,7 @@ const NotificationsList: FC = () => {
                         </div>
                     </div> : <h3>Уведомлений нет</h3>
                     }
-                    
+
 
                 </div>
             })()}
