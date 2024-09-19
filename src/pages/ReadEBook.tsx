@@ -8,7 +8,7 @@ import config from "../http/config.json";
 export const path = config.eBookPath;
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-    'pdfjs-dist/build/pdf.worker.min.mjs',
+    'pdfjs-dist/build/pdf.worker.mjs',
     import.meta.url,
 ).toString();
 
@@ -18,7 +18,6 @@ const ReadEBook: FC = () => {
 
     //const navigate = useNavigate();
     let fileUrl = path+'eLibraryBooks/'+localStorage.getItem('pdfURL');
-    alert(fileUrl);
     //fileUrl = 'http://10.0.1.22/CSP/euniversity/img/eLibraryBooks/Qatarlar.Eselik%20intervaldar.%20Oris%20teoriasinin%20elementterie.pdf';
     //fileUrl = 'http://arxiv.org/pdf/2407.15633';
     useEffect(() => {
