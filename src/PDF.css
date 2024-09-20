@@ -1,0 +1,6 @@
+#outerContainer #mainContainer div.toolbar {
+    display: none !important;
+  }
+  #outerContainer #mainContainer #viewerContainer {
+    top: 0 !important;
+  }

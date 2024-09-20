@@ -1,47 +1,49 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect } from 'react'
 import { observer } from 'mobx-react-lite';
-import { Document, Page, pdfjs } from "react-pdf";
-import '../App.css';
+import '../PDF.css';
 import config from "../http/config.json";
 
 export const path = config.eBookPath;
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.mjs`;
-
 const ReadEBook: FC = () => {
-    const [numPages, setNumPages] = useState<number>(1);
-    const [pageNumber, setPageNumber] = useState<number>(1);
+    //const [numPages, setNumPages] = useState<number>(1);
+    //const [pageNumber, setPageNumber] = useState<number>(1);
 
     //const navigate = useNavigate();
     //let fileUrl = path + localStorage.getItem('pdfURL');
     //fileUrl = 'http://10.0.1.22/CSP/euniversity/img/eLibraryBooks/Qatarlar.Eselik%20intervaldar.%20Oris%20teoriasinin%20elementterie.pdf';
     //fileUrl = 'http://arxiv.org/pdf/2407.15633';
     useEffect(() => {
-
+        const handleContextmenu = e => {
+            e.preventDefault()
+        }
+        document.addEventListener('contextmenu', handleContextmenu)
+        return function cleanup() {
+            document.removeEventListener('contextmenu', handleContextmenu)
+        }
     }, [])
-    function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
-        setNumPages(numPages);
-    }
+    // function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
+    //     setNumPages(numPages);
+    // }
     // const return = () => {
     //     
     //     navigate(`/ebooks`);
     // }
     return (
-        <div>
+        <div style={{position:'sticky', width:`${window.innerWidth-20}px`, height:`${window.innerHeight-5}px`, marginLeft:'-110px', marginTop:'-68px'}}>
             {(() => {
-                return <div>
-                     <button onClick={() => pageNumber > 1 ? setPageNumber(pageNumber - 1) : setPageNumber(1)}>Пред. страница</button>&nbsp;<button onClick={() => pageNumber < numPages ? setPageNumber(pageNumber + 1) : setPageNumber(numPages)}>След. страница</button> 
+                return <div style={{width:'100%', height:'100%'}}>
+                     {/* <button className='backbutton' onClick={() => pageNumber > 1 ? setPageNumber(pageNumber - 1) : setPageNumber(1)}>Пред. страница</button>&nbsp;<button className='backbutton' onClick={() => pageNumber < numPages ? setPageNumber(pageNumber + 1) : setPageNumber(numPages)}>След. страница</button> 
                     <p>
                         Страница {pageNumber} из {numPages}
-                    </p> 
-                    <Document file={'http://10.0.1.22/CSP/euniversity/img/eLibraryBooks/'+localStorage.getItem('pdfURL')} onLoadSuccess={onDocumentLoadSuccess}>
+                    </p>  */}
+                    {/* <Document file={'http://10.0.1.22/CSP/euniversity/img/eLibraryBooks/'+localStorage.getItem('pdfURL')} onLoadSuccess={onDocumentLoadSuccess}>
                         <Page pageNumber={pageNumber} />
-                    </Document>
-                    {/* <iframe onContextMenu={(e) => e.preventDefault()}
-                        src={'http://10.0.1.22/CSP/euniversity/img/eLibraryBooks/Qatarlar.Eselik%20intervaldar.%20Oris%20teoriasinin%20elementterie.pdf' + "#toolbar=0"}
-                        height={650}
-                        width={1300}
-                    /> */}
+                    </Document> */}
+                    <div style={{position:'absolute', width:'98.5%', height:'100%', zIndex:2, backgroundColor:'rgba(0,0,0,0)'}}></div>
+                    <embed style={{height: '100%', width: '99%'}} id="pdfframe" onContextMenu={(e) => e.preventDefault()}
+                        src={'http://10.0.1.22/CSP/euniversity/img/eLibraryBooks/'+localStorage.getItem('pdfURL') + "#toolbar=0"} 
+                    />
                 </div>
 
             })()}

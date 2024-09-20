@@ -10,6 +10,13 @@ const upload = (file: File,  activity_id: any, info: any): Promise<any> => {
   formData.append('info',info);  
   return http.post("/upload", formData);
 };
+const uploadPhoto = (file: File): Promise<any> => {
+  let formData = new FormData();
+  const userid = localStorage.getItem('user_id');
+  formData.append("file", file);
+  formData.append('user_id',userid);
+  return http.post("/upload/photo", formData);
+};
 const updateapplicant = (column: any, data: any): Promise<any> => {
   let formData = new FormData();
   const userid = localStorage.getItem('applicant_user_id');
@@ -131,6 +138,7 @@ const UploadService = {
   downloadFile,
   getCategoryScores,
   getExcelDate,
+  uploadPhoto,
   getUMKDMoodle,
   getDormRequestsData,
   getDormRequestForUser,

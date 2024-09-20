@@ -42,6 +42,7 @@ import ReadEBook from './pages/ReadEBook'
 import DormList from './pages/DormList'
 import TransferBookJSON from './pages/TransferBookJSON'
 import NotificationsList from './pages/NotificationsList'
+import PictureUpload from './pages/PictureUpload'
   
 
 const App:FC = () => {  
@@ -119,6 +120,7 @@ const App:FC = () => {
         <Route path="/kpistats" element={<KPIStats/>} />
         <Route path="/kpitopten" element={<KPITopTen/>} />
 
+        <Route path="/takephoto" element={ <PictureUpload /> } />
         <Route path="/certificate" element={ <CertificatePage /> } />
         <Route path="/list" element={ <CertificateListPage /> } />
         <Route path="/list/certificate/:id" element={ <CertificateLinkPage /> } />
