@@ -1,7 +1,6 @@
 import { FC, useEffect } from 'react'
 import { observer } from 'mobx-react-lite';
 import '../App.css';
-import { EmbedPDF } from "@simplepdf/react-embed-pdf";
 import config from "../http/config.json";
 
 export const path = config.eBookPath;
@@ -16,7 +15,7 @@ const ReadEBook: FC = () => {
     //fileUrl = 'http://10.0.1.22/CSP/euniversity/img/eLibraryBooks/Qatarlar.Eselik%20intervaldar.%20Oris%20teoriasinin%20elementterie.pdf';
     //fileUrl = 'http://arxiv.org/pdf/2407.15633';
     useEffect(() => {
-
+        alert(fileUrl);
     }, [])
     // function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
     //     setNumPages(numPages);
@@ -33,10 +32,16 @@ const ReadEBook: FC = () => {
                     {/* <p>
                         Страница {pageNumber} из {numPages}
                     </p> */}
-                    <EmbedPDF
+                    {/* <EmbedPDF
                         mode="inline"
                         style={{ width: 900, height: 800 }}
                         documentURL={fileUrl}
+                    /> */}
+                    <embed
+                        src={'cloud.esil.edu.kz' + fileUrl + "#toolbar=0"}
+                        type="application/pdf"
+                        height={800}
+                        width={500}
                     />
                 </div>
 
