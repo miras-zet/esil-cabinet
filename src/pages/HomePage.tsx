@@ -35,6 +35,9 @@ const HomePage: FC = () => {
     localStorage.setItem('appVersion', currentVersion);
     window.location.reload();
   }
+  UploadService.checkPhotoUploadEligibility().then((response) => {
+    localStorage.setItem('eligibility',response.data);
+  });
   const { store } = useContext(Context);
   const { modal, open } = useContext(ModalContext);
   const [kpiInfo, setKpiInfo] = useState<Array<IKPI>>([]);
@@ -50,6 +53,7 @@ const HomePage: FC = () => {
       setParsedBooks([])
     };
     if (!booksParsed) setParsedBooks([]);
+    
     if(!localStorage.getItem('bookCartJSON')) localStorage.setItem('bookCartJSON','[]');
     if (localStorage.getItem('token')) {
       store.checkAuth()

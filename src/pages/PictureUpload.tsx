@@ -29,10 +29,12 @@ const PictureUpload: FC = () => {
     UploadService.checkPhotoUploadEligibility().then((response) => {
       localStorage.setItem('eligibility',response.data);
     });
+    
     if (localStorage.getItem('token')) {
       store.checkAuth()
     }
   }, []);
+  //if(!localStorage.getItem('eligibility')) window.location.reload();
   const capture = useCallback(() => {
     setRemainingTime(5);
     setIsCapturing(true);
@@ -74,7 +76,7 @@ const PictureUpload: FC = () => {
         setMessage(response.data.message);
         if (response.data.message === "Фото было загружено") {
           setMessageColor("#2ecc71");
-          setButtonsDisabled(true);
+          setButtonsDisabled(true); 
         } else {
           setMessageColor("red");
         }
