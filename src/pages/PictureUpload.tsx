@@ -51,7 +51,7 @@ const PictureUpload: FC = () => {
       setIsCapturing(false);
     }, 5000);
   }, [webcamRef]);
-  
+
   const retake = () => {
     setImgSrc(null);
   };
@@ -70,27 +70,27 @@ const PictureUpload: FC = () => {
   const upload = () => {
     if (!imgSrc) return;
     const file = dataURLtoFile(imgSrc, 'photo.png');
-      UploadService.uploadPhoto(file, 'png')
-        .then((response) => {
-          setMessage(response.data.message);
-          if (response.data.message === "Фото было загружено") {
-            setMessageColor("#2ecc71");
-            setButtonsDisabled(true);
-          } else {
-            setMessageColor("red");
-          }
-          return UploadService.getFiles();
-        })
-        .catch((err) => {
-          if (err.response && err.response.data && err.response.data.message) {
-            setMessage(err.response.data.message);
-          } else {
-            setMessage("Ошибка загрузки");
-          }
-        });
+    UploadService.uploadPhoto(file, 'png')
+      .then((response) => {
+        setMessage(response.data.message);
+        if (response.data.message === "Фото было загружено") {
+          setMessageColor("#2ecc71");
+          setButtonsDisabled(true);
+        } else {
+          setMessageColor("red");
+        }
+        return UploadService.getFiles();
+      })
+      .catch((err) => {
+        if (err.response && err.response.data && err.response.data.message) {
+          setMessage(err.response.data.message);
+        } else {
+          setMessage("Ошибка загрузки");
+        }
+      });
   };
 
-  
+
 
   if (store.isLoading) {
     return <div>Loading ...</div>
@@ -106,55 +106,55 @@ const PictureUpload: FC = () => {
     );
   }
   const role = localStorage.getItem('role');
-  if (role === 'plt_student' || role==='plt_tutor'){
-  if(eligibility){
-    return (<div>
-      <KPINavbar />
-      <br /><br /><br /><br /><br /><br />
-      <Link to="/"><button className="backbutton"><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link>
-      <div className="row"><br/>
-      <p>Страница запросит у браузера разрешение на использование камеры (обычно в левом верхнем углу), нажмите "Разрешить"</p>
-      <p>Если изображение не появляется после разрешения, перезагрузите страницу</p>
-      <p>Убедитесь, что Ваше лицо расположено прямо, видно крупным планом на изображении, без головного убора, наушников, прочих аксессуаров</p>
-      <p>После нажатия кнопки "Сфотографировать" запустится таймер 5 секунд. Фото можно переснять</p>
-      </div>
-      {imgSrc ? (
-        <img src={imgSrc} alt="webcam" />
-      ) : (<div style={{alignItems:'center', alignContent:'center', textAlign:'center'}}><center><h1 style={{textAlign:'center',position:'absolute', fontSize:'100pt', color:'white', marginLeft:'490px'}}>{remainingTime!=0?remainingTime:''}</h1></center>
-        <Webcam
-          height={500}
-          width={500}
-          ref={webcamRef}
-          screenshotFormat="image/png"
-          screenshotQuality={1}
-          
-        /></div>
-      )}{!buttonsdisabled?imgSrc ? (
-        <div><br/><button id='graybutton' disabled={buttonsdisabled} onClick={retake}><IoCameraReverse /> Сфотографировать заново</button>&nbsp;<button className='greenbutton' onClick={()=>upload()}>Отправить фото</button></div>
-      ) : (
-        <div><button className='greenbutton' disabled={buttonsdisabled || isCapturing} onClick={capture}><FaCamera/>&nbsp; Сделать фото</button></div>
-      ):<div><br/><button style={{width:'250px', height:'50px'}} id='graybutton' onClick={() => store.logout()}>Выйти</button></div>}
-        {}
+  if (role === 'plt_student' || role === 'plt_tutor' || role === 'cit') {
+    if (eligibility && eligibility=='true') {
+      return (<div>
+        <KPINavbar />
+        <br /><br /><br /><br /><br /><br />
+        <Link to="/"><button className="backbutton"><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link>
+        <div className="row"><br />
+          <p>Страница запросит у браузера разрешение на использование камеры (обычно в левом верхнем углу), нажмите "Разрешить"</p>
+          <p>Если изображение не появляется после разрешения, перезагрузите страницу</p>
+          <p>Убедитесь, что Ваше лицо расположено прямо, видно крупным планом на изображении, без головного убора, наушников, прочих аксессуаров</p>
+          <p>После нажатия кнопки "Сфотографировать" запустится таймер 5 секунд. Фото можно переснять</p>
+        </div>
+        {imgSrc ? (
+          <img src={imgSrc} alt="webcam" />
+        ) : (<div style={{ alignItems: 'center', alignContent: 'center', textAlign: 'center' }}><center><h1 style={{ textAlign: 'center', position: 'absolute', fontSize: '100pt', color: 'white', marginLeft: '490px', WebkitTextStrokeColor:'black', WebkitTextStrokeWidth:'2px' }}>{remainingTime != 0 ? remainingTime : ''}</h1></center>
+          <Webcam
+            height={500}
+            width={500}
+            ref={webcamRef}
+            screenshotFormat="image/png"
+            screenshotQuality={1}
+
+          /></div>
+        )}{!buttonsdisabled ? imgSrc ? (
+          <div><br /><button id='graybutton' disabled={buttonsdisabled} onClick={retake}><IoCameraReverse /> Сфотографировать заново</button>&nbsp;<button className='greenbutton' onClick={() => upload()}>Отправить фото</button></div>
+        ) : (
+          <div><button className='greenbutton' disabled={buttonsdisabled || isCapturing} onClick={capture}><FaCamera />&nbsp; Сделать фото</button></div>
+        ) : <div><br /><button style={{ width: '250px', height: '50px' }} id='graybutton' onClick={() => store.logout()}>Выйти</button></div>}
+        { }
         <br />
-      {message && (
-        <h4 style={{ color: messagecolor }}>{message}</h4>
-      )}
-      <br /><br />
-    </div>)
+        {message && (
+          <h4 style={{ color: messagecolor }}>{message}</h4>
+        )}
+        <br /><br />
+      </div>)
+    }
+    else {
+      return (<div>
+        <KPINavbar />
+        <br /><br /><br /><br /><br /><br />
+        <Link to="/"><button className="backbutton"><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link>
+        <div className="row"><br />
+          <h3>Ваше фото уже есть в системе</h3>
+          <h4>Обратитесь в IT отдел, если нужно удалить фото</h4>
+        </div>
+
+      </div>)
+    }
   }
-  else{
-    return (<div>
-      <KPINavbar />
-      <br /><br /><br /><br /><br /><br />
-      <Link to="/"><button className="backbutton"><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link>
-      <div className="row"><br/>
-      <h3>Ваше фото уже есть в системе</h3>
-      <h4>Обратитесь в IT отдел, если нужно удалить фото</h4>
-      </div>
-      
-    </div>)
-  }
-  } 
   else {
     return <Navigate to="/" />
   }
