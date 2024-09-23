@@ -20,7 +20,6 @@ const PictureUpload: FC = () => {
   const [message, setMessage] = useState<string>("");
   const [remainingTime, setRemainingTime] = useState(0);
   const [isCapturing, setIsCapturing] = useState(false);
-  const [eligibility, setEligibility] = useState<string>("true");
   const [buttonsdisabled, setButtonsDisabled] = useState<boolean>(false);
   const [messagecolor, setMessageColor] = useState<string>("red");
   // const [ fileInfos, setFileInfos ] = useState<Array<IFile>>([]);
@@ -28,7 +27,7 @@ const PictureUpload: FC = () => {
 
   useEffect(() => {
     UploadService.checkPhotoUploadEligibility().then((response) => {
-      setEligibility(response.data);
+      localStorage.setItem('eligibility',response.data);
     });
     if (localStorage.getItem('token')) {
       store.checkAuth()
@@ -106,8 +105,9 @@ const PictureUpload: FC = () => {
     );
   }
   const role = localStorage.getItem('role');
+  const eligibility = localStorage.getItem('eligibility');
   if (role === 'plt_student' || role === 'plt_tutor' || role === 'cit') {
-    if (eligibility && eligibility=='true') {
+    if (eligibility=='true') {
       return (<div>
         <KPINavbar />
         <br /><br /><br /><br /><br /><br />
