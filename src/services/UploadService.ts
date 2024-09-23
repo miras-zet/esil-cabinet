@@ -10,21 +10,29 @@ const upload = (file: File,  activity_id: any, info: any): Promise<any> => {
   formData.append('info',info);  
   return http.post("/upload", formData);
 };
-const uploadPhoto = (file: File): Promise<any> => {
+const uploadPhoto = (file: File, extension): Promise<any> => {
   let formData = new FormData();
   const userid = localStorage.getItem('user_id');
-  formData.append("file", file);
+  const renamedFile = new File([file], userid+'.'+extension, {
+    type: file.type,
+    lastModified: file.lastModified,
+  });
+  formData.append("file", renamedFile);
   formData.append('user_id',userid);
   return http.post("/upload/photo", formData);
 };
-const updateapplicant = (column: any, data: any): Promise<any> => {
-  let formData = new FormData();
-  const userid = localStorage.getItem('applicant_user_id');
-  formData.append('user_id',userid);
-  formData.append('column',column);  
-  formData.append('data',data);  
-  return http.post("/applicant/update", formData);
+const checkPhotoUploadEligibility = (): Promise<any> => {
+  const user_id = localStorage.getItem('user_id');  
+  return http.get(`/upload/checkphotoeligibility/${user_id}`);
 };
+// const updateapplicant = (column: any, data: any): Promise<any> => {
+//   let formData = new FormData();
+//   const userid = localStorage.getItem('applicant_user_id');
+//   formData.append('user_id',userid);
+//   formData.append('column',column);  
+//   formData.append('data',data);  
+//   return http.post("/applicant/update", formData);
+// };
 const downloadFile = (filename: string,): Promise<any> => {
     return http.get(`/upload/download/${filename}`);
 };
@@ -128,7 +136,7 @@ const getKpi = () : Promise<any> => {
 
 const UploadService = {
   upload,
-  updateapplicant,
+  //updateapplicant,
   getFiles,
   getTutors,
   getCategories,
@@ -139,6 +147,7 @@ const UploadService = {
   getCategoryScores,
   getExcelDate,
   uploadPhoto,
+  checkPhotoUploadEligibility,
   getUMKDMoodle,
   getDormRequestsData,
   getDormRequestForUser,
