@@ -34,19 +34,18 @@ const PictureUpload: FC = () => {
       store.checkAuth()
     }
   }, []);
-  //if(!localStorage.getItem('eligibility')) window.location.reload();
   const capture = useCallback(() => {
     setRemainingTime(5);
     setIsCapturing(true);
     const interval = setInterval(() => {
       setRemainingTime((prevTime) => {
         if (prevTime === 1) {
-          clearInterval(interval); // Clear interval when time reaches 0
+          clearInterval(interval);
         }
         return prevTime - 1;
       });
     }, 1000);
-    setTimeout(() => {
+    setTimeout(() => {  
       const imageSrc = webcamRef.current.getScreenshot();
       setImgSrc(imageSrc);
       setIsCapturing(false);
@@ -56,22 +55,52 @@ const PictureUpload: FC = () => {
   const retake = () => {
     setImgSrc(null);
   };
-  const dataURLtoFile = (dataUrl: string, filename: string): File => {
-    const arr = dataUrl.split(',');
-    const mime = arr[0].match(/:(.*?);/)[1];
-    const bstr = atob(arr[1]);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], filename, { type: mime });
-  };
+  const dataURLtoFile = (dataUrl: string, filename: string): Promise<File> => {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.src = dataUrl;
 
-  const upload = () => {
+    img.onload = () => {
+      // Create a canvas element
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      // Set canvas dimensions to match the image
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      // Mirror the image horizontally (flip)
+      if (ctx) {
+        ctx.translate(canvas.width, 0);  // Move the canvas origin to the right edge
+        ctx.scale(-1, 1);                // Flip the canvas horizontally
+        ctx.drawImage(img, 0, 0);        // Draw the mirrored image
+      }
+
+      // Convert the canvas data to a data URL
+      const mirroredDataUrl = canvas.toDataURL();
+
+      // Convert the mirrored data URL to a file object
+      const arr = mirroredDataUrl.split(',');
+      const mime = arr[0].match(/:(.*?);/)[1];
+      const bstr = atob(arr[1]);
+      let n = bstr.length;
+      const u8arr = new Uint8Array(n);
+      while (n--) {
+        u8arr[n] = bstr.charCodeAt(n);
+      }
+      
+      const file = new File([u8arr], filename, { type: mime });
+      resolve(file);
+    };
+
+    img.onerror = (err) => reject(err);
+  });
+};
+
+  const upload = async () => {
     if (!imgSrc) return;
     const file = dataURLtoFile(imgSrc, 'photo.png');
-    UploadService.uploadPhoto(file, 'png')
+    UploadService.uploadPhoto(await file, 'png')
       .then((response) => {
         setMessage(response.data.message);
         if (response.data.message === "Фото было загружено") {
@@ -110,38 +139,37 @@ const PictureUpload: FC = () => {
   const eligibility = localStorage.getItem('eligibility');
   if (role === 'plt_student' || role === 'plt_tutor' || role === 'cit') {
     if (eligibility=='true') {
-      return (<div>
-        <KPINavbar />
-        <br /><br /><br /><br /><br /><br />
-        <Link to="/"><button className="backbutton"><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link>
-        <div className="row"><br />
-          <p>Страница запросит у браузера разрешение на использование камеры (обычно в левом верхнем углу), нажмите "Разрешить"</p>
-          <p>Если изображение не появляется после разрешения, перезагрузите страницу</p>
-          <p>Убедитесь, что Ваше лицо расположено прямо, видно крупным планом на изображении, без головного убора, наушников, прочих аксессуаров</p>
-          <p>После нажатия кнопки "Сфотографировать" запустится таймер 5 секунд. Фото можно переснять</p>
-        </div>
+      return (<div>     
+        <Link to="/"><button className="backbutton" style={{}}><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link><br/><br/>
         {imgSrc ? (
           <img src={imgSrc} alt="webcam" />
-        ) : (<div style={{ alignItems: 'center', alignContent: 'center', textAlign: 'center' }}><center><h1 style={{ textAlign: 'center', position: 'absolute', fontSize: '100pt', color: 'white', marginLeft: '490px', WebkitTextStrokeColor:'black', WebkitTextStrokeWidth:'2px' }}>{remainingTime != 0 ? remainingTime : ''}</h1></center>
-          <Webcam
-            height={500}
-            width={500}
+        ) : (<div className="webcam-container">
+          <img src="allow_camera.png" alt="Разрешите доступ к камере" className="background-image" />
+          <Webcam 
+            className="webcam-element" 
+            height={480}
+            width={640}
             ref={webcamRef}
+            mirrored={true}
             screenshotFormat="image/png"
             screenshotQuality={1}
-
-          /></div>
+          />
+          {remainingTime != 0 ? <div className="countdown-overlay">{remainingTime}</div> : ''}
+          </div>
         )}{!buttonsdisabled ? imgSrc ? (
-          <div><br /><button id='graybutton' disabled={buttonsdisabled} onClick={retake}><IoCameraReverse /> Сфотографировать заново</button>&nbsp;<button className='greenbutton' onClick={() => upload()}>Отправить фото</button></div>
+          <div><br /><button id='graybutton' disabled={buttonsdisabled} onClick={retake}><IoCameraReverse /> Сфотографировать заново</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button className='greenbutton' onClick={() => upload()}>Отправить фото</button></div>
         ) : (
-          <div><button className='greenbutton' disabled={buttonsdisabled || isCapturing} onClick={capture}><FaCamera />&nbsp; Сделать фото</button></div>
+          <div><button className='greenbutton' style={{width: '250px', height: '50px', fontSize:'15pt'}} disabled={buttonsdisabled || isCapturing} onClick={capture}><FaCamera />&nbsp; Сделать фото</button></div>
         ) : <div><br /><button style={{ width: '250px', height: '50px' }} id='graybutton' onClick={() => store.logout()}>Выйти</button></div>}
         { }
         <br />
         {message && (
           <h4 style={{ color: messagecolor }}>{message}</h4>
         )}
-        <br /><br />
+                <div className="row">
+          <p>Страница запросит у браузера разрешение на использование камеры (обычно в левом верхнем углу), нажмите "Разрешить". Если изображение не появляется после разрешения, перезагрузите страницу</p>
+          <p>Убедитесь, что Ваше лицо расположено прямо, видно крупным планом на изображении, без головного убора, наушников, прочих аксессуаров. После нажатия кнопки "Сфотографировать" запустится таймер 5 секунд. Фото можно переснять</p>
+        </div>
       </div>)
     }
     else {
@@ -164,4 +192,3 @@ const PictureUpload: FC = () => {
 }
 
 export default observer(PictureUpload)
-
