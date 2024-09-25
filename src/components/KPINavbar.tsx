@@ -32,10 +32,11 @@ const KPINavbar: FC = () => {
   const role = localStorage.getItem('role');
   let headertext = '';
   switch (role) {
-    case 'plt_tutor': headertext = 'Система учета баллов KPI'; break;
+    case 'plt_tutor': headertext = 'Кабинет ППС Esil University'; break;
     case 'plt_kpiadmin': headertext = 'Администратор системы KPI'; break;
     case 'plt_applicant': headertext = 'Кабинет абитуриента ESIL University'; break;
-    case 'plt_student': headertext = 'Кабинет студента ESIL University'; break;
+    case 'plt_applicant': headertext = 'Выпускник ESIL University'; break;
+    case 'plt_student': headertext = 'Кабинет обучающегося ESIL University'; break;
     case 'admissionadmin': headertext = 'Приёмная комиссия ESIL University'; break;
     case 'admissionstats': headertext = 'Статистика абитуриентов ESIL University'; break;
     case 'dean_students': headertext = 'Кабинет декана по работе со студентами'; break;
