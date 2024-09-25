@@ -35,7 +35,7 @@ const KPINavbar: FC = () => {
     case 'plt_tutor': headertext = 'Кабинет ППС Esil University'; break;
     case 'plt_kpiadmin': headertext = 'Администратор системы KPI'; break;
     case 'plt_applicant': headertext = 'Кабинет абитуриента ESIL University'; break;
-    case 'plt_applicant': headertext = 'Выпускник ESIL University'; break;
+    case 'plt_graduate': headertext = 'Выпускник ESIL University'; break;
     case 'plt_student': headertext = 'Кабинет обучающегося ESIL University'; break;
     case 'admissionadmin': headertext = 'Приёмная комиссия ESIL University'; break;
     case 'admissionstats': headertext = 'Статистика абитуриентов ESIL University'; break;

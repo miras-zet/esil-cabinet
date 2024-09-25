@@ -244,12 +244,11 @@ const HomePage: FC = () => {
         const role = localStorage.getItem('role');
         let KPIScore = "0";
         let textcolor;
-        if (role == 'plt_tutor') countKpi();
-        if (kpiInfo === undefined && role === 'plt_tutor') {
-          //location.reload();
+        if (role == 'plt_tutor') {
+          countKpi();
+          KPIScore = localStorage.getItem('KPIScore');
         }
-        if (role === 'plt_tutor') KPIScore = localStorage.getItem('KPIScore');
-        let premiere = "";
+        let premiere = '';
         if (parseInt(KPIScore) == 0) {
           premiere = "Нет";
         }
@@ -344,9 +343,46 @@ const HomePage: FC = () => {
           </center>
         }
         else if (role === 'plt_tutor') {
-          return <div className='rootTutor'>
-            <KPINavbar />
-            <div className='tutorcontent'>
+          return <div className='root'>
+            <KPINavbar /> <br /><br /><br /><br /><br /><br /><br />
+            <table style={{textAlign:'left'}}>
+              <tbody>
+                <tr>
+                  <td>
+                  <table>
+                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', height: '98%', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
+                    <h2 style={{ fontSize: 20 }}>Ключевые показатели эффективности (KPI)</h2>
+                    <h4 style={{ fontSize: 27 }}>Баллы: <b style={{ color: textcolor }}>{kpiInfo ? kpiInfo.toString() : <></>}</b></h4>
+                    <h4 style={{ fontSize: 15 }}>{premiere ? `Премирование: ${premiere} ` : ''}{parseInt(KPIScore) >= 200 ? <HiSparkles style={{ verticalAlign: 'middle', marginTop: '-7px' }} /> : ''}</h4>
+                    <Link to="/kpi"><button className='navbarbutton'><FaUpload />&nbsp;&nbsp;Загрузить документы</button></Link><br /><br />
+                    <KPICategoryScores />
+                  </div><br /></tr>
+                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
+                    <h2>Регистрация FaceID</h2>
+                    <PhotoChecker/><br /><br />
+                  </div><br /></tr>
+                  <tr></tr>
+                </table>
+                  </td>
+                  <td style={{width:'25px'}}></td>
+                  <td>
+                  <table>
+                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
+                    <h2>Библиотека</h2>
+                    <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link>
+                    <br /><StudentBookDebt />
+                    <br /></div><br /></tr>
+                  <tr></tr>
+                </table>
+                  </td>
+                </tr>
+                
+                
+              </tbody>
+            </table>
+            <br />
+            <br />
+            {/* <div className='tutorcontent'>
               <h4 style={{ fontSize: 35 }}>Баллы KPI: <b style={{ color: textcolor }}>{kpiInfo ? kpiInfo.toString() : <></>}</b></h4>
               <h4 style={{ fontSize: 20 }}>{premiere ? `Премирование: ${premiere} ` : ''}{parseInt(KPIScore) >= 200 ? <HiSparkles style={{ verticalAlign: 'middle', marginTop: '-7px' }} /> : ''}</h4>
               <Link to="/kpi"><button className='navbarbutton'><FaUpload />&nbsp;&nbsp;Загрузить документы</button></Link><br /><br />
@@ -356,7 +392,7 @@ const HomePage: FC = () => {
               <StudentBookDebt />
               <h5>* Каждый несёт персональную ответственность за ввод данных в систему оценки KPI.</h5>
               <KPICategoryScores />
-            </div>
+            </div> */}
           </div>
         }
         else if (role === 'technician') {
