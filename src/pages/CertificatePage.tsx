@@ -2,15 +2,15 @@ import { FC, useEffect, useState } from 'react'
 import { observer } from 'mobx-react-lite';
 import { CertResponse } from '../models/response/CertResponse';
 import { API_URL } from '../http';
-import { Prilozhenie2 } from './tamplate/Prilozhenie2';
+import { Prilozhenie2 } from './template/Prilozhenie2';
 //import { Prilozhenie6 } from './tamplate/Prilozhenie6';
-import { Prilozhenie4 } from './tamplate/Prilozhenie4';
-import { Students } from './tamplate/Students';
+import { Prilozhenie4 } from './template/Prilozhenie4';
+import { Students } from './template/Students';
 //import { Prilozhenie31 } from './tamplate/Prilozhenie31';
-import { Prilozhenie29 } from './tamplate/Prilozhenie29';
-import { StudentsEn } from './tamplate/StudentsEn';
-import { StudentsKz } from './tamplate/StudentsKz';
-import { Prilozhenie29Kz } from './tamplate/Prilozhenie29Kz';
+import { Prilozhenie29 } from './template/Prilozhenie29';
+import { StudentsEn } from './template/StudentsEn';
+import { StudentsKz } from './template/StudentsKz';
+import { Prilozhenie29Kz } from './template/Prilozhenie29Kz';
 
 
 
