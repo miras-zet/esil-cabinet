@@ -126,6 +126,12 @@ const transferBook = (iin,bookid): Promise<any> => {
     }
     return http.get(`/books/transferbook`, { params });
 };
+const duplicateBook = (id): Promise<any>=>{
+    const params = {
+        id: id,
+    }
+    return http.get(`/books/duplicatebook`, { params });
+}
 const getLibraryStats = (year): Promise<any> => {
     const params = {
         year: year
@@ -183,6 +189,7 @@ const BookService = {
     getBooksPerPage,
     getEBooksPerPage,
     getBook,
+    duplicateBook,
     getEBook,
     editBook,
     getBookCategories,

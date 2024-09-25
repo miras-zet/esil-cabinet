@@ -5,7 +5,7 @@ import KPINavbar from '../components/KPINavbar';
 import BookService from '../services/BookService';
 import ILibraryBook from '../models/ILibraryBook';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { FaCartPlus, FaPen, FaTrashAlt } from 'react-icons/fa';
+import { FaCartPlus, FaCopy, FaPen, FaTrashAlt } from 'react-icons/fa';
 import { TiArrowBack } from 'react-icons/ti';
 import { GrDocumentTransfer } from "react-icons/gr";
 import IBookCart from '../models/IBookCart';
@@ -96,6 +96,23 @@ const PhysicalBooksSearch: FC = () => {
         localStorage.setItem('prevLibrarianPage','search');
         navigate(`/transferlibrarybook`);
     }
+    const duplicate = async (id: number, name:string)=>{
+        let shortname = name;
+        if (name.length > 40) shortname = name.substring(0,40)+'...';
+        if (confirm(`Вы уверены, что хотите дублировать книгу "${shortname}"?`)) {
+            BookService.duplicateBook(id)
+                .then(() => {
+                    location.reload();
+                })
+                .catch((err) => {
+                    if (err.response && err.response.data && err.response.data.message) {
+                        alert(err.response.data.message);
+                    } else {
+                        alert("Ошибка дублирования");
+                    }
+                });
+        }
+    }
     const addToCart = (id, name, barcode) => {
         setBooksCart(JSON.parse(localStorage.getItem('bookCartJSON')));
         booksCart.push({ id, name, barcode });  
@@ -119,6 +136,7 @@ const PhysicalBooksSearch: FC = () => {
                 }
                 <button className="backbutton" onClick={() => editBook(element.id)}><FaPen /></button>&nbsp;
                 <button className="redbutton" onClick={() => deleteBook(element.id, element.NameRuBook)}><FaTrashAlt /></button></td>
+                <td id="table-divider-stats"><button className='navbarbutton' onClick={()=>duplicate(element.id,element.NameRuBook)}><FaCopy /></button></td>
             <td id="table-divider-stats">{element.NameRuBook}</td>
             <td id="table-divider-stats">{element.Author}</td>
             <td id="table-divider-stats">{element.Annotation}</td>
@@ -155,6 +173,7 @@ const PhysicalBooksSearch: FC = () => {
                             <tr><br/></tr>
                             <tr>
                                 <th id="table-divider-stats-header" style={{minWidth:'180px'}}><br/>&nbsp;Действия<br />&nbsp;</th>
+                                <th id="table-divider-stats-header" style={{minWidth:'50px'}}><br/>&nbsp;Дублирование<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'120px'}}><br/>&nbsp;Название<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'80px'}}><br />&nbsp;Автор<br />&nbsp;</th>
                                 <th id="table-divider-stats-header" style={{minWidth:'140px'}}><br/>&nbsp;Аннотация<br />&nbsp;</th>
