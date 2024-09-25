@@ -16,20 +16,35 @@ const PhotoChecker: FC = () => {
       localStorage.setItem('eligibility',response.data);
     });
   }, []);
-  if(config.allowStudentPhotos=='true'){
-    if (eligibility=='true' || localStorage.getItem('eligibility')=='true') return (
-      <Link to="/takephoto"><button className='navbarbutton'><LuScanFace style={{ verticalAlign: 'middle' }} /> Сфотографироваться</button></Link> 
-      );
-    else if (eligibility=='false' || localStorage.getItem('eligibility')=='false') {
-      return (<>
-      Фотография загружена. <TiTick style={{color:'green'}}/></>
-      );
+  const role = localStorage.getItem('role');
+  if(role=='plt_tutor'){
+    if(config.allowTutorPhotos=='true'){
+      if (eligibility=='true' || localStorage.getItem('eligibility')=='true') return (
+        <Link to="/takephoto"><button className='navbarbutton'><LuScanFace style={{ verticalAlign: 'middle' }} /> Сфотографироваться</button></Link> 
+        );
+      else if (eligibility=='false' || localStorage.getItem('eligibility')=='false') {
+        return (<>
+        Фотография загружена. <TiTick style={{color:'green'}}/></>
+        );
+      }
     }
   }
-  else{
-    return (<>
-      Функция скоро будет доступна.</>
-    );
+  else if (role=='plt_student'){
+    if(config.allowStudentPhotos=='true'){
+      if (eligibility=='true' || localStorage.getItem('eligibility')=='true') return (
+        <Link to="/takephoto"><button className='navbarbutton'><LuScanFace style={{ verticalAlign: 'middle' }} /> Сфотографироваться</button></Link> 
+        );
+      else if (eligibility=='false' || localStorage.getItem('eligibility')=='false') {
+        return (<>
+        Фотография загружена. <TiTick style={{color:'green'}}/></>
+        );
+      }
+    }
+    else{
+      return (<>
+        Функция скоро будет доступна.</>
+      );
+    }
   }
 };
 
