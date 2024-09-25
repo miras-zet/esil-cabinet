@@ -106,6 +106,15 @@ ul {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
   z-index: 3;
 }
+
+.green-tick-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4;
+}
+
 #opaqueTable{
   border-radius: 25px;
   background: rgba(20, 50, 20, .08)

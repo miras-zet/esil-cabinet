@@ -11,14 +11,15 @@ import IKPI from '../models/IKPI';
 import KPICategoryScores from '../components/KPICategoryScores';
 import KPINavbar from '../components/KPINavbar';
 import { HiSparkles } from "react-icons/hi2";
-import { FaBook, FaCamera, FaTrashAlt, FaUpload } from 'react-icons/fa';
+import { FaBook, FaCamera, FaClock, FaPlus, FaTrashAlt, FaUpload } from 'react-icons/fa';
 import { FaDisplay } from "react-icons/fa6";
-import { IoIosAlarm } from "react-icons/io";
+import { IoIosAlarm, IoIosBook } from "react-icons/io";
 import { MdNoteAdd } from 'react-icons/md';
 import StudentDebt from '../components/StudentDebt';
 import StudentBookDebt from '../components/StudentBookDebt';
 import StudentDormRequest from '../components/StudentDormRequest';
 import IBookCart from '../models/IBookCart';
+import PhotoChecker from '../components/PhotoChecker';
 import config from "../http/version.json";
 
 export const buildVer = config.buildVer;
@@ -36,7 +37,7 @@ const HomePage: FC = () => {
     window.location.reload();
   }
   UploadService.checkPhotoUploadEligibility().then((response) => {
-    localStorage.setItem('eligibility',response.data);
+    localStorage.setItem('eligibility', response.data);
   });
   const { store } = useContext(Context);
   const { modal, open } = useContext(ModalContext);
@@ -47,14 +48,14 @@ const HomePage: FC = () => {
   useEffect(() => {
     setKpiInfo([]);
     let books = JSON.parse(localStorage.getItem('bookCartJSON'));
-    if (books!=null) setParsedBooks(books)
+    if (books != null) setParsedBooks(books)
     else {
-      localStorage.setItem('bookCartJSON','[]');
+      localStorage.setItem('bookCartJSON', '[]');
       setParsedBooks([])
     };
     if (!booksParsed) setParsedBooks([]);
-    
-    if(!localStorage.getItem('bookCartJSON')) localStorage.setItem('bookCartJSON','[]');
+
+    if (!localStorage.getItem('bookCartJSON')) localStorage.setItem('bookCartJSON', '[]');
     if (localStorage.getItem('token')) {
       store.checkAuth()
     }
@@ -278,14 +279,49 @@ const HomePage: FC = () => {
           return <div className='root' style={{ textAlign: 'left' }}>
             <KPINavbar /> <br /><br /><br /><br /><br /><br /><br />
             <h2>{store.isAuth ? `Добро пожаловать, ${store.user.lastname} ${store.user.name}` : 'АВТОРИЗУЙТЕСЬ'}</h2>
-            <button className='navbarbutton' onClick={open}>Получить новую справку</button>
-            &nbsp;&nbsp;<Link to="/list"><button className='navbarbutton' onClick={() => store.getCert()}>История подачи справок</button></Link>
-            <br /><StudentDormRequest />
-            {/* &nbsp;&nbsp;<Link to="/ebooks"><button className='navbarbutton'>Электронная библиотека</button></Link> */}
-            <br /><br /><StudentBookDebt />
-            <br /><StudentDebt />
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                  <table>
+                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', height: '98%', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
+                    <h2>Справки</h2>
+                    <button className='navbarbutton' onClick={open}><FaPlus style={{ verticalAlign: 'middle', fontSize: '11pt' }} /> Получить новую справку</button>
+                    &nbsp;&nbsp;
+                    <Link to="/list">
+                      <button className='navbarbutton' onClick={() => store.getCert()}> <FaClock style={{ verticalAlign: 'middle', fontSize: '14pt' }} /> История справок</button>
+                    </Link><br /><br />
+                  </div><br /></tr>
+                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
+                    <h2>Регистрация FaceID</h2>
+                    <PhotoChecker/><br /><br />
+                  </div><br /></tr>
+                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
+                    <h2>Оплата</h2>
+                    <StudentDebt />
+                    <br /></div><br /></tr>
+                </table>
+                  </td>
+                  <td style={{width:'40px'}}></td>
+                  <td>
+                  <table>
+                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
+                    <h2>Библиотека</h2>
+                    <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link>
+                    <br /><StudentBookDebt />
+                    <br /></div><br /></tr>
+                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
+                    <h2>Дом студентов</h2>
+                    <StudentDormRequest />
+                    <br /></div><br /></tr>
+                </table>
+                  </td>
+                </tr>
+                
+                
+              </tbody>
+            </table>
             <br />
-
             <br />
 
             {modal && <CreateCert />}  </div>
@@ -313,8 +349,9 @@ const HomePage: FC = () => {
             <div className='tutorcontent'>
               <h4 style={{ fontSize: 35 }}>Баллы KPI: <b style={{ color: textcolor }}>{kpiInfo ? kpiInfo.toString() : <></>}</b></h4>
               <h4 style={{ fontSize: 20 }}>{premiere ? `Премирование: ${premiere} ` : ''}{parseInt(KPIScore) >= 200 ? <HiSparkles style={{ verticalAlign: 'middle', marginTop: '-7px' }} /> : ''}</h4>
-              <Link to="/kpi"><button className='navbarbutton'>Загрузить документы &nbsp;&nbsp;<FaUpload /></button></Link><br/><br/>
+              <Link to="/kpi"><button className='navbarbutton'>Загрузить документы &nbsp;&nbsp;<FaUpload /></button></Link><br /><br />
               <Link to="/takephoto"><button className='navbarbutton'>Загрузить фото &nbsp;&nbsp;<FaCamera /></button></Link>
+              <StudentBookDebt />
               <h5>* Каждый несёт персональную ответственность за ввод данных в систему оценки KPI.</h5>
               <KPICategoryScores />
             </div>
@@ -339,15 +376,6 @@ const HomePage: FC = () => {
         }
         else if (role === 'dean_students') {
           return <Navigate to='/dormrequests' />
-        }
-        else if (role === 'reader') {
-          return <div className='root'>
-            <KPINavbar />
-            <br />
-            <h2>Добро пожаловать!</h2>
-            <h3>Электронная библиотека ESIL University</h3>
-            <Link to="/ebooks"><button className='navbarbutton'>Электронные книги &nbsp;<FaBook style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link><br /><br />
-          </div>
         }
         else if (role === 'librarian') {
           return <div style={{ textAlign: 'left', width: '700px' }}>
@@ -383,7 +411,7 @@ const HomePage: FC = () => {
                 <td style={{ width: '15%' }}></td>
                 <td>
                   {booksParsed.length > 0 ? <>
-                    <br/>
+                    <br />
                     <h3 style={{ textAlign: 'center' }}>Корзина</h3>
                     <table id='opaqueTable'>
                       <thead>

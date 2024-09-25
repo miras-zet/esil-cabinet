@@ -3,6 +3,8 @@ import { observer } from "mobx-react-lite";
 import moment from "moment";
 import IDormRequest from "../models/IDormRequest";
 import UploadService from "../services/UploadService";
+import { FaHouse } from "react-icons/fa6";
+import { TiTick } from "react-icons/ti";
 
 const StudentDormRequest: FC = () => {
   const [dormData, setDormData] = useState<Array<IDormRequest>>([]);
@@ -33,14 +35,14 @@ const StudentDormRequest: FC = () => {
     return <tr key={element.id}>
       <td id="table-divider-stats">{moment(element.datecreated).format("DD.MM.YYYY")}</td>
       <td id="table-divider-stats">{element.approved == '1' ? <>Одобрено</> : <>В обработке</>}</td>
-      <td id="table-divider-stats">{element.approved == '1' ? <></> : <><button className='navbarbutton' onClick={() => deleteRequest()}>Удалить заявление</button></>}</td>
+      <td id="table-divider-stats">{element.approved == '1' ? <></> : <><button className='navbarbutton' onClick={() => deleteRequest()}>Удалить заявку</button></>}</td>
     </tr>
   });
 
   if (dormData.length > 0) return (
     <div>
-      <h4>Заявка на общежитие</h4>
-      <table id='opaqueTable' style={{ fontSize: '12pt', paddingLeft: '15px', width: '107%' }}>
+      Заявка на общежитие подана <TiTick style={{color:'green'}}/><br/>
+      <table id='opaqueTable' style={{ fontSize: '12pt', paddingLeft: '15px', width: '100%' }}>
         <tbody>
           <tr><br /></tr>
           <tr>
@@ -58,7 +60,7 @@ const StudentDormRequest: FC = () => {
 
     </div>);
   else {
-    return (<p><br /><button className='navbarbutton' onClick={() => dormRequest()}>Подать заявление на общежитие</button></p>);
+    return (<p><br /><button className='navbarbutton' onClick={() => dormRequest()}><FaHouse style={{fontSize:'10pt'}}/> Подать заявку на заселение</button></p>);
   }
 };
 

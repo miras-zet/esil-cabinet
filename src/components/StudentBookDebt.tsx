@@ -3,6 +3,7 @@ import { observer } from "mobx-react-lite";
 import moment from "moment";
 import IBookTransfer from "../models/IBookTransfer";
 import BookService from "../services/BookService";
+import { TiTick } from "react-icons/ti";
 
 const StudentBookDebt: FC = () => {
   const [dueData, setDueData] = useState<Array<IBookTransfer>>([]);
@@ -31,7 +32,7 @@ const StudentBookDebt: FC = () => {
   if (dueData.length > 0) return (
     <div>
       <h4>Текущие долги по книгам:</h4>
-      <table id='opaqueTable' style={{ fontSize: '12pt', paddingLeft: '15px', width: '107%' }}>
+      <table style={{ fontSize: '12pt', paddingLeft: '15px'}}>
       <tbody>
         <tr><br /></tr>
         <tr>
@@ -48,7 +49,7 @@ const StudentBookDebt: FC = () => {
 
     </div>);
   else {
-    return (<p>Долги по библиотеке не найдены.</p>);
+    return (<p>Долги по библиотеке не найдены. <TiTick style={{color:'green'}}/></p>);
   }
 };
 

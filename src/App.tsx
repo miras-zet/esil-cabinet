@@ -43,6 +43,7 @@ import DormList from './pages/DormList'
 import TransferBookJSON from './pages/TransferBookJSON'
 import NotificationsList from './pages/NotificationsList'
 import PictureUpload from './pages/PictureUpload'
+import PhysicalBooksPagesCatalogue from './pages/PhysicalBooksPagesCatalogue'
   
 
 const App:FC = () => {  
@@ -106,6 +107,7 @@ const App:FC = () => {
         <Route path="/ebooks" element={<EBooks />}/>
         <Route path="/readPDF" element={<ReadEBook />}/>
         <Route path="/physicalbooksPages" element={<PhysicalBooksPages/>}/>
+        <Route path="/bookrepo" element={<PhysicalBooksPagesCatalogue/>}/>
         <Route path="/searchbook" element={<PhysicalBooksSearch/>}/>
         <Route path="/addlibrarybook" element={<AddLibraryBook/>}/>
         <Route path="/editlibrarybook" element={<EditLibraryBook/>}/>

@@ -4,15 +4,13 @@ import UploadService from "../services/UploadService";
 import IDebtData from "../models/IDebtData";
 import IExcelUploadDate from "../models/IExcelUploadDate";
 import moment from "moment";
+import { TiTick } from "react-icons/ti";
 
 const StudentDebt: FC = () => {
   const [debtData, setDebtData] = useState<Array<IDebtData>>([]);
   const [excelDate, setExcelDate] = useState<Array<IExcelUploadDate>>([]);
-  let [margin, setMargin] = useState<string>('-35%');
 
   useEffect(() => {
-    setMargin('-35%');
-    if(window.innerWidth<940) setMargin('0%');
     UploadService.getExcelDate().then((response) => {
       setExcelDate(response.data);
     });
@@ -41,27 +39,27 @@ const StudentDebt: FC = () => {
   <div><table><tbody>
     <tr>
       <td style={{maxWidth:'350px', textAlign:'left', fontSize:'12pt'}}>
-      <br/>
       {debtItem}<br/>
       {excelDateData}<br/>
-      <i>Информация НЕ обновляется моментально после оплаты.</i><br/>
-      По всем возникающим вопросам можно обратиться по следующим номерам:<br/>
-      <b>Бухгалтерия</b> - +7 7172 725409 (вн. 151)<br/>
-      <b>Деканат факультета прикладных наук</b> - +7 7172 725406 (вн. 202)<br/>
-      <b>Деканат факультет бизнеса и управления</b> - + 7 7172 725405 (вн. 153)<br/>
-      <b>Офис регистратура</b> - +7 7172 725407, +7 7172 725410, +7 707 372-57-77</td>
-      <td style={{width:'255px'}}></td>
+      </td>
+      <td style={{width:'50px'}}></td>
       <td><br/>
-      <img style={{marginTop:margin}} src="kaspi_qr.png" alt='https://kaspi.kz/pay/Universities-v2?region_id=19&subservice_id=8221&started_from=?region_id=57&subservice_id=18241&started_from=instruction_qr' width={380} />
+      <img style={{}} src="kaspi_qr_mini.png" alt='https://kaspi.kz/pay/Universities-v2?region_id=19&subservice_id=8221&started_from=?region_id=57&subservice_id=18241&started_from=instruction_qr' width={300} />
       </td>
       {/* if window.innerWidth < 940 {marginTop:'-0%'} else {marginTop:'-35%'} */}
     </tr>
     </tbody>
+    
   </table>
- 
+  <i>Информация НЕ обновляется моментально после оплаты.</i><br/>
+      По всем возникающим вопросам можно обратиться по следующим номерам:<br/>
+      <b>Бухгалтерия</b> - +7 7172 725409 (вн. 151)<br/>
+      <b>Деканат факультета прикладных наук</b> - +7 7172 725406 (вн. 202)<br/>
+      <b>Деканат факультет бизнеса и управления</b> - + 7 7172 725405 (вн. 153)<br/>
+      <b>Офис регистратура</b> - +7 7172 725407, +7 7172 725410, +7 707 372-57-77
   </div>);
   else {
-    return (<p>Долги по оплате учёбы не найдены.</p>);
+    return (<p>Долги по оплате учёбы не найдены. <TiTick style={{color:'green'}}/></p>);
   }
 };
 
