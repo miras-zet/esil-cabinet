@@ -32,7 +32,7 @@ const KPICategoryScores: FC = () => {
                   {listCategoryItems}
                 </tbody>
               </table>
-    </div>);
+    <br/></div>);
     else{
         return;
     }
