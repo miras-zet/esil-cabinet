@@ -4,7 +4,7 @@ import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import BookService from '../services/BookService';
 import ILibraryBook from '../models/ILibraryBook';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { FaCartPlus, FaPen, FaTrashAlt } from 'react-icons/fa';
 import { TiArrowBack } from 'react-icons/ti';
 import { GrDocumentTransfer, GrFormNext } from "react-icons/gr";
@@ -158,7 +158,8 @@ const PhysicalBooksPages: FC = () => {
             {(() => {
                 //const role = localStorage.getItem('role');
                 //const user = JSON.parse(localStorage.getItem('data'));
-
+                const role = localStorage.getItem('role');
+                if (role === 'librarian') {
                 return <div style={{ textAlign: 'left', width: '900px', marginTop: '10%' }}>
                     <KPINavbar />
                     <br /><br /><br />
@@ -207,6 +208,10 @@ const PhysicalBooksPages: FC = () => {
                         <h4>Страница {page}</h4></div> : ''}
                 </div>
 
+            }
+            else{
+                return <Navigate to="/" />
+            }
             })()}
 
         </div>
