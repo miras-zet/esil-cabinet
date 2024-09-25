@@ -26,7 +26,7 @@ const CreateCert: FC = () => {
     return (
     <div className="modal"> 
         <div className="modalblock">
-        <h1>Выберите тип справки</h1>
+        <h2>Выберите тип справки</h2>
         <select value={value} onChange={event => setValue(event.target.value)}>
             <option key='0' value=''>---</option>
             {options}
