@@ -59,7 +59,7 @@ const StudentDebt: FC = () => {
       <b>Офис регистратура</b> - +7 7172 725407, +7 7172 725410, +7 707 372-57-77
   </div>);
   else {
-    return (<p>Долги по оплате учёбы не найдены. <TiTick style={{color:'green'}}/></p>);
+    return (<p>Долги по оплате учёбы не найдены. <TiTick style={{color:'green'}}/><br/>{excelDateData}</p>);
   }
 };
 

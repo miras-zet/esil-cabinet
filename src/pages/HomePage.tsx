@@ -349,7 +349,9 @@ const HomePage: FC = () => {
             <div className='tutorcontent'>
               <h4 style={{ fontSize: 35 }}>Баллы KPI: <b style={{ color: textcolor }}>{kpiInfo ? kpiInfo.toString() : <></>}</b></h4>
               <h4 style={{ fontSize: 20 }}>{premiere ? `Премирование: ${premiere} ` : ''}{parseInt(KPIScore) >= 200 ? <HiSparkles style={{ verticalAlign: 'middle', marginTop: '-7px' }} /> : ''}</h4>
-              <Link to="/kpi"><button className='navbarbutton'>Загрузить документы &nbsp;&nbsp;<FaUpload /></button></Link><br /><br />
+              <Link to="/kpi"><button className='navbarbutton'><FaUpload />&nbsp;&nbsp;Загрузить документы</button></Link><br /><br />
+              <Link to="/bookrepo"><button className='navbarbutton'><FaBook />&nbsp;&nbsp;Каталог книг</button></Link><br /><br />
+              
               <PhotoChecker/><br/>
               <StudentBookDebt />
               <h5>* Каждый несёт персональную ответственность за ввод данных в систему оценки KPI.</h5>
