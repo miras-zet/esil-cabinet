@@ -54,6 +54,7 @@ const KPINavbar: FC = () => {
         <div className='navbartitle'>{window.location.port=='5173'? <a style={{color:'red', fontWeight:'bold'}}>DEVELOPMENT VERSION, BUILD v{buildVer}</a>:headertext}</div>
       </div>
       <div className="topnav2">
+      {localStorage.getItem('role') == 'plt_tutor' ? <div className='navbarname'>Кафедра {localStorage.getItem('cafedraname')}</div> : <div></div>}
         <div>
           {!window.location.href.includes('notifications') ? notificationData[0]?.unread_count > 0 ?
             <><Link style={{ color: 'white' }} to='/notifications'>
@@ -78,7 +79,7 @@ const KPINavbar: FC = () => {
 
 
         </div>
-        {localStorage.getItem('role') == 'plt_tutor' ? <div className='navbarname'>Кафедра {localStorage.getItem('cafedraname')}</div> : <div></div>}
+        
         <div className='navbarname'>{FIO}</div>
         <button className='navbarbutton' onClick={() => store.logout()}>Выйти <TbLogout style={{ verticalAlign: 'middle', marginTop: '-3px' }} /></button>
       </div>
