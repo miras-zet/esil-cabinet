@@ -282,42 +282,40 @@ const HomePage: FC = () => {
               <tbody>
                 <tr>
                   <td>
-                  <table>
-                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', height: '98%', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
-                    <h2>Справки</h2>
-                    <button className='navbarbutton' onClick={open}><FaPlus style={{ verticalAlign: 'middle', fontSize: '11pt' }} /> Получить новую справку</button>
-                    &nbsp;&nbsp;
-                    <Link to="/list">
-                      <button className='navbarbutton' onClick={() => store.getCert()}> <FaClock style={{ verticalAlign: 'middle', fontSize: '14pt' }} /> История справок</button>
-                    </Link><br /><br />
-                  </div><br /></tr>
-                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
-                    <h2>Регистрация FaceID</h2>
-                    <PhotoChecker/><br /><br />
-                  </div><br /></tr>
-                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
-                    <h2>Оплата</h2>
-                    <StudentDebt />
-                    <br /></div><br /></tr>
-                </table>
+                    <table>
+                      <tr><div id='homepagePanel'>
+                        <h2>Справки</h2>
+                        <button className='navbarbutton' onClick={open}><FaPlus style={{ verticalAlign: 'middle', fontSize: '11pt' }} /> Получить новую справку</button>
+                        &nbsp;&nbsp;
+                        <Link to="/list">
+                          <button className='navbarbutton' onClick={() => store.getCert()}> <FaClock style={{ verticalAlign: 'middle', fontSize: '14pt' }} /> История справок</button>
+                        </Link><br /><br />
+                      </div><br /></tr>
+                      <tr><div id='homepagePanel'>
+                        <h2>Регистрация FaceID</h2>
+                        <PhotoChecker /><br /><br />
+                      </div><br /></tr>
+                      <tr><div id='homepagePanel'>
+                        <h2>Оплата</h2>
+                        <StudentDebt />
+                        <br /></div><br /></tr>
+                    </table>
                   </td>
-                  <td style={{width:'25px'}}></td>
+                  <td style={{ width: '25px' }}></td>
                   <td>
-                  <table>
-                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
-                    <h2>Библиотека</h2>
-                    <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link>
-                    <br /><StudentBookDebt />
-                    <br /></div><br /></tr>
-                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
-                    <h2>Дом студентов</h2>
-                    <StudentDormRequest />
-                    <br /></div><br /></tr>
-                </table>
+                    <table>
+                      <tr><div id='homepagePanel'>
+                        <h2>Библиотека</h2>
+                        <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link>
+                        <br /><StudentBookDebt />
+                        <br /></div><br /></tr>
+                      <tr><div id='homepagePanel'>
+                        <h2>Дом студентов</h2>
+                        <StudentDormRequest />
+                        <br /></div><br /></tr>
+                    </table>
                   </td>
                 </tr>
-                
-                
               </tbody>
             </table>
             <br />
@@ -345,39 +343,39 @@ const HomePage: FC = () => {
         else if (role === 'plt_tutor') {
           return <div className='root'>
             <KPINavbar /> <br /><br /><br /><br /><br /><br /><br />
-            <table style={{textAlign:'left'}}>
+            <table style={{ textAlign: 'left' }}>
               <tbody>
                 <tr>
                   <td>
-                  <table>
-                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', height: '98%', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
-                    <h2 style={{ fontSize: 20 }}>Ключевые показатели эффективности (KPI)</h2>
-                    <h4 style={{ fontSize: 27 }}>Баллы: <b style={{ color: textcolor}}>{kpiInfo ? kpiInfo.toString() : <></>}</b></h4>
-                    <h4 style={{ fontSize: 15 }}>{premiere ? `Премирование: ${premiere} ` : ''}{parseInt(KPIScore) >= 200 ? <HiSparkles style={{ verticalAlign: 'middle', marginTop: '-7px' }} /> : ''}</h4>
-                    <Link to="/kpi"><button className='navbarbutton'><FaUpload />&nbsp;&nbsp;Загрузить документы</button></Link><br /><br />
-                    <KPICategoryScores />
-                  </div><br /></tr>
-                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
-                    <h2>Регистрация FaceID</h2>
-                    <PhotoChecker/><br /><br />
-                  </div><br /></tr>
-                  <tr></tr>
-                </table>
+                    <table>
+                      <tr><div id='homepagePanel'>
+                        <h2 style={{ fontSize: 20 }}>Ключевые показатели эффективности (KPI)</h2>
+                        <h4 style={{ fontSize: 27 }}>Баллы: <b style={{ color: textcolor }}>{kpiInfo ? kpiInfo.toString() : <></>}</b></h4>
+                        <h4 style={{ fontSize: 15 }}>{premiere ? `Премирование: ${premiere} ` : ''}{parseInt(KPIScore) >= 200 ? <HiSparkles style={{ verticalAlign: 'middle', marginTop: '-7px' }} /> : ''}</h4>
+                        <Link to="/kpi"><button className='navbarbutton'><FaUpload />&nbsp;&nbsp;Загрузить документы</button></Link><br /><br />
+                        <KPICategoryScores />
+                      </div><br /></tr>
+                      <tr><div id='homepagePanel'>
+                        <h2>Регистрация FaceID</h2>
+                        <PhotoChecker /><br /><br />
+                      </div><br /></tr>
+                      <tr></tr>
+                    </table>
                   </td>
-                  <td style={{width:'15px'}}></td>
+                  <td style={{ width: '15px' }}></td>
                   <td>
-                  <table>
-                  <tr><div style={{ backgroundColor: '#ebebeb', width: '500px', borderRadius: '20px', padding: '12px 15px 12px 25px' }}>
-                    <h2>Библиотека</h2>
-                    <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link>
-                    <br /><StudentBookDebt />
-                    <br /></div><br /></tr>
-                  <tr></tr>
-                </table>
+                    <table>
+                      <tr><div id='homepagePanel'>
+                        <h2>Библиотека</h2>
+                        <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link>
+                        <br /><StudentBookDebt />
+                        <br /></div><br /></tr>
+                      <tr></tr>
+                    </table>
                   </td>
                 </tr>
-                
-                
+
+
               </tbody>
             </table>
             <br />

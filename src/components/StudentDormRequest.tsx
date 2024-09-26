@@ -16,7 +16,7 @@ const StudentDormRequest: FC = () => {
   }, []);
 
   const dormRequest = () => {
-    if (confirm('Вы уверены, что хотите подать заявление?')) {
+    if (confirm('Вы уверены, что хотите подать заявку?')) {
       UploadService.createDormRequestForUser().then(() => {
         location.reload();
       });
@@ -24,7 +24,7 @@ const StudentDormRequest: FC = () => {
   }
 
   const deleteRequest = () => {
-    if (confirm('Вы уверены, что хотите удалить заявление?')) {
+    if (confirm('Вы уверены, что хотите удалить заявку?')) {
       UploadService.deleteDormRequestForUser().then(() => {
         location.reload();
       });
@@ -60,7 +60,7 @@ const StudentDormRequest: FC = () => {
 
     </div>);
   else {
-    return (<p><br /><button className='navbarbutton' onClick={() => dormRequest()}><FaHouse style={{fontSize:'10pt'}}/> Подать заявку на заселение</button></p>);
+    return (<p><button className='navbarbutton' onClick={() => dormRequest()}><FaHouse style={{fontSize:'10pt'}}/> Подать заявку на заселение</button></p>);
   }
 };
 
