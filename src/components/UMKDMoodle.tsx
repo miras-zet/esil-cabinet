@@ -30,7 +30,7 @@ const UMKDMoodle: FC = () => {
             Заполненность портала ДОТ: {element.umkd_mdl_completion}%, {(element.umkd_mdl_completion>50)? 
             `добавлено +${Math.round(15/50*element.umkd_mdl_completion-15)} баллов`
             :
-            `отнято -${Math.round(15/50*element.umkd_mdl_completion-15)} баллов`}
+            `отнято ${Math.round(15/50*element.umkd_mdl_completion-15)} баллов`}
           </div>
           :
           <div>

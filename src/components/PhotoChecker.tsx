@@ -42,7 +42,24 @@ const PhotoChecker: FC = () => {
     }
     else{
       return (<>
-        Функция скоро будет доступна.</>
+        Функция временно недоступна.</>
+      );
+    }
+  }
+  else if (role=='plt_employee'){
+    if(config.allowEmployeePhotos=='true'){
+      if (eligibility=='true' || localStorage.getItem('eligibility')=='true') return (
+        <Link to="/takephoto"><button className='navbarbutton'><LuScanFace style={{ verticalAlign: 'middle' }} /> Сфотографироваться</button></Link> 
+        );
+      else if (eligibility=='false' || localStorage.getItem('eligibility')=='false') {
+        return (<>
+        Фотография загружена. <TiTick style={{color:'green'}}/></>
+        );
+      }
+    }
+    else{
+      return (<>
+        Функция временно недоступна.</>
       );
     }
   }

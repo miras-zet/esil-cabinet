@@ -33,17 +33,18 @@ const KPINavbar: FC = () => {
   let headertext = '';
   switch (role) {
     case 'plt_tutor': headertext = 'Кабинет ППС Esil University'; break;
+    case 'plt_employee': headertext = 'Кабинет сотрудника Esil University'; break;
     case 'plt_kpiadmin': headertext = 'Администратор системы KPI'; break;
-    case 'plt_applicant': headertext = 'Кабинет абитуриента ESIL University'; break;
-    case 'plt_graduate': headertext = 'Выпускник ESIL University'; break;
-    case 'plt_student': headertext = 'Кабинет обучающегося ESIL University'; break;
-    case 'admissionadmin': headertext = 'Приёмная комиссия ESIL University'; break;
-    case 'admissionstats': headertext = 'Статистика абитуриентов ESIL University'; break;
+    case 'plt_applicant': headertext = 'Кабинет абитуриента Esil University'; break;
+    case 'plt_graduate': headertext = 'Выпускник Esil University'; break;
+    case 'plt_student': headertext = 'Кабинет обучающегося Esil University'; break;
+    case 'admissionadmin': headertext = 'Приёмная комиссия Esil University'; break;
+    case 'admissionstats': headertext = 'Статистика абитуриентов Esil University'; break;
     case 'dean_students': headertext = 'Кабинет декана по работе со студентами'; break;
-    case 'reader': headertext = 'Электронная библиотека ESIL University'; break;
+    case 'reader': headertext = 'Электронная библиотека Esil University'; break;
     case 'technician': headertext = 'Отдел технического обслуживания и ремонта'; break;
-    case 'librarian': headertext = 'Электронная библиотека и система учёта книг ESIL University'; break;
-    default: headertext = 'ESIL University';
+    case 'librarian': headertext = 'Электронная библиотека и система учёта книг Esil University'; break;
+    default: headertext = 'Кабинет Esil University';
   }
 
   return (
