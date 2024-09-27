@@ -129,7 +129,7 @@ const PictureUpload: FC = () => {
   }
   const role = localStorage.getItem('role');
 
-  if (role === 'plt_student' || role === 'plt_tutor' || role === 'cit') {
+  if (role === 'plt_student' || role === 'plt_tutor' || role === 'cit' || role === 'plt_employee') {
     if (eligibility == 'true') {
       return (<div>
         <Link to="/"><button className="backbutton" style={{}}><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link><br /><br />
