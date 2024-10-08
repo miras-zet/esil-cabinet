@@ -67,7 +67,7 @@ export function Students(certificat: CertResponse) {
                                 , {moment(certificat?.birth_date).format("DD.MM.YYYY")} г.р. </b> в том, что он (а) действительно обучающим(ей)ся на <b>{certificat?.course_number}</b> курсе, образовательной программе  <b>{certificat?.specialization_code} - "{certificat?.specialization_name_ru}"</b>,
                                 <u><b> Учреждение "Esil University"</b> <b>лицензия № KZ08LAA00032358  от 01.04. 2022 г., без ограничения</b></u><br />
                                 <br />Факультет {certificat?.dekanat_ru}
-                                <br />Форма обучения: {certificat?.study_form_name_ru} <br />
+                                <br />Форма обучения: {!certificat?.study_form_name_ru.includes('ДОТ')? 'очная':'очная с переводом на ДОТ'} <br />
                                 {certificat.grant_type === -4 && <><b>Государственный грант</b> / На платной основе / Грант Акимата<br /></>}
                                 {certificat.grant_type === -7 && <>Государственный грант / <b>На платной основе </b>/ Грант Акимата<br /></>}
                                 Справка действительна на 2024/2025 учебный год.<br />

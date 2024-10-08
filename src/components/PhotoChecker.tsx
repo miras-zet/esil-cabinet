@@ -29,7 +29,7 @@ const PhotoChecker: FC = () => {
       }
     }
   }
-  else if (role=='plt_student'){
+  else if (role=='plt_student' || role=='plt_foreign_student'){
     if(config.allowStudentPhotos=='true'){
       if (eligibility=='true' || localStorage.getItem('eligibility')=='true') return (
         <Link to="/takephoto"><button className='navbarbutton'><LuScanFace style={{ verticalAlign: 'middle' }} /> Сфотографироваться</button></Link> 

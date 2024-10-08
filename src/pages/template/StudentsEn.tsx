@@ -65,7 +65,7 @@ export function StudentsEn(certificat:CertResponse)  {
 						<h3>REFERENCE</h3>
 						<p>This reference is given to  <b>{certificat?.lastname} {certificat?.name} {certificat?.middlename}</b>, date of birth {moment(certificat?.birth_date).format("DD.MM.YYYY")} to confirm that he(she) is a  <b>{certificat?.course_number}</b> year student of the specialty   <b>{certificat?.specialization_code} - "{certificat?.specialization_name_en}" </b>,
                         <u><b> «Esil University» State license № KZ08LAA00032358, date of issue 01.04.2022 (without time limitation)</b></u><br/> 
-                        <br/>{certificat?.study_form_name_en} <br/>                         
+                        <br/>{!certificat?.study_form_name_en.includes('ДОТ') || !certificat?.study_form_name_en.includes('DOT') || !certificat?.study_form_name_en.includes('distance') ? 'Full-time':'Full time (with transfer to distance learning)'} <br/>                          
                         {certificat.grant_type === -4 && <><b>State grant</b> / On a paid basis <br/></>}
                         {certificat.grant_type === -7 && <>State grant / <b>On a paid basis </b><br/></>}
 						Present reference is valid for  2024/2025 academic year.<br/>						

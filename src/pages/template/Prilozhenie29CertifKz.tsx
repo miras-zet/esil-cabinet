@@ -78,7 +78,7 @@ export function Prilozhenie29CertifKz(certificat:CertResponse)  {
                         , {moment(certificat?.birth_date).format("DD.MM.YYYY")}</b> ол iс жүзiнде<br/>
                         <u><b>"Esil University" мекемесінің</b></u><br/> 
                         <b><u>{certificat?.course_number}</u></b> курсының {masters_degree_ids.includes(certificat?.study_form_id)?<>магистранты</>:<>студентi</>} болып табылады,
-						<br/>оқу нысаны <u>{certificat?.study_form_name_kz}</u><br/> 
+						<br/>оқу нысаны <u>{!certificat?.study_form_name_kz.includes('')?'күндізгі':'күндізгі (қашықтан оқытуға ауыстыру)'}</u><br/> 
 						Анықтама 2024/2025 оқу жылына жарамды.<br/><br/>
 						Анықтама Мемлекеттiк корпорацияның бөлiмшесiне ұсыну үшiн берiлдi.<br/><br/>
 						Оқу орнындағы оқу мерзiмi {certificat?.course_count} жыл<br/>

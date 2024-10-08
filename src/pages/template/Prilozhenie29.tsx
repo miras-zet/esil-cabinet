@@ -75,7 +75,7 @@ export function Prilozhenie29(certificat:CertResponse)  {
                         &nbsp;{moment(certificat?.birth_date).format("DD.MM.YYYY")} г.р. </b><br/>в том, что он(а) действительно является обучающимся 
                         &nbsp;<u><b>Учреждение "Esil University"</b></u><br/> 
                         <b><u>{certificat?.course_number}</u></b> курса
-						<br/><u>{certificat?.study_form_name_ru}</u> форма обучения<br/> 
+						<br/><u>{!certificat?.study_form_name_ru.includes('ДОТ')? 'очная':'очная с переводом на ДОТ'}</u> форма обучения<br/> 
 						Справка действительна на 2024/2025 учебный год.<br/><br/>
 						Справка выдана для предъявления в
 						<br/>отделение Государственной корпорации.<br/><br/>

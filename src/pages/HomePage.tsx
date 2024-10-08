@@ -422,6 +422,35 @@ const HomePage: FC = () => {
             <br />
           </div>
         }
+        else if (role === 'plt_foreign_student') {
+          return <div className='root'>
+            <KPINavbar /> <br /><br /><br /><br /><br /><br /><br />
+            <table style={{ textAlign: 'left' }}>
+              <tbody>
+                <tr>
+                  <td>
+                    <table>
+                      <tr><div id='homepagePanel'>
+                      <h2>Регистрация FaceID</h2>
+                        <PhotoChecker /><br /><br />
+                      </div><br /></tr>
+                      <tr></tr>
+                    </table>
+                  </td>
+                  <td style={{ width: '15px' }}></td>
+                  <td>
+                    <table>
+                      <tr></tr>
+                      <tr></tr>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <br />
+            <br />
+          </div>
+        }
         else if (role === 'technician') {
           return <div className='rootTutor'>
             <KPINavbar />
