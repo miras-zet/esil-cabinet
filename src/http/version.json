@@ -1,6 +1,6 @@
 {
     "buildVer":"1.1.1",
-    "allowStudentPhotos":"false",
+    "allowStudentPhotos":"true",
     "allowTutorPhotos":"true",
     "allowEmployeePhotos":"true"
 }

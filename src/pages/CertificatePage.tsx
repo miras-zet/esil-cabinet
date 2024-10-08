@@ -11,6 +11,9 @@ import { Prilozhenie29 } from './template/Prilozhenie29';
 import { StudentsEn } from './template/StudentsEn';
 import { StudentsKz } from './template/StudentsKz';
 import { Prilozhenie29Kz } from './template/Prilozhenie29Kz';
+import { Prilozhenie29CertifEn } from './template/Prilozhenie29CertifEn';
+import { Prilozhenie29CertifKz } from './template/Prilozhenie29CertifKz';
+import { Prilozhenie29Certif } from './template/Prilozhenie29Certif';
 
 
 
@@ -67,15 +70,22 @@ const certificatePage:FC = () => {
                   return Prilozhenie29(certificate);
           // case 5:
           //   return  Prilozhenie31(certificate);
-            case 4:
-              if (certificate.language === 'en')
-                return  StudentsEn(certificate);
-              else if (certificate.language === 'kz')
-                return StudentsKz(certificate);
-              else
-                return Students(certificate);
-        default:
-          return  Students(certificate);
+          case 4:
+            if (certificate.language === 'en')
+              return Prilozhenie29CertifEn(certificate);
+            else if (certificate.language === 'kz')
+              return Prilozhenie29CertifKz(certificate);
+            else
+              return Prilozhenie29Certif(certificate);
+          case 5:
+            if (certificate.language === 'en')
+              return StudentsEn(certificate);
+            else if (certificate.language === 'kz')
+              return StudentsKz(certificate);
+            else
+              return Students(certificate);
+          default:
+            return Students(certificate);
         }
       } )()}
     </div>

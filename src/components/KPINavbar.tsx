@@ -46,7 +46,8 @@ const KPINavbar: FC = () => {
     case 'librarian': headertext = 'Электронная библиотека и система учёта книг Esil University'; break;
     default: headertext = 'Кабинет Esil University';
   }
-
+  if(window.location.port=='5173') document.title = 'dev build';
+  else if(headertext!='') document.title=headertext;
   return (
     <div>
       <div className="topnav">
