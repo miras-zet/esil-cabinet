@@ -44,6 +44,7 @@ import TransferBookJSON from './pages/TransferBookJSON'
 import NotificationsList from './pages/NotificationsList'
 import PictureUpload from './pages/PictureUpload'
 import PhysicalBooksPagesCatalogue from './pages/PhysicalBooksPagesCatalogue'
+import PhotoAdminPage from './pages/PhotoAdminPage'
   
 
 const App:FC = () => {  
@@ -102,6 +103,7 @@ const App:FC = () => {
         <Route path="/techOldDocuments" element={<TechDueDocuments/>}/>
         <Route path="/techSpecifyDocument" element={<TechPageConstructor/>}/>
         <Route path="/techActDocument" element={<TechAct/>}/>
+        <Route path="/photoadminpage" element={<PhotoAdminPage/>}/>
 
         {/* <Route path="/physicalbooks" element={<PhysicalBooks/>}/> */}
         <Route path="/ebooks" element={<EBooks />}/>
