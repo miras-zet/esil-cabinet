@@ -45,10 +45,10 @@ const PhotoAdminPage: FC = () => {
     const findUser = () => {
         const iin = (document.getElementById("inputIIN") as HTMLInputElement).value.trim();
         if (iin != '') {
-            if(noPhotoIINs.includes(iin) && iin.length==12){
+            if (noPhotoIINs.includes(iin) && iin.length == 12) {
                 setMessage2("Найден(а) в списке людей без фото");
             }
-            else{
+            else {
                 setMessage2("");
             }
             //const bookid = localStorage.getItem('transferringbookid');
@@ -59,7 +59,7 @@ const PhotoAdminPage: FC = () => {
                         setMessage('Фото нет в системе');
                         setMessageColor("red");
                     }
-                    else{
+                    else {
                         setMessage('');
                         setMessageColor("#2ecc71");
                     }
@@ -80,30 +80,33 @@ const PhotoAdminPage: FC = () => {
         }
     }
     const deletePhoto = () => {
-        const id = userdata[0]?.id;
-        if (id) {
-            AdminService.deletePhoto(id)
-                .then((response) => {
-                    setMessage(response.data.message);
-                    if (response.data.message.indexOf('success') !== -1) {
-                        setMessageColor("#2ecc71");
-                        alert('Успешно удалена фотография');
-                    } else {
-                        setMessageColor("red");
-                    }
-                    setButtonPressed('true');
-                })
-                .catch((err) => {
-                    if (err.response && err.response.data && err.response.data.message) {
-                        setMessage(err.response.data.message);
-                    } else {
-                        setMessage("Ошибка");
-                    }
-                });
+        if (confirm('Вы уверены что хотите удалить?')) {
+            const id = userdata[0]?.id;
+            if (id) {
+                AdminService.deletePhoto(id)
+                    .then((response) => {
+                        setMessage(response.data.message);
+                        if (response.data.message.indexOf('success') !== -1) {
+                            setMessageColor("#2ecc71");
+                            alert('Успешно удалена фотография');
+                        } else {
+                            setMessageColor("red");
+                        }
+                        setButtonPressed('true');
+                    })
+                    .catch((err) => {
+                        if (err.response && err.response.data && err.response.data.message) {
+                            setMessage(err.response.data.message);
+                        } else {
+                            setMessage("Ошибка");
+                        }
+                    });
+            }
+            else {
+                alert('Впишите ИИН');
+            }
         }
-        else {
-            alert('Впишите ИИН');
-        }
+
 
     }
     return (
@@ -114,13 +117,13 @@ const PhotoAdminPage: FC = () => {
                     return <div style={{ textAlign: 'left', width: '1200px' }}>
                         <KPINavbar />
                         <br /><br /><br />
-                        
+
                         <table style={{ width: '110%' }}>
                             <thead></thead>
                             <tbody>
                                 <tr>
-                                    <td style={{width:'20%'}}>
-                                    <br/><br/><br/> 
+                                    <td style={{ width: '20%' }}>
+                                        <br /><br /><br />
                                         <br />
                                         <h3>Впишите ИИН пользователя для проверки статуса фото</h3>
                                         <input id="inputIIN" className='btnNeutral' style={{ width: '300px' }} type="text" maxLength={12} placeholder='Введите ИИН'></input><br /><br />
@@ -128,18 +131,18 @@ const PhotoAdminPage: FC = () => {
                                         <div style={{ color: messagecolor, fontWeight: 'bold' }}>{message}</div>
                                         <div style={{ color: messagecolor, fontWeight: 'bold' }}>{foundNoPhoto}</div>
                                     </td>
-                                    <td style={{width:'5%'}}></td>
-                                    <td style={{width:'30%'}}>
-                                        <br/>
-                                        {userdata.length>0?<div id='opaqueTable'>
-                                            <div style={{padding:'8% 8% 8% 8%', fontWeight:'normal'}}>
+                                    <td style={{ width: '5%' }}></td>
+                                    <td style={{ width: '30%' }}>
+                                        <br />
+                                        {userdata.length > 0 ? <div id='opaqueTable'>
+                                            <div style={{ padding: '8% 8% 8% 8%', fontWeight: 'normal' }}>
                                                 <h4>Информация</h4>
                                                 <p>ФИО: <u>{userdata[0]?.lastname} {userdata[0]?.name} {userdata[0]?.middlename}</u></p>
                                                 <p>Дата фотографии: <u>{moment(userdata[0].DateCreated).format("DD.MM.YYYY HH:mm")}</u></p>
-                                                {incorrectIINs.includes(userdata[0].iin)?<p style={{color:'red'}}>Найден(а) в перечне неудавшихся фото</p>:''}
+                                                {incorrectIINs.includes(userdata[0].iin) ? <p style={{ color: 'red' }}>Найден(а) в перечне неудавшихся фото</p> : ''}
                                                 {buttonPressed == 'false' ? <button className="navbarbutton" onClick={() => deletePhoto()}>Удалить фото</button> : <button disabled id="backbutton">Выполнено</button>}
                                             </div>
-                                        </div>:''}
+                                        </div> : ''}
                                     </td>
                                 </tr>
                             </tbody>
