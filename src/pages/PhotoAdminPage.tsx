@@ -46,6 +46,7 @@ const PhotoAdminPage: FC = () => {
         const iin = (document.getElementById("inputIIN") as HTMLInputElement).value.trim();
         if (iin != '') {
             if (noPhotoIINs.includes(iin) && iin.length == 12) {
+                setMessageColor("red");
                 setMessage2("Найден(а) в списке людей без фото");
             }
             else {
