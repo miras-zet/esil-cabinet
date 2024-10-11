@@ -45,9 +45,6 @@ export function Prilozhenie29(certificat:CertResponse)  {
         </div>
         <div className="shapka">
 				<p><center>
-        Приложение 6 к приказу/<br/>
-    от 17 июня 2024 года № 196<br/>
-    <br/>
                 Приложение 29<br/>
                 к Правилам назначения<br/>
                 и осуществления выплаты<br/>
