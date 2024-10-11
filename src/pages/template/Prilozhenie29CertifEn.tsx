@@ -73,7 +73,7 @@ export function Prilozhenie29CertifEn(certificat:CertResponse)  {
 						<h3>СПРАВКА</h3>
 						<p>Дана гражданину <b>{certificat?.lastname} {certificat?.name} {certificat?.middlename}  
                         &nbsp;{moment(certificat?.birth_date).format("DD.MM.YYYY")} г.р. </b><br/>в том, что он(а) действительно является обучающимся 
-                        &nbsp;<u><b>Учреждение "Esil University"</b></u><br/> 
+                        &nbsp;<u><b>Учреждение "Esil University" license № KZ08LAA00032358 from 01.04.2022., unlimited</b></u><br/> 
                         <b><u>{certificat?.course_number}</u></b> курса
 						<br/><u>{certificat?.study_form_name_ru}</u> форма обучения<br/> 
 						Справка действительна на 2024/2025 учебный год.<br/><br/>
