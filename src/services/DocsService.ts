@@ -62,6 +62,12 @@ const getApplicantData = () : Promise<any>=>{
   }
   return http.get(`/applicant/list`,{params});
 };
+const getEmployeeList = () : Promise<any>=>{ 
+  const params = {
+    token: localStorage.getItem('token'),
+  }
+  return http.get(`/hr/employeelist`,{params});
+};
 const getApplicantStats = () : Promise<any>=>{ 
   const params = {
     token: localStorage.getItem('token'),
@@ -82,6 +88,7 @@ const addApplicant = (iin:string) : Promise<any> =>{
 };
 
 const DocsService = {
+  getEmployeeList,
   getApplicationDataRu,
   getApplicationDataKz,
   getContractDataRu,

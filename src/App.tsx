@@ -46,6 +46,8 @@ import PictureUpload from './pages/PictureUpload'
 import PhysicalBooksPagesCatalogue from './pages/PhysicalBooksPagesCatalogue'
 import PhotoAdminPage from './pages/PhotoAdminPage'
 import PhysicalBooksSearchCatalogue from './pages/PhysicalBooksSearchCatalogue'
+import HREmployeeList from './pages/HREmployeeList'
+import { TitleEmployeeRu } from './pages/template/TitleEmployeeRu'
   
 
 const App:FC = () => {  
@@ -119,6 +121,9 @@ const App:FC = () => {
         <Route path="/transferlibrarybookJSON" element={<TransferBookJSON/>}/>
         <Route path="/duebooks" element={<DueBooks/>}/>
 
+        <Route path="/employeelist" element={<HREmployeeList/>}/>
+        <Route path="/titleemployee" element={<TitleEmployeeRu/>}/>
+        
         <Route path="/kpi" element={ <KPIPage /> } />
         <Route path="/kpiupload" element={ <KPIUpload /> } />
         <Route path="/kpiadmin" element={<KPIAdminPage />} />

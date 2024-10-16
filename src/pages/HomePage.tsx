@@ -468,6 +468,9 @@ const HomePage: FC = () => {
         else if (role === 'photo_admin') {
           return <Navigate to='/photoadminpage' />
         }
+        else if (role === 'hradmin') {
+          return <Navigate to='/employeelist' />
+        }
         else if (role === 'admissionstats') {
           return <Navigate to='/admission_statistics' />
         }
