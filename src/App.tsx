@@ -45,6 +45,7 @@ import NotificationsList from './pages/NotificationsList'
 import PictureUpload from './pages/PictureUpload'
 import PhysicalBooksPagesCatalogue from './pages/PhysicalBooksPagesCatalogue'
 import PhotoAdminPage from './pages/PhotoAdminPage'
+import PhysicalBooksSearchCatalogue from './pages/PhysicalBooksSearchCatalogue'
   
 
 const App:FC = () => {  
@@ -110,6 +111,7 @@ const App:FC = () => {
         <Route path="/readPDF" element={<ReadEBook />}/>
         <Route path="/physicalbooksPages" element={<PhysicalBooksPages/>}/>
         <Route path="/bookrepo" element={<PhysicalBooksPagesCatalogue/>}/>
+        <Route path="/bookcataloguefilter" element={<PhysicalBooksSearchCatalogue/>}/>
         <Route path="/searchbook" element={<PhysicalBooksSearch/>}/>
         <Route path="/addlibrarybook" element={<AddLibraryBook/>}/>
         <Route path="/editlibrarybook" element={<EditLibraryBook/>}/>

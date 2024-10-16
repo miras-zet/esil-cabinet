@@ -9,6 +9,13 @@ const getPhysicalBookPageCount = (): Promise<any> => {
 const getEBookPageCount = (): Promise<any> => {
     return http.get(`/books/getebookpagecount`);
 };
+const getBooksByFilter = (): Promise<any> => {
+    const params = {
+        name: localStorage.getItem('namefilter'),
+        author: localStorage.getItem('authorfilter'),
+    }
+    return http.get(`/books/getbooksbyfilter`,{params});
+};
 const getBooksByName = (): Promise<any> => {
     const params = {
         name: localStorage.getItem('bookSearch'),
@@ -187,6 +194,7 @@ const BookService = {
     getBooksByInventory,
     getBooksByBarcode,
     getBooksPerPage,
+    getBooksByFilter,
     getEBooksPerPage,
     getBook,
     duplicateBook,

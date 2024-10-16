@@ -4,7 +4,7 @@ import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import BookService from '../services/BookService';
 import ILibraryBook from '../models/ILibraryBook';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { TiArrowBack } from 'react-icons/ti';
 import { GrFormNext } from "react-icons/gr";
 import { GrFormPrevious } from "react-icons/gr";
@@ -14,7 +14,8 @@ const PhysicalBooksPages: FC = () => {
     let [bookPageCount, setBookPageCount] = useState<number>(1);
     let [page, setPage] = useState<number>(1);
     let [margin] = useState<string>('-23%');
-
+    const navigate = useNavigate();
+    
     useEffect(() => {
         // const handleScroll = () => {
         //     setScrollPosition(window.scrollY);
@@ -90,7 +91,11 @@ const PhysicalBooksPages: FC = () => {
         } else {
             alert(`Введено неправильное значение для страницы: \"${(document.getElementById("inputPageSearch") as HTMLInputElement).value}\"`);
         }
-
+    }
+    const showresults = () =>{
+        localStorage.setItem('namefilter',(document.getElementById("searchByName") as HTMLInputElement).value);
+        localStorage.setItem('authorfilter',(document.getElementById("searchByAuthor") as HTMLInputElement).value);
+        navigate(`/bookcataloguefilter`);
     }
     return (
         <div>
@@ -107,6 +112,12 @@ const PhysicalBooksPages: FC = () => {
                     <br />
                     <h2 style={{ marginLeft: margin }}>Каталог книг в библиотеке</h2>
                     <br />
+                    <div style={{ marginLeft: margin, backgroundColor:'#dfe0e0', borderRadius:'25px', padding:'20px 20px 20px 20px',width:'40%' }}>
+                        <br/>
+                        По названию: &nbsp;<input type="text" id="searchByName" className='btnNeutral' style={{color:'black'}}></input><br/><br/>
+                        По автору: &nbsp;<input type="text" id="searchByAuthor" className='btnNeutral' style={{color:'black'}}></input><br/><br/>
+                        <button style={{color:'white',backgroundColor:'#108c64'}} onClick={()=>showresults()}>Найти</button>
+                    </div>
                     <br />
                     {books.length > 0 ? <div style={{ marginLeft: margin }}><button id="graybutton" onClick={() => firstPage()}>1</button>&nbsp;<button id="graybutton" onClick={() => previousPage()}><GrFormPrevious /></button>&nbsp;<button id="graybutton" onClick={() => nextPage()}><GrFormNext /></button>&nbsp;<button id="graybutton" onClick={() => lastPage()}>{bookPageCount}</button>&nbsp;<input className='btnNeutral' maxLength={5} style={{ color: 'black' }} type='text' id='inputPageSearch' placeholder='Введите страницу'></input>&nbsp;<button id="graybutton" onClick={() => goToPage()}>Перейти</button><br />
                         <h4>Страница {page}</h4></div> : ''}
