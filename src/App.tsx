@@ -48,6 +48,7 @@ import PhotoAdminPage from './pages/PhotoAdminPage'
 import PhysicalBooksSearchCatalogue from './pages/PhysicalBooksSearchCatalogue'
 import HREmployeeList from './pages/HREmployeeList'
 import { TitleEmployeeRu } from './pages/template/TitleEmployeeRu'
+import AddNewUser from './pages/AddNewUser'
   
 
 const App:FC = () => {  
@@ -107,6 +108,7 @@ const App:FC = () => {
         <Route path="/techSpecifyDocument" element={<TechPageConstructor/>}/>
         <Route path="/techActDocument" element={<TechAct/>}/>
         <Route path="/photoadminpage" element={<PhotoAdminPage/>}/>
+        <Route path="/addUser" element={<AddNewUser/>}/>
 
         {/* <Route path="/physicalbooks" element={<PhysicalBooks/>}/> */}
         <Route path="/ebooks" element={<EBooks />}/>

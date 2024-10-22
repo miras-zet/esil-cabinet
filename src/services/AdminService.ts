@@ -9,6 +9,16 @@ const findUser = (iin): Promise<any> => {
     }
     return http.get(`/admin/findphotodata`, { params });
 };
+const addNewUser = (iin,lastname,firstname,patronymic,role): Promise<any> => {
+    const params = {
+        iin: iin,
+        lastname: lastname,
+        firstname: firstname,
+        patronymic: patronymic,
+        role: role
+    }
+    return http.get(`/admin/addnewuser`, { params });
+};
 const deletePhoto = (id): Promise<any> => {
     const params = {
         id: id
@@ -19,6 +29,7 @@ const deletePhoto = (id): Promise<any> => {
 
 const AdminService = {
     getAllBooks,
+    addNewUser,
     deletePhoto,
     findUser,
 };

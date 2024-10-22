@@ -462,6 +462,15 @@ const HomePage: FC = () => {
             </div>
           </div>
         }
+        else if (role === 'admin') {
+          return <div className='rootTutor'>
+            <KPINavbar />
+            <div className='tutorcontent'>
+              <h2>Кабинет администратора</h2>
+              <Link to="/addUser"><button className='navbarbutton'>Добавить пользователя&nbsp;<MdNoteAdd style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link> <br /><br /><br />
+            </div>
+          </div>
+        }
         else if (role === 'admissionadmin') {
           return <Navigate to='/applicants' />
         }
