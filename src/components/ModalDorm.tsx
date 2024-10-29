@@ -11,7 +11,15 @@ const ModalDorm: FC = () => {
     const [roomnumber, setRoomNumber] = useState<string>('');
     const { close } = useContext(ModalContext);
 
+    function disableScrolling() {
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function enableScrolling() {
+      document.body.style.overflow = '';
+    }
     useEffect(() => {
+        disableScrolling();
         if(localStorage.getItem('editMode')=='true'){
             localStorage.setItem('editMode','false');
             setDormType(localStorage.getItem('dormType'));
@@ -37,9 +45,12 @@ const ModalDorm: FC = () => {
             location.reload();
         });
     }
-
+    const closeModal = ()=>{
+        enableScrolling();
+        close();    
+    }
     return (
-        <div className="modal_new">
+        <div className="modal_new" style={{marginTop:window.scrollY}}>
             <div className="modalblock_new">
                 <center><h2>Ответ на заявку</h2>
                     <h3>{localStorage.getItem('dormFIO')}</h3>
@@ -57,7 +68,7 @@ const ModalDorm: FC = () => {
                     <p></p>
                     <button disabled={buttonpressed} style={{ backgroundColor: '#088c64' }} onClick={() => redirectApprove()}>Принять</button>
                     &nbsp;<button disabled={buttonpressed} style={{ backgroundColor: 'crimson' }} onClick={() => redirectDeny()}>Отклонить</button>
-                    &nbsp;<button disabled={buttonpressed} style={{ background: "blue", marginLeft: 20 }} onClick={close}>Отмена</button>
+                    &nbsp;<button disabled={buttonpressed} style={{ background: "blue", marginLeft: 20 }} onClick={()=>closeModal()}>Отмена</button>
                 </center>
             </div>
 
