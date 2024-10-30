@@ -16,6 +16,13 @@ const getBooksByFilter = (): Promise<any> => {
     }
     return http.get(`/books/getbooksbyfilter`,{params});
 };
+const eBookAddLog = (userid,ebookid): Promise<any> => {
+    const params = {
+        userid: userid,
+        ebookid: ebookid,
+    }
+    return http.get(`/books/ebookaddlog`,{params});
+};
 const getEBooksByFilter = (): Promise<any> => {
     const params = {
         name: localStorage.getItem('enamefilter'),
@@ -203,6 +210,7 @@ const BookService = {
     getBooksPerPage,
     getBooksByFilter,
     getEBooksByFilter,
+    eBookAddLog,
     getEBooksPerPage,
     getBook,
     duplicateBook,

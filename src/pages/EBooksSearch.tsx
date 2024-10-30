@@ -32,14 +32,18 @@ const EBooks: FC = () => {
   // },[])
 
 
-  const openPDF = (url) =>{
+  const openPDF = (url,ebookid) =>{
     localStorage.setItem('pdfURL',url.split('/')[url.split('/').length-1]);
-    window.location.href=window.location.protocol + '//' + window.location.host +'/readPDF';
+    BookService.eBookAddLog(localStorage.getItem('user_id'),ebookid).then(() => {
+      window.location.href=window.location.protocol + '//' + window.location.host +'/readPDF';
+    }).catch((err) => {
+      console.log(err);
+    });
   }
 
   const booklist = books.map((element) => {
     return <tr key={element.id}>
-      <td id="table-divider-stats"><button className='backbutton' onClick={()=>openPDF(element.EBookPath)}>Открыть</button></td>
+      <td id="table-divider-stats"><button className='backbutton' onClick={()=>openPDF(element.EBookPath, element.id)}>Открыть</button></td>
       <td id="table-divider-stats">{element.NameRuBook}</td>
       <td id="table-divider-stats">{element.Author}</td>
       <td id="table-divider-stats">{element.Language == 'kaz' ? <div>Казахский</div> : element.Language == 'rus' ? <div>Русский</div> : element.Language == 'eng' ? <div>Английский</div> : ''}</td>

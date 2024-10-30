@@ -32,8 +32,8 @@ const ReadEBook: FC = () => {
     return (
         <div>
             {(() => {
-                return <div style={{width:'100%', height:'100%'}}>
-                     {/* <button className='backbutton' onClick={() => pageNumber > 1 ? setPageNumber(pageNumber - 1) : setPageNumber(1)}>Пред. страница</button>&nbsp;<button className='backbutton' onClick={() => pageNumber < numPages ? setPageNumber(pageNumber + 1) : setPageNumber(numPages)}>След. страница</button> 
+                return <div style={{ width: '100%', height: '100%' }}>
+                    {/* <button className='backbutton' onClick={() => pageNumber > 1 ? setPageNumber(pageNumber - 1) : setPageNumber(1)}>Пред. страница</button>&nbsp;<button className='backbutton' onClick={() => pageNumber < numPages ? setPageNumber(pageNumber + 1) : setPageNumber(numPages)}>След. страница</button> 
                     <p>
                         Страница {pageNumber} из {numPages}
                     </p>  */}
@@ -44,10 +44,10 @@ const ReadEBook: FC = () => {
                     <embed style={{height: '100%', width: '99%'}} id="pdfframe" onContextMenu={(e) => e.preventDefault()}
                         src={'http://10.0.1.22/CSP/euniversity/img/eLibraryBooks/'+localStorage.getItem('pdfURL') + "#toolbar=0"} 
                     /> */}
-                     <iframe 
-    src={config.API_URL+'/view?filename='+localStorage.getItem('pdfURL')} 
-    style={{border: "none", width:'100%', height:'105%',position:'absolute', top:-40,left:0}}>
-  </iframe>
+                    <iframe
+                        src={config.API_URL + '/view?filename=' + localStorage.getItem('pdfURL')}
+                        style={{ border: "none", width: '100%', height: '105%', position: 'absolute', top: -40, left: 0 }}>
+                    </iframe>
                 </div>
 
             })()}
