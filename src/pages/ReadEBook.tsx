@@ -2,7 +2,6 @@ import { FC, useEffect } from 'react'
 import { observer } from 'mobx-react-lite';
 import '../PDF.css';
 import config from "../http/config.json";
-import { API_URL } from '../http';
 
 export const path = config.eBookPath;
 
@@ -46,7 +45,7 @@ const ReadEBook: FC = () => {
                         src={'http://10.0.1.22/CSP/euniversity/img/eLibraryBooks/'+localStorage.getItem('pdfURL') + "#toolbar=0"} 
                     /> */}
                      <iframe 
-    src={API_URL+'/view/'+localStorage.getItem('pdfURL')} 
+    src={config.API_URL+'/view?filename='+localStorage.getItem('pdfURL')} 
     style={{border: "none", width:'100%', height:'105%',position:'absolute', top:-40,left:0}}>
   </iframe>
                 </div>
