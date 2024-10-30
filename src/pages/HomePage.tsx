@@ -12,7 +12,7 @@ import KPICategoryScores from '../components/KPICategoryScores';
 import KPINavbar from '../components/KPINavbar';
 import { HiSparkles } from "react-icons/hi2";
 import { FaBook, FaClock, FaPlus, FaTrashAlt, FaUpload } from 'react-icons/fa';
-import { FaDisplay } from "react-icons/fa6";
+import { FaBookAtlas, FaDisplay } from "react-icons/fa6";
 import { IoIosAlarm, IoIosBook } from "react-icons/io";
 import { MdNoteAdd } from 'react-icons/md';
 import StudentDebt from '../components/StudentDebt';
@@ -306,7 +306,8 @@ const HomePage: FC = () => {
                     <table>
                       <tr><div id='homepagePanel'>
                         <h2>Библиотека</h2>
-                        <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link>
+                        <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link><br/><br/>
+                        <Link to="/ebooks"><button className='navbarbutton'><FaBookAtlas style={{ verticalAlign: 'middle' }} /> Электронные книги</button></Link>
                         <br /><StudentBookDebt />
                         <br /></div><br /></tr>
                       <tr><div id='homepagePanel'>
@@ -367,7 +368,8 @@ const HomePage: FC = () => {
                     <table>
                       <tr><div id='homepagePanel'>
                         <h2>Библиотека</h2>
-                        <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link>
+                        <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link><br/><br/>
+                        <Link to="/ebooks"><button className='navbarbutton'><FaBookAtlas style={{ verticalAlign: 'middle' }} /> Электронные книги</button></Link>
                         <br /><StudentBookDebt />
                         <br /></div><br /></tr>
                       <tr></tr>

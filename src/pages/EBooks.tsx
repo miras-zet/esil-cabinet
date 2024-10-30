@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import { TiArrowBack } from 'react-icons/ti';
-import { MdOutlinePostAdd } from "react-icons/md";
+//import { MdOutlinePostAdd } from "react-icons/md";
 import BookService from '../services/BookService';
 import IEBook from '../models/IEBook';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
@@ -115,15 +115,7 @@ const EBooks: FC = () => {
   return (
     <div>
       {(() => {
-        if (role == 'librarian') {
-          return <div style={{ textAlign: 'left', width: '1200px' }}>
-            <KPINavbar />
-            <br /><br />
-            <Link to={"/"}><button className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button></Link> <br /><br />
-            <button className='navbarbutton'>Добавить новую книгу &nbsp;<MdOutlinePostAdd style={{ verticalAlign: 'middle', marginTop: '-5px', fontSize: '15pt' }} /></button>
-          </div>
-        }
-        if (role == 'plt_student') {
+        if (role == 'plt_student' || role == 'librarian' || role == 'plt_tutor') {
           return <div style={{ textAlign: 'left', width: '1200px' }}>
             <KPINavbar />
             <br /><br /><br /><br /><br /><br /><br />
