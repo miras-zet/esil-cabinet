@@ -30,7 +30,7 @@ const ReadEBook: FC = () => {
     //     navigate(`/ebooks`);
     // }
     return (
-        <div style={{position:'sticky', width:`${window.innerWidth-20}px`, height:`${window.innerHeight-5}px`, marginLeft:'-110px', marginTop:'-68px'}}>
+        <div>
             {(() => {
                 return <div style={{width:'100%', height:'100%'}}>
                      {/* <button className='backbutton' onClick={() => pageNumber > 1 ? setPageNumber(pageNumber - 1) : setPageNumber(1)}>Пред. страница</button>&nbsp;<button className='backbutton' onClick={() => pageNumber < numPages ? setPageNumber(pageNumber + 1) : setPageNumber(numPages)}>След. страница</button> 
@@ -40,10 +40,14 @@ const ReadEBook: FC = () => {
                     {/* <Document file={'http://10.0.1.22/CSP/euniversity/img/eLibraryBooks/'+localStorage.getItem('pdfURL')} onLoadSuccess={onDocumentLoadSuccess}>
                         <Page pageNumber={pageNumber} />
                     </Document> */}
-                    <div style={{position:'absolute', width:'98.5%', height:'100%', zIndex:2, backgroundColor:'rgba(0,0,0,0)'}}></div>
+                    {/* <div style={{position:'absolute', width:'98.5%', height:'100%', zIndex:2, backgroundColor:'rgba(0,0,0,0)'}}></div>
                     <embed style={{height: '100%', width: '99%'}} id="pdfframe" onContextMenu={(e) => e.preventDefault()}
                         src={'http://10.0.1.22/CSP/euniversity/img/eLibraryBooks/'+localStorage.getItem('pdfURL') + "#toolbar=0"} 
-                    />
+                    /> */}
+                     <iframe 
+    src={'http://127.0.0.1:8080/view/'+localStorage.getItem('pdfURL')} 
+    style={{border: "none", width:'100%', height:'105%',position:'absolute', top:-40,left:0}}>
+  </iframe>
                 </div>
 
             })()}
