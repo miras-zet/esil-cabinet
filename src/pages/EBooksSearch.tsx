@@ -1,48 +1,30 @@
 import { FC, useContext, useEffect, useState } from 'react'
 import { Context } from '../main';
-import LoginForm from '../components/LoginForm';
 import { observer } from 'mobx-react-lite';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import { TiArrowBack } from 'react-icons/ti';
 //import { MdOutlinePostAdd } from "react-icons/md";
 import BookService from '../services/BookService';
 import IEBook from '../models/IEBook';
-import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 
 const EBooks: FC = () => {
   const { store } = useContext(Context);
   // const [user, setUser] = useState([]);  
   //const {modal, open} = useContext(ModalContext); 
   let [margin] = useState<string>('-5%');
-  let [bookPageCount, setBookPageCount] = useState<number>(1);
   const [books, setBookData] = useState<Array<IEBook>>([]);
-  let [page, setPage] = useState<number>(1);
   const role = localStorage.getItem('role');
-  const navigate = useNavigate();
   useEffect(() => {
-
-    // const user = JSON.parse(localStorage.getItem('data'));
-    // if (user) {
-    //   setUser(user);
-    // }
-    if (localStorage.getItem('token')) {
-      store.checkAuth()
-    }
-    setPage(parseInt(localStorage.getItem('currentEPage')));
-    if (Number.isNaN(parseInt(localStorage.getItem('currentEPage')))) setPage(1);
-    BookService.getEBookPageCount().then((response) => {
-      setBookPageCount(response.data);
-    }).catch((err) => {
-      console.log(err);
-    });
-    BookService.getEBooksPerPage(page).then((response) => {
+    BookService.getEBooksByFilter().then((response) => {
       setBookData(response.data);
     }).catch((err) => {
       console.log(err);
       setBookData([]);
     });
+    (document.getElementById("searchByName") as HTMLInputElement).value = localStorage.getItem('enamefilter'); 
+    (document.getElementById("searchByAuthor") as HTMLInputElement).value = localStorage.getItem('eauthorfilter');   
   }, [])
 
   // useEffect(()=>{
@@ -50,46 +32,11 @@ const EBooks: FC = () => {
   // },[])
 
 
-  if (store.isLoading) {
-    return <div>Loading ...</div>
-  }
-
-
-  if (!store.isAuth) {
-    return (
-      <div>
-        <LoginForm />
-      </div>
-    );
-  }
   const openPDF = (url) =>{
     localStorage.setItem('pdfURL',url.split('/')[url.split('/').length-1]);
     window.location.href=window.location.protocol + '//' + window.location.host +'/readPDF';
   }
-  const previousPage = () => {
-    if (page > 1) {
-      setPage(page - 1);
-      localStorage.setItem('currentEPage', page - 1 + '');
-      location.reload();
-    }
-  }
-  const nextPage = () => {
-    if (page < bookPageCount) {
-      setPage(page + 1);
-      localStorage.setItem('currentEPage', page + 1 + '');
-      location.reload();
-    }
-  }
-  const firstPage = () => {
-    setPage(1);
-    localStorage.setItem('currentEPage', '1');
-    location.reload();
-  }
-  const lastPage = () => {
-    setPage(bookPageCount);
-    localStorage.setItem('currentEPage', bookPageCount + '');
-    location.reload();
-  }
+
   const booklist = books.map((element) => {
     return <tr key={element.id}>
       <td id="table-divider-stats"><button className='backbutton' onClick={()=>openPDF(element.EBookPath)}>Открыть</button></td>
@@ -102,21 +49,10 @@ const EBooks: FC = () => {
     </tr>
 
   });
-  const goToPage = () => {
-    let page = parseInt((document.getElementById("inputPageSearch") as HTMLInputElement).value);
-    if (!Number.isNaN(page) && page != undefined && page > 0 && page <= bookPageCount) {
-      setPage(page);
-      localStorage.setItem('currentEPage', page + '');
-      location.reload();
-    } else {
-      alert(`Введено неправильное значение для страницы: \"${(document.getElementById("inputPageSearch") as HTMLInputElement).value}\"`);
-    }
-
-  }
   const showresults = () =>{
     localStorage.setItem('enamefilter',(document.getElementById("searchByName") as HTMLInputElement).value);
     localStorage.setItem('eauthorfilter',(document.getElementById("searchByAuthor") as HTMLInputElement).value);
-    navigate(`/ebooksfilter`);
+    location.reload();
 }
   return (
     <div>
@@ -126,16 +62,14 @@ const EBooks: FC = () => {
             <KPINavbar />
             <br /><br /><br /><br /><br /><br /><br />
             <Link to={"/"}><button className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button></Link> <br /><br />
-            <h2>Электронные книги</h2><br />
+            <h3 style={{ marginLeft: margin }}>Список электронных книг по результатам поиска</h3>
+            <h5 style={{ marginLeft: margin }}>Максимальное количество результатов - 1000</h5><br/>
             <div style={{ marginLeft: margin, backgroundColor:'#dfe0e0', borderRadius:'25px', padding:'20px 20px 20px 20px',width:'40%' }}>
                 <br/>
                 По названию: &nbsp;<input type="text" id="searchByName" className='btnNeutral' style={{color:'black'}}></input><br/><br/>
                 По автору: &nbsp;<input type="text" id="searchByAuthor" className='btnNeutral' style={{color:'black'}}></input><br/><br/>
                 <button style={{color:'white',backgroundColor:'#108c64'}} onClick={()=>showresults()}>Найти</button>
             </div><br /><br />
-            {books.length > 0 ? <div style={{ marginLeft: margin }}><button id="graybutton" onClick={() => firstPage()}>1</button>&nbsp;<button id="graybutton" onClick={() => previousPage()}><GrFormPrevious /></button>&nbsp;<button id="graybutton" onClick={() => nextPage()}><GrFormNext /></button>&nbsp;<button id="graybutton" onClick={() => lastPage()}>{bookPageCount}</button>&nbsp;<input className='btnNeutral' maxLength={5} style={{ color: 'black' }} type='text' id='inputPageSearch' placeholder='Введите страницу'></input>&nbsp;<button id="graybutton" onClick={() => goToPage()}>Перейти</button><br />
-              <h4>Страница {page}</h4></div> : ''}
-            <br />
             {books.length > 0 ?
               <table id='opaqueTable' style={{ fontSize: '10.5pt', marginLeft: margin, paddingLeft: '15px', maxWidth: '107%', tableLayout: 'fixed' }}>
                 <thead>
@@ -159,9 +93,6 @@ const EBooks: FC = () => {
                 </tbody>
               </table> : <h3 style={{ marginLeft: margin }}>Загрузка...</h3>}
             <br />
-            {books.length > 0 ? <div style={{ marginLeft: margin }}><button onClick={() => firstPage()}>1</button>&nbsp;<button onClick={() => previousPage()}><GrFormPrevious /></button>&nbsp;<button onClick={() => nextPage()}><GrFormNext /></button>&nbsp;<button onClick={() => lastPage()}>{bookPageCount}</button><br />
-
-              <h4>Страница {page}</h4></div> : ''}
           </div>
         }
         else {

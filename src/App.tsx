@@ -49,6 +49,7 @@ import PhysicalBooksSearchCatalogue from './pages/PhysicalBooksSearchCatalogue'
 import HREmployeeList from './pages/HREmployeeList'
 import { TitleEmployeeRu } from './pages/template/TitleEmployeeRu'
 import AddNewUser from './pages/AddNewUser'
+import EBooksSearch from './pages/EBooksSearch'
   
 
 const App:FC = () => {  
@@ -112,6 +113,7 @@ const App:FC = () => {
 
         {/* <Route path="/physicalbooks" element={<PhysicalBooks/>}/> */}
         <Route path="/ebooks" element={<EBooks />}/>
+        <Route path="/ebooksfilter" element={<EBooksSearch />}/>
         <Route path="/readPDF" element={<ReadEBook />}/>
         <Route path="/physicalbooksPages" element={<PhysicalBooksPages/>}/>
         <Route path="/bookrepo" element={<PhysicalBooksPagesCatalogue/>}/>
