@@ -1,7 +1,7 @@
 import { FC, useContext, useEffect, useState } from 'react'
 import { Context } from '../main';
 import { observer } from 'mobx-react-lite';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import { TiArrowBack } from 'react-icons/ti';
@@ -16,6 +16,7 @@ const EBooks: FC = () => {
   let [margin] = useState<string>('-5%');
   const [books, setBookData] = useState<Array<IEBook>>([]);
   const role = localStorage.getItem('role');
+  const navigate = useNavigate();
   useEffect(() => {
     BookService.getEBooksByFilter().then((response) => {
       setBookData(response.data);
@@ -57,7 +58,11 @@ const EBooks: FC = () => {
     localStorage.setItem('enamefilter',(document.getElementById("searchByName") as HTMLInputElement).value);
     localStorage.setItem('eauthorfilter',(document.getElementById("searchByAuthor") as HTMLInputElement).value);
     location.reload();
-}
+  }
+  const addBookRedirect = () => {
+    localStorage.setItem('prevLibrarianPage', 'search');
+    navigate(`/addebook`);
+  }
   return (
     <div>
       {(() => {
@@ -74,6 +79,7 @@ const EBooks: FC = () => {
                 По автору: &nbsp;<input type="text" id="searchByAuthor" className='btnNeutral' style={{color:'black'}}></input><br/><br/>
                 <button style={{color:'white',backgroundColor:'#108c64'}} onClick={()=>showresults()}>Найти</button>
             </div><br /><br />
+            {role == 'librarian' ? <div><button onClick={() => addBookRedirect()} style={{ marginLeft: margin }} className='navbarbutton'>Добавить новую эл.книгу</button><br /><br /></div> : ''}
             {books.length > 0 ?
               <table id='opaqueTable' style={{ fontSize: '10.5pt', marginLeft: margin, paddingLeft: '15px', maxWidth: '107%', tableLayout: 'fixed' }}>
                 <thead>

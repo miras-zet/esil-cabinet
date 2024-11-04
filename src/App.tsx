@@ -50,6 +50,7 @@ import HREmployeeList from './pages/HREmployeeList'
 import { TitleEmployeeRu } from './pages/template/TitleEmployeeRu'
 import AddNewUser from './pages/AddNewUser'
 import EBooksSearch from './pages/EBooksSearch'
+import AddEBook from './pages/AddEBook'
   
 
 const App:FC = () => {  
@@ -120,6 +121,7 @@ const App:FC = () => {
         <Route path="/bookcataloguefilter" element={<PhysicalBooksSearchCatalogue/>}/>
         <Route path="/searchbook" element={<PhysicalBooksSearch/>}/>
         <Route path="/addlibrarybook" element={<AddLibraryBook/>}/>
+        <Route path="/addebook" element={<AddEBook/>}/>
         <Route path="/editlibrarybook" element={<EditLibraryBook/>}/>
         <Route path="/transferlibrarybook" element={<TransferBook/>}/>
         <Route path="/transferlibrarybookJSON" element={<TransferBookJSON/>}/>

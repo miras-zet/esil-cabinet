@@ -62,10 +62,10 @@ const EBooks: FC = () => {
       </div>
     );
   }
-  const openPDF = (url,ebookid) =>{
-    localStorage.setItem('pdfURL',url.split('/')[url.split('/').length-1]);
-    BookService.eBookAddLog(localStorage.getItem('user_id'),ebookid).then(() => {
-      window.location.href=window.location.protocol + '//' + window.location.host +'/readPDF';
+  const openPDF = (url, ebookid) => {
+    localStorage.setItem('pdfURL', url.split('/')[url.split('/').length - 1]);
+    BookService.eBookAddLog(localStorage.getItem('user_id'), ebookid).then(() => {
+      window.location.href = window.location.protocol + '//' + window.location.host + '/readPDF';
     }).catch((err) => {
       console.log(err);
     });
@@ -96,7 +96,7 @@ const EBooks: FC = () => {
   }
   const booklist = books.map((element) => {
     return <tr key={element.id}>
-      <td id="table-divider-stats"><button className='backbutton' onClick={()=>openPDF(element.EBookPath, element.id)}>Открыть</button></td>
+      <td id="table-divider-stats"><button className='backbutton' onClick={() => openPDF(element.EBookPath, element.id)}>Открыть</button></td>
       <td id="table-divider-stats">{element.NameRuBook}</td>
       <td id="table-divider-stats">{element.Author}</td>
       <td id="table-divider-stats">{element.Language == 'kaz' ? <div>Казахский</div> : element.Language == 'rus' ? <div>Русский</div> : element.Language == 'eng' ? <div>Английский</div> : ''}</td>
@@ -117,11 +117,15 @@ const EBooks: FC = () => {
     }
 
   }
-  const showresults = () =>{
-    localStorage.setItem('enamefilter',(document.getElementById("searchByName") as HTMLInputElement).value);
-    localStorage.setItem('eauthorfilter',(document.getElementById("searchByAuthor") as HTMLInputElement).value);
+  const showresults = () => {
+    localStorage.setItem('enamefilter', (document.getElementById("searchByName") as HTMLInputElement).value);
+    localStorage.setItem('eauthorfilter', (document.getElementById("searchByAuthor") as HTMLInputElement).value);
     navigate(`/ebooksfilter`);
-}
+  }
+  const addBookRedirect = () => {
+    localStorage.setItem('prevLibrarianPage', 'pages');
+    navigate(`/addebook`);
+  }
   return (
     <div>
       {(() => {
@@ -131,12 +135,13 @@ const EBooks: FC = () => {
             <br /><br /><br /><br /><br /><br /><br />
             <Link to={"/"}><button className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button></Link> <br /><br />
             <h2>Электронные книги</h2><br />
-            <div style={{ marginLeft: margin, backgroundColor:'#dfe0e0', borderRadius:'25px', padding:'20px 20px 20px 20px',width:'40%' }}>
-                <br/>
-                По названию: &nbsp;<input type="text" id="searchByName" className='btnNeutral' style={{color:'black'}}></input><br/><br/>
-                По автору: &nbsp;<input type="text" id="searchByAuthor" className='btnNeutral' style={{color:'black'}}></input><br/><br/>
-                <button style={{color:'white',backgroundColor:'#108c64'}} onClick={()=>showresults()}>Найти</button>
+            <div style={{ marginLeft: margin, backgroundColor: '#dfe0e0', borderRadius: '25px', padding: '20px 20px 20px 20px', width: '40%' }}>
+              <br />
+              По названию: &nbsp;<input type="text" id="searchByName" className='btnNeutral' style={{ color: 'black' }}></input><br /><br />
+              По автору: &nbsp;<input type="text" id="searchByAuthor" className='btnNeutral' style={{ color: 'black' }}></input><br /><br />
+              <button style={{ color: 'white', backgroundColor: '#108c64' }} onClick={() => showresults()}>Найти</button>
             </div><br /><br />
+            {role == 'librarian' ? <div><button onClick={() => addBookRedirect()} style={{ marginLeft: margin }} className='navbarbutton'>Добавить новую эл.книгу</button><br /><br /></div> : ''}
             {books.length > 0 ? <div style={{ marginLeft: margin }}><button id="graybutton" onClick={() => firstPage()}>1</button>&nbsp;<button id="graybutton" onClick={() => previousPage()}><GrFormPrevious /></button>&nbsp;<button id="graybutton" onClick={() => nextPage()}><GrFormNext /></button>&nbsp;<button id="graybutton" onClick={() => lastPage()}>{bookPageCount}</button>&nbsp;<input className='btnNeutral' maxLength={5} style={{ color: 'black' }} type='text' id='inputPageSearch' placeholder='Введите страницу'></input>&nbsp;<button id="graybutton" onClick={() => goToPage()}>Перейти</button><br />
               <h4>Страница {page}</h4></div> : ''}
             <br />
