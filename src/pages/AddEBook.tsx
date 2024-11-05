@@ -60,6 +60,7 @@ const AddEBook: FC = () => {
             const PublishingHouse = (document.getElementById("inputPublishingHouse") as HTMLInputElement).value;
             const RLibraryCategoryRLibraryBook = category;
             const UDC = (document.getElementById("inputUDC") as HTMLInputElement).value;
+            (document.getElementById("mainbutton") as HTMLInputElement).value='Идёт загрузка..';
             BookService.addEBook(currentFile, Name, Author, Pages, ISBN, LLC, Language, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, UDC).then((response) => {
                 setMessage(response.data.message);
                 if (response.data.message.indexOf('успешно') !== -1) {
@@ -68,6 +69,7 @@ const AddEBook: FC = () => {
                 } else {
                     setMessageColor("red");
                 }
+                (document.getElementById("mainbutton") as HTMLInputElement).value='Добавить';
             })
                 .catch((err) => {
                     if (err.response && err.response.data && err.response.data.message) {
@@ -164,7 +166,7 @@ const AddEBook: FC = () => {
                             </tr>
                         </table>
                         <br/>
-                        <button className="navbarbutton" onClick={addBook} disabled={!currentFile}>Добавить</button><br />
+                        <button className="navbarbutton" id='mainbutton' onClick={addBook} disabled={!currentFile}>Добавить</button><br />
                         <br/><div style={{ color: messagecolor, fontWeight: 'bold' }}>{message}</div>
                     </div>
                 }
