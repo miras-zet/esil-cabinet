@@ -48,7 +48,7 @@ const AddEBook: FC = () => {
         <option key={element.id} value={element.id}>{element.name}</option>
     );
     const addBook = () => {
-        if (lang != 'notchosen' && category != 'notchosen') {
+        if (lang != 'notchosen' || category != 'notchosen') {
             const Name = (document.getElementById("inputName") as HTMLInputElement).value;
             const Author = (document.getElementById("inputAuthor") as HTMLInputElement).value;
             const Pages = (document.getElementById("inputPages") as HTMLInputElement).value;        

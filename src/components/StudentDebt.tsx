@@ -44,7 +44,8 @@ const StudentDebt: FC = () => {
       </td>
       <td style={{width:'50px'}}></td>
       <td><br/>
-      <img style={{}} src="kaspi_qr_mini.png" alt='https://kaspi.kz/pay/Universities-v2?region_id=19&subservice_id=8221&started_from=?region_id=57&subservice_id=18241&started_from=instruction_qr' width={300} />
+      <img style={{}} src="kaspi_qr_mini.png" alt='https://kaspi.kz/pay/Universities-v2?region_id=19&subservice_id=8221&started_from=?region_id=57&subservice_id=18241&started_from=instruction_qr' width={280} />
+      <center><a href='https://kaspi.kz/pay/_gate?action=service_with_subservice&service_id=2766&subservice_id=8221&region_id=19'><button style={{backgroundColor:'#FF2B2C'}}>Перейти в Kaspi</button></a></center><br/>
       </td>
       {/* if window.innerWidth < 940 {marginTop:'-0%'} else {marginTop:'-35%'} */}
     </tr>
