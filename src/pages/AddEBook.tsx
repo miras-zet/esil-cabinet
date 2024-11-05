@@ -75,7 +75,7 @@ const AddEBook: FC = () => {
                     if (err.response && err.response.data && err.response.data.message) {
                         setMessage(err.response.data.message);
                     } else {
-                        setMessage("Ошибка");
+                        setMessage(err);
                     }
                 });
         }
