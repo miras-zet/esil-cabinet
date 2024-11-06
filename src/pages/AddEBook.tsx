@@ -197,10 +197,10 @@ const AddEBook: FC = () => {
                             <div className="progress" style={{ width: `${uploadProgress}%` }} />
                         </div>
                         {uploadProgress > 0 && <p>{uploadProgress}%</p>}
+                        {message!=''?<div><br /><div style={{ color: messagecolor, fontWeight: 'bold' }}>{message}</div></div>:''}
                         <h5>Максимальный размер .pdf файла не должен превышать 230 МБ. <br />Настоятельно рекомендуется использовать веб-сайт <a style={{ fontWeight: 'bold' }} href='https://www.ilovepdf.com/compress_pdf' target='_blank'>iLovePdf.com</a> для уменьшения объёма файла.</h5>
                         <h5>При загрузке файла, объемом больше 50 МБ, необходимо подождать минуту, пока не высветится сообщение "Книга успешно загружена".<br />Не обновляйте страницу и не закрывайте во время загрузки.</h5>
                         <button className="navbarbutton" id='mainbutton' onClick={addBook} disabled={!currentFile}>Добавить</button><br />
-                        <br /><div style={{ color: messagecolor, fontWeight: 'bold' }}>{message}</div>
                     </div>
                 }
                 else {
