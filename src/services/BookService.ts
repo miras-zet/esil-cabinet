@@ -110,22 +110,6 @@ const addBook = (Name, Author, Pages, Annotation, Barcode, Heading, ISBN, Invent
     }
     return http.get(`/books/addbook`, { params });
 };
-const addEBook = (file:File, Name, Author, Pages, ISBN, LLC, Language, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, UDC): Promise<any> => {
-    let formData = new FormData();
-    formData.append("file", file);
-    formData.append('Name', Name);
-    formData.append('Author', Author);  
-    formData.append('Pages', Pages);
-    formData.append('ISBN', ISBN);
-    formData.append('LLC', LLC);
-    formData.append('Language', Language);
-    formData.append('PublishedCountryCity', PublishedCountryCity);
-    formData.append('PublishedTime', PublishedTime);
-    formData.append('PublishingHouse', PublishingHouse);
-    formData.append('RLibraryCategoryRLibraryBook', RLibraryCategoryRLibraryBook);
-    formData.append('UDC', UDC);
-    return http.post(`/upload/pdf`, formData );
-};
 const editBook = (id, Name, Author, Pages, Annotation, Barcode, Heading, ISBN, InventoryNumber, KeyWords, LLC, Language, Price, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, TypeOfBook, UDC): Promise<any> => {
     const params = {
         id: id,
@@ -229,7 +213,6 @@ const BookService = {
     eBookAddLog,
     getEBooksPerPage,
     getBook,
-    addEBook,
     duplicateBook,
     getEBook,
     editBook,
