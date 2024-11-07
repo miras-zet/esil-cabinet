@@ -1,6 +1,7 @@
 import React, {FC, useState} from "react";
 import {Context} from "../main";
 import { observer } from "mobx-react-lite";
+import logo from '/logo_new.png';
 
 const LoginForm: FC = () => {
     const [username, setUsername] = useState<string>('');
@@ -26,7 +27,7 @@ const LoginForm: FC = () => {
     
     return (
     <div> 
-        <img src="logo_new.png" width={300} /> 
+        <img src={logo} width={300} /> 
         <h2 style={{fontSize: 40}}>{window.location.port=='5173'? 'dev build':'Esil Кабинет'}</h2>
         <input onChange = {
             e => setUsername(e.target.value)

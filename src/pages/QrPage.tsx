@@ -36,7 +36,7 @@ const certificatePage:FC = () => {
   return (
     <div>
         <div>
-            <img src="logo_new.png" width={300} /> 
+            <img src="/logo_new.png" width={300} /> 
             <h1>Учреждение "Esil University"</h1>
             <p>{typeCert[certificate.cert_type-1]}</p>
             <p>ФИО обучающегося:  <u>  {certificate.lastname} {certificate.name} {certificate.middlename}   </u> </p>

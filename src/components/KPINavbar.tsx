@@ -8,6 +8,7 @@ import INotificationIconData from "../models/INotificationIconData";
 import NotificationService from "../services/NotificationService";
 import { FaBell } from "react-icons/fa";
 import config from "../http/version.json";
+import logo from "/logo_new.png";
 
 export const buildVer = config.buildVer;
 
@@ -52,7 +53,7 @@ const KPINavbar: FC = () => {
     <div>
       <div className="topnav">
         <div style={{ marginLeft: '-100px', backgroundColor: 'white', height: '115%' }}>&nbsp;</div>
-        <img onClick={() => toMain()} src="logo_new.png" width={150} />
+        <img onClick={() => toMain()} src={logo} width={150} />
         <div className='navbartitle'>{window.location.port=='5173'? <a style={{color:'red', fontWeight:'bold'}}>DEVELOPMENT VERSION, BUILD v{buildVer}</a>:headertext}</div>
       </div>
       <div className="topnav2">

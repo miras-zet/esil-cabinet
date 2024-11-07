@@ -51,6 +51,8 @@ import { TitleEmployeeRu } from './pages/template/TitleEmployeeRu'
 import AddNewUser from './pages/AddNewUser'
 import EBooksSearch from './pages/EBooksSearch'
 import AddEBook from './pages/AddEBook'
+import ScanPage from './pages/ScanPage'
+import StudentInfo from './pages/StudentInfo'
   
 
 const App:FC = () => {  
@@ -86,7 +88,8 @@ const App:FC = () => {
       <Routes>
         <Route path="/" element={ <HomePage /> } />
         <Route path="/notifications" element={ <NotificationsList/>} />
-        
+        <Route path="/scan/:id" element={ <ScanPage /> } />
+        <Route path="/studentinfo" element={ <StudentInfo /> } />
 
         <Route path="/applicants" element={<ApplicantList />}/>
         <Route path="/dormrequests" element={<DormList />}/>
