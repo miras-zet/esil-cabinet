@@ -188,7 +188,7 @@ const AddEBook: FC = () => {
                             </tr>
                             <tr>
                                 <td style={{ paddingTop: '10px' }}>Прикрепить .pdf файл</td>
-                                <td style={{ paddingTop: '10px' }}><label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'DimGray' }} >{currentFile ? `Выбран файл:  ${currentFile.name}` : 'Выберите файл...'}<input type="file" hidden onChange={selectFile} style={{ backgroundColor: 'silver', color: 'DimGray' }} /></label>
+                                <td style={{ paddingTop: '10px' }}><label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'DimGray' }} >{currentFile ? `Выбран файл:  ${currentFile.name.length<35?currentFile.name:currentFile.name.substring(0,35)+'...'}` : 'Выберите файл...'}<input type="file" hidden onChange={selectFile} style={{ backgroundColor: 'silver', color: 'DimGray' }} /></label>
                                 </td>
                             </tr>
                         </table>

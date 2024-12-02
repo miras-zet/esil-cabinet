@@ -21,6 +21,8 @@ import StudentDormRequest from '../components/StudentDormRequest';
 import IBookCart from '../models/IBookCart';
 import PhotoChecker from '../components/PhotoChecker';
 import config from "../http/version.json";
+import CafedraService from '../services/CafedraService';
+import { FaTableList } from "react-icons/fa6";
 
 export const buildVer = config.buildVer;
 
@@ -38,6 +40,9 @@ const HomePage: FC = () => {
   }
   UploadService.checkPhotoUploadEligibility().then((response) => {
     localStorage.setItem('eligibility', response.data);
+  });
+  CafedraService.checkManagerStatus().then((response) => {
+    localStorage.setItem('cafedramanager', response.data);
   });
   const { store } = useContext(Context);
   const { modal, open } = useContext(ModalContext);
@@ -306,7 +311,7 @@ const HomePage: FC = () => {
                     <table>
                       <tr><div id='homepagePanel'>
                         <h2>Библиотека</h2>
-                        <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link><br/><br/>
+                        <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link><br /><br />
                         <Link to="/ebooks"><button className='navbarbutton'><FaBookAtlas style={{ verticalAlign: 'middle' }} /> Электронные книги</button></Link>
                         <br /><StudentBookDebt />
                         <br /></div><br /></tr>
@@ -366,18 +371,22 @@ const HomePage: FC = () => {
                   <td style={{ width: '15px' }}></td>
                   <td>
                     <table>
+                      {localStorage.getItem('cafedramanager')!='0' ? <tr><div id='homepagePanel'>
+                        <h2>Премирование</h2>
+                        <Link to="/cafedramanagement"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Моя кафедра</button></Link><br /><br />
+                        <br /></div><br />
+                      </tr>:''}
                       <tr><div id='homepagePanel'>
                         <h2>Библиотека</h2>
-                        <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link><br/><br/>
+                        <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link><br /><br />
                         <Link to="/ebooks"><button className='navbarbutton'><FaBookAtlas style={{ verticalAlign: 'middle' }} /> Электронные книги</button></Link>
                         <br /><StudentBookDebt />
-                        <br /></div><br /></tr>
+                        <br /></div><br />
+                      </tr>
                       <tr></tr>
                     </table>
                   </td>
                 </tr>
-
-
               </tbody>
             </table>
             <br />
@@ -404,7 +413,7 @@ const HomePage: FC = () => {
                   <td>
                     <table>
                       <tr><div id='homepagePanel'>
-                      <h2>Регистрация FaceID</h2>
+                        <h2>Регистрация FaceID</h2>
                         <PhotoChecker /><br /><br />
                       </div><br /></tr>
                       <tr></tr>
@@ -433,7 +442,7 @@ const HomePage: FC = () => {
                   <td>
                     <table>
                       <tr><div id='homepagePanel'>
-                      <h2>Регистрация FaceID</h2>
+                        <h2>Регистрация FaceID</h2>
                         <PhotoChecker /><br /><br />
                       </div><br /></tr>
                       <tr></tr>
@@ -499,15 +508,13 @@ const HomePage: FC = () => {
                   <br />
                   <Link to="/physicalbooksPages"><button className='navbarbutton'>Список книг &nbsp;<FaBook style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link> <br /><br />
                   Выберите настройки поиска<br />
-                  <select onChange={handleSelectChange} className='btnNeutral' >
-
+                  <select onChange={handleSelectChange} className='btnNeutral'>
                     {options.map((option) => (
                       <option key={option.id} value={option.id}>
                         {option.value}
                       </option>
                     ))}
                   </select>
-
                   <br /><br />
                   {searchtype == 'name' ? <div><input type="text" id='inputSearchBookByName' className='btnNeutral' maxLength={100} placeholder='Поиск по названию'></input>&nbsp;<button id="graybutton" onClick={() => findBookName()}>Найти</button></div> : ''}
                   {searchtype == 'keywords' ? <div><input type="text" id='inputSearchBookByKeyWords' className='btnNeutral' maxLength={100} placeholder='Поиск по ключевым словам'></input>&nbsp;<button id="graybutton" onClick={() => findBookKeyWords()}>Найти</button></div> : ''}
@@ -515,9 +522,9 @@ const HomePage: FC = () => {
                   {searchtype == 'inventory' ? <div><input type="text" id='inputSearchBookByInventory' className='btnNeutral' maxLength={100} placeholder='Поиск по инвентарному номеру'></input>&nbsp;<button id="graybutton" onClick={() => findBookInventory()}>Найти</button></div> : ''}
                   {searchtype == 'barcode' ? <div><input type="text" id='inputSearchBookByBarcode' className='btnNeutral' maxLength={100} placeholder='Поиск по штрихкоду'></input>&nbsp;<button id="graybutton" onClick={() => findBookBarcode()}>Найти</button></div> : ''}
                   <br /><br /><br />
-                  <Link to="/ebooks"><button className='navbarbutton' >Список электронных книг &nbsp;<FaDisplay style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link><br /><br />
+                  <Link to="/ebooks"><button className='navbarbutton'>Список электронных книг &nbsp;<FaDisplay style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link><br /><br />
                   <br />
-                  <Link to="/duebooks"><button className='redbutton' >Должники &nbsp;<IoIosAlarm style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link>
+                  <Link to="/duebooks"><button className='redbutton'>Должники &nbsp;<IoIosAlarm style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link>
                 </td>
                 <td style={{ width: '15%' }}></td>
                 <td>

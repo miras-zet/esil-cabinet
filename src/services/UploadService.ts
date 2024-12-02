@@ -10,6 +10,16 @@ const upload = (file: File,  activity_id: any, info: any): Promise<any> => {
   formData.append('info',info);  
   return http.post("/upload", formData);
 };
+const uploadBonusFile = (file: File,  filetype: string): Promise<any> => {
+  let formData = new FormData();
+  const by_userid = localStorage.getItem('user_id');
+  const for_userid = localStorage.getItem('viewinguserid');
+  formData.append("file", file);
+  formData.append('for_user_id',for_userid);
+  formData.append('by_user_id',by_userid);
+  formData.append('filetype',filetype);    
+  return http.post("/bonusfile", formData);
+};
 const uploadPhoto = (file: File, extension): Promise<any> => {
   let formData = new FormData();
   const userid = localStorage.getItem('user_id');
@@ -137,7 +147,7 @@ const getKpi = () : Promise<any> => {
 
 const UploadService = {
   upload,
-  //updateapplicant,
+  uploadBonusFile,
   getFiles,
   getTutors,
   getCategories,

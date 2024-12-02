@@ -8,6 +8,7 @@ import { TiArrowBack } from 'react-icons/ti';
 //import { MdOutlinePostAdd } from "react-icons/md";
 import BookService from '../services/BookService';
 import IEBook from '../models/IEBook';
+import { FaPen } from 'react-icons/fa';
 
 const EBooks: FC = () => {
   const { store } = useContext(Context);
@@ -44,7 +45,9 @@ const EBooks: FC = () => {
 
   const booklist = books.map((element) => {
     return <tr key={element.id}>
-      <td id="table-divider-stats"><button className='backbutton' onClick={()=>openPDF(element.EBookPath, element.id)}>Открыть</button></td>
+      <td id="table-divider-stats"><button className='backbutton' onClick={()=>openPDF(element.EBookPath, element.id)}>Открыть</button>&nbsp;
+      {localStorage.getItem('role')=='librarian'?<button className="backbutton" onClick={() => editBook(element.id)}><FaPen /></button>:''}
+      </td>
       <td id="table-divider-stats">{element.NameRuBook}</td>
       <td id="table-divider-stats">{element.Author}</td>
       <td id="table-divider-stats">{element.Language == 'kaz' ? <div>Казахский</div> : element.Language == 'rus' ? <div>Русский</div> : element.Language == 'eng' ? <div>Английский</div> : ''}</td>
@@ -62,6 +65,11 @@ const EBooks: FC = () => {
   const addBookRedirect = () => {
     localStorage.setItem('prevLibrarianPage', 'search');
     navigate(`/addebook`);
+  }
+  const editBook = async (id: number) => {
+    localStorage.setItem('editingebookid', id + '');
+    localStorage.setItem('prevLibrarianPage', 'search');
+    navigate(`/editebook`);
   }
   return (
     <div>

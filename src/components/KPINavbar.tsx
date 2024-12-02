@@ -9,6 +9,7 @@ import NotificationService from "../services/NotificationService";
 import { FaBell } from "react-icons/fa";
 import config from "../http/version.json";
 import logo from "/logo_new.png";
+import InfoService from "../services/InfoService";
 
 export const buildVer = config.buildVer;
 
@@ -18,6 +19,9 @@ const KPINavbar: FC = () => {
   useEffect(() => {
     NotificationService.getIconData().then((response) => {
       setNotificationData(response.data);
+    });
+    InfoService.getRoleInfo().then((response) => {
+      localStorage.setItem('role',response.data);
     });
 
   }, []);

@@ -237,6 +237,15 @@ td {
   vertical-align: middle;
   text-align: center;
 }
+#table-divider-stats-left{
+  padding-left: 14px;
+  padding-right: 20px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(84, 84, 84, 0.064);
+  vertical-align: middle;
+  text-align: left;
+}
 #table-divider-stats-header{
   padding-left: 14px;
   padding-right: 20px;

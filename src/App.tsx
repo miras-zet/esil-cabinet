@@ -53,7 +53,9 @@ import EBooksSearch from './pages/EBooksSearch'
 import AddEBook from './pages/AddEBook'
 import ScanPage from './pages/ScanPage'
 import StudentInfo from './pages/StudentInfo'
-  
+import CafedraManagement from './pages/CafedraManagement'
+import TutorBonusPage from './pages/TutorBonusPage'
+import EditEBook from './pages/EditEBook'
 
 const App:FC = () => {  
 //   const {store} = useContext(Context);    
@@ -126,6 +128,7 @@ const App:FC = () => {
         <Route path="/addlibrarybook" element={<AddLibraryBook/>}/>
         <Route path="/addebook" element={<AddEBook/>}/>
         <Route path="/editlibrarybook" element={<EditLibraryBook/>}/>
+        <Route path="/editebook" element={<EditEBook/>}/>
         <Route path="/transferlibrarybook" element={<TransferBook/>}/>
         <Route path="/transferlibrarybookJSON" element={<TransferBookJSON/>}/>
         <Route path="/duebooks" element={<DueBooks/>}/>
@@ -140,6 +143,9 @@ const App:FC = () => {
         <Route path="/kpistats" element={<KPIStats/>} />
         <Route path="/kpitopten" element={<KPITopTen/>} />
 
+        <Route path="/cafedramanagement" element={<CafedraManagement/>} />
+        <Route path="/tutorpage" element={<TutorBonusPage/>} />
+        
         <Route path="/takephoto" element={ <PictureUpload /> } />
         <Route path="/certificate" element={ <CertificatePage /> } />
         <Route path="/list" element={ <CertificateListPage /> } />

@@ -110,6 +110,23 @@ const addBook = (Name, Author, Pages, Annotation, Barcode, Heading, ISBN, Invent
     }
     return http.get(`/books/addbook`, { params });
 };
+const editEBook = (id, Name, Author, Pages, LLC, ISBN, Language, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, UDC): Promise<any> => {
+    const params = {
+        id: id,
+        Name: Name,
+        Author: Author,
+        Pages: Pages,
+        LLC: LLC,
+        ISBN: ISBN,
+        Language: Language,
+        PublishedCountryCity: PublishedCountryCity,
+        PublishedTime: PublishedTime,
+        PublishingHouse: PublishingHouse,
+        RLibraryCategoryRLibraryBook: RLibraryCategoryRLibraryBook,
+        UDC: UDC
+    }
+    return http.get(`/books/editebook`, { params });
+};
 const editBook = (id, Name, Author, Pages, Annotation, Barcode, Heading, ISBN, InventoryNumber, KeyWords, LLC, Language, Price, PublishedCountryCity, PublishedTime, PublishingHouse, RLibraryCategoryRLibraryBook, TypeOfBook, UDC): Promise<any> => {
     const params = {
         id: id,
@@ -216,6 +233,7 @@ const BookService = {
     duplicateBook,
     getEBook,
     editBook,
+    editEBook,
     getBookCategories,
     addBook,
     findUser,

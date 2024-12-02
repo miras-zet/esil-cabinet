@@ -1,4 +1,4 @@
-export default interface ILibraryBook {
+export default interface IEBook {
     id: number,
     Author: string,
     EBookPath: string,
@@ -7,6 +7,7 @@ export default interface ILibraryBook {
     IsGift: number,
     IsOut: number,
     LLC: string,
+    ISBN: string,
     Language: string,
     MONRecomended: string,
     NameRuBook: string,
