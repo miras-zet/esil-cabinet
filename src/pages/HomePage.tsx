@@ -372,7 +372,7 @@ const HomePage: FC = () => {
                   <td>
                     <table>
                       {localStorage.getItem('cafedramanager')!='0' ? <tr><div id='homepagePanel'>
-                        <h2>Премирование</h2>
+                        <h2>Ежегодный KPI</h2>
                         <Link to="/cafedramanagement"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Моя кафедра</button></Link><br /><br />
                         <br /></div><br />
                       </tr>:''}

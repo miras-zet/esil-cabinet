@@ -95,9 +95,10 @@ const PictureUpload: FC = () => {
       .then((response) => {
         setMessage(response.data.message);
         if (response.data.message === "Фото было загружено") {
-          setMessageColor("#2ecc71");
+          setMessageColor("#2ecc71");   
           setButtonsDisabled(true);
-          setOpacity(1);
+          setOpacity(1);alert('Фото успешно загружено');
+          window.location.href = window.location.protocol + '//' + window.location.host + '/';
         } else {
           setMessageColor("red");
         }

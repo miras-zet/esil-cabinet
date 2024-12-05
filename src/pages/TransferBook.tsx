@@ -131,7 +131,7 @@ const TransferBook: FC = () => {
                                     <br/><br/><br/>
                                     <button onClick={() => goBack()} className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button> <br /><br />
                                         <br />
-                                        <h3>Впишите ИИН студента/преподавателя, которому выдаётся книга "{bookname}"</h3>
+                                        <h3>Впишите ИИН пользователя, которому выдаётся книга "{bookname}"</h3>
                                         <input id="inputIIN" className='btnNeutral' style={{ width: '300px' }} type="text" maxLength={12} placeholder='Введите ИИН'></input><br /><br />
                                         <button className="navbarbutton" onClick={() => findUser()}>Найти</button><br /><br />
                                         <div style={{ color: messagecolor, fontWeight: 'bold' }}>{message}</div>
@@ -141,7 +141,7 @@ const TransferBook: FC = () => {
                                         <br/>
                                         {userdata.length>0?<div id='opaqueTable'>
                                             <div style={{padding:'8% 8% 8% 8%', fontWeight:'normal'}}>
-                                                <h4>Карточка {userdata[0]?.extradata?'студента':'преподавателя'}</h4>
+                                                <h4>Карточка пользователя</h4>
                                                 <p>ФИО: <u>{userdata[0]?.lastname} {userdata[0]?.firstname} {userdata[0]?.patronymic}</u></p>
                                                 <p>{userdata[0]?.extradata?'Специальность':'Кафедра'}: <u>{userdata[0]?.specialization}</u></p>
                                                 {userdata[0]?.extradata?<p>Форма обучения: <u>{userdata[0]?.extradata}</u></p>:''}
