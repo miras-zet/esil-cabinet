@@ -53,6 +53,9 @@ const PictureUpload: FC = () => {
       setImgSrc(imageSrc);
       setIsCapturing(false);
     }, 3000);
+    setTimeout(() => {
+      if(confirm('Отправить фото?')) upload();
+    }, 4800);
   }, [webcamRef]);
 
   const retake = () => {
