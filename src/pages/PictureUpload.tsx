@@ -53,9 +53,6 @@ const PictureUpload: FC = () => {
       setImgSrc(imageSrc);
       setIsCapturing(false);
     }, 3000);
-    setTimeout(() => {
-      if(confirm('Отправить фото?')) upload();
-    }, 4800);
   }, [webcamRef]);
 
   const retake = () => {
@@ -100,12 +97,12 @@ const PictureUpload: FC = () => {
         if (response.data.message === "Фото было загружено") {
           setMessageColor("#2ecc71");   
           setButtonsDisabled(true);
-          setOpacity(1);alert('Фото успешно загружено');
+          setOpacity(1);
+          alert('Фото успешно загружено');
           window.location.href = window.location.protocol + '//' + window.location.host + '/';
         } else {
           setMessageColor("red");
         }
-        return UploadService.getFiles();
       })
       .catch((err) => {
         if (err.response && err.response.data && err.response.data.message) {
