@@ -18,10 +18,17 @@ const getBonusPoints = (): Promise<any> => {
     }
     return http.get(`/management/getbonuspoints`, { params });
 };
+const getBonusPointsSelf = (): Promise<any> => {
+    const params = {
+        userid: localStorage.getItem('user_id'),
+    }
+    return http.get(`/management/getbonuspoints`, { params });
+};
 const InfoService = {
     getStudentInfo,
     getRoleInfo,
     getBonusPoints,
+    getBonusPointsSelf,
 };
 
 export default InfoService;

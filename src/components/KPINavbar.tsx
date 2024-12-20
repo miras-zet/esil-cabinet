@@ -60,7 +60,7 @@ const KPINavbar: FC = () => {
         <img onClick={() => toMain()} src={logo} width={150} />
         <div className='navbartitle'>{window.location.port=='5173'? <a style={{color:'red', fontWeight:'bold'}}>DEVELOPMENT VERSION, BUILD v{buildVer}</a>:headertext}</div>
       </div>
-      <div className="topnav2">
+      <div className="topnav2" style={{zIndex:'999'}}>
       {localStorage.getItem('role') == 'plt_tutor' ? <div className='navbarname'>Кафедра {localStorage.getItem('cafedraname')}</div> : <div></div>}
         <div>
           {!window.location.href.includes('notifications') ? notificationData[0]?.unread_count > 0 ?

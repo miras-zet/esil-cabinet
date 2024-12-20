@@ -16,7 +16,7 @@ import InfoService from '../services/InfoService';
 import { IoMdCheckmark } from 'react-icons/io';
 import { RxCross2 } from "react-icons/rx";
 
-const TutorBonusPage: FC = () => {
+const TutorBonusPageSelf: FC = () => {
 
     const { store } = useContext(Context);
     // const [user, setUser] = useState([]);  
@@ -30,7 +30,7 @@ const TutorBonusPage: FC = () => {
         const { files } = event.target;
         const selectedFiles = files as FileList;
         setCurrentFile(selectedFiles?.[0]);
-        UploadService.uploadBonusFile(selectedFiles?.[0], filetype)
+        UploadService.uploadBonusFileSelf(selectedFiles?.[0], filetype)
             .then((response) => {
                 alert(response.data.message);
                 location.reload()
@@ -44,47 +44,19 @@ const TutorBonusPage: FC = () => {
                 setCurrentFile(undefined);
             });
     };
-    const handleStudentCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        localStorage.setItem("student_count", value);
-      };
-    const selectFileProforientation = (event: React.ChangeEvent<HTMLInputElement>, filetype: string) => {
-        if(localStorage.getItem('student_count')==='' || (document.getElementById("proforientation") as HTMLInputElement).value=='0') {alert('Напишите количество приведенных студентов')}
-        else{const { files } = event.target;
-        const selectedFiles = files as FileList;
-        setCurrentFile(selectedFiles?.[0]);
-        UploadService.uploadBonusFileProforientation(selectedFiles?.[0], filetype)
-            .then((response) => {
-                alert(response.data.message);
-                location.reload()
-            })
-            .catch((err) => {
-                if (err.response && err.response.data && err.response.data.message) {
-                    alert(err.response.data.message);
-                } else {
-                    alert("Ошибка загрузки");
-                }
-                setCurrentFile(undefined);
-            });
-        }
-    };
+    
     useEffect(() => {
-        // const user = JSON.parse(localStorage.getItem('data'));
-        // if (user) {
-        //   setUser(user);
-        // }
         if (localStorage.getItem('token')) {
             store.checkAuth()
         }
-        CafedraService.getTutorBonusData().then((response) => {
+        CafedraService.getTutorBonusDataSelf().then((response) => {
             setTutorInfo(response.data);
         });
-        CafedraService.getTutorBonusDataProforientation().then((response) => {
+        CafedraService.getTutorBonusDataProforientationSelf().then((response) => {
             (document.getElementById("proforientation") as HTMLInputElement).value=response.data;
-
             localStorage.setItem('student_count',response.data);
         });
-        InfoService.getBonusPoints().then((response) => {
+        InfoService.getBonusPointsSelf().then((response) => {
             setBonusPoints(response.data);
             if (response.data >= 0 && response.data <= 5) {
                 setPremiere('Низкий');
@@ -116,9 +88,6 @@ const TutorBonusPage: FC = () => {
     //     // return;
     // }
 
-    // const debug = () =>{
-    //     alert(tutorInfo[0]?.auditorium_percentage_fileid);
-    // }
     const handleFileDownload = async (fileId: number, filename: string) => {
         let failsafe = fileId;
         if (fileId < 0) failsafe = fileId * (-1);
@@ -139,31 +108,20 @@ const TutorBonusPage: FC = () => {
             alert('Ошибка загрузки файла.');
         }
     };
-    const confirmCategory = (category) => {
-        CafedraService.confirmTutorCategory(category).then(() => {
-            location.reload();
-        });
-    }
-    const confirmFile = (category) => {
-        CafedraService.confirmTutorFile(category).then(() => {
-            location.reload();
-        });
-    }
-    const denyFile = (category) => {
-        CafedraService.denyTutorFile(category).then(() => {
-            location.reload();
-        });
-    }
+
     return (
         <div>
             {(() => {
                 const role = localStorage.getItem('role');
+                const data = JSON.parse(localStorage.getItem('data'));
+                let FIO = '';
+                if (data) FIO = data.lastname + ' ' + data.name + ' ' + data.middlename;
                 if (role == 'plt_tutor') {
                     return <div>
                         <KPINavbar />
-                        <br /><br /><br /><br /><br /><br /><br /><Link to={"/cafedramanagement"}><button className="navbarbutton"><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link> <br /><br />
+                        <br /><br /><br /><br /><br /><br /><br /><Link to={"/"}><button className="navbarbutton"><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link> <br /><br />
                         <div className=''>
-                            <h2>{localStorage.getItem('viewinguserfio')}</h2>
+                            <h2>{FIO}</h2>
                             <h3>Баллов: {bonusPoints}</h3>
                             <h4>Уровень проф. деятельности: {premiere}</h4>
                             <table style={{ textAlign: 'left' }}>
@@ -201,7 +159,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.auditorium_percentage_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='graybutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('auditorium_percentage')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <RxCross2/>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -216,7 +174,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.umkd_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='graybutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('umkd')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <RxCross2/>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -232,8 +190,7 @@ const TutorBonusPage: FC = () => {
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br/>
                                                                         <button className='graybutton' style={{width:'40px',height:'40px'}} onClick={() => handleFileDownload(tutorInfo[0]?.certificates_fileid, tutorInfo[0]?.certificates_filename)}><FaDownload style={{width:'20px',height:'20px', position:'absolute',marginLeft:'-10px',marginTop:'-10px'}}/></button><br/>
-                                                                        <button className='greenbutton' style={{width:'25px',height:'25px'}} onClick={()=> confirmFile('certificates')}><IoMdCheckmark style={{width:'16px',height:'16px', position:'absolute',marginLeft:'-8px',marginTop:'-8px'}}/></button>
-                                                                        <button className='redbutton' style={{width:'25px',height:'25px'}} onClick={()=> denyFile('certificates')}><RxCross2 style={{width:'16px',height:'16px', position:'absolute',marginLeft:'-8px',marginTop:'-8px'}}/></button>
+                                                                        Ожидает подтверждения
                                                                         <br/><br/>
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -252,7 +209,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.dot_content_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='graybutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('dot_content')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <RxCross2/>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -277,7 +234,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.science_event_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='graybutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('science_event')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <RxCross2/>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -308,7 +265,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.is_adviser_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='graybutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('is_adviser')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <RxCross2/>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -323,7 +280,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.disciplinary_event_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='graybutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('disciplinary_event')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <RxCross2/>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -348,9 +305,8 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.employer_cooperation_fileid != 0 ? tutorInfo[0]?.employer_cooperation_fileid < 0?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br/>
-                                                                        <button className='graybutton' style={{width:'40px',height:'40px'}} onClick={() => handleFileDownload(tutorInfo[0]?.certificates_fileid, tutorInfo[0]?.certificates_filename)}><FaDownload style={{width:'20px',height:'20px', position:'absolute',marginLeft:'-10px',marginTop:'-10px'}}/></button><br/>
-                                                                        <button className='greenbutton' style={{width:'25px',height:'25px'}} onClick={()=> confirmFile('employer_cooperation')}><IoMdCheckmark style={{width:'16px',height:'16px', position:'absolute',marginLeft:'-8px',marginTop:'-8px'}}/></button>
-                                                                        <button className='redbutton' style={{width:'25px',height:'25px'}} onClick={()=> denyFile('employer_cooperation')}><RxCross2 style={{width:'16px',height:'16px', position:'absolute',marginLeft:'-8px',marginTop:'-8px'}}/></button>
+                                                                        <button className='graybutton' style={{width:'40px',height:'40px'}} onClick={() => handleFileDownload(tutorInfo[0]?.employer_cooperation_fileid, tutorInfo[0]?.employer_cooperation_filename)}><FaDownload style={{width:'20px',height:'20px', position:'absolute',marginLeft:'-10px',marginTop:'-10px'}}/></button><br/>
+                                                                        Ожидает подтверждения
                                                                         <br/><br/>
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -360,7 +316,7 @@ const TutorBonusPage: FC = () => {
                                                                 </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}><label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'black', border: 'none' }} >
                                                                         {currentFile ? `Загрузка...` : 'Выбрать файл...'}
-                                                                        <input type="file" hidden onChange={(event) => selectFile(event, "certificates")} style={{ backgroundColor: 'silver', color: 'DimGray' }} />
+                                                                        <input type="file" hidden onChange={(event) => selectFile(event, "employer_cooperation")} style={{ backgroundColor: 'silver', color: 'DimGray' }} />
                                                                     </label></div>}
                                                                 </td>
                                                             </tr>
@@ -369,7 +325,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.commission_participation_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='graybutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('commission_participation')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <RxCross2/>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -382,16 +338,13 @@ const TutorBonusPage: FC = () => {
                                                             <tr>
                                                                 <td id="table-divider-stats-left">Профориентационная работа</td>
                                                                 <td id="table-divider-stats"><br />
-                                                                    <i style={{whiteSpace:'nowrap'}}>Привёл абитуриентов:&nbsp;<input type='text' style={{width:'28px'}} id='proforientation' disabled={tutorInfo[0]?.proforientation_fileid != 0} className='btnNeutral' placeholder='Кол-во абитуриентов' onChange={handleStudentCountChange}></input></i>
+                                                                    <i style={{whiteSpace:'nowrap'}}>Привёл абитуриентов:&nbsp;<input type='text' style={{width:'28px'}} id='proforientation' disabled={true} className='btnNeutral' placeholder='Кол-во абитуриентов'></input></i>
                                                                     <p>{tutorInfo[0]?.proforientation_fileid != 0 ?
                                                                         <div style={{ whiteSpace: 'nowrap' }}>Загружено <TiTick style={{ color: 'green' }} /><br />
                                                                             <button className='navbarbutton' onClick={() => handleFileDownload(tutorInfo[0]?.proforientation_fileid, tutorInfo[0]?.proforientation_filename)}><FaDownload /></button>
                                                                         </div>
                                                                         :
-                                                                        <div style={{ whiteSpace: 'nowrap' }}><label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'black', border: 'none' }} >
-                                                                            {currentFile ? `Загрузка...` : 'Выбрать файл...'}
-                                                                            <input type="file" hidden onChange={(event) => selectFileProforientation(event, "proforientation")} style={{ backgroundColor: 'silver', color: 'DimGray' }} />
-                                                                        </label></div>}</p>
+                                                                        ''}</p>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -419,4 +372,4 @@ const TutorBonusPage: FC = () => {
     );
 }
 
-export default observer(TutorBonusPage)
+export default observer(TutorBonusPageSelf)

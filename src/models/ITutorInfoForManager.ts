@@ -20,6 +20,7 @@ export default interface ITutorInfoForManager {
  employer_cooperation_filename: string,
  proforientation_fileid: number,
  proforientation_filename: string,
+ proforientation_student_count: number,
  commission_participation_fileid: number,
  commission_participation_filename: string,
  task_completion_fileid: number,

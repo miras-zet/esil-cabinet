@@ -55,6 +55,7 @@ import ScanPage from './pages/ScanPage'
 import StudentInfo from './pages/StudentInfo'
 import CafedraManagement from './pages/CafedraManagement'
 import TutorBonusPage from './pages/TutorBonusPage'
+import TutorBonusPageSelf from './pages/TutorBonusPageSelf'
 import EditEBook from './pages/EditEBook'
 
 const App:FC = () => {  
@@ -145,7 +146,8 @@ const App:FC = () => {
 
         <Route path="/cafedramanagement" element={<CafedraManagement/>} />
         <Route path="/tutorpage" element={<TutorBonusPage/>} />
-        
+        <Route path="/ktu" element={<TutorBonusPageSelf/>} />
+
         <Route path="/takephoto" element={ <PictureUpload /> } />
         <Route path="/certificate" element={ <CertificatePage /> } />
         <Route path="/list" element={ <CertificateListPage /> } />

@@ -372,10 +372,16 @@ const HomePage: FC = () => {
                   <td>
                     <table>
                       {localStorage.getItem('cafedramanager')!='0' ? <tr><div id='homepagePanel'>
-                        <h2>Ежегодный KPI</h2>
-                        <Link to="/cafedramanagement"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Моя кафедра</button></Link><br /><br />
+                        <h3>Коэффициент трудового участия</h3>
+                        <Link to="/cafedramanagement"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Управление кафедрой</button></Link><br /><br />
                         <br /></div><br />
-                      </tr>:''}
+                      </tr>:
+                      <tr><div id='homepagePanel'>
+                        <h3>Коэффициент трудового участия</h3>
+                        <Link to="/ktu"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Мои показатели</button></Link><br /><br />
+                        <br /></div><br />
+                      </tr>
+                      }
                       <tr><div id='homepagePanel'>
                         <h2>Библиотека</h2>
                         <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link><br /><br />

@@ -20,6 +20,40 @@ const uploadBonusFile = (file: File,  filetype: string): Promise<any> => {
   formData.append('filetype',filetype);    
   return http.post("/bonusfile", formData);
 };
+const uploadBonusFileProforientation = (file: File,  filetype: string): Promise<any> => {
+  let formData = new FormData();
+  const by_userid = localStorage.getItem('user_id');
+  const for_userid = localStorage.getItem('viewinguserid');
+  const student_count = localStorage.getItem('student_count');
+  formData.append("file", file);
+  formData.append('for_user_id',for_userid);
+  formData.append('by_user_id',by_userid);
+  formData.append('filetype',filetype); 
+  formData.append('student_count',student_count);   
+  return http.post("/bonusfileproforientation", formData);
+};
+const uploadBonusFileSelf = (file: File,  filetype: string): Promise<any> => {
+  let formData = new FormData();
+  const by_userid = localStorage.getItem('user_id');
+  const for_userid = localStorage.getItem('user_id');
+  formData.append("file", file);
+  formData.append('for_user_id',for_userid);
+  formData.append('by_user_id',by_userid);
+  formData.append('filetype',filetype);    
+  return http.post("/bonusfile", formData);
+};
+// const uploadBonusFileProforientationSelf = (file: File,  filetype: string): Promise<any> => {
+//   let formData = new FormData();
+//   const by_userid = localStorage.getItem('user_id');
+//   const for_userid = localStorage.getItem('user_id');
+//   const student_count = localStorage.getItem('student_count');
+//   formData.append("file", file);
+//   formData.append('for_user_id',for_userid);
+//   formData.append('by_user_id',by_userid);
+//   formData.append('filetype',filetype); 
+//   formData.append('student_count',student_count);   
+//   return http.post("/bonusfileproforientation", formData);
+// };
 const uploadPhoto = (file: File, extension): Promise<any> => {
   let formData = new FormData();
   const userid = localStorage.getItem('user_id');
@@ -148,6 +182,8 @@ const getKpi = () : Promise<any> => {
 const UploadService = {
   upload,
   uploadBonusFile,
+  uploadBonusFileSelf,
+  uploadBonusFileProforientation,
   getFiles,
   getTutors,
   getCategories,
