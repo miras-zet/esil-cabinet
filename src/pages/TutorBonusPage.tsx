@@ -180,7 +180,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.auditorium_percentage_fileid != 0 ? tutorInfo[0]?.auditorium_percentage_fileid < 0?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br/>
-                                                                        <button className='graybutton' style={{width:'40px',height:'40px'}} onClick={() => handleFileDownload(tutorInfo[0]?.auditorium_percentage_fileid, tutorInfo[0]?.auditorium_percentage_filename)}><FaDownload style={{width:'20px',height:'20px', position:'absolute',marginLeft:'-10px',marginTop:'-10px'}}/></button><br/>
+                                                                        <button className='backbutton' style={{width:'40px',height:'40px'}} onClick={() => handleFileDownload(tutorInfo[0]?.auditorium_percentage_fileid, tutorInfo[0]?.auditorium_percentage_filename)}><FaDownload style={{width:'20px',height:'20px', position:'absolute',marginLeft:'-10px',marginTop:'-10px'}}/></button><br/>
                                                                         <button className='greenbutton' style={{width:'25px',height:'25px'}} onClick={()=> confirmFile('auditorium_percentage')}><IoMdCheckmark style={{width:'16px',height:'16px', position:'absolute',marginLeft:'-8px',marginTop:'-8px'}}/></button>
                                                                         <button className='redbutton' style={{width:'25px',height:'25px'}} onClick={()=> denyFile('auditorium_percentage')}><RxCross2 style={{width:'16px',height:'16px', position:'absolute',marginLeft:'-8px',marginTop:'-8px'}}/></button>
                                                                         <br/><br/>
@@ -201,7 +201,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.auditorium_percentage_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='graybutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('auditorium_percentage')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <button className='backbutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('auditorium_percentage')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -216,7 +216,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.umkd_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='graybutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('umkd')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <button className='backbutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('umkd')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -228,10 +228,25 @@ const TutorBonusPage: FC = () => {
                                                             </tr>
                                                             <tr>
                                                                 <td id="table-divider-stats-left">Наличие сертификатов по читаемым дисциплинам по требованиям (72 часа, по 3 года)</td>
+                                                                <td id="table-divider-stats">{tutorInfo[0]?.certificates_fileid == 0 ?
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        <button className='backbutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('certificates')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <br /><br />
+                                                                    </div> :
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        Подтверждено <IoMdCheckmark />
+                                                                        <br /><br />
+                                                                    </div>}
+                                                                </td>
+                                                            </tr>
+                                                            {/* <tr>
+                                                                <td id="table-divider-stats-left">Наличие сертификатов по читаемым дисциплинам по требованиям (72 часа, по 3 года)</td>
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.certificates_fileid != 0 ? tutorInfo[0]?.certificates_fileid < 0?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br/>
-                                                                        <button className='graybutton' style={{width:'40px',height:'40px'}} onClick={() => handleFileDownload(tutorInfo[0]?.certificates_fileid, tutorInfo[0]?.certificates_filename)}><FaDownload style={{width:'20px',height:'20px', position:'absolute',marginLeft:'-10px',marginTop:'-10px'}}/></button><br/>
+                                                                        <button className='backbutton' style={{width:'40px',height:'40px'}} onClick={() => handleFileDownload(tutorInfo[0]?.certificates_fileid, tutorInfo[0]?.certificates_filename)}><FaDownload style={{width:'20px',height:'20px', position:'absolute',marginLeft:'-10px',marginTop:'-10px'}}/></button><br/>
                                                                         <button className='greenbutton' style={{width:'25px',height:'25px'}} onClick={()=> confirmFile('certificates')}><IoMdCheckmark style={{width:'16px',height:'16px', position:'absolute',marginLeft:'-8px',marginTop:'-8px'}}/></button>
                                                                         <button className='redbutton' style={{width:'25px',height:'25px'}} onClick={()=> denyFile('certificates')}><RxCross2 style={{width:'16px',height:'16px', position:'absolute',marginLeft:'-8px',marginTop:'-8px'}}/></button>
                                                                         <br/><br/>
@@ -246,13 +261,13 @@ const TutorBonusPage: FC = () => {
                                                                         <input type="file" hidden onChange={(event) => selectFile(event, "certificates")} style={{ backgroundColor: 'silver', color: 'DimGray' }} />
                                                                     </label></div>}
                                                                 </td>
-                                                            </tr>
+                                                            </tr> */}
                                                             <tr>
                                                                 <td id="table-divider-stats-left">Контент ДОТ на портале</td>
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.dot_content_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='graybutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('dot_content')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <button className='backbutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('dot_content')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -277,7 +292,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.science_event_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='graybutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('science_event')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <button className='backbutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('science_event')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -308,7 +323,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.is_adviser_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='graybutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('is_adviser')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <button className='backbutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('is_adviser')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -323,7 +338,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.disciplinary_event_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='graybutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('disciplinary_event')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <button className='backbutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('disciplinary_event')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -348,7 +363,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.employer_cooperation_fileid != 0 ? tutorInfo[0]?.employer_cooperation_fileid < 0?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br/>
-                                                                        <button className='graybutton' style={{width:'40px',height:'40px'}} onClick={() => handleFileDownload(tutorInfo[0]?.certificates_fileid, tutorInfo[0]?.certificates_filename)}><FaDownload style={{width:'20px',height:'20px', position:'absolute',marginLeft:'-10px',marginTop:'-10px'}}/></button><br/>
+                                                                        <button className='backbutton' style={{width:'40px',height:'40px'}} onClick={() => handleFileDownload(tutorInfo[0]?.certificates_fileid, tutorInfo[0]?.certificates_filename)}><FaDownload style={{width:'20px',height:'20px', position:'absolute',marginLeft:'-10px',marginTop:'-10px'}}/></button><br/>
                                                                         <button className='greenbutton' style={{width:'25px',height:'25px'}} onClick={()=> confirmFile('employer_cooperation')}><IoMdCheckmark style={{width:'16px',height:'16px', position:'absolute',marginLeft:'-8px',marginTop:'-8px'}}/></button>
                                                                         <button className='redbutton' style={{width:'25px',height:'25px'}} onClick={()=> denyFile('employer_cooperation')}><RxCross2 style={{width:'16px',height:'16px', position:'absolute',marginLeft:'-8px',marginTop:'-8px'}}/></button>
                                                                         <br/><br/>
@@ -369,7 +384,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.commission_participation_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='graybutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('commission_participation')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <button className='backbutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('commission_participation')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>

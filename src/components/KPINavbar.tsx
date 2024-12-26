@@ -55,7 +55,7 @@ const KPINavbar: FC = () => {
   else if(headertext!='') document.title=headertext;
   return (
     <div>
-      <div className="topnav">
+      <div className="topnav" style={{zIndex:'999'}}>
         <div style={{ marginLeft: '-100px', backgroundColor: 'white', height: '115%' }}>&nbsp;</div>
         <img onClick={() => toMain()} src={logo} width={150} />
         <div className='navbartitle'>{window.location.port=='5173'? <a style={{color:'red', fontWeight:'bold'}}>DEVELOPMENT VERSION, BUILD v{buildVer}</a>:headertext}</div>

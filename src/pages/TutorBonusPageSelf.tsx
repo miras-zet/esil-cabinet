@@ -186,6 +186,21 @@ const TutorBonusPageSelf: FC = () => {
                                                             </tr>
                                                             <tr>
                                                                 <td id="table-divider-stats-left">Наличие сертификатов по читаемым дисциплинам по требованиям (72 часа, по 3 года)</td>
+                                                                <td id="table-divider-stats">{tutorInfo[0]?.certificates_fileid == 0 ?
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        <RxCross2/>
+                                                                        <br /><br />
+                                                                    </div> :
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        Подтверждено <IoMdCheckmark />
+                                                                        <br /><br />
+                                                                    </div>}
+                                                                </td>
+                                                            </tr>
+                                                            {/* <tr>
+                                                                <td id="table-divider-stats-left">Наличие сертификатов по читаемым дисциплинам по требованиям (72 часа, по 3 года)</td>
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.certificates_fileid != 0 ? tutorInfo[0]?.certificates_fileid < 0?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br/>
@@ -203,7 +218,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                         <input type="file" hidden onChange={(event) => selectFile(event, "certificates")} style={{ backgroundColor: 'silver', color: 'DimGray' }} />
                                                                     </label></div>}
                                                                 </td>
-                                                            </tr>
+                                                            </tr> */}
                                                             <tr>
                                                                 <td id="table-divider-stats-left">Контент ДОТ на портале</td>
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.dot_content_fileid == 0 ?
@@ -305,7 +320,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.employer_cooperation_fileid != 0 ? tutorInfo[0]?.employer_cooperation_fileid < 0?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br/>
-                                                                        <button className='graybutton' style={{width:'40px',height:'40px'}} onClick={() => handleFileDownload(tutorInfo[0]?.employer_cooperation_fileid, tutorInfo[0]?.employer_cooperation_filename)}><FaDownload style={{width:'20px',height:'20px', position:'absolute',marginLeft:'-10px',marginTop:'-10px'}}/></button><br/>
+                                                                        <button className='backbutton' style={{width:'40px',height:'40px'}} onClick={() => handleFileDownload(tutorInfo[0]?.employer_cooperation_fileid, tutorInfo[0]?.employer_cooperation_filename)}><FaDownload style={{width:'20px',height:'20px', position:'absolute',marginLeft:'-10px',marginTop:'-10px'}}/></button><br/>
                                                                         Ожидает подтверждения
                                                                         <br/><br/>
                                                                     </div> :

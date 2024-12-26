@@ -2,18 +2,18 @@ import { FC, useState, useEffect } from "react";
 import { observer } from "mobx-react-lite";
 import UploadService from "../services/UploadService";
 import IDebtData from "../models/IDebtData";
-import IExcelUploadDate from "../models/IExcelUploadDate";
-import moment from "moment";
+//import IExcelUploadDate from "../models/IExcelUploadDate";
+//import moment from "moment";
 import { TiTick } from "react-icons/ti";
 
 const StudentDebt: FC = () => {
   const [debtData, setDebtData] = useState<Array<IDebtData>>([]);
-  const [excelDate, setExcelDate] = useState<Array<IExcelUploadDate>>([]);
+  //const [excelDate, setExcelDate] = useState<Array<IExcelUploadDate>>([]);
 
   useEffect(() => {
-    UploadService.getExcelDate().then((response) => {
-      setExcelDate(response.data);
-    });
+    // UploadService.getExcelDate().then((response) => {
+    //   setExcelDate(response.data);
+    // });
     UploadService.getDebtData().then((response) => {
       setDebtData(response.data);
     });
@@ -29,18 +29,18 @@ const StudentDebt: FC = () => {
     </div>
   );
   
-  const excelDateData = excelDate.map((element) =>
-  <div key={element.upload_date}>
-    Актуально на {moment(element.upload_date).format("DD.MM.YYYY HH:mm")}.
-  </div>
-);
+//   const excelDateData = excelDate.map((element) =>
+//   <div key={element.upload_date}>
+//     Актуально на {moment(element.upload_date).format("DD.MM.YYYY HH:mm")}.
+//   </div>
+// );
 
   if (debtItem.length > 0) return ( 
   <div><table><tbody>
     <tr>
       <td style={{maxWidth:'350px', textAlign:'left', fontSize:'12pt'}}>
       {debtItem}<br/>
-      {excelDateData}<br/>
+      Общая стоимость за курс указана в договоре на образовательные услуги.<br/>
       </td>
       <td style={{width:'50px'}}></td>
       <td><br/>
@@ -59,7 +59,7 @@ const StudentDebt: FC = () => {
       <b>Офис регистратура</b> - +7 7172 725407, +7 7172 725410, +7 707 372-57-77
   </div>);
   else {
-    return (<p>Долги по оплате учёбы не найдены. <TiTick style={{color:'green'}}/><br/>{excelDateData}</p>);
+    return (<p>Долги по оплате учёбы не найдены. <TiTick style={{color:'green'}}/><br/></p>);
   }
 };
 
