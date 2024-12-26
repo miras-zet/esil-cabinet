@@ -34,8 +34,7 @@ const StudentDebt: FC = () => {
 //     Актуально на {moment(element.upload_date).format("DD.MM.YYYY HH:mm")}.
 //   </div>
 // );
-
-  if (debtItem.length > 0) return ( 
+  if (debtData.length > 0) return ( 
   <div><table><tbody>
     <tr>
       <td style={{maxWidth:'350px', textAlign:'left', fontSize:'12pt'}}>

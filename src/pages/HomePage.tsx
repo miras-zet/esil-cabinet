@@ -41,9 +41,7 @@ const HomePage: FC = () => {
   UploadService.checkPhotoUploadEligibility().then((response) => {
     localStorage.setItem('eligibility', response.data);
   });
-  CafedraService.checkManagerStatus().then((response) => {
-    localStorage.setItem('cafedramanager', response.data);
-  });
+  
   const { store } = useContext(Context);
   const { modal, open } = useContext(ModalContext);
   const [kpiInfo, setKpiInfo] = useState<Array<IKPI>>([]);
@@ -137,6 +135,11 @@ const HomePage: FC = () => {
           return setKpiInfo(response.data.score);
         }
       );
+  }
+  const getManagerStatus = () => {
+    CafedraService.checkManagerStatus().then((response) => {
+      localStorage.setItem('cafedramanager', response.data);
+    });
   }
   const findBookName = () => {
     localStorage.setItem('searchType', 'name');
@@ -251,6 +254,7 @@ const HomePage: FC = () => {
         let textcolor;
         if (role == 'plt_tutor') {
           countKpi();
+          getManagerStatus();
           KPIScore = localStorage.getItem('KPIScore');
         }
         let premiere = '';
