@@ -82,6 +82,10 @@ ul {
   background-color:silver;
   color:black;
 }
+.graybutton{
+  background-color:silver;
+  color:black;
+}
 .webcam-container {
   position: relative;
   width: fit-content;

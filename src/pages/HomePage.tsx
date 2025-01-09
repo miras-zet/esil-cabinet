@@ -323,7 +323,7 @@ const HomePage: FC = () => {
                       <tr><div id='homepagePanel'>
                         <h2>Посещаемость занятий</h2>
                         <StudentAttendance />
-                        <Link to="/attendance"><button className='graybutton' style={{marginLeft:'18px'}}>Посмотреть всё</button></Link><br/><br/>
+                        <Link to="/attendance"><button className='backbutton' style={{marginLeft:'18px'}}>Посмотреть всё</button></Link><br/><br/>
                         </div><br /></tr>
                       <tr><div id='homepagePanel'>
                         <h2>Дом студентов</h2>
@@ -353,7 +353,7 @@ const HomePage: FC = () => {
         else if (role === 'plt_applicant') {
           return <center>
             <h2>Ваш статус в системе: абитуриент. <br />После зачисления будут доступен сервис выдачи справок.</h2>
-            <br /><button id="graybutton" onClick={() => store.logout()}>Выйти</button>
+            <br /><button id="backbutton" onClick={() => store.logout()}>Выйти</button>
           </center>
         }
         else if (role === 'plt_tutor') {
@@ -484,8 +484,8 @@ const HomePage: FC = () => {
             <div className='tutorcontent'>
               <h2>Кабинет ОТОиР</h2>
               <Link to="/techNewDocument"><button className='navbarbutton'>Новое представление &nbsp;<MdNoteAdd style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link> <br /><br /><br />
-              <Link to="/techDueDocuments"><button id='graybutton'>Активные</button></Link><br /><br />
-              <Link to="/techOldDocuments"><button id='graybutton'>Завершенные</button></Link>
+              <Link to="/techDueDocuments"><button id='backbutton'>Активные</button></Link><br /><br />
+              <Link to="/techOldDocuments"><button id='backbutton'>Завершенные</button></Link>
             </div>
           </div>
         }
@@ -532,11 +532,11 @@ const HomePage: FC = () => {
                     ))}
                   </select>
                   <br /><br />
-                  {searchtype == 'name' ? <div><input type="text" id='inputSearchBookByName' className='btnNeutral' maxLength={100} placeholder='Поиск по названию'></input>&nbsp;<button id="graybutton" onClick={() => findBookName()}>Найти</button></div> : ''}
-                  {searchtype == 'keywords' ? <div><input type="text" id='inputSearchBookByKeyWords' className='btnNeutral' maxLength={100} placeholder='Поиск по ключевым словам'></input>&nbsp;<button id="graybutton" onClick={() => findBookKeyWords()}>Найти</button></div> : ''}
-                  {searchtype == 'isbn' ? <div><input type="text" id='inputSearchBookByISBN' className='btnNeutral' maxLength={100} placeholder='Поиск по ISBN'></input>&nbsp;<button id="graybutton" onClick={() => findBookISBN()}>Найти</button></div> : ''}
-                  {searchtype == 'inventory' ? <div><input type="text" id='inputSearchBookByInventory' className='btnNeutral' maxLength={100} placeholder='Поиск по инвентарному номеру'></input>&nbsp;<button id="graybutton" onClick={() => findBookInventory()}>Найти</button></div> : ''}
-                  {searchtype == 'barcode' ? <div><input type="text" id='inputSearchBookByBarcode' className='btnNeutral' maxLength={100} placeholder='Поиск по штрихкоду'></input>&nbsp;<button id="graybutton" onClick={() => findBookBarcode()}>Найти</button></div> : ''}
+                  {searchtype == 'name' ? <div><input type="text" id='inputSearchBookByName' className='btnNeutral' maxLength={100} placeholder='Поиск по названию'></input>&nbsp;<button id="backbutton" onClick={() => findBookName()}>Найти</button></div> : ''}
+                  {searchtype == 'keywords' ? <div><input type="text" id='inputSearchBookByKeyWords' className='btnNeutral' maxLength={100} placeholder='Поиск по ключевым словам'></input>&nbsp;<button id="backbutton" onClick={() => findBookKeyWords()}>Найти</button></div> : ''}
+                  {searchtype == 'isbn' ? <div><input type="text" id='inputSearchBookByISBN' className='btnNeutral' maxLength={100} placeholder='Поиск по ISBN'></input>&nbsp;<button id="backbutton" onClick={() => findBookISBN()}>Найти</button></div> : ''}
+                  {searchtype == 'inventory' ? <div><input type="text" id='inputSearchBookByInventory' className='btnNeutral' maxLength={100} placeholder='Поиск по инвентарному номеру'></input>&nbsp;<button id="backbutton" onClick={() => findBookInventory()}>Найти</button></div> : ''}
+                  {searchtype == 'barcode' ? <div><input type="text" id='inputSearchBookByBarcode' className='btnNeutral' maxLength={100} placeholder='Поиск по штрихкоду'></input>&nbsp;<button id="backbutton" onClick={() => findBookBarcode()}>Найти</button></div> : ''}
                   <br /><br /><br />
                   <Link to="/ebooks"><button className='navbarbutton'>Список электронных книг &nbsp;<FaDisplay style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link><br /><br />
                   <br />
@@ -616,7 +616,7 @@ const HomePage: FC = () => {
           </div>
         }
         else {
-          return <div><center><h3>Произошла внутренняя ошибка</h3><button id="graybutton" onClick={() => store.logout()}>Выйти</button></center></div>
+          return <div><center><h3>Произошла внутренняя ошибка</h3><button id="backbutton" onClick={() => store.logout()}>Выйти</button></center></div>
         }
       })()}
     </div>
