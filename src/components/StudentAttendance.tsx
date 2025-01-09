@@ -11,7 +11,7 @@ const StudentBookDebt: FC = () => {
   useEffect(() => {
     //setMargin('-35%');
     //if(window.innerWidth<940) setMargin('0%');
-    InfoService.getAttendanceInfo().then((response) => {
+    InfoService.getAttendanceInfoShort().then((response) => {
       setAttendanceData(response.data);
     });
     // UploadService.getDebtData().then((response) => {
@@ -31,7 +31,7 @@ const StudentBookDebt: FC = () => {
 
   if (attendanceData.length > 0) return (
     <div>
-      Последние данные по посещениям:<br/>
+      Последние данные по посещениям занятий:<br/>
       <table style={{ fontSize: '12pt', paddingLeft: '15px'}}>
       <tbody>
         <tr><br /></tr>
@@ -47,7 +47,7 @@ const StudentBookDebt: FC = () => {
         </tr>
       </tbody>
     </table>
-
+    
     </div>);
   else {
     return (<p>Данные по посещаемости не найдены</p>);

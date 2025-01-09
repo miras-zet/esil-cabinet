@@ -321,9 +321,10 @@ const HomePage: FC = () => {
                         <br /><StudentBookDebt />
                         <br /></div><br /></tr>
                       <tr><div id='homepagePanel'>
-                        <h2>Посещаемость</h2>
+                        <h2>Посещаемость занятий</h2>
                         <StudentAttendance />
-                        <br /></div><br /></tr>
+                        <Link to="/attendance"><button className='graybutton' style={{marginLeft:'18px'}}>Посмотреть всё</button></Link><br/><br/>
+                        </div><br /></tr>
                       <tr><div id='homepagePanel'>
                         <h2>Дом студентов</h2>
                         <StudentDormRequest />

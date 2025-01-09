@@ -24,6 +24,12 @@ const getBonusPointsSelf = (): Promise<any> => {
     }
     return http.get(`/management/getbonuspoints`, { params });
 };
+const getAttendanceInfoShort = (): Promise<any> => {
+    const params = {
+        user_id: localStorage.getItem('user_id')
+    }
+    return http.get(`/info/getattendanceinfoshort`, { params });
+};
 const getAttendanceInfo = (): Promise<any> => {
     const params = {
         user_id: localStorage.getItem('user_id')
@@ -35,6 +41,7 @@ const InfoService = {
     getRoleInfo,
     getBonusPoints,
     getBonusPointsSelf,
+    getAttendanceInfoShort,
     getAttendanceInfo,
 };
 
