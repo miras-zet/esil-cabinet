@@ -23,6 +23,7 @@ import PhotoChecker from '../components/PhotoChecker';
 import config from "../http/version.json";
 import CafedraService from '../services/CafedraService';
 import { FaTableList } from "react-icons/fa6";
+import StudentAttendance from '../components/StudentAttendance';
 
 export const buildVer = config.buildVer;
 
@@ -318,6 +319,10 @@ const HomePage: FC = () => {
                         <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link><br /><br />
                         <Link to="/ebooks"><button className='navbarbutton'><FaBookAtlas style={{ verticalAlign: 'middle' }} /> Электронные книги</button></Link>
                         <br /><StudentBookDebt />
+                        <br /></div><br /></tr>
+                      <tr><div id='homepagePanel'>
+                        <h2>Посещаемость</h2>
+                        <StudentAttendance />
                         <br /></div><br /></tr>
                       <tr><div id='homepagePanel'>
                         <h2>Дом студентов</h2>
