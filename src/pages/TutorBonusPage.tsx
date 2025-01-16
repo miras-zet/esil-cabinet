@@ -48,7 +48,26 @@ const TutorBonusPage: FC = () => {
         const value = event.target.value;
         localStorage.setItem("student_count", value);
       };
-    const selectFileProforientation = (event: React.ChangeEvent<HTMLInputElement>, filetype: string) => {
+
+    const updateProforientation = () => {
+        if(localStorage.getItem('student_count')==='' || (document.getElementById("proforientation") as HTMLInputElement).value=='0') {alert('Напишите количество приведенных студентов')}
+        else{
+        UploadService.updateProforientation()
+            .then((response) => {
+                alert(response.data.message);
+                location.reload()
+            })
+            .catch((err) => {
+                if (err.response && err.response.data && err.response.data.message) {
+                    alert(err.response.data.message);
+                } else {
+                    alert("Ошибка загрузки");
+                }
+                setCurrentFile(undefined);
+            });
+        }
+    }
+    /*const selectFileProforientation = (event: React.ChangeEvent<HTMLInputElement>, filetype: string) => {
         if(localStorage.getItem('student_count')==='' || (document.getElementById("proforientation") as HTMLInputElement).value=='0') {alert('Напишите количество приведенных студентов')}
         else{const { files } = event.target;
         const selectedFiles = files as FileList;
@@ -67,7 +86,7 @@ const TutorBonusPage: FC = () => {
                 setCurrentFile(undefined);
             });
         }
-    };
+    };*/
     useEffect(() => {
         // const user = JSON.parse(localStorage.getItem('data'));
         // if (user) {
@@ -403,10 +422,9 @@ const TutorBonusPage: FC = () => {
                                                                             <button className='navbarbutton' onClick={() => handleFileDownload(tutorInfo[0]?.proforientation_fileid, tutorInfo[0]?.proforientation_filename)}><FaDownload /></button>
                                                                         </div>
                                                                         :
-                                                                        <div style={{ whiteSpace: 'nowrap' }}><label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'black', border: 'none' }} >
-                                                                            {currentFile ? `Загрузка...` : 'Выбрать файл...'}
-                                                                            <input type="file" hidden onChange={(event) => selectFileProforientation(event, "proforientation")} style={{ backgroundColor: 'silver', color: 'DimGray' }} />
-                                                                        </label></div>}</p>
+                                                                        <div style={{ whiteSpace: 'nowrap' }}>
+                                                                            <button onClick={() => updateProforientation()} style={{ backgroundColor: 'silver', color: 'black' }}>Сохранить</button>
+                                                                        </div>}</p>
                                                                 </td>
                                                             </tr>
                                                             <tr>

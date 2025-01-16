@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { Link, Navigate } from 'react-router-dom';
 import '../App.css';
 import KPINavbar from '../components/KPINavbar';
-import { TiArrowBack, TiTick } from 'react-icons/ti';
+import { TiArrowBack } from 'react-icons/ti';
 import CafedraService from '../services/CafedraService';
 import ITutorInfoForManager from '../models/ITutorInfoForManager';
 import axios from 'axios';
@@ -354,12 +354,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 <td id="table-divider-stats-left">Профориентационная работа</td>
                                                                 <td id="table-divider-stats"><br />
                                                                     <i style={{whiteSpace:'nowrap'}}>Привёл абитуриентов:&nbsp;<input type='text' style={{width:'28px'}} id='proforientation' disabled={true} className='btnNeutral' placeholder='Кол-во абитуриентов'></input></i>
-                                                                    <p>{tutorInfo[0]?.proforientation_fileid != 0 ?
-                                                                        <div style={{ whiteSpace: 'nowrap' }}>Загружено <TiTick style={{ color: 'green' }} /><br />
-                                                                            <button className='navbarbutton' onClick={() => handleFileDownload(tutorInfo[0]?.proforientation_fileid, tutorInfo[0]?.proforientation_filename)}><FaDownload /></button>
-                                                                        </div>
-                                                                        :
-                                                                        ''}</p>
+                                                                    <br/><br/>
                                                                 </td>
                                                             </tr>
                                                             <tr>

@@ -100,8 +100,9 @@ const DueBooks: FC = () => {
             case 'plt_tutor': return 'Преподаватель'; 
             case 'plt_student': return 'Студент'; 
             case 'plt_graduate': return 'Выпускник'; 
+            case 'plt_employee': return 'Сотрудник'; 
+            default: return '';
         }
-        return 'Студент';
     }
     const booklist = dueData.map((element) => {
         let clearedfio = '';
@@ -125,10 +126,11 @@ const DueBooks: FC = () => {
             </tr>
     }
 
-    );
+    ); 
+    const currentYear = new Date().getMonth() < 9 ? new Date().getFullYear()-1 : new Date().getFullYear()
     const libraryStatsMini = libraryStats.map((element) =>
         <div key={element.booksonhand}>
-            <h3>Статистика на {new Date().getFullYear()}-{new Date().getFullYear()+1} год обучения</h3>
+            <h3>Статистика на {currentYear}-{currentYear+1} год обучения</h3>
            <p>Выдано книг: {element.booksgiven}</p>
            <p>Возвращено книг: {element.booksreturned}</p>
            <p>Книги "на руках": {element.booksonhand}</p>

@@ -20,17 +20,14 @@ const uploadBonusFile = (file: File,  filetype: string): Promise<any> => {
   formData.append('filetype',filetype);    
   return http.post("/bonusfile", formData);
 };
-const uploadBonusFileProforientation = (file: File,  filetype: string): Promise<any> => {
-  let formData = new FormData();
-  const by_userid = localStorage.getItem('user_id');
+const updateProforientation = (): Promise<any> => {
   const for_userid = localStorage.getItem('viewinguserid');
-  const student_count = localStorage.getItem('student_count');
-  formData.append("file", file);
-  formData.append('for_user_id',for_userid);
-  formData.append('by_user_id',by_userid);
-  formData.append('filetype',filetype); 
-  formData.append('student_count',student_count);   
-  return http.post("/bonusfileproforientation", formData);
+  const student_count = localStorage.getItem('student_count'); 
+  const params = {
+    for_userid: for_userid,
+    student_count: student_count,
+  }
+  return http.get(`/upload/bonusfileproforientation`,{params});
 };
 const uploadBonusFileSelf = (file: File,  filetype: string): Promise<any> => {
   let formData = new FormData();
@@ -183,7 +180,7 @@ const UploadService = {
   upload,
   uploadBonusFile,
   uploadBonusFileSelf,
-  uploadBonusFileProforientation,
+  updateProforientation,
   getFiles,
   getTutors,
   getCategories,
