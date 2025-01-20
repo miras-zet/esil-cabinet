@@ -381,7 +381,7 @@ const HomePage: FC = () => {
                   <td style={{ width: '15px' }}></td>
                   <td>
                     <table>
-                      {localStorage.getItem('cafedramanager')!='0' ? <tr><div id='homepagePanel'>
+                      {localStorage.getItem('cafedramanager')!=='0' ? <tr><div id='homepagePanel'>
                         <h3>Коэффициент трудового участия</h3>
                         <Link to="/cafedramanagement"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Управление кафедрой</button></Link><br /><br />
                         <br /></div><br />
