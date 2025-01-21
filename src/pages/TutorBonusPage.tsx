@@ -23,6 +23,9 @@ const TutorBonusPage: FC = () => {
     //const {modal, open} = useContext(ModalContext); 
     const [tutorInfo, setTutorInfo] = useState<Array<ITutorInfoForManager>>([]);
     const [bonusPoints, setBonusPoints] = useState<number>(0);
+    const [pubPoints, setPubPoints] = useState<number>(0);
+    const [literaturePoints, setLiteraturePoints] = useState<number>(0);
+    const [moodlePercentage, setMoodlePercentage] = useState<number>(-1);
     const [premiere, setPremiere] = useState<string>('');
     const [currentFile, setCurrentFile] = useState<File>();
 
@@ -98,6 +101,15 @@ const TutorBonusPage: FC = () => {
         CafedraService.getTutorBonusData().then((response) => {
             setTutorInfo(response.data);
         });
+        CafedraService.getTutorBonusDataLiterature().then((response) => {
+            setLiteraturePoints(response.data);
+        });
+        CafedraService.getTutorBonusDataPublications().then((response) => {
+            setPubPoints(response.data);
+        });
+        CafedraService.getTutorBonusDataMoodle().then((response) => {
+            setMoodlePercentage(response.data);
+        }); 
         CafedraService.getTutorBonusDataProforientation().then((response) => {
             (document.getElementById("proforientation") as HTMLInputElement).value=response.data;
 
@@ -105,6 +117,7 @@ const TutorBonusPage: FC = () => {
         });
         InfoService.getBonusPoints().then((response) => {
             setBonusPoints(response.data);
+            if (typeof(response.data) != 'number') location.reload();
             if (response.data >= 0 && response.data <= 5) {
                 setPremiere('Низкий');
             }
@@ -177,14 +190,14 @@ const TutorBonusPage: FC = () => {
         <div>
             {(() => {
                 const role = localStorage.getItem('role');
-                if (role == 'plt_tutor') {
+                if (role == 'plt_tutor') { 
                     return <div>
                         <KPINavbar />
                         <br /><br /><br /><br /><br /><br /><br /><Link to={"/cafedramanagement"}><button className="navbarbutton"><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link> <br /><br />
                         <div className=''>
                             <h2>{localStorage.getItem('viewinguserfio')}</h2>
                             <h3>Баллов: {bonusPoints}</h3>
-                            <h4>Уровень проф. деятельности: {premiere}</h4>
+                            <h4>Коэффициент трудового участия: {premiere}</h4>
                             <table style={{ textAlign: 'left' }}>
                                 <tbody>
                                     <tr>
@@ -283,15 +296,30 @@ const TutorBonusPage: FC = () => {
                                                             </tr> */}
                                                             <tr>
                                                                 <td id="table-divider-stats-left">Контент ДОТ на портале</td>
-                                                                <td id="table-divider-stats">{tutorInfo[0]?.dot_content_fileid == 0 ?
+                                                                <td id="table-divider-stats">{moodlePercentage == -1 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='backbutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('dot_content')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <RxCross2/>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        Подтверждено <IoMdCheckmark />
+                                                                        {moodlePercentage}%
+                                                                        <br /><br />
+                                                                    </div>}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td id="table-divider-stats-left">Разработка и подготовка учебной и учебно-методической литературы (за 5 лет)</td>
+                                                                <td id="table-divider-stats">{literaturePoints == 0 ?
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        <RxCross2/>
+                                                                        <br /><br />
+                                                                    </div> :
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        Подтверждено {literaturePoints}x <IoMdCheckmark />
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>
@@ -317,6 +345,21 @@ const TutorBonusPage: FC = () => {
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
                                                                         Подтверждено <IoMdCheckmark />
+                                                                        <br /><br />
+                                                                    </div>}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td id="table-divider-stats-left">Публикация статей / монографий (за 3 года)</td>
+                                                                <td id="table-divider-stats">{pubPoints == 0 ?
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        <RxCross2/>
+                                                                        <br /><br />
+                                                                    </div> :
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        Подтверждено {pubPoints}x <IoMdCheckmark />
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>

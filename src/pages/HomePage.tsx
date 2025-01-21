@@ -7,11 +7,11 @@ import { observer } from 'mobx-react-lite';
 import { Link, Navigate } from 'react-router-dom';
 import '../App.css';
 import UploadService from '../services/UploadService';
-import IKPI from '../models/IKPI';
-import KPICategoryScores from '../components/KPICategoryScores';
+//import IKPI from '../models/IKPI';
+//import KPICategoryScores from '../components/KPICategoryScores';
 import KPINavbar from '../components/KPINavbar';
-import { HiSparkles } from "react-icons/hi2";
-import { FaBook, FaClock, FaPlus, FaTrashAlt, FaUpload } from 'react-icons/fa';
+//import { HiSparkles } from "react-icons/hi2";
+import { FaBook, FaClock, FaPlus, FaTrashAlt } from 'react-icons/fa';
 import { FaBookAtlas, FaDisplay } from "react-icons/fa6";
 import { IoIosAlarm, IoIosBook } from "react-icons/io";
 import { MdNoteAdd } from 'react-icons/md';
@@ -45,12 +45,12 @@ const HomePage: FC = () => {
   
   const { store } = useContext(Context);
   const { modal, open } = useContext(ModalContext);
-  const [kpiInfo, setKpiInfo] = useState<Array<IKPI>>([]);
+  //const [kpiInfo, setKpiInfo] = useState<Array<IKPI>>([]);
   let [searchtype, setSearchType] = useState<string>('name');
   const [booksParsed, setParsedBooks] = useState<Array<IBookCart>>([]);
 
   useEffect(() => {
-    setKpiInfo([]);
+    //setKpiInfo([]);
     let books = JSON.parse(localStorage.getItem('bookCartJSON'));
     if (books != null) setParsedBooks(books)
     else {
@@ -128,15 +128,15 @@ const HomePage: FC = () => {
     }
 
   }
-  const countKpi = () => {
-    UploadService.getKpi()
-      .then(
-        (response) => {
-          localStorage.setItem('KPIScore', response.data.score)
-          return setKpiInfo(response.data.score);
-        }
-      );
-  }
+  // const countKpi = () => {
+  //   UploadService.getKpi()
+  //     .then(
+  //       (response) => {
+  //         localStorage.setItem('KPIScore', response.data.score)
+  //         //return setKpiInfo(response.data.score);
+  //       }
+  //     );
+  // }
   const getManagerStatus = () => {
     CafedraService.checkManagerStatus().then((response) => {
       localStorage.setItem('cafedramanager', response.data);
@@ -251,39 +251,39 @@ const HomePage: FC = () => {
     <div>
       {(() => {
         const role = localStorage.getItem('role');
-        let KPIScore = "0";
-        let textcolor;
+        // let KPIScore = "0";
+        // let textcolor;
         if (role == 'plt_tutor') {
-          countKpi();
+          //countKpi();
           getManagerStatus();
-          KPIScore = localStorage.getItem('KPIScore');
+          //KPIScore = localStorage.getItem('KPIScore');
         }
-        let premiere = '';
-        if (parseInt(KPIScore) == 0) {
-          premiere = "Нет";
-        }
-        if (parseInt(KPIScore) > 0) {
-          premiere = "C";
-        }
-        if (parseInt(KPIScore) >= 50) {
-          textcolor = 'orange';
-          premiere = "B";
-        }
-        if (parseInt(KPIScore) >= 84) {
-          premiere = "A";
-        }
-        if (parseInt(KPIScore) >= 200) {
-          premiere = "Silver";
-        }
-        if (parseInt(KPIScore) >= 300) {
-          premiere = "Gold";
-        }
-        if (parseInt(KPIScore) >= 400) {
-          premiere = "Platinum";
-        }
-        if (parseInt(KPIScore) == 0) {
-          premiere = "Нет";
-        }
+        // let premiere = '';
+        // if (parseInt(KPIScore) == 0) {
+        //   premiere = "Нет";
+        // }
+        // if (parseInt(KPIScore) > 0) {
+        //   premiere = "C";
+        // }
+        // if (parseInt(KPIScore) >= 50) {
+        //   //textcolor = 'orange';
+        //   premiere = "B";
+        // }
+        // if (parseInt(KPIScore) >= 84) {
+        //   premiere = "A";
+        // }
+        // if (parseInt(KPIScore) >= 200) {
+        //   premiere = "Silver";
+        // }
+        // if (parseInt(KPIScore) >= 300) {
+        //   premiere = "Gold";
+        // }
+        // if (parseInt(KPIScore) >= 400) {
+        //   premiere = "Platinum";
+        // }
+        // if (parseInt(KPIScore) == 0) {
+        //   premiere = "Нет";
+        // }
         if (role === 'plt_student') {
           return <div className='root' style={{ textAlign: 'left' }}>
             <KPINavbar /> <br /><br /><br /><br /><br /><br /><br />
@@ -364,13 +364,24 @@ const HomePage: FC = () => {
                 <tr>
                   <td>
                     <table>
-                      <tr><div id='homepagePanel'>
+                      {/* <tr><div id='homepagePanel'>
                         <h2 style={{ fontSize: 20 }}>Ключевые показатели эффективности (KPI)</h2>
                         <h4 style={{ fontSize: 27 }}>Баллы: <b style={{ color: textcolor }}>{kpiInfo ? kpiInfo.toString() : <></>}</b></h4>
                         <h4 style={{ fontSize: 15 }}>{premiere ? `Премирование: ${premiere} ` : ''}{parseInt(KPIScore) >= 200 ? <HiSparkles style={{ verticalAlign: 'middle', marginTop: '-7px' }} /> : ''}</h4>
                         <Link to="/kpi"><button className='navbarbutton'><FaUpload />&nbsp;&nbsp;Загрузить документы</button></Link><br /><br />
                         <KPICategoryScores />
-                      </div><br /></tr>
+                      </div><br /></tr> */}
+                      {localStorage.getItem('cafedramanager')!=='0' ? <tr><div id='homepagePanel'>
+                        <h2>Коэффициент трудового участия</h2>
+                        <Link to="/cafedramanagement"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Управление кафедрой</button></Link><br /><br />
+                        <br /></div><br />
+                      </tr>:
+                      <tr><div id='homepagePanel'>
+                        <h2>Коэффициент трудового участия</h2>
+                        <Link to="/ktu"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Мои показатели</button></Link><br /><br />
+                        <br /></div><br />
+                      </tr>
+                      }
                       <tr><div id='homepagePanel'>
                         <h2>Регистрация FaceID</h2>
                         <PhotoChecker /><br /><br />
@@ -381,17 +392,7 @@ const HomePage: FC = () => {
                   <td style={{ width: '15px' }}></td>
                   <td>
                     <table>
-                      {localStorage.getItem('cafedramanager')!=='0' ? <tr><div id='homepagePanel'>
-                        <h3>Коэффициент трудового участия</h3>
-                        <Link to="/cafedramanagement"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Управление кафедрой</button></Link><br /><br />
-                        <br /></div><br />
-                      </tr>:
-                      <tr><div id='homepagePanel'>
-                        <h3>Коэффициент трудового участия</h3>
-                        <Link to="/ktu"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Мои показатели</button></Link><br /><br />
-                        <br /></div><br />
-                      </tr>
-                      }
+                      
                       <tr><div id='homepagePanel'>
                         <h2>Библиотека</h2>
                         <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link><br /><br />
@@ -532,11 +533,11 @@ const HomePage: FC = () => {
                     ))}
                   </select>
                   <br /><br />
-                  {searchtype == 'name' ? <div><input type="text" id='inputSearchBookByName' className='btnNeutral' maxLength={100} placeholder='Поиск по названию'></input>&nbsp;<button id="backbutton" onClick={() => findBookName()}>Найти</button></div> : ''}
-                  {searchtype == 'keywords' ? <div><input type="text" id='inputSearchBookByKeyWords' className='btnNeutral' maxLength={100} placeholder='Поиск по ключевым словам'></input>&nbsp;<button id="backbutton" onClick={() => findBookKeyWords()}>Найти</button></div> : ''}
-                  {searchtype == 'isbn' ? <div><input type="text" id='inputSearchBookByISBN' className='btnNeutral' maxLength={100} placeholder='Поиск по ISBN'></input>&nbsp;<button id="backbutton" onClick={() => findBookISBN()}>Найти</button></div> : ''}
-                  {searchtype == 'inventory' ? <div><input type="text" id='inputSearchBookByInventory' className='btnNeutral' maxLength={100} placeholder='Поиск по инвентарному номеру'></input>&nbsp;<button id="backbutton" onClick={() => findBookInventory()}>Найти</button></div> : ''}
-                  {searchtype == 'barcode' ? <div><input type="text" id='inputSearchBookByBarcode' className='btnNeutral' maxLength={100} placeholder='Поиск по штрихкоду'></input>&nbsp;<button id="backbutton" onClick={() => findBookBarcode()}>Найти</button></div> : ''}
+                  {searchtype == 'name' ? <div><input type="text" id='inputSearchBookByName' className='btnNeutral' maxLength={100} placeholder='Поиск по названию'></input>&nbsp;<button id="navbarbutton" style={{backgroundColor: '#088c64',color:'white'}} onClick={() => findBookName()}>Найти</button></div> : ''}
+                  {searchtype == 'keywords' ? <div><input type="text" id='inputSearchBookByKeyWords' className='btnNeutral' maxLength={100} placeholder='Поиск по ключевым словам'></input>&nbsp;<button id="navbarbutton" style={{backgroundColor: '#088c64',color:'white'}} onClick={() => findBookKeyWords()}>Найти</button></div> : ''}
+                  {searchtype == 'isbn' ? <div><input type="text" id='inputSearchBookByISBN' className='btnNeutral' maxLength={100} placeholder='Поиск по ISBN'></input>&nbsp;<button id="navbarbutton" style={{backgroundColor: '#088c64',color:'white'}} onClick={() => findBookISBN()}>Найти</button></div> : ''}
+                  {searchtype == 'inventory' ? <div><input type="text" id='inputSearchBookByInventory' className='btnNeutral' maxLength={100} placeholder='Поиск по инвентарному номеру'></input>&nbsp;<button id="navbarbutton" style={{backgroundColor: '#088c64',color:'white'}} onClick={() => findBookInventory()}>Найти</button></div> : ''}
+                  {searchtype == 'barcode' ? <div><input type="text" id='inputSearchBookByBarcode' className='btnNeutral' maxLength={100} placeholder='Поиск по штрихкоду'></input>&nbsp;<button id="navbarbutton" style={{backgroundColor: '#088c64',color:'white'}} onClick={() => findBookBarcode()}>Найти</button></div> : ''}
                   <br /><br /><br />
                   <Link to="/ebooks"><button className='navbarbutton'>Список электронных книг &nbsp;<FaDisplay style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link><br /><br />
                   <br />

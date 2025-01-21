@@ -45,17 +45,53 @@ const getTutorBonusData = (): Promise<any> => {
     }
     return http.get(`/management/gettutordata`,{params});
 };
+const getTutorBonusDataPublications = (): Promise<any> => {
+    const params = {
+        userid: localStorage.getItem('viewinguserid'),
+    }
+    return http.get(`/management/gettutorpubdata`,{params});
+};
+const getTutorBonusDataLiterature = (): Promise<any> => {
+    const params = {
+        userid: localStorage.getItem('viewinguserid'),
+    }
+    return http.get(`/management/gettutorliteraturedata`,{params});
+};
 const getTutorBonusDataProforientation = (): Promise<any> => {
     const params = {
         userid: localStorage.getItem('viewinguserid'),
     }
     return http.get(`/management/gettutordataproforientation`,{params});
 };
+const getTutorBonusDataMoodle = (): Promise<any> => {
+    const params = {
+        userid: localStorage.getItem('viewinguserid'),
+    }
+    return http.get(`/management/gettutormoodlepercentage`,{params});
+};
 const getTutorBonusDataSelf = (): Promise<any> => {
     const params = {
         userid: localStorage.getItem('user_id'),
     }
     return http.get(`/management/gettutordata`,{params});
+};
+const getTutorBonusDataPublicationsSelf = (): Promise<any> => {
+    const params = {
+        userid: localStorage.getItem('user_id'),
+    }
+    return http.get(`/management/gettutorpubdata`,{params});
+};
+const getTutorBonusDataLiteratureSelf = (): Promise<any> => {
+    const params = {
+        userid: localStorage.getItem('user_id'),
+    }
+    return http.get(`/management/gettutorliteraturedata`,{params});
+};
+const getTutorBonusDataMoodleSelf = (): Promise<any> => {
+    const params = {
+        userid: localStorage.getItem('user_id'),
+    }
+    return http.get(`/management/gettutormoodlepercentage`,{params});
 };
 const getTutorBonusDataProforientationSelf = (): Promise<any> => {
     const params = {
@@ -72,6 +108,12 @@ const AdminService = {
     denyTutorFile,
     getTutorsByCafedra,
     getTutorBonusData,
+    getTutorBonusDataPublications,
+    getTutorBonusDataLiterature,
+    getTutorBonusDataMoodle,
+    getTutorBonusDataPublicationsSelf,
+    getTutorBonusDataLiteratureSelf,
+    getTutorBonusDataMoodleSelf,
     getTutorBonusDataProforientation,
     getTutorBonusDataSelf,
     getTutorBonusDataProforientationSelf,

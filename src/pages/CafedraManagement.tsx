@@ -66,6 +66,7 @@ const CafedraManagement:FC = () => {
       {(() => {
         const role = localStorage.getItem('role');
         if(role=='plt_tutor') {
+          if(localStorage.getItem('cafedramanager') == '0') return <Navigate to="/ktu" />
           return <div>
               <KPINavbar/>  
               <br/><br/><br/><br/><br/><br/><br/><Link to={"/"}><button className="navbarbutton"><TiArrowBack style={{verticalAlign:'middle'}}/> Вернуться назад</button></Link> <br/>

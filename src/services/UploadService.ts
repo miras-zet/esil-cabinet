@@ -64,7 +64,7 @@ const uploadPhoto = (file: File, extension): Promise<any> => {
 };
 const checkPhotoUploadEligibility = (): Promise<any> => {
   const user_id = localStorage.getItem('user_id');
-  if (user_id == 'null') return http.get(`/upload/checkphotoeligibility/0`);
+  if (user_id == null || user_id == 'null') return http.get(`/upload/checkphotoeligibility/0`);
   return http.get(`/upload/checkphotoeligibility/${user_id}`);
 };
 // const updateapplicant = (column: any, data: any): Promise<any> => {

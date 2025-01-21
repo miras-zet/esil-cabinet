@@ -23,6 +23,9 @@ const TutorBonusPageSelf: FC = () => {
     //const {modal, open} = useContext(ModalContext); 
     const [tutorInfo, setTutorInfo] = useState<Array<ITutorInfoForManager>>([]);
     const [bonusPoints, setBonusPoints] = useState<number>(0);
+    const [pubPoints, setPubPoints] = useState<number>(0);
+    const [literaturePoints, setLiteraturePoints] = useState<number>(0);
+    const [moodlePercentage, setMoodlePercentage] = useState<number>(-1);
     const [premiere, setPremiere] = useState<string>('');
     const [currentFile, setCurrentFile] = useState<File>();
 
@@ -56,8 +59,18 @@ const TutorBonusPageSelf: FC = () => {
             (document.getElementById("proforientation") as HTMLInputElement).value=response.data;
             localStorage.setItem('student_count',response.data);
         });
+        CafedraService.getTutorBonusDataLiteratureSelf().then((response) => {
+            setLiteraturePoints(response.data);
+        });
+        CafedraService.getTutorBonusDataPublicationsSelf().then((response) => {
+            setPubPoints(response.data);
+        });
+        CafedraService.getTutorBonusDataMoodleSelf().then((response) => {
+            setMoodlePercentage(response.data);
+        });    
         InfoService.getBonusPointsSelf().then((response) => {
             setBonusPoints(response.data);
+            if (typeof(response.data) != 'number') location.reload();
             if (response.data >= 0 && response.data <= 5) {
                 setPremiere('Низкий');
             }
@@ -123,7 +136,7 @@ const TutorBonusPageSelf: FC = () => {
                         <div className=''>
                             <h2>{FIO}</h2>
                             <h3>Баллов: {bonusPoints}</h3>
-                            <h4>Уровень проф. деятельности: {premiere}</h4>
+                            <h4>Коэффициент трудового участия: {premiere}</h4>
                             <table style={{ textAlign: 'left' }}>
                                 <tbody>
                                     <tr>
@@ -221,7 +234,7 @@ const TutorBonusPageSelf: FC = () => {
                                                             </tr> */}
                                                             <tr>
                                                                 <td id="table-divider-stats-left">Контент ДОТ на портале</td>
-                                                                <td id="table-divider-stats">{tutorInfo[0]?.dot_content_fileid == 0 ?
+                                                                <td id="table-divider-stats">{moodlePercentage == -1 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
                                                                         <RxCross2/>
@@ -229,7 +242,22 @@ const TutorBonusPageSelf: FC = () => {
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        Подтверждено <IoMdCheckmark />
+                                                                        {moodlePercentage}%
+                                                                        <br /><br />
+                                                                    </div>}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td id="table-divider-stats-left">Разработка и подготовка учебной и учебно-методической литературы (за 5 лет)</td>
+                                                                <td id="table-divider-stats">{literaturePoints == 0 ?
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        <RxCross2/>
+                                                                        <br /><br />
+                                                                    </div> :
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        Подтверждено {literaturePoints}x <IoMdCheckmark />
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>
@@ -255,6 +283,21 @@ const TutorBonusPageSelf: FC = () => {
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
                                                                         Подтверждено <IoMdCheckmark />
+                                                                        <br /><br />
+                                                                    </div>}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td id="table-divider-stats-left">Публикация статей / монографий (за 3 года)</td>
+                                                                <td id="table-divider-stats">{pubPoints == 0 ?
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        <RxCross2/>
+                                                                        <br /><br />
+                                                                    </div> :
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        Подтверждено {pubPoints}x <IoMdCheckmark />
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>
