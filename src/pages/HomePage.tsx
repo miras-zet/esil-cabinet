@@ -380,12 +380,12 @@ const HomePage: FC = () => {
                       </div><br /></tr> */}
                       {localStorage.getItem('cafedramanager')!=='0' ? <tr><div id='homepagePanel'>
                         <h2>Коэффициент трудового участия</h2>
-                        <Link to="/cafedramanagement"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Управление кафедрой</button></Link><br /><br />
+                        <Link to="/cafedramanagement"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Показатели</button></Link><br /><br />
                         <br /></div><br />
                       </tr>:
                       <tr><div id='homepagePanel'>
                         <h2>Коэффициент трудового участия</h2>
-                        <Link to="/ktu"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Мои показатели</button></Link><br /><br />
+                        <Link to="/ktu"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Показатели</button></Link><br /><br />
                         <br /></div><br />
                       </tr>
                       }
