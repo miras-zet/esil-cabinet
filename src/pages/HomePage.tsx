@@ -499,6 +499,9 @@ const HomePage: FC = () => {
             </div>
           </div>
         }
+        else if (role === 'accounting') {
+          return <Navigate to='/accounting' />
+        }
         else if (role === 'admissionadmin') {
           return <Navigate to='/applicants' />
         }

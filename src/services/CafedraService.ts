@@ -99,6 +99,12 @@ const getTutorBonusDataProforientationSelf = (): Promise<any> => {
     }
     return http.get(`/management/gettutordataproforientation`,{params});
 };
+const getAllTutorBonusData = (): Promise<any> =>{
+    const params = {
+        month_query: localStorage.getItem('month_query'),
+    }
+    return http.get(`/management/getalltutordata`,{params});
+}
 
 
 const AdminService = {
@@ -117,6 +123,7 @@ const AdminService = {
     getTutorBonusDataProforientation,
     getTutorBonusDataSelf,
     getTutorBonusDataProforientationSelf,
+    getAllTutorBonusData,
 };
 
 export default AdminService;

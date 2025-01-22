@@ -58,6 +58,7 @@ import TutorBonusPage from './pages/TutorBonusPage'
 import TutorBonusPageSelf from './pages/TutorBonusPageSelf'
 import EditEBook from './pages/EditEBook'
 import AttendanceRecordStudent from './pages/AttendanceRecordStudent'
+import TutorDataExport from './pages/TutorDataExport'
 
 const App:FC = () => {  
 //   const {store} = useContext(Context);    
@@ -95,6 +96,8 @@ const App:FC = () => {
         <Route path="/scan/:id" element={ <ScanPage /> } />
         <Route path="/studentinfo" element={ <StudentInfo /> } />
         <Route path="/attendance" element={ <AttendanceRecordStudent/>} />
+
+        <Route path="/accounting" element={ <TutorDataExport/>} />
 
         <Route path="/applicants" element={<ApplicantList />}/>
         <Route path="/dormrequests" element={<DormList />}/>
