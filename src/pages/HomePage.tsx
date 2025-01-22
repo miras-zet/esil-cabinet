@@ -251,6 +251,13 @@ const HomePage: FC = () => {
     <div>
       {(() => {
         const role = localStorage.getItem('role');
+        const suspended = JSON.parse(localStorage.getItem('data')).suspended;
+        if (suspended == 1){
+          return <center>
+            <h2>Доступ к аккаунту отключен</h2>
+            <br /><button id="backbutton" onClick={() => store.logout()}>Выйти</button>
+          </center>
+        }
         // let KPIScore = "0";
         // let textcolor;
         if (role == 'plt_tutor') {

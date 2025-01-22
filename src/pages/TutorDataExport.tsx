@@ -73,7 +73,7 @@ const TutorDataExport:FC = () => {
               <KPINavbar/>  
               <br/><br/><br/><br/><br/><br/><br/><br/>
               <div className=''> 
-                <h2>Баллы ППС за текущий месяц</h2>
+                <h2>Баллы ППС за {localStorage.getItem('month_query')==='previous'?'предыдущий':'текущий'} месяц</h2>
                 <h4>({tutorList.length} преподавателей)</h4> 
                 <button className='navbarbutton' onClick={handleExport}>Экспорт</button><br/>
                         {/* <Link to={"/dormrequests"}><button className='graybutton'>Заявки на общежитие</button></Link> <br /><br /> */}
