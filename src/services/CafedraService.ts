@@ -31,7 +31,7 @@ const denyTutorFile = (category): Promise<any> => {
         denied_for: localStorage.getItem('viewinguserid'),
         category: category
     }
-    return http.get(`/upload/denytutorfile`,{params});
+    return http.get(`/upload/denytutorcategory`,{params});
 };
 const getTutorsByCafedra = (): Promise<any> => {
     const params = {

@@ -74,6 +74,8 @@ const TutorDataExport:FC = () => {
               <br/><br/><br/><br/><br/><br/><br/><br/>
               <div className=''> 
                 <h2>Баллы ППС за {localStorage.getItem('month_query')==='previous'?'предыдущий':'текущий'} месяц</h2>
+                {tutorList.length > 0 ?
+                <>
                 <h4>({tutorList.length} преподавателей)</h4> 
                 <button className='navbarbutton' onClick={handleExport}>Экспорт</button><br/>
                         {/* <Link to={"/dormrequests"}><button className='graybutton'>Заявки на общежитие</button></Link> <br /><br /> */}
@@ -91,6 +93,12 @@ const TutorDataExport:FC = () => {
                                 <td>&nbsp;</td>
                             </tr>
                         </table>
+                </>
+                :<>
+                <h4>Загрузка.. Пожалуйста, подождите</h4>
+                </>
+                }
+                
                 <br/>
                 
               </div>
