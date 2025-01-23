@@ -33,6 +33,12 @@ const denyTutorFile = (category): Promise<any> => {
     }
     return http.get(`/upload/denytutorcategory`,{params});
 };
+const suspendTutor = (userid): Promise<any> => {
+    const params = {
+        userid: userid
+    }
+    return http.get(`/management/suspendtutor`,{params});
+};
 const getTutorsByCafedra = (): Promise<any> => {
     const params = {
         cafedraid: localStorage.getItem('cafedramanager'),
@@ -112,6 +118,7 @@ const AdminService = {
     confirmTutorFile,
     confirmTutorCategory,
     denyTutorFile,
+    suspendTutor,
     getTutorsByCafedra,
     getTutorBonusData,
     getTutorBonusDataPublications,

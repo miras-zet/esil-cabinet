@@ -8,6 +8,7 @@ import KPINavbar from '../components/KPINavbar';
 import { TiArrowBack } from 'react-icons/ti';
 import ITutorForManager from '../models/ITutorForManager';
 import CafedraService from '../services/CafedraService';
+import { FaTrash } from 'react-icons/fa';
 
 const CafedraManagement:FC = () => {  
   const {store} = useContext(Context);  
@@ -52,12 +53,22 @@ const CafedraManagement:FC = () => {
     window.location.href=window.location.protocol + '//' + window.location.host +'/tutorpage';
     return;
   }
+
+  const suspend = (userid) =>{
+    if (confirm('Вы уверены, что хотите удалить пользователя?')){
+      CafedraService.suspendTutor(userid).then(() => {
+        location.reload();
+      });
+    }
+  }
+
   const tutorList = tutorInfos.map((element, index) =>
         <tr key={element.userid} style={{ textAlign: 'center' }}>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;&nbsp;&nbsp;{index + 1}&nbsp;&nbsp;&nbsp;</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.fio}&nbsp;</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{element.academicstatus!='—'?element.academicstatus:'Без звания'}</td>
             <td id="table-divider" style={{ verticalAlign: 'middle'}}><button className='greenbutton' onClick={() => redirect(element.userid,element.fio)}>Просмотр</button></td>
+            <td id="table-divider" style={{ verticalAlign: 'middle'}}><button className='redbutton' onClick={() => suspend(element.userid)}><FaTrash/></button></td>
         </tr>
     );
   
@@ -80,7 +91,8 @@ const CafedraManagement:FC = () => {
                                 <th style={{ textAlign: 'center' }}><br />№&nbsp;&nbsp;<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />ФИО<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Степень<br />&nbsp;</th>
-                                <th style={{ textAlign: 'center' }}><br />Действия<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center' }}><br />Просмотр<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center' }}><br />Блокировка<br />&nbsp;</th>
                                 <th>&nbsp;</th>
                             </tr>
                             {tutorList}
