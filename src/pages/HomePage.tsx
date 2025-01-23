@@ -128,15 +128,15 @@ const HomePage: FC = () => {
     }
 
   }
-  // const countKpi = () => {
-  //   UploadService.getKpi()
-  //     .then(
-  //       (response) => {
-  //         localStorage.setItem('KPIScore', response.data.score)
-  //         //return setKpiInfo(response.data.score);
-  //       }
-  //     );
-  // }
+  const countKpi = () => {
+    UploadService.getKpi()
+      .then(
+        (response) => {
+          localStorage.setItem('KPIScore', response.data.score)
+          //return setKpiInfo(response.data.score);
+        }
+      );
+  }
   const getManagerStatus = () => {
     CafedraService.checkManagerStatus().then((response) => {
       localStorage.setItem('cafedramanager', response.data);
@@ -261,7 +261,7 @@ const HomePage: FC = () => {
         // let KPIScore = "0";
         // let textcolor;
         if (role == 'plt_tutor') {
-          //countKpi();
+          countKpi();
           getManagerStatus();
           //KPIScore = localStorage.getItem('KPIScore');
         }
