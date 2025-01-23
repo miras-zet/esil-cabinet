@@ -70,7 +70,7 @@ const TutorPenalty:FC = () => {
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;&nbsp;&nbsp;{index + 1}&nbsp;&nbsp;&nbsp;</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.fio}&nbsp;</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.penalty_hr == 0 ? <><br/><button className='backbutton' onClick={()=>createPenalty(element.userid, 'penalty_hr')}>Записать нарушение</button></>:<><p>Имеется нарушение</p><button className="redbutton" onClick={()=>deletePenalty(element.userid, 'penalty_hr')}>Удалить</button></>}&nbsp;<br/><br/></td>
-            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.penalty_ed == 0 ? <><br/><button className='backbutton' onClick={()=>createPenalty(element.userid, 'penalty_ed')}>Записать нарушение</button></>:<><p>Имеется нарушение</p><button className="redbutton" onClick={()=>deletePenalty(element.userid, 'penalty_ed')}>Удалить</button></>}&nbsp;<br/><br/></td>
+            <td id="table-divider" hidden={localStorage.getItem('role')=='education_process_hq'} style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.penalty_ed == 0 ? <><br/><button className='backbutton' onClick={()=>createPenalty(element.userid, 'penalty_ed')}>Записать нарушение</button></>:<><p>Имеется нарушение</p><button className="redbutton" onClick={()=>deletePenalty(element.userid, 'penalty_ed')}>Удалить</button></>}&nbsp;<br/><br/></td>
         </tr>
     );
   
@@ -93,7 +93,7 @@ const TutorPenalty:FC = () => {
                                 <th style={{ textAlign: 'center' }}><br />№&nbsp;&nbsp;<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />ФИО<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Несоблюдение кодекса чести<br />&nbsp;</th>
-                                <th style={{ textAlign: 'center' }}><br />Нарушение труд. дисциплины<br />&nbsp;</th>
+                                <th hidden={localStorage.getItem('role')=='education_process_hq'} style={{ textAlign: 'center' }}><br />Нарушение труд. дисциплины<br />&nbsp;</th>
                                 <th>&nbsp;</th>
                             </tr>
                             {tutorList}
