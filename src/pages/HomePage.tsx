@@ -509,6 +509,12 @@ const HomePage: FC = () => {
         else if (role === 'accounting') {
           return <Navigate to='/accounting' />
         }
+        else if (role === 'education_process_hq') {
+          return <Navigate to='/tutorpenalty' />
+        }
+        else if (role === 'csei') {
+          return <Navigate to='/cseipage' />
+        }
         else if (role === 'admissionadmin') {
           return <Navigate to='/applicants' />
         }

@@ -68,6 +68,44 @@ const getEmployeeList = () : Promise<any>=>{
   }
   return http.get(`/hr/employeelist`,{params});
 };
+const getTutorListPenalty = () : Promise<any>=>{
+  const params = {
+    token: localStorage.getItem('token'),
+  }
+  return http.get(`/hr/tutorlistpenalty`,{params});
+};
+const getTutorListCSEI = () : Promise<any>=>{
+  const params = {
+    token: localStorage.getItem('token'),
+  }
+  return http.get(`/hr/tutorlistcsei`,{params});
+};
+const createPenalty = (userid,penalty_type) : Promise<any>=>{
+  const params = {
+    userid:userid,
+    penalty_type:penalty_type
+  }
+  return http.get(`/hr/createpenalty`,{params});
+};
+const deletePenalty = (userid,penalty_type) : Promise<any>=>{
+  const params = {
+    userid:userid,
+    penalty_type:penalty_type
+  }
+  return http.get(`/hr/deletepenalty`,{params});
+}; 
+const approveGrants = (userid) : Promise<any>=>{
+  const params = {
+    userid:userid,
+  }
+  return http.get(`/hr/approvegrants`,{params});
+};
+const denyGrants = (userid) : Promise<any>=>{
+  const params = {
+    userid:userid,
+  }
+  return http.get(`/hr/denygrants`,{params});
+}; 
 const getApplicantStats = () : Promise<any>=>{ 
   const params = {
     token: localStorage.getItem('token'),
@@ -89,6 +127,12 @@ const addApplicant = (iin:string) : Promise<any> =>{
 
 const DocsService = {
   getEmployeeList,
+  createPenalty,
+  deletePenalty,
+  approveGrants,
+  denyGrants,
+  getTutorListPenalty,
+  getTutorListCSEI,
   getApplicationDataRu,
   getApplicationDataKz,
   getContractDataRu,

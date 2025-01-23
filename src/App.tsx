@@ -59,6 +59,8 @@ import TutorBonusPageSelf from './pages/TutorBonusPageSelf'
 import EditEBook from './pages/EditEBook'
 import AttendanceRecordStudent from './pages/AttendanceRecordStudent'
 import TutorDataExport from './pages/TutorDataExport'
+import TutorPenalty from './pages/TutorPenalty'
+import TutorCSEI from './pages/TutorCSEI'
 
 const App:FC = () => {  
 //   const {store} = useContext(Context);    
@@ -98,6 +100,8 @@ const App:FC = () => {
         <Route path="/attendance" element={ <AttendanceRecordStudent/>} />
 
         <Route path="/accounting" element={ <TutorDataExport/>} />
+        <Route path="/cseipage" element={ <TutorCSEI/>} />
+        <Route path="/tutorpenalty" element={ <TutorPenalty/>} />
 
         <Route path="/applicants" element={<ApplicantList />}/>
         <Route path="/dormrequests" element={<DormList />}/>

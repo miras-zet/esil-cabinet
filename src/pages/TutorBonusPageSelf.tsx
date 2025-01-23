@@ -198,6 +198,21 @@ const TutorBonusPageSelf: FC = () => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
+                                                                <td id="table-divider-stats-left">Разрабока нового курса</td>
+                                                                <td id="table-divider-stats">{tutorInfo[0]?.course_development_fileid == 0 ?
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        <RxCross2/>
+                                                                        <br /><br />
+                                                                    </div> :
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        Подтверждено <IoMdCheckmark />
+                                                                        <br /><br />
+                                                                    </div>}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
                                                                 <td id="table-divider-stats-left">Наличие сертификатов по читаемым дисциплинам по требованиям (72 часа, по 3 года)</td>
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.certificates_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -298,6 +313,36 @@ const TutorBonusPageSelf: FC = () => {
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
                                                                         Подтверждено {pubPoints}x <IoMdCheckmark />
+                                                                        <br /><br />
+                                                                    </div>}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td id="table-divider-stats-left">Подготовка заявок на гранты (1 раз в 2 года)</td>
+                                                                <td id="table-divider-stats">{tutorInfo[0]?.grants_fileid == 0 ?
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        <RxCross2/>
+                                                                        <br /><br />
+                                                                    </div> :
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        Подтверждено <IoMdCheckmark />
+                                                                        <br /><br />
+                                                                    </div>}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td id="table-divider-stats-left">Руководство НИРС за последние 2 года</td>
+                                                                <td id="table-divider-stats">{tutorInfo[0]?.nirs_fileid == 0 ?
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        <RxCross2/>
+                                                                        <br /><br />
+                                                                    </div> :
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        Подтверждено <IoMdCheckmark />
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>

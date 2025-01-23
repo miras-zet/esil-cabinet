@@ -2,7 +2,7 @@ import { FC, useContext, useEffect, useState } from 'react'
 import { Context } from '../main';
 import LoginForm from '../components/LoginForm';
 import { observer } from 'mobx-react-lite';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import DocsService from '../services/DocsService';
@@ -71,7 +71,7 @@ const HREmployeeList: FC = () => {
                         <br /><br /><br /><br />
                         <h2>Список сотрудников</h2>
                         <h4>({employees.length} сотрудников)</h4> 
-                        {/* <Link to={"/dormrequests"}><button className='graybutton'>Заявки на общежитие</button></Link> <br /><br /> */}
+                        <Link to={"/tutorpenalty"}><button className='backbutton'>Нарушения ППС</button></Link> <br /><br />
                         <br />
                         <table id='opaqueTable' style={{ marginLeft: '-1.3%', paddingLeft: '15px', width: '107%' }}>
                             <tr>
