@@ -86,6 +86,7 @@ const CafedraManagement:FC = () => {
                 <h4>({tutorList.length} преподавателей)</h4> 
                         {/* <Link to={"/dormrequests"}><button className='graybutton'>Заявки на общежитие</button></Link> <br /><br /> */}
                         <br />
+                        <Link to={"/ktu"}><button className="navbarbutton"> Мои показатели</button></Link> <br/><br/>
                         <table id='opaqueTable' style={{ marginLeft: '-1.3%', paddingLeft: '15px', width: '107%' }}>
                             <tr>
                                 <th style={{ textAlign: 'center' }}><br />№&nbsp;&nbsp;<br />&nbsp;</th>

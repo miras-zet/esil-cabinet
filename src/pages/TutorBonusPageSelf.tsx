@@ -441,7 +441,7 @@ const TutorBonusPageSelf: FC = () => {
                                                             <tr>
                                                                 <td id="table-divider-stats-left">Профориентационная работа</td>
                                                                 <td id="table-divider-stats"><br />
-                                                                    <i style={{whiteSpace:'nowrap'}}>Привёл абитуриентов:&nbsp;<input type='text' style={{width:'28px'}} id='proforientation' disabled={true} className='btnNeutral' placeholder='Кол-во абитуриентов'></input></i>
+                                                                    <i style={{whiteSpace:'nowrap'}}>Приведено абитуриентов:&nbsp;<input type='text' style={{width:'28px'}} id='proforientation' disabled={true} className='btnNeutral' placeholder='Кол-во абитуриентов'></input></i>
                                                                     <br/><br/>
                                                                 </td>
                                                             </tr>

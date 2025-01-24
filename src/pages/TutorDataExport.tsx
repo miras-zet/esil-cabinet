@@ -59,6 +59,7 @@ const TutorDataExport:FC = () => {
         <tr key={element.userid} style={{ textAlign: 'center' }}>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;&nbsp;&nbsp;{index + 1}&nbsp;&nbsp;&nbsp;</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.fio}&nbsp;</td>
+            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.cafedra}&nbsp;</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.score}&nbsp;</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>+ {parseInt(element.bonus) != 0 ? element.bonus+'0 %':'0 %'}</td>
         </tr>
@@ -84,6 +85,7 @@ const TutorDataExport:FC = () => {
                             <tr>
                                 <th style={{ textAlign: 'center' }}><br />№&nbsp;&nbsp;<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />ФИО<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center' }}><br />Кафедра<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Баллы<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Премирование<br />&nbsp;</th>
                                 <th>&nbsp;</th>
