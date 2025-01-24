@@ -49,6 +49,9 @@ const KPINavbar: FC = () => {
     case 'reader': headertext = 'Электронная библиотека Esil University'; break;
     case 'technician': headertext = 'Отдел технического обслуживания и ремонта'; break;
     case 'librarian': headertext = 'Электронная библиотека и система учёта книг Esil University'; break;
+    case 'hradmin': headertext = 'Управление персоналом Esil University'; break;
+    case 'csei': headertext = 'Кабинет ЦСЭИ Esil University'; break;
+    case 'education_process_hq': headertext = 'Кабинет УПиМУП Esil University'; break;
     default: headertext = 'Кабинет Esil University';
   }
   if(window.location.port=='5173') document.title = 'dev build';

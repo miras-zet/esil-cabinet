@@ -482,7 +482,7 @@ const TutorBonusPage: FC = () => {
                                                                 </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}><label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'black', border: 'none' }} >
                                                                         {currentFile ? `Загрузка...` : 'Выбрать файл...'}
-                                                                        <input type="file" hidden onChange={(event) => selectFile(event, "certificates")} style={{ backgroundColor: 'silver', color: 'DimGray' }} />
+                                                                        <input type="file" hidden onChange={(event) => selectFile(event, "employer_cooperation")} style={{ backgroundColor: 'silver', color: 'DimGray' }} />
                                                                     </label></div>}
                                                                 </td>
                                                             </tr>
