@@ -16,6 +16,7 @@ import InfoService from '../services/InfoService';
 import { IoMdCheckmark } from 'react-icons/io';
 import { RxCross2 } from "react-icons/rx";
 
+
 const TutorBonusPageSelf: FC = () => {
 
     const { store } = useContext(Context);
@@ -258,7 +259,9 @@ const TutorBonusPageSelf: FC = () => {
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
                                                                         {moodlePercentage}%
-                                                                        <br /><br />
+                                                                        <br />
+                                                                        {moodlePercentage < 100? <><Link to={"/moodleinfo"}><button className="navbarbutton">Помощь</button></Link> <br /></>:''}
+                                                                        <br />
                                                                     </div>}
                                                                 </td>
                                                             </tr>
