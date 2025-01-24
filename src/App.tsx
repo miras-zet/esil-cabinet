@@ -61,6 +61,7 @@ import AttendanceRecordStudent from './pages/AttendanceRecordStudent'
 import TutorDataExport from './pages/TutorDataExport'
 import TutorPenalty from './pages/TutorPenalty'
 import TutorCSEI from './pages/TutorCSEI'
+import FacultyManagement from './pages/FacultyManagement'
 
 const App:FC = () => {  
 //   const {store} = useContext(Context);    
@@ -154,6 +155,7 @@ const App:FC = () => {
         <Route path="/kpitopten" element={<KPITopTen/>} />
 
         <Route path="/cafedramanagement" element={<CafedraManagement/>} />
+        <Route path="/facultymanagement" element={<FacultyManagement/>} />
         <Route path="/tutorpage" element={<TutorBonusPage/>} />
         <Route path="/ktu" element={<TutorBonusPageSelf/>} />
 

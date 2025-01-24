@@ -9,6 +9,12 @@ const checkManagerStatus = (): Promise<any> => {
     }
     return http.get(`/auth/getmanagerstatus`,{params});
 };
+const checkFacultyStatus = (): Promise<any> => {
+    const params = {
+        user_id: localStorage.getItem('user_id'),
+    }
+    return http.get(`/auth/getfacultystatus`,{params});
+};
 const confirmTutorCategory = (category): Promise<any> => {
     const params = {
         confirmed_by: localStorage.getItem('user_id'),
@@ -44,6 +50,12 @@ const getTutorsByCafedra = (): Promise<any> => {
         cafedraid: localStorage.getItem('cafedramanager'),
     }
     return http.get(`/management/gettutorsbycafedra`,{params});
+};
+const getTutorsByFaculty = (): Promise<any> => {
+    const params = {
+        userid: localStorage.getItem('user_id'),
+    }
+    return http.get(`/management/gettutorsbyfaculty`,{params});
 };
 const getTutorBonusData = (): Promise<any> => {
     const params = {
@@ -115,11 +127,13 @@ const getAllTutorBonusData = (): Promise<any> =>{
 
 const AdminService = {
     checkManagerStatus,
+    checkFacultyStatus,
     confirmTutorFile,
     confirmTutorCategory,
     denyTutorFile,
     suspendTutor,
     getTutorsByCafedra,
+    getTutorsByFaculty,
     getTutorBonusData,
     getTutorBonusDataPublications,
     getTutorBonusDataLiterature,

@@ -48,6 +48,7 @@ const HomePage: FC = () => {
   //const [kpiInfo, setKpiInfo] = useState<Array<IKPI>>([]);
   let [searchtype, setSearchType] = useState<string>('name');
   const [booksParsed, setParsedBooks] = useState<Array<IBookCart>>([]);
+  const [isfacultymanager, setFacultyManager] = useState<boolean>(false);
 
   useEffect(() => {
     //setKpiInfo([]);
@@ -141,7 +142,11 @@ const HomePage: FC = () => {
     CafedraService.checkManagerStatus().then((response) => {
       localStorage.setItem('cafedramanager', response.data);
     });
+    CafedraService.checkFacultyStatus().then((response) => {
+      setFacultyManager(response.data);
+    });
   }
+  
   const findBookName = () => {
     localStorage.setItem('searchType', 'name');
     let bookName = (document.getElementById("inputSearchBookByName") as HTMLInputElement).value;
@@ -388,6 +393,12 @@ const HomePage: FC = () => {
                         <Link to="/ktu"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Показатели</button></Link><br /><br />
                         <br /></div><br />
                       </tr>
+                      }
+                      {isfacultymanager ? <tr><div id='homepagePanel'>
+                        <h2>Факультет</h2>
+                        <Link to="/facultymanagement"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Заведующие кафедр</button></Link><br /><br />
+                        <br /></div><br />
+                      </tr>:''
                       }
                       <tr><div id='homepagePanel'>
                         <h2>Регистрация FaceID</h2>

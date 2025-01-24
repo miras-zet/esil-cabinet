@@ -193,7 +193,7 @@ const TutorBonusPage: FC = () => {
                 if (role == 'plt_tutor') { 
                     return <div>
                         <KPINavbar />
-                        <br /><br /><br /><br /><br /><br /><br /><Link to={"/cafedramanagement"}><button className="navbarbutton"><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link> <br /><br />
+                        <br /><br /><br /><br /><br /><br /><br /><Link to={parseInt(localStorage.getItem('cafedramanager')) > 0 ? "/cafedramanagement":"/"}><button className="navbarbutton"><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link> <br /><br />
                         <div className=''>
                             <h2>{localStorage.getItem('viewinguserfio')}</h2>
                             <h3>Баллов: {bonusPoints}</h3>
