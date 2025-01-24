@@ -78,19 +78,19 @@ export function Students(certificat: CertResponse) {
                         </div>
                     </div>
                     <div style={{ marginBottom: 30, textAlign: "left" }}>
-                        Документ подписан:
+                        Документ подписан
                     </div>
                     <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "0 10%" }}>
                         <div>
-                            <b>Главный специалист ЦРиОО</b>
+                            {/* <b>Главный специалист ЦРиОО</b> */}
                         </div>
-                        <div>
+                        {/* <div>
                             <b>Аблкасенова С.Г.</b>
-                        </div>
+                        </div> */}
                     </div>
-                    <div style={{ float: "left", fontSize: 14, marginTop: 30, textAlign: "left" }}>
+                    {/* <div style={{ float: "left", fontSize: 14, marginTop: 30, textAlign: "left" }}>
                         <p>+7 7172 725407 </p>
-                    </div>
+                    </div> */}
                 </div>
 
             </div>

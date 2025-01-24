@@ -76,21 +76,21 @@ export function StudentsEn(certificat:CertResponse)  {
 					</div>
 				</div>
 			    <div style={{marginBottom: 30, textAlign: "left"}}> 
-                    P.P.:
+                    P.P.
 				</div>
 				<div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "0 10%"}}>
 					<div> 
-						<b>Chief Specialist of the Registration <br />
+						{/* <b>Chief Specialist of the Registration <br />
 and Student Service Department
-</b>
+</b> */}
 					</div>
-					<div>
+					{/* <div>
 						<b>S. Ablkasenova</b>
-					</div>
+					</div> */}
 				</div>
-				<div style={{float:"left", fontSize:14, marginTop:30, textAlign:"left"}}>
+				{/* <div style={{float:"left", fontSize:14, marginTop:30, textAlign:"left"}}>
 					<p>8 (7172) 72-54-07 (internal 143)</p>
-				</div>
+				</div> */}
 			</div>           
 
     </div>

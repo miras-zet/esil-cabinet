@@ -95,10 +95,10 @@ export function Prilozhenie6(certificat:CertResponse)  {
 						<b>Таубаев А.А.</b>
 					</div>
 				</div>
-				<div style={{float:"left", fontSize:14, marginTop:30, textAlign:"left"}}>
+				{/* <div style={{float:"left", fontSize:14, marginTop:30, textAlign:"left"}}>
 					<p>Исп: Аблкасенова С.Г.</p>
 					<p>Тел:8-(7172)72-54-07</p>
-				</div>
+				</div> */}
 			</div>           
 
     </div>

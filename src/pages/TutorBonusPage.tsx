@@ -228,7 +228,7 @@ const TutorBonusPage: FC = () => {
                                                                     </label></div>}
                                                                 </td>
                                                             </tr> */}
-                                                            <tr>
+                                                            {/* <tr>
                                                                 <td id="table-divider-stats-left">Аудиторная нагрузка (выше 60%)</td>
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.auditorium_percentage_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -242,7 +242,7 @@ const TutorBonusPage: FC = () => {
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>
-                                                            </tr>
+                                                            </tr> */}
                                                             <tr>
                                                                 <td id="table-divider-stats-left">Готовность УМКД</td>
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.umkd_fileid == 0 ?

@@ -76,17 +76,17 @@ export function StudentsKz(certificat:CertResponse)  {
 					</div>
 				</div>
 				<div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "0 10%"}}>
-					<div style={{textAlign:'left', marginLeft:'-12.5%'}}> 
+					{/* <div style={{textAlign:'left', marginLeft:'-12.5%'}}> 
 						Білім алушыларға қызмет көрсету<br />
                         және тіркеу орталығының бас маманы
-					</div>
-					<div>
+					</div> */}
+					{/* <div>
 						<b>Аблкасенова С.Г.</b>
-					</div>
+					</div> */}
 				</div>
-				<div style={{float:"left", fontSize:14, marginTop:30, textAlign:"left"}}>
+				{/* <div style={{float:"left", fontSize:14, marginTop:30, textAlign:"left"}}>
 					<p>8 (7172) 72-54-07 (вн 143)</p>
-				</div>
+				</div> */}
 			</div>           
 
     </div>

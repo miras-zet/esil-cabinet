@@ -80,6 +80,12 @@ const getTutorListCSEI = () : Promise<any>=>{
   }
   return http.get(`/hr/tutorlistcsei`,{params});
 };
+const getTutorListEPHQ = () : Promise<any>=>{
+  const params = {
+    token: localStorage.getItem('token'),
+  }
+  return http.get(`/hr/tutorlistephq`,{params});
+};
 const createPenalty = (userid,penalty_type) : Promise<any>=>{
   const params = {
     userid:userid,
@@ -106,6 +112,18 @@ const denyGrants = (userid) : Promise<any>=>{
   }
   return http.get(`/hr/denygrants`,{params});
 }; 
+const approveAuditorium = (userid) : Promise<any>=>{
+  const params = {
+    userid:userid,
+  }
+  return http.get(`/hr/approveauditorium`,{params});
+};
+const denyAuditorium = (userid) : Promise<any>=>{
+  const params = {
+    userid:userid,
+  }
+  return http.get(`/hr/denyauditorium`,{params});
+}; 
 const getApplicantStats = () : Promise<any>=>{ 
   const params = {
     token: localStorage.getItem('token'),
@@ -131,8 +149,11 @@ const DocsService = {
   deletePenalty,
   approveGrants,
   denyGrants,
+  approveAuditorium,
+  denyAuditorium,
   getTutorListPenalty,
   getTutorListCSEI,
+  getTutorListEPHQ,
   getApplicationDataRu,
   getApplicationDataKz,
   getContractDataRu,

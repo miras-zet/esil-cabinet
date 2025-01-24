@@ -5,16 +5,16 @@ import { observer } from 'mobx-react-lite';
 import { Link, Navigate} from 'react-router-dom';
 import '../App.css';
 import KPINavbar from '../components/KPINavbar';
-import ITutorForHR from '../models/ITutorForHR';
-import { exportHtmlTableToExcel } from '../models/exportHtmlTableToExcel';
 import moment from 'moment';
 import DocsService from '../services/DocsService';
+import { IoMdCheckmark } from 'react-icons/io';
+import ITutorForEPHQ from '../models/ITutorForEPHQ';
 
-const TutorPenalty:FC = () => {  
+const TutorAuditorium:FC = () => {  
   const {store} = useContext(Context);  
   // const [user, setUser] = useState([]);  
   //const {modal, open} = useContext(ModalContext); 
-  const [tutorInfos, setTutorInfos] = useState<Array<ITutorForHR>>([]);
+  const [tutorInfos, setTutorInfos] = useState<Array<ITutorForEPHQ>>([]);
   moment.locale('ru');
   useEffect(() => {
     // const user = JSON.parse(localStorage.getItem('data'));
@@ -24,7 +24,7 @@ const TutorPenalty:FC = () => {
     if (localStorage.getItem('token')) {
       store.checkAuth()
     }
-    DocsService.getTutorListPenalty().then((response) => {
+    DocsService.getTutorListEPHQ().then((response) => {
       setTutorInfos(response.data);
     });
 
@@ -34,16 +34,13 @@ const TutorPenalty:FC = () => {
 //   setModal(modals)
 // },[])
   
-  const handleExport = () => {
-    exportHtmlTableToExcel('opaqueTable', `Нарушения ППС ${moment(Date.now()).format("LL")}`, [20, 260, 50, 80],[]);
-  };
-  const createPenalty = (userid,penalty_type) =>{
-    DocsService.createPenalty(userid,penalty_type).then(() => {
+  const approveAuditorium = (userid) =>{
+    DocsService.approveAuditorium(userid).then(() => {
         location.reload();
     });
   }
-  const deletePenalty = (userid,penalty_type) =>{
-    DocsService.deletePenalty(userid,penalty_type).then(() => {
+  const denyAuditorium = (userid) =>{
+    DocsService.denyAuditorium(userid).then(() => {
         location.reload();
     });
   }
@@ -69,8 +66,7 @@ const TutorPenalty:FC = () => {
         <tr key={element.userid} style={{ textAlign: 'center' }}>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;&nbsp;&nbsp;{index + 1}&nbsp;&nbsp;&nbsp;</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.fio}&nbsp;</td>
-            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.penalty_hr == 0 ? <><br/><button className='backbutton' onClick={()=>createPenalty(element.userid, 'penalty_hr')}>Записать нарушение</button></>:<><p>Имеется нарушение</p><button className="redbutton" onClick={()=>deletePenalty(element.userid, 'penalty_hr')}>Удалить</button></>}&nbsp;<br/><br/></td>
-            <td id="table-divider" hidden={localStorage.getItem('role')=='education_process_hq'} style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.penalty_ed == 0 ? <><br/><button className='backbutton' onClick={()=>createPenalty(element.userid, 'penalty_ed')}>Записать нарушение</button></>:<><p>Имеется нарушение</p><button className="redbutton" onClick={()=>deletePenalty(element.userid, 'penalty_ed')}>Удалить</button></>}&nbsp;<br/><br/></td>
+            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.auditorium_percentage == 0 ? <><br/><button className='backbutton' onClick={()=>approveAuditorium(element.userid)}>Подтвердить</button></>:<><p>Подтверждено <IoMdCheckmark /></p><button className="redbutton" onClick={()=>denyAuditorium(element.userid)}>Удалить</button></>}&nbsp;<br/><br/></td>
         </tr>
     );
   
@@ -78,23 +74,23 @@ const TutorPenalty:FC = () => {
     <div>
       {(() => {
         const role = localStorage.getItem('role');
-          if(role == 'education_process_hq' || role == 'hradmin') {
+          if(role == 'education_process_hq') {
           return <div>
               <KPINavbar/>  
               <br/><br/><br/><br/><br/><br/><br/><br/>
               <div className=''> 
-                <h2>Нарушения ППС за {localStorage.getItem('month_query')==='previous'?'предыдущий':'текущий'} месяц</h2>
+              <Link to={"/tutorpenalty"}><button className='backbutton'>Назад</button></Link> <br />
+                <h2>Аудиторная нагрузка ППС (выше 60%) за {localStorage.getItem('month_query')==='previous'?'предыдущий':'текущий'} месяц</h2>
                 <h4>({tutorList.length} преподавателей)</h4> 
-                {localStorage.getItem('role')=='education_process_hq'?<><Link to={"/tutorauditorium"}><button className='backbutton'>Аудиторная нагрузка</button></Link> <br /><br /></>:''}
-                <button className='navbarbutton' onClick={handleExport}>Экспорт</button><br/>
+                <br />
+                <br/>
                         {/* <Link to={"/dormrequests"}><button className='graybutton'>Заявки на общежитие</button></Link> <br /><br /> */}
                         <br />
                         <table id='opaqueTable' style={{ marginLeft: '-1.3%', paddingLeft: '15px', width: '107%' }}>
                             <tr>
                                 <th style={{ textAlign: 'center' }}><br />№&nbsp;&nbsp;<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />ФИО<br />&nbsp;</th>
-                                <th style={{ textAlign: 'center' }}><br />Несоблюдение кодекса чести<br />&nbsp;</th>
-                                <th hidden={localStorage.getItem('role')=='education_process_hq'} style={{ textAlign: 'center' }}><br />Нарушение труд. дисциплины<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center' }}><br />Статус<br />&nbsp;</th>
                                 <th>&nbsp;</th>
                             </tr>
                             {tutorList}
@@ -116,4 +112,4 @@ const TutorPenalty:FC = () => {
   );
 }
 
-export default observer(TutorPenalty)
+export default observer(TutorAuditorium)
