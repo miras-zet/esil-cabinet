@@ -24,7 +24,7 @@ const MoodleInfo: FC = () => {
   const datalist = info.map((element) => {
     return <tr key={element.subject}>
       <td id="table-divider-stats" style={{textAlign:'left'}}>{element.subject}</td>
-      <td id="table-divider-stats" style={{textAlign:'left'}}>{element.filecount<18?`Не хватает ${18-element.filecount} файлов`:<><TiTick/>&nbsp;Выполнено (${element.filecount} файлов)</>}</td>
+      <td id="table-divider-stats" style={{textAlign:'left'}}>{element.filecount<18?`Не хватает ${18-element.filecount} файлов`:<><TiTick/>&nbsp;Выполнено ({element.filecount} файлов)</>}</td>
       <td id="table-divider-stats" style={{textAlign:'left'}}>{element.question_count == 0?`Тест не загружен`:<><TiTick/>&nbsp;Тест загружен</>}</td>
       <td id="table-divider-stats">{element.percentage}%</td>
       <td id="table-divider-stats"><a href={'https://'+element.link} target="_blank">Открыть</a></td>
