@@ -354,7 +354,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.science_event_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='backbutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('science_event')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <RxCross2/>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -399,7 +399,7 @@ const TutorBonusPage: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.nirs_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='backbutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('nirs')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <RxCross2/>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>

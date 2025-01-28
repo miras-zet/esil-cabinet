@@ -34,14 +34,14 @@ const TutorCSEI:FC = () => {
 //   setModal(modals)
 // },[])
   
-  const approveGrants = (userid) =>{
-    DocsService.approveGrants(userid).then(() => {
-        location.reload();
+  const approveCSEI = (userid,category) =>{
+    DocsService.approveCSEI(userid,category).then((response) => {
+      setTutorInfos(response.data);
     });
   }
-  const denyGrants = (userid) =>{
-    DocsService.denyGrants(userid).then(() => {
-        location.reload();
+  const denyCSEI = (userid,category) =>{
+    DocsService.denyCSEI(userid,category).then((response) => {
+      setTutorInfos(response.data);
     });
   }
   if (store.isLoading){
@@ -66,7 +66,9 @@ const TutorCSEI:FC = () => {
         <tr key={element.userid} style={{ textAlign: 'center' }}>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;&nbsp;&nbsp;{index + 1}&nbsp;&nbsp;&nbsp;</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.fio}&nbsp;</td>
-            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.grants == 0 ? <><br/><button className='backbutton' onClick={()=>approveGrants(element.userid)}>Подтвердить</button></>:<><p>Подтверждено <IoMdCheckmark /></p><button className="redbutton" onClick={()=>denyGrants(element.userid)}>Удалить</button></>}&nbsp;<br/><br/></td>
+            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.grants == 0 ? <><br/><button className='backbutton' onClick={()=>approveCSEI(element.userid,'grants')}>Подтвердить</button></>:<><p>Подтверждено <IoMdCheckmark /></p><button className="redbutton" onClick={()=>denyCSEI(element.userid,'grants')}>Удалить</button></>}&nbsp;<br/><br/></td>
+            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.nirs == 0 ? <><br/><button className='backbutton' onClick={()=>approveCSEI(element.userid,'nirs')}>Подтвердить</button></>:<><p>Подтверждено <IoMdCheckmark /></p><button className="redbutton" onClick={()=>denyCSEI(element.userid,'nirs')}>Удалить</button></>}&nbsp;<br/><br/></td>
+            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.science_event == 0 ? <><br/><button className='backbutton' onClick={()=>approveCSEI(element.userid,'science_event')}>Подтвердить</button></>:<><p>Подтверждено <IoMdCheckmark /></p><button className="redbutton" onClick={()=>denyCSEI(element.userid,'science_event')}>Удалить</button></>}&nbsp;<br/><br/></td>
         </tr>
     );
   
@@ -79,7 +81,7 @@ const TutorCSEI:FC = () => {
               <KPINavbar/>  
               <br/><br/><br/><br/><br/><br/><br/><br/>
               <div className=''> 
-                <h2>Подготовка заявок на гранты (ППС) за {localStorage.getItem('month_query')==='previous'?'предыдущий':'текущий'} месяц</h2>
+                <h2>Показатели ППС за {localStorage.getItem('month_query')==='previous'?'предыдущий':'текущий'} месяц</h2>
                 <h4>({tutorList.length} преподавателей)</h4> 
                 <br/>
                         {/* <Link to={"/dormrequests"}><button className='graybutton'>Заявки на общежитие</button></Link> <br /><br /> */}
@@ -88,7 +90,9 @@ const TutorCSEI:FC = () => {
                             <tr>
                                 <th style={{ textAlign: 'center' }}><br />№&nbsp;&nbsp;<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />ФИО<br />&nbsp;</th>
-                                <th style={{ textAlign: 'center' }}><br />Статус<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center' }}><br />Подготовка грантов<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center' }}><br />Руководство НИРС<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center' }}><br />Участие в научных меропр.<br />&nbsp;</th>
                                 <th>&nbsp;</th>
                             </tr>
                             {tutorList}

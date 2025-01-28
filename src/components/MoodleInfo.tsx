@@ -52,7 +52,11 @@ const MoodleInfo: FC = () => {
       </tbody>
     </table>
 
-    </div>);
+    </div>)
+    
+    else{
+      return 'Долгов нет';
+    };
 };
 
 export default observer(MoodleInfo);

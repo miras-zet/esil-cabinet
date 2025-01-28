@@ -100,17 +100,19 @@ const deletePenalty = (userid,penalty_type) : Promise<any>=>{
   }
   return http.get(`/hr/deletepenalty`,{params});
 }; 
-const approveGrants = (userid) : Promise<any>=>{
+const approveCSEI = (userid,category) : Promise<any>=>{
   const params = {
     userid:userid,
+    category:category
   }
-  return http.get(`/hr/approvegrants`,{params});
+  return http.get(`/hr/approvecsei`,{params});
 };
-const denyGrants = (userid) : Promise<any>=>{
+const denyCSEI = (userid,category) : Promise<any>=>{
   const params = {
     userid:userid,
+    category:category
   }
-  return http.get(`/hr/denygrants`,{params});
+  return http.get(`/hr/denycsei`,{params});
 }; 
 const approveAuditorium = (userid) : Promise<any>=>{
   const params = {
@@ -147,8 +149,8 @@ const DocsService = {
   getEmployeeList,
   createPenalty,
   deletePenalty,
-  approveGrants,
-  denyGrants,
+  approveCSEI,
+  denyCSEI,
   approveAuditorium,
   denyAuditorium,
   getTutorListPenalty,
