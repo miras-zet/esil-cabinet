@@ -35,13 +35,13 @@ const TutorAuditorium:FC = () => {
 // },[])
   
   const approveAuditorium = (userid) =>{
-    DocsService.approveAuditorium(userid).then(() => {
-        location.reload();
+    DocsService.approveAuditorium(userid).then((response) => {
+      setTutorInfos(response.data);
     });
   }
   const denyAuditorium = (userid) =>{
-    DocsService.denyAuditorium(userid).then(() => {
-        location.reload();
+    DocsService.denyAuditorium(userid).then((response) => {
+      setTutorInfos(response.data);
     });
   }
   if (store.isLoading){

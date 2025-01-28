@@ -38,13 +38,13 @@ const TutorPenalty:FC = () => {
     exportHtmlTableToExcel('opaqueTable', `Нарушения ППС ${moment(Date.now()).format("LL")}`, [20, 260, 50, 80],[]);
   };
   const createPenalty = (userid,penalty_type) =>{
-    DocsService.createPenalty(userid,penalty_type).then(() => {
-        location.reload();
+    DocsService.createPenalty(userid,penalty_type).then((response) => {
+        setTutorInfos(response.data);
     });
   }
   const deletePenalty = (userid,penalty_type) =>{
-    DocsService.deletePenalty(userid,penalty_type).then(() => {
-        location.reload();
+    DocsService.deletePenalty(userid,penalty_type).then((response) => {
+        setTutorInfos(response.data);
     });
   }
   if (store.isLoading){
