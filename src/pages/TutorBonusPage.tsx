@@ -228,12 +228,12 @@ const TutorBonusPage: FC = () => {
                                                                     </label></div>}
                                                                 </td>
                                                             </tr> */}
-                                                            {/* <tr>
+                                                            <tr>
                                                                 <td id="table-divider-stats-left">Аудиторная нагрузка (выше 60%)</td>
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.auditorium_percentage_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <button className='backbutton' style={{ width: '25px', height: '25px' }} onClick={() => confirmCategory('auditorium_percentage')}><IoMdCheckmark style={{ width: '16px', height: '16px', position: 'absolute', marginLeft: '-8px', marginTop: '-8px' }} /></button>
+                                                                        <RxCross2/>
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -242,7 +242,7 @@ const TutorBonusPage: FC = () => {
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>
-                                                            </tr> */}
+                                                            </tr>
                                                             <tr>
                                                                 <td id="table-divider-stats-left">Готовность УМКД</td>
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.umkd_fileid == 0 ?
