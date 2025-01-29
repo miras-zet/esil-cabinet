@@ -86,6 +86,12 @@ const getTutorListEPHQ = () : Promise<any>=>{
   }
   return http.get(`/hr/tutorlistephq`,{params});
 };
+const getTutorListScienceSec = () : Promise<any>=>{
+  const params = {
+    token: localStorage.getItem('token'),
+  }
+  return http.get(`/hr/tutorlistsciencesec`,{params});
+};
 const createPenalty = (userid,penalty_type) : Promise<any>=>{
   const params = {
     userid:userid,
@@ -113,6 +119,20 @@ const denyCSEI = (userid,category) : Promise<any>=>{
     category:category
   }
   return http.get(`/hr/denycsei`,{params});
+}; 
+const approveScienceSec = (userid,category) : Promise<any>=>{
+  const params = {
+    userid:userid,
+    category:category
+  }
+  return http.get(`/hr/approvesciencesec`,{params});
+};
+const denyScienceSec = (userid,category) : Promise<any>=>{
+  const params = {
+    userid:userid,
+    category:category
+  }
+  return http.get(`/hr/denysciencesec`,{params});
 }; 
 const approveAuditorium = (userid) : Promise<any>=>{
   const params = {
@@ -151,11 +171,14 @@ const DocsService = {
   deletePenalty,
   approveCSEI,
   denyCSEI,
+  approveScienceSec,
+  denyScienceSec,
   approveAuditorium,
   denyAuditorium,
   getTutorListPenalty,
   getTutorListCSEI,
   getTutorListEPHQ,
+  getTutorListScienceSec,
   getApplicationDataRu,
   getApplicationDataKz,
   getContractDataRu,

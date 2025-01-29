@@ -64,6 +64,7 @@ import TutorCSEI from './pages/TutorCSEI'
 import FacultyManagement from './pages/FacultyManagement'
 import TutorAuditorium from './pages/TutorAuditorium'
 import TutorMoodleInfoContainer from './pages/TutorMoodleInfoContainer'
+import TutorScienceSecretary from './pages/TutorScienceSecretary'
 
 const App:FC = () => {  
 //   const {store} = useContext(Context);    
@@ -104,6 +105,7 @@ const App:FC = () => {
 
         <Route path="/accounting" element={ <TutorDataExport/>} />
         <Route path="/cseipage" element={ <TutorCSEI/>} />
+        <Route path="/science_secretary_page" element={ <TutorScienceSecretary/>} />
         <Route path="/tutorauditorium" element={<TutorAuditorium/>} />
         <Route path="/tutorpenalty" element={ <TutorPenalty/>} />
         <Route path="/moodleinfo" element={<TutorMoodleInfoContainer/>} />
