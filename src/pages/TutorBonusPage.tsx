@@ -176,6 +176,11 @@ const TutorBonusPage: FC = () => {
             location.reload();
         });
     }
+    const denyCategory = (category) => {
+        CafedraService.removeTutorCategory(category).then(() => {
+            location.reload();
+        });
+    }
     const confirmFile = (category) => {
         CafedraService.confirmTutorFile(category).then(() => {
             location.reload();
@@ -254,6 +259,8 @@ const TutorBonusPage: FC = () => {
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
                                                                         Подтверждено <IoMdCheckmark />
+                                                                        <br/>
+                                                                        <button className='backbutton' onClick={() => denyCategory('umkd')}>Удалить</button>
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>
@@ -269,6 +276,8 @@ const TutorBonusPage: FC = () => {
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
                                                                         Подтверждено <IoMdCheckmark />
+                                                                        <br/>
+                                                                        <button className='backbutton' onClick={() => denyCategory('course_development')}>Удалить</button>
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>
@@ -284,6 +293,8 @@ const TutorBonusPage: FC = () => {
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
                                                                         Подтверждено <IoMdCheckmark />
+                                                                        <br/>
+                                                                        <button className='backbutton' onClick={() => denyCategory('certificates')}>Удалить</button>
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>
@@ -436,6 +447,8 @@ const TutorBonusPage: FC = () => {
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
                                                                         Подтверждено <IoMdCheckmark />
+                                                                        <br/>
+                                                                        <button className='backbutton' onClick={() => denyCategory('is_adviser')}>Удалить</button>
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>
@@ -451,6 +464,8 @@ const TutorBonusPage: FC = () => {
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
                                                                         Подтверждено <IoMdCheckmark />
+                                                                        <br/>
+                                                                        <button className='backbutton' onClick={() => denyCategory('disciplinary_event')}>Удалить</button>
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>
@@ -497,6 +512,8 @@ const TutorBonusPage: FC = () => {
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
                                                                         Подтверждено <IoMdCheckmark />
+                                                                        <br/>
+                                                                        <button className='backbutton' onClick={() => denyCategory('commission_participation')}>Удалить</button>
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>

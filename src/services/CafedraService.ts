@@ -39,6 +39,14 @@ const denyTutorFile = (category): Promise<any> => {
     }
     return http.get(`/upload/denytutorcategory`,{params});
 };
+const removeTutorCategory = (category): Promise<any> => {
+    const params = {
+        denied_by: localStorage.getItem('user_id'),
+        denied_for: localStorage.getItem('viewinguserid'),
+        category: category
+    }
+    return http.get(`/upload/removetutorcategory`,{params});
+};
 const suspendTutor = (userid): Promise<any> => {
     const params = {
         userid: userid
@@ -131,6 +139,7 @@ const AdminService = {
     confirmTutorFile,
     confirmTutorCategory,
     denyTutorFile,
+    removeTutorCategory,
     suspendTutor,
     getTutorsByCafedra,
     getTutorsByFaculty,
