@@ -131,6 +131,12 @@ const getAllTutorBonusData = (): Promise<any> =>{
     }
     return http.get(`/management/getalltutordata`,{params});
 }
+const getAllTutorBonusDataPrevMonth = (): Promise<any> =>{
+    const params = {
+        month_query: 'previous',
+    }
+    return http.get(`/management/getalltutordata`,{params});
+}
 
 
 const AdminService = {
@@ -154,6 +160,7 @@ const AdminService = {
     getTutorBonusDataSelf,
     getTutorBonusDataProforientationSelf,
     getAllTutorBonusData,
+    getAllTutorBonusDataPrevMonth,
 };
 
 export default AdminService;
