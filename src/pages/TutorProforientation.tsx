@@ -71,8 +71,11 @@ const TutorProforientation:FC = () => {
   const updateStudentCount = (userid) => {
 
     UploadService.updateProforientationAdmission(userid,(document.getElementById(userid+'input') as HTMLInputElement).value)
-        .then(() => {
-            location.reload()
+        .then((response) => {
+          setTutorInfos(response.data);
+          (document.getElementById(userid+'button') as HTMLButtonElement).style.backgroundColor='#088c64';
+          (document.getElementById(userid+'button') as HTMLButtonElement).innerText='Сохранено';
+          (document.getElementById(userid+'button') as HTMLButtonElement).style.color='white';
         })
         .catch((err) => {
             if (err.response && err.response.data && err.response.data.message) {
@@ -90,7 +93,8 @@ const TutorProforientation:FC = () => {
         if (!/[0-9]/.test(event.key)) {
           event.preventDefault();
         }
-      }} style={{width:'45px'}}className='btnNeutral' id={element.userid+'input'}></input>&nbsp;<button className='navbarbutton' onClick={()=>updateStudentCount(element.userid)}>Сохранить</button>&nbsp;<br/><br/></td>
+      }} style={{width:'45px'}}className='btnNeutral' id={element.userid+'input'}></input>&nbsp;<button className='backbutton' id={element.userid+'button'} onClick={()=>updateStudentCount(element.userid)}>Сохранить</button>&nbsp;
+      <br/><br/></td>
         </tr>
     );
   
