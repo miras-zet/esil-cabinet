@@ -29,6 +29,13 @@ const updateProforientation = (): Promise<any> => {
   }
   return http.get(`/upload/bonusfileproforientation`,{params});
 };
+const updateProforientationAdmission = (userid,student_count): Promise<any> => {
+  const params = {
+    for_userid: userid,
+    student_count: student_count,
+  }
+  return http.get(`/upload/bonusfileproforientation`,{params});
+};
 const uploadBonusFileSelf = (file: File,  filetype: string): Promise<any> => {
   let formData = new FormData();
   const by_userid = localStorage.getItem('user_id');
@@ -181,6 +188,7 @@ const UploadService = {
   uploadBonusFile,
   uploadBonusFileSelf,
   updateProforientation,
+  updateProforientationAdmission,
   getFiles,
   getTutors,
   getCategories,

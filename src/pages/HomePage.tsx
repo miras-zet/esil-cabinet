@@ -526,6 +526,9 @@ const HomePage: FC = () => {
         else if (role === 'csei') {
           return <Navigate to='/cseipage' />
         }
+        else if (role === 'admission_bonus') {
+          return <Navigate to='/tutorproforientation' />
+        }
         else if (role === 'science_secretary'){
           return <Navigate to='/science_secretary_page'/>
         }

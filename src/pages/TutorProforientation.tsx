@@ -7,15 +7,22 @@ import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import moment from 'moment';
 import DocsService from '../services/DocsService';
-import { IoMdCheckmark } from 'react-icons/io';
-import ITutorForEPHQ from '../models/ITutorForEPHQ';
+import ITutorForAdmission from '../models/ITutorForAdmission';
+import UploadService from '../services/UploadService';
+
 
 const TutorProforientation:FC = () => {  
   const {store} = useContext(Context);  
   // const [user, setUser] = useState([]);  
   //const {modal, open} = useContext(ModalContext); 
-  const [tutorInfos, setTutorInfos] = useState<Array<ITutorForEPHQ>>([]);
+  const [tutorInfos, setTutorInfos] = useState<Array<ITutorForAdmission>>([]);
   moment.locale('ru');
+
+  const setValues = () =>{
+    for (const row of tutorInfos){
+      (document.getElementById(row.userid+'input') as HTMLInputElement).value = row.proforientation+'';
+    }
+  }
   useEffect(() => {
     // const user = JSON.parse(localStorage.getItem('data'));
     // if (user) {
@@ -24,9 +31,14 @@ const TutorProforientation:FC = () => {
     if (localStorage.getItem('token')) {
       store.checkAuth()
     }
-    DocsService.getTutorListEPHQ().then((response) => {
-      setTutorInfos(response.data);
+    DocsService.getTutorListAdmission().then((response) => {
+      setTutorInfos(response.data);   
+      setTimeout(function () {
+        document.getElementById('toClick').click();
+        console.log('clicked');
+      }, 1000)
     });
+    
 
   }, [])
 
@@ -34,16 +46,16 @@ const TutorProforientation:FC = () => {
 //   setModal(modals)
 // },[])
   
-  const approveAuditorium = (userid) =>{
-    DocsService.approveAuditorium(userid).then(() => {
-        location.reload();
-    });
-  }
-  const denyAuditorium = (userid) =>{
-    DocsService.denyAuditorium(userid).then(() => {
-        location.reload();
-    });
-  }
+  // const approveAuditorium = (userid) =>{
+  //   DocsService.approveAuditorium(userid).then(() => {
+  //       location.reload();
+  //   });
+  // }
+  // const denyAuditorium = (userid) =>{
+  //   DocsService.denyAuditorium(userid).then(() => {
+  //       location.reload();
+  //   });
+  // }
   if (store.isLoading){
     return <div>Loading ...</div>
   }
@@ -56,17 +68,29 @@ const TutorProforientation:FC = () => {
         </div>
     );
   } 
-  // function redirect(id,fio)  {
-  //   localStorage.setItem('viewinguserid',id);
-  //   localStorage.setItem('viewinguserfio',fio);
-  //   window.location.href=window.location.protocol + '//' + window.location.host +'/tutorpage';
-  //   return;
-  // }
+  const updateStudentCount = (userid) => {
+
+    UploadService.updateProforientationAdmission(userid,(document.getElementById(userid+'input') as HTMLInputElement).value)
+        .then(() => {
+            location.reload()
+        })
+        .catch((err) => {
+            if (err.response && err.response.data && err.response.data.message) {
+                alert(err.response.data.message);
+            } else {
+                alert("Ошибка");
+            }
+        });
+  }
   const tutorList = tutorInfos.map((element, index) =>
         <tr key={element.userid} style={{ textAlign: 'center' }}>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;&nbsp;&nbsp;{index + 1}&nbsp;&nbsp;&nbsp;</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.fio}&nbsp;</td>
-            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;{element.auditorium_percentage == 0 ? <><br/><button className='backbutton' onClick={()=>approveAuditorium(element.userid)}>Подтвердить</button></>:<><p>Подтверждено <IoMdCheckmark /></p><button className="redbutton" onClick={()=>denyAuditorium(element.userid)}>Удалить</button></>}&nbsp;<br/><br/></td>
+            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>&nbsp;<br/><input type="number" onKeyPress={(event) => {
+        if (!/[0-9]/.test(event.key)) {
+          event.preventDefault();
+        }
+      }} style={{width:'45px'}}className='btnNeutral' id={element.userid+'input'}></input>&nbsp;<button className='navbarbutton' onClick={()=>updateStudentCount(element.userid)}>Сохранить</button>&nbsp;<br/><br/></td>
         </tr>
     );
   
@@ -74,12 +98,13 @@ const TutorProforientation:FC = () => {
     <div>
       {(() => {
         const role = localStorage.getItem('role');
-          if(role == 'admission_hq') {
+          if(role == 'admission_bonus') {
           return <div>
               <KPINavbar/>  
               <br/><br/><br/><br/><br/><br/><br/><br/>
               <div className=''> 
-                <h2>Аудиторная нагрузка ППС (выше 60%) за {localStorage.getItem('month_query')==='previous'?'предыдущий':'текущий'} месяц</h2>
+              <button id='toClick' style={{visibility:'hidden'}} onLoad={()=>alert('a')} onClick={() => setValues()}>загрузить</button>
+                <h2>Количество приведенных абитуриентов (по ППС) за {localStorage.getItem('month_query')==='previous'?'предыдущий':'текущий'} учебный год</h2>
                 <h4>({tutorList.length} преподавателей)</h4> 
                 <br />
                 <br/>
@@ -89,7 +114,7 @@ const TutorProforientation:FC = () => {
                             <tr>
                                 <th style={{ textAlign: 'center' }}><br />№&nbsp;&nbsp;<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />ФИО<br />&nbsp;</th>
-                                <th style={{ textAlign: 'center' }}><br />Статус<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center' }}><br />Количество<br />&nbsp;</th>
                                 <th>&nbsp;</th>
                             </tr>
                             {tutorList}

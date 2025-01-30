@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { Link, Navigate } from 'react-router-dom';
 import '../App.css';
 import KPINavbar from '../components/KPINavbar';
-import { TiArrowBack, TiTick } from 'react-icons/ti';
+import { TiArrowBack } from 'react-icons/ti';
 import CafedraService from '../services/CafedraService';
 import ITutorInfoForManager from '../models/ITutorInfoForManager';
 import axios from 'axios';
@@ -47,29 +47,29 @@ const TutorBonusPage: FC = () => {
                 setCurrentFile(undefined);
             });
     };
-    const handleStudentCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value = event.target.value;
-        localStorage.setItem("student_count", value);
-      };
+    // const handleStudentCountChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     const value = event.target.value;
+    //     localStorage.setItem("student_count", value);
+    //   };
 
-    const updateProforientation = () => {
-        if(localStorage.getItem('student_count')==='' || (document.getElementById("proforientation") as HTMLInputElement).value=='0') {alert('Напишите количество приведенных студентов')}
-        else{
-        UploadService.updateProforientation()
-            .then((response) => {
-                alert(response.data.message);
-                location.reload()
-            })
-            .catch((err) => {
-                if (err.response && err.response.data && err.response.data.message) {
-                    alert(err.response.data.message);
-                } else {
-                    alert("Ошибка загрузки");
-                }
-                setCurrentFile(undefined);
-            });
-        }
-    }
+    // const updateProforientation = () => {
+    //     if(localStorage.getItem('student_count')==='' || (document.getElementById("proforientation") as HTMLInputElement).value=='0') {alert('Напишите количество приведенных студентов')}
+    //     else{
+    //     UploadService.updateProforientation()
+    //         .then((response) => {
+    //             alert(response.data.message);
+    //             location.reload()
+    //         })
+    //         .catch((err) => {
+    //             if (err.response && err.response.data && err.response.data.message) {
+    //                 alert(err.response.data.message);
+    //             } else {
+    //                 alert("Ошибка загрузки");
+    //             }
+    //             setCurrentFile(undefined);
+    //         });
+    //     }
+    // }
     /*const selectFileProforientation = (event: React.ChangeEvent<HTMLInputElement>, filetype: string) => {
         if(localStorage.getItem('student_count')==='' || (document.getElementById("proforientation") as HTMLInputElement).value=='0') {alert('Напишите количество приведенных студентов')}
         else{const { files } = event.target;
@@ -504,15 +504,8 @@ const TutorBonusPage: FC = () => {
                                                             <tr>
                                                                 <td id="table-divider-stats-left">Профориентационная работа</td>
                                                                 <td id="table-divider-stats"><br />
-                                                                    <i style={{whiteSpace:'nowrap'}}>Приведено студентов:&nbsp;<input type='text' style={{width:'28px'}} id='proforientation' disabled={tutorInfo[0]?.proforientation_fileid != 0} className='btnNeutral' placeholder='Кол-во абитуриентов' onChange={handleStudentCountChange}></input></i>
-                                                                    <p>{tutorInfo[0]?.proforientation_fileid != 0 ?
-                                                                        <div style={{ whiteSpace: 'nowrap' }}>Загружено <TiTick style={{ color: 'green' }} /><br />
-                                                                            <button className='navbarbutton' onClick={() => handleFileDownload(tutorInfo[0]?.proforientation_fileid, tutorInfo[0]?.proforientation_filename)}><FaDownload /></button>
-                                                                        </div>
-                                                                        :
-                                                                        <div style={{ whiteSpace: 'nowrap' }}>
-                                                                            <button onClick={() => updateProforientation()} style={{ backgroundColor: 'silver', color: 'black' }}>Сохранить</button>
-                                                                        </div>}</p>
+                                                                    <i style={{whiteSpace:'nowrap'}}>Приведено студентов:&nbsp;<input type='text' style={{width:'28px'}} id='proforientation' disabled={true} className='btnNeutral' placeholder='Кол-во абитуриентов'></input></i>
+                                                                    <br/><br/>
                                                                 </td>
                                                             </tr>
                                                             <tr>

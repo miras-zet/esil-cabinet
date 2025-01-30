@@ -80,6 +80,12 @@ const getTutorListCSEI = () : Promise<any>=>{
   }
   return http.get(`/hr/tutorlistcsei`,{params});
 };
+const getTutorListAdmission = () : Promise<any>=>{
+  const params = {
+    token: localStorage.getItem('token'),
+  }
+  return http.get(`/hr/tutorlistadmission`,{params});
+};
 const getTutorListEPHQ = () : Promise<any>=>{
   const params = {
     token: localStorage.getItem('token'),
@@ -177,6 +183,7 @@ const DocsService = {
   denyAuditorium,
   getTutorListPenalty,
   getTutorListCSEI,
+  getTutorListAdmission,
   getTutorListEPHQ,
   getTutorListScienceSec,
   getApplicationDataRu,
