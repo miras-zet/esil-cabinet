@@ -8,6 +8,8 @@ import { Prilozhenie4 } from './template/Prilozhenie4';
 import { Students } from './template/Students';
 //import { Prilozhenie31 } from './tamplate/Prilozhenie31';
 import { Prilozhenie29 } from './template/Prilozhenie29';
+import { Prilozhenie2New } from './template/Prilozhenie2New';
+import { Prilozhenie2NewKaz } from './template/Prilozhenie2NewKaz';
 import { Prilozhenie29CertifEn } from './template/Prilozhenie29CertifEn';
 import { Prilozhenie29CertifKz } from './template/Prilozhenie29CertifKz';
 import { Prilozhenie29Certif } from './template/Prilozhenie29Certif';
@@ -70,6 +72,13 @@ const certificateLinkPage: FC = () => {
               return StudentsKz(certificate);
             else
               return Students(certificate);
+          case 6:
+            if (certificate.language === 'en')
+              return Prilozhenie2New(certificate);
+            else if (certificate.language === 'kz')
+              return Prilozhenie2NewKaz(certificate);
+            else
+              return Prilozhenie2New(certificate);
           default:
             return Students(certificate);
         }

@@ -17,7 +17,8 @@ const CreateCert: FC = () => {
         "Приложение 29 (без лицензии)" ,
         "Приложение 29 (с лицензией)" ,
         //"Приложение 31" ,
-        "По месту требования" 
+        "По месту требования",
+        "Приложение 2 (новое)"
       ];
     const options = typeCert.map((text, index) => {
 		return <option key={index+1} value={index+1}>{text}</option>;

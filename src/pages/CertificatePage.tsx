@@ -14,13 +14,15 @@ import { Prilozhenie29Kz } from './template/Prilozhenie29Kz';
 import { Prilozhenie29CertifEn } from './template/Prilozhenie29CertifEn';
 import { Prilozhenie29CertifKz } from './template/Prilozhenie29CertifKz';
 import { Prilozhenie29Certif } from './template/Prilozhenie29Certif';
+import { Prilozhenie2New } from './template/Prilozhenie2New';
+import { Prilozhenie2NewKaz } from './template/Prilozhenie2NewKaz';
 
 
 
 
 
 
-const certificatePage:FC = () => {  
+const certificatePage: FC = () => {
   //const certid = localStorage.getItem('certificat');   
 
   //const data = fetch(`${API_URL}/cert/${certid}`).then((response) => response.json()).then((data:CertResponse)=>setCertificate(data));
@@ -30,44 +32,44 @@ const certificatePage:FC = () => {
   //const [certificat, setcertificat] = useState([]);
 
   function back() {
-    window.location.href="/";
+    window.location.href = "/";
   }
   useEffect(() => {
-    const certid = localStorage.getItem('certificat'); 
+    const certid = localStorage.getItem('certificat');
     // console.log(certid);
     //fetch(`${API_URL}/cert/${certid}`).then((response) => response.json()).then((data:CertResponse)=>setCertificate(data));
-    
+
     const fetch_data = async () => {
       //console.log(`${API_URL}/cert/${certid}`);
       const resp = await fetch(`${API_URL}/cert/${certid}`);
       setCertificate(await resp.json());
     };
-    
-    fetch_data();
-  },[]);
 
-  if(!certificate.cert_type){
+    fetch_data();
+  }, []);
+
+  if (!certificate.cert_type) {
     return <div>Loading ...</div>
   }
 
   return (
     <div>
-      <button className='navbarbutton' onClick={back}>Назад</button><br/>
-        {(() => {
-        switch(certificate.cert_type) {
+      <button className='navbarbutton' onClick={back}>Назад</button><br />
+      {(() => {
+        switch (certificate.cert_type) {
           case 1:
-            return  Prilozhenie2(certificate);
+            return Prilozhenie2(certificate);
           case 2:
-            return  Prilozhenie4(certificate);
+            return Prilozhenie4(certificate);
           // case 3:
           //   return  Prilozhenie6(certificate);
           case 3:
             if (certificate.language === 'en')
-                  return  Prilozhenie29(certificate);
-                else if (certificate.language === 'kz')
-                  return Prilozhenie29Kz(certificate);
-                else
-                  return Prilozhenie29(certificate);
+              return Prilozhenie29(certificate);
+            else if (certificate.language === 'kz')
+              return Prilozhenie29Kz(certificate);
+            else
+              return Prilozhenie29(certificate);
           // case 5:
           //   return  Prilozhenie31(certificate);
           case 4:
@@ -84,10 +86,17 @@ const certificatePage:FC = () => {
               return StudentsKz(certificate);
             else
               return Students(certificate);
+          case 6:
+            if (certificate.language === 'en')
+              return Prilozhenie2New(certificate);
+            else if (certificate.language === 'kz')
+              return Prilozhenie2NewKaz(certificate);
+            else
+              return Prilozhenie2New(certificate);
           default:
             return Students(certificate);
         }
-      } )()}
+      })()}
     </div>
   );
 }

@@ -67,6 +67,7 @@ import TutorMoodleInfoContainer from './pages/TutorMoodleInfoContainer'
 import TutorScienceSecretary from './pages/TutorScienceSecretary'
 import TutorProforientation from './pages/TutorProforientation'
 import TutorDataExportPrevMonth from './pages/TutorDataExportPrevMonth'
+import AttendanceRecordEmployee from './pages/AttendanceRecordEmployee'
 
 const App:FC = () => {  
 //   const {store} = useContext(Context);    
@@ -104,7 +105,8 @@ const App:FC = () => {
         <Route path="/scan/:id" element={ <ScanPage /> } />
         <Route path="/studentinfo" element={ <StudentInfo /> } />
         <Route path="/attendance" element={ <AttendanceRecordStudent/>} />
-
+        <Route path="/attendanceEmployee" element={ <AttendanceRecordEmployee/>} />
+        
         <Route path="/accounting" element={ <TutorDataExport/>} />
         <Route path="/accountingPrev" element={ <TutorDataExportPrevMonth/>} />
         <Route path="/cseipage" element={ <TutorCSEI/>} />

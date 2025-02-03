@@ -24,6 +24,7 @@ import config from "../http/version.json";
 import CafedraService from '../services/CafedraService';
 import { FaTableList } from "react-icons/fa6";
 import StudentAttendance from '../components/StudentAttendance';
+import EmployeeAttendance from '../components/EmployeeAttendance';
 
 export const buildVer = config.buildVer;
 
@@ -405,6 +406,11 @@ const HomePage: FC = () => {
                         <PhotoChecker /><br /><br />
                       </div><br /></tr>
                       <tr></tr>
+                      <tr><div id='homepagePanel'>
+                        <h2>Учёт трудового времени</h2>
+                        <EmployeeAttendance />
+                        <Link to="/attendanceEmployee"><button className='backbutton' style={{marginLeft:'18px'}}>Посмотреть всё</button></Link><br/><br/>
+                        </div><br /></tr>
                     </table>
                   </td>
                   <td style={{ width: '15px' }}></td>

@@ -30,6 +30,18 @@ const getMoodleHelp = (): Promise<any> => {
     }
     return http.get(`/info/getmoodleinfotutor`, { params });
 };
+const getEmployeeAttendanceInfoShort = (): Promise<any> => {
+    const params = {
+        user_id: localStorage.getItem('user_id')
+    }
+    return http.get(`/info/getemployeeattendanceinfoshort`, { params });
+};
+const getEmployeeAttendanceInfo = (): Promise<any> => {
+    const params = {
+        user_id: localStorage.getItem('user_id')
+    }
+    return http.get(`/info/getemployeeattendanceinfo`, { params });
+};
 const getAttendanceInfoShort = (): Promise<any> => {
     const params = {
         user_id: localStorage.getItem('user_id')
@@ -49,7 +61,9 @@ const InfoService = {
     getBonusPoints,
     getBonusPointsSelf,
     getAttendanceInfoShort,
+    getEmployeeAttendanceInfoShort,
     getAttendanceInfo,
+    getEmployeeAttendanceInfo
 };
 
 export default InfoService;
