@@ -458,6 +458,11 @@ const HomePage: FC = () => {
                         <PhotoChecker /><br /><br />
                       </div><br /></tr>
                       <tr></tr>
+                      <tr><div id='homepagePanel'>
+                        <h2>Учёт трудового времени</h2>
+                        <EmployeeAttendance />
+                        <Link to="/attendanceEmployee"><button className='backbutton' style={{marginLeft:'18px'}}>Посмотреть всё</button></Link><br/><br/>
+                        </div><br /></tr>
                     </table>
                   </td>
                   <td style={{ width: '15px' }}></td>

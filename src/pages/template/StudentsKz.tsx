@@ -75,6 +75,9 @@ export function StudentsKz(certificat:CertResponse)  {
                         </p>
 					</div>
 				</div>
+                <div style={{ marginBottom: 30, textAlign: "left" }}>
+                        Құжатқа қол қойылды
+                    </div>
 				<div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "0 10%"}}>
 					{/* <div style={{textAlign:'left', marginLeft:'-12.5%'}}> 
 						Білім алушыларға қызмет көрсету<br />
