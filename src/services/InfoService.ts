@@ -6,6 +6,12 @@ const getStudentInfo = (): Promise<any> => {
     }
     return http.get(`/info/getstudentinfo`, { params });
 };
+const getExtraDataForCertificate = (): Promise<any> => {
+    const params = {
+        user_id: localStorage.getItem('user_id'),
+    }
+    return http.get(`/info/getextradatacert`, { params });
+};
 const getRoleInfo = (): Promise<any> => {
     const params = {
         user_id: localStorage.getItem('user_id'),
@@ -55,6 +61,7 @@ const getAttendanceInfo = (): Promise<any> => {
     return http.get(`/info/getattendanceinfo`, { params });
 };
 const InfoService = {
+    getExtraDataForCertificate,
     getStudentInfo,
     getMoodleHelp,
     getRoleInfo,

@@ -20,7 +20,8 @@ export function Prilozhenie2NewKaz(certificat:CertResponse)  {
         const report = document.getElementById('report');
         html2pdf().from(report).save()
       };
-
+      const user = JSON.parse(localStorage.getItem('data'));
+      const iin = user.username;
   return (
     <>
    <div><button className='navbarbutton' onClick={generatePdf}> save PDF</button></div>
@@ -37,18 +38,26 @@ export function Prilozhenie2NewKaz(certificat:CertResponse)  {
          <div className="qr">   
             <QRCode value={qrcodeValue} />
         </div>
-        <div className="shapka" >
+        <div className="shapka-small" >
 				<p>
-                Приложение 2<br/>
-                к Правилам исчисления<br/>
-                (определения) размеров, назначения,<br/>
-                выплаты, приостановления,<br/>
-                перерасчета, возобновления,<br/>
-                прекращения и пересмотра решения<br/>
-                о назначении (отказе<br/>
-                в назначении) государственного<br/>
-                социального пособия по случаю потери кормильца<br/>
-
+        Қазақстан Республикасы<br/>
+Еңбек және халықты<br/>
+әлеуметтік қорғау министрі<br/>
+2024 жылғы 30 желтоқсандағы<br/>
+№ 509 бұйрығына<br/>
+3-қосымша<br/><br/>
+ 	Асыраушысынан айырылу<br/>
+жағдайы бойынша мемлекеттік<br/>
+әлеуметтік жәрдемақы мөлшерін<br/>
+есептеу (айқындау), оны<br/>
+тағайындау, төлеу, тоқтата тұру,<br/>
+қайта есептеу, қайта бастау,<br/>
+тоқтату және тағайындау<br/>
+(тағайындаудан бас тарту)<br/>
+туралы шешімді қайта қарау<br/>
+қағидаларына<br/>
+2-қосымша<br/>
+Нысан
                 </p>
 			</div>
 			
@@ -64,27 +73,24 @@ export function Prilozhenie2NewKaz(certificat:CertResponse)  {
                         marginBottom: 70
                     }}>
 					<div className="bodytext">
-						<h3>СПРАВКА</h3>
-						<p>Дан(а) гражданину(ке) <b>{certificat?.lastname} {certificat?.name} {certificat?.middlename}  
-                        , {moment(certificat?.birth_date).format("DD.MM.YYYY")} г.р. </b> в том, что он(а) действительно является  обучающим(ей)ся в <u><b> Учреждения "Esil University"</b> <b>лицензия № KZ08LAA00032358  от 01.04. 2022 г., без ограничения</b></u><br/> 
-                        <b>{certificat?.course_number}</b> курса специальность/ОП <b>{certificat?.specialization_code} - "{certificat?.specialization_name_ru}" </b>,
-						<br/>Форма обучения: {!certificat?.study_form_name_ru.includes('ДОТ')? 'очная':'очная с переводом на ДОТ'} <br/> 
-						Справка действительна на 2024/2025 учебный год.<br/>
-						Справка выдана для предъявления в 
-						<br/>отделение Государственной корпорации.<br/>
-						Срок обучения в учебном заведении {certificat?.course_count} года.<br/>
-						Период обучения с {moment(certificat?.start_date).format("DD.MM.YYYY")} года по 30.06.{2025+certificat!.course_count-certificat!.course_number} года. <br/>
-						Примечание: справка действительна 1 год. В случаях отчисления обучающегося из учебного заведения или перевода на заочную форму обучения, руководитель учебного заведения извещает отделение Государственной корпорации по месту жительства получателя пособия.
-						
+						<h3>АНЫҚТАМА</h3>
+						<p>Азамат <b>{certificat?.lastname} {certificat?.name} {certificat?.middlename}, {moment(certificat?.birth_date).format("DD.MM.YYYY")}ж.т., ЖСН {iin}</b> ол iс жүзiнде <u><b>Ахмет Жұбанов 7 көшесіндегі "Esil University" мекемесінің</b></u><br/> 
+                        <b>{certificat?.course_number}</b> курсының <b>{certificat?.specialization_code} - {certificat?.specialization_name_kz}</b> оқушысы болып табылады,
+            <br/>Топтың, литердің атауы, топ коды: <b>{localStorage.getItem('groupname')}</b>
+            <br/>Оқыту түрі: {!certificat?.study_form_name_ru.includes('ДОТ')? 'күндізгі':'күндізгі (қашықтан оқытуға ауыстыру)'} <br/> 
+            Анықтама 2024/2025 оқу жылына жарамды.<br/>
+						Анықтама талап ету орыны бойынша ұсыну үшiн берiлдi.<br/>
+            Білім беру ұйымындағы оқу мерзiмi {certificat?.course_count} жылғы оқу кезеңi {moment(certificat?.start_date).format("DD.MM.YYYY")} -нан (-нен) 30.06.{2025+certificat!.course_count-certificat!.course_number} дейiн.<br/>
+						Ескертпе: анықтама өтініш беру кезінде жарамды.
 						</p>
 					</div>
 				</div>
-			    <div style={{marginBottom: 30, textAlign: "left"}}> 
+			    {/* <div style={{marginBottom: 30, textAlign: "left"}}> 
 					Документ подписан:
-				</div>
+				</div> */}
 				<div style={{display: "flex", flexDirection: "row", justifyContent: "space-between", padding: "0 10%"}}>
 					<div> 
-						<b>Ректор</b>
+						<b>Білім беру ұйымының басшысы</b>
 					</div>
 					<div>
 						<b>Таубаев А.А.</b>

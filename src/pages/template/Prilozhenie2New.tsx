@@ -21,6 +21,8 @@ export function Prilozhenie2New(certificat:CertResponse)  {
         html2pdf().from(report).save()
       };
 
+      const user = JSON.parse(localStorage.getItem('data'));
+      const iin = user.username;
   return (
     <>
    <div><button className='navbarbutton' onClick={generatePdf}> save PDF</button></div>
@@ -37,8 +39,14 @@ export function Prilozhenie2New(certificat:CertResponse)  {
          <div className="qr">   
             <QRCode value={qrcodeValue} />
         </div>
-        <div className="shapka" >
-				<p>
+        <div className="shapka-small" >
+        <p>
+                Приложение 3 к приказу<br/>
+                Министр труда и социальной<br/>
+                защиты населения<br/>
+                Республики Казахстан<br/>
+                от 30 декабря 2024 года № 509<br/>
+                <br/>
                 Приложение 2<br/>
                 к Правилам исчисления<br/>
                 (определения) размеров, назначения,<br/>
@@ -66,9 +74,10 @@ export function Prilozhenie2New(certificat:CertResponse)  {
 					<div className="bodytext">
 						<h3>СПРАВКА</h3>
 						<p>Дана гражданину <b>{certificat?.lastname} {certificat?.name} {certificat?.middlename}  
-                        , {moment(certificat?.birth_date).format("DD.MM.YYYY")} г.р. </b> в том, что он(а) действительно является  обучающим(ей)ся в <u><b> Учреждения "Esil University"</b> <b>лицензия № KZ08LAA00032358  от 01.04. 2022 г., без ограничения</b></u><br/> 
-                        <b>{certificat?.course_number}</b> курса специальность/ОП <b>{certificat?.specialization_code} - "{certificat?.specialization_name_ru}" </b>,
-						<br/>Форма обучения: {!certificat?.study_form_name_ru.includes('ДОТ')? 'очная':'очная с переводом на ДОТ'} <br/> 
+                        , {moment(certificat?.birth_date).format("DD.MM.YYYY")} г.р. ИИН {iin} </b> в том, что он(а) действительно является  обучающим(ей)ся в <u><b> Учреждении "Esil University", ул. Ахмета Жубанова 7</b></u><br/> 
+                        <b>{certificat?.course_number}</b> курса, ОП/специальность <b>{certificat?.specialization_code} - "{certificat?.specialization_name_ru}"</b><br/>
+						Наименование группы, литера, код группы: <b>{localStorage.getItem('groupname')}</b><br/>
+                        Форма обучения: {!certificat?.study_form_name_ru.includes('ДОТ')? 'очная':'очная с переводом на ДОТ'} <br/> 
 						Справка действительна на 2024/2025 учебный год.<br/>
 						Справка выдана для предъявления по месту требования.<br/>
 						Срок обучения в организации образования {certificat?.course_count} лет, период обучения<br/>
@@ -86,7 +95,7 @@ export function Prilozhenie2New(certificat:CertResponse)  {
 						<b>Руководитель организации образования</b>
 					</div>
 					<div>
-						<b></b>
+						<b>Таубаев А.А.</b>
 					</div>
 				</div>
 				{/* <div style={{float:"left", fontSize:14, marginTop:30, textAlign:"left"}}>

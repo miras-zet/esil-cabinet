@@ -99,6 +99,7 @@ const EBooks: FC = () => {
     return <tr key={element.id}>
       <td id="table-divider-stats"><button className='backbutton' onClick={() => openPDF(element.EBookPath, element.id)}>Открыть</button>&nbsp;
       {localStorage.getItem('role')=='librarian'?<button className="backbutton" onClick={() => editBook(element.id)}><FaPen /></button>:''}
+      {localStorage.getItem('role')=='librarian'?<a href={'https://cloud.esil.edu.kz/api/view?filename='+element.EBookPath.split('/')[element.EBookPath.split('/').length-1]} target='_blank'>Скачать</a>:''}
       </td>
       <td id="table-divider-stats">{element.NameRuBook}</td>
       <td id="table-divider-stats">{element.Author}</td>

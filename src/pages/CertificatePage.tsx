@@ -16,7 +16,7 @@ import { Prilozhenie29CertifKz } from './template/Prilozhenie29CertifKz';
 import { Prilozhenie29Certif } from './template/Prilozhenie29Certif';
 import { Prilozhenie2New } from './template/Prilozhenie2New';
 import { Prilozhenie2NewKaz } from './template/Prilozhenie2NewKaz';
-
+import InfoService from '../services/InfoService';
 
 
 
@@ -38,7 +38,14 @@ const certificatePage: FC = () => {
     const certid = localStorage.getItem('certificat');
     // console.log(certid);
     //fetch(`${API_URL}/cert/${certid}`).then((response) => response.json()).then((data:CertResponse)=>setCertificate(data));
-
+    
+    InfoService.getExtraDataForCertificate().then((response) => {
+      //setExtradata(response.data);
+      localStorage.setItem('groupname',response.data);
+      //localStorage.setItem('groupname',extradata);
+  }).catch((err) => {
+      console.log(err);
+  });
     const fetch_data = async () => {
       //console.log(`${API_URL}/cert/${certid}`);
       const resp = await fetch(`${API_URL}/cert/${certid}`);
