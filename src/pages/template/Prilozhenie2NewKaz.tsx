@@ -5,6 +5,7 @@ import '../Certificate.css'
 import html2pdf from 'html2pdf.js/dist/html2pdf.min';
 
 export function Prilozhenie2NewKaz(certificat:CertResponse)  {
+  
     // const [certid] = useState<number>(id);
     // const [certificat, setCertificat] = useState<CertResponse>();
     
@@ -22,6 +23,7 @@ export function Prilozhenie2NewKaz(certificat:CertResponse)  {
       };
       const user = JSON.parse(localStorage.getItem('data'));
       const iin = user.username;
+      alert(JSON.stringify(certificat));
   return (
     <>
    <div><button className='navbarbutton' onClick={generatePdf}> save PDF</button></div>

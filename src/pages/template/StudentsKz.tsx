@@ -66,7 +66,7 @@ export function StudentsKz(certificat:CertResponse)  {
 						<p>Азамат (ша) <b><u>{certificat?.lastname} {certificat?.name} {certificat?.middlename}</u></b>, {moment(certificat?.birth_date).format("DD.MM.YYYY")} ж.т., "Esil University" мекемесінің <b><u>{certificat?.specialization_code} - {certificat?.specialization_name_kz} {certificat?.course_number}</u></b> курс студенті болып табылады,
                         (мемлекеттік лицензия № KZ08LAA00032358, берілген күні 01.04.2022 жыл, мерзім шектеусіз).<br/> 
                         <br/>
-                        Оқыту нысаны: <b><u>{!certificat?.study_form_name_kz.includes('')?'күндізгі':'күндізгі (қашықтан оқытуға ауыстыру)'}</u></b><br/>                         
+                        Оқыту нысаны: <b><u>{!certificat?.study_form_name_ru.includes('ДОТ')?'күндізгі':'күндізгі (қашықтан оқытуға ауыстыру)'}</u></b><br/>                         
                         {certificat.grant_type === -4 && <><b><u>Мемлекеттік грант</u></b> / Ақылы негізде / Әкімшілік гранты<br/></>}
                         {certificat.grant_type === -7 && <>Мемлекеттік грант / <b><u>Ақылы негізде</u></b> / Әкімшілік гранты<br/></>}
 						Анықтама 2024/2025 оқу жылына жарамды.<br/>						

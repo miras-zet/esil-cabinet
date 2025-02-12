@@ -36,7 +36,7 @@ const certificateLinkPage: FC = () => {
   }, [])
 
   if (reason) {
-    return <div>Сертификат не найдет</div>
+    return <div>Сертификат не найден</div>
   }
 
   return (
