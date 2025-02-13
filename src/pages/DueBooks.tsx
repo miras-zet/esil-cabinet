@@ -134,6 +134,7 @@ const DueBooks: FC = () => {
            <p>Выдано книг: {element.booksgiven}</p>
            <p>Возвращено книг: {element.booksreturned}</p>
            <p>Книги "на руках": {element.booksonhand}</p>
+           <p>Количество уникальных пользователей: {element.unique_users_this_year}</p>
         </div>
     );
 
