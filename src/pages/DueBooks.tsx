@@ -137,6 +137,12 @@ const DueBooks: FC = () => {
            <p>Количество уникальных пользователей: {element.unique_users_this_year}</p>
         </div>
     );
+    const libraryStatsMini2 = libraryStats.map((element) =>
+        <div key={element.booksonhand}>
+           <p>Всего книг: {element.total_books}</p>
+           <p>Всего электронных книг: {element.total_ebooks}</p>
+        </div>
+    );
 
     return (
         <div>
@@ -152,7 +158,15 @@ const DueBooks: FC = () => {
                     <br />
                     <h2>Список должников по книгам</h2>
                     <br />
-                    <div id="table-divider-stats-header" style={{ marginLeft: '0px', textAlign: 'left', paddingLeft: '4%', height: '100%', width: '40%' }}><br />{libraryStatsMini}<br /></div>
+                    <tbody>
+                        <table>
+                            <tr>
+                                <td><div id="table-divider-stats-header" style={{ marginLeft: '0px', paddingLeft:'20px', textAlign: 'left', height: '100%'}}><br />{libraryStatsMini}<br /></div></td>
+                                <td style={{width:'50px'}}></td>
+                                <td><div id="table-divider-stats-header" style={{ marginLeft: '0px', paddingLeft:'20px', textAlign: 'left', height: '100%'}}><br />{libraryStatsMini2}<br /></div></td>
+                            </tr>
+                        </table>
+                    </tbody> 
                     <br />
                     {dueData.length > 0 ? <table id='opaqueTable' style={{ fontSize: '12pt', paddingLeft: '15px', width: '105%' }}>
                         <tbody>
