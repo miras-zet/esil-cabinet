@@ -8,8 +8,6 @@ import KPINavbar from '../components/KPINavbar';
 import { TiArrowBack } from 'react-icons/ti';
 import DocsService from '../services/DocsService';
 import IStatementData from '../models/IStatementData';
-import UploadService from '../services/UploadService';
-import IDormRequest from '../models/IDormRequest';
 //import DocsService from '../services/DocsService';
 
 const AddDormStatement: FC = () => {
@@ -17,7 +15,6 @@ const AddDormStatement: FC = () => {
     const [message, setMessage] = useState<string>("");
     const [messagecolor, setMessageColor] = useState<string>("red");
     const [userData, setUserData] = useState<IStatementData>();
-    const [dormData, setDormData] = useState<Array<IDormRequest>>([]);
     const loadvalues = () => {
         (document.getElementById("inputFaculty") as HTMLInputElement).value = userData?.faculty;
         (document.getElementById("inputFIO") as HTMLInputElement).value = userData?.fio;
@@ -34,19 +31,11 @@ const AddDormStatement: FC = () => {
         DocsService.getDataForStatement(localStorage.getItem('user_id')).then((response) => {
             setUserData(response.data);
         });
-        UploadService.getDormRequestForUser().then((response) => {
-            setDormData(response.data);
-        });
         setTimeout(function () {
             document.getElementById('toClick').click();
             console.log('clicked');
           }, 400)
     }, [])
-    useEffect(() => {
-        if (dormData.length > 0) {
-            window.location.href = window.location.protocol + '//' + window.location.host + '/';
-        }
-    }, [dormData]);
     // useEffect(()=>{
     // setModal(modals)
     // },[])

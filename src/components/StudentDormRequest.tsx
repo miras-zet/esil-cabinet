@@ -36,6 +36,9 @@ const StudentDormRequest: FC = () => {
     localStorage.setItem('parentsdata',extradata);
     window.location.href = window.location.protocol + '//' + window.location.host + '/viewdormcard';
   }
+  const updateDocs = () =>{
+    window.location.href = window.location.protocol + '//' + window.location.host + '/dormdocs';
+  }
   const dormDataList = dormData.map((element) => {
     return <tr key={element.id}>
       <td id="table-divider-stats">{moment(element.datecreated).format("DD.MM.YYYY")}</td>
@@ -44,12 +47,11 @@ const StudentDormRequest: FC = () => {
       {element.statementdata != null ?
       <div>
         <button className='navbarbutton' onClick={() => openStatement(element.statementdata)}>Заявление</button>
-      </div>:''  
-      }<br/>
-      {element.carddata != null ?
-      <div>
+        <br/>
         <button className='navbarbutton' onClick={() => openCard(element.carddata, element.parentsdata)}>Карточка</button>
-      </div>:''  
+      </div>:<div>
+      <button className='navbarbutton' onClick={() => updateDocs()}>Заполнить документы</button>
+      </div>  
       }
       </td>
     </tr>

@@ -9,15 +9,12 @@ import { TiArrowBack } from 'react-icons/ti';
 import DocsService from '../services/DocsService';
 import ICardData from '../models/ICardData';
 import moment from 'moment';
-import UploadService from '../services/UploadService';
-import IDormRequest from '../models/IDormRequest';
 
 const AddDormCard: FC = () => {
     const { store } = useContext(Context);
     const [message, setMessage] = useState<string>("");
     const [messagecolor, setMessageColor] = useState<string>("red");
     const [userData, setUserData] = useState<ICardData>();
-    const [dormData, setDormData] = useState<Array<IDormRequest>>([]);
     const loadvalues = () => {
         (document.getElementById("inputFIO") as HTMLInputElement).value = userData?.fio;
         (document.getElementById("inputDOB") as HTMLInputElement).value = moment(userData?.birthdate).format('DD.MM.YYYY') + '';
@@ -39,9 +36,6 @@ const AddDormCard: FC = () => {
         }
         localStorage.removeItem('carddata');
         localStorage.removeItem('cardparentsdata');
-        UploadService.getDormRequestForUser().then((response) => {
-            setDormData(response.data);
-        });
         DocsService.getDataForCard(localStorage.getItem('user_id')).then((response) => {
             setUserData(response.data);
         });
@@ -50,11 +44,6 @@ const AddDormCard: FC = () => {
             console.log('clicked');
         }, 400)
     }, [])
-    useEffect(() => {
-        if (dormData.length > 0) {
-            window.location.href = window.location.protocol + '//' + window.location.host + '/';
-        }
-    }, [dormData]);
     // useEffect(()=>{
     // setModal(modals)
     // },[])

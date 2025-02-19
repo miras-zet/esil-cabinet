@@ -25,11 +25,6 @@ const AddDormCardParents: FC = () => {
             setDormData(response.data);
         });
     }, [])
-    useEffect(() => {
-        if (dormData.length > 0) {
-            window.location.href = window.location.protocol + '//' + window.location.host + '/';
-        }
-    }, [dormData]);
     // useEffect(()=>{
     // setModal(modals)
     // },[])
@@ -62,10 +57,16 @@ const AddDormCardParents: FC = () => {
             localStorage.removeItem('carddata');
             localStorage.removeItem('cardparentsdata');   
         });
-        UploadService.createDormRequestForUser().then(() => {
-            alert('Данные отправлены');
+        if (dormData.length > 0){
+            alert('Данные обновлены');
             window.location.href = window.location.protocol + '//' + window.location.host + '/';
-        });
+        }
+        else{
+            UploadService.createDormRequestForUser().then(() => {
+                alert('Данные отправлены');
+                window.location.href = window.location.protocol + '//' + window.location.host + '/';
+            });
+        }   
     }
     const goBack = () => {
         window.location.href = window.location.protocol + '//' + window.location.host + '/';
