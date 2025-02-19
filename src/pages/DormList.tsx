@@ -69,6 +69,21 @@ const DormList: FC = () => {
     const showBenefits = (fio, benefits) => {
         alert(`Льгота у ${fio}: \n${benefits}`);
     }
+
+    const redirectDocs = (type,data,extradata,iin) =>{
+        switch(type){
+            case 'statement': {
+                localStorage.setItem('statementdata',data);
+                window.location.href = window.location.protocol + '//' + window.location.host + '/viewdormstatement';
+            } break;
+            case 'card': {
+                localStorage.setItem('viewinguseriin',iin)
+                localStorage.setItem('carddata',data);
+                localStorage.setItem('parentsdata',extradata);
+                window.location.href = window.location.protocol + '//' + window.location.host + '/viewdormcard';
+            } break;
+        }
+    }
     const dormRequestsList = dormRequests.map((element, index) =>
         (element.approved != '1' || !approvedHidden) ? <tr key={element.id} style={{ textAlign: 'center' }}>
             <td style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>{index + 1}&nbsp;&nbsp;&nbsp;</td>
@@ -90,6 +105,16 @@ const DormList: FC = () => {
             }
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{moment(element.datecreated).format("DD.MM.YYYY")}</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                {element.statementdata !== null ? 
+                <>
+                    <button style={{ backgroundColor: '#088c64' }} onClick={() => redirectDocs('statement',element.statementdata,'',element.iin)}>Заявление</button><br/><br/>
+                    <button style={{ backgroundColor: '#088c64' }} onClick={() => redirectDocs('card',element.carddata,element.parentsdata,element.iin)}>Карточка</button>
+                </>
+                :
+                <>Документы не прикреплены</>
+                }
+            </td>
+            <td id="table-divider" style={{ verticalAlign: 'middle', textAlign: 'center' }}>
                 {
                     element.approved == '1' ?
                         <>
@@ -107,8 +132,8 @@ const DormList: FC = () => {
                                 <br /><button style={{ backgroundColor: 'crimson' }} onClick={() => displayMessageDenied(element.lastname + ' ' + element.firstname + ' ' + element.patronymic, element.datecreated, element.datemodified, element.notification_message)}>Причина</button>
                             </>
                 }
-
             </td>
+            
         </tr> : <></>
     );
     if (store.isLoading) {
@@ -181,6 +206,7 @@ const DormList: FC = () => {
                                 <th style={{ textAlign: 'center' }}><br />Оплата<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Льготы<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Дата заявки<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center' }}><br />Документы<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Статус заявки<br />&nbsp;</th>
                                 <th>&nbsp;</th>
                             </tr>

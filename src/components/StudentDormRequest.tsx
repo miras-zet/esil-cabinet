@@ -16,11 +16,7 @@ const StudentDormRequest: FC = () => {
   }, []);
 
   const dormRequest = () => {
-    if (confirm('Вы уверены, что хотите подать заявку?')) {
-      UploadService.createDormRequestForUser().then(() => {
-        location.reload();
-      });
-    }
+    window.location.href = window.location.protocol + '//' + window.location.host + '/dormdocs';
   }
 
   const deleteRequest = () => {
@@ -30,12 +26,32 @@ const StudentDormRequest: FC = () => {
       });
     }
   }
-
+  const openStatement = (data) => {
+    localStorage.setItem('statementdata',data);
+    window.location.href = window.location.protocol + '//' + window.location.host + '/viewdormstatement';
+  }
+  const openCard = (data,extradata) => {
+    localStorage.setItem('viewinguseriin',JSON.parse(localStorage.getItem('data')).username);
+    localStorage.setItem('carddata',data);
+    localStorage.setItem('parentsdata',extradata);
+    window.location.href = window.location.protocol + '//' + window.location.host + '/viewdormcard';
+  }
   const dormDataList = dormData.map((element) => {
     return <tr key={element.id}>
       <td id="table-divider-stats">{moment(element.datecreated).format("DD.MM.YYYY")}</td>
       <td id="table-divider-stats">{element.approved == '1' ? <>Одобрено</> : <>В обработке</>}</td>
-      <td id="table-divider-stats">{element.approved == '1' ? <></> : <><button className='navbarbutton' onClick={() => deleteRequest()}>Удалить заявку</button></>}</td>
+      <td id="table-divider-stats">{element.approved == '1' ? <></> : <><button className='redbutton' onClick={() => deleteRequest()}>Удалить заявку</button></>}<br/><br/>
+      {element.statementdata != null ?
+      <div>
+        <button className='navbarbutton' onClick={() => openStatement(element.statementdata)}>Заявление</button>
+      </div>:''  
+      }<br/>
+      {element.carddata != null ?
+      <div>
+        <button className='navbarbutton' onClick={() => openCard(element.carddata, element.parentsdata)}>Карточка</button>
+      </div>:''  
+      }
+      </td>
     </tr>
   });
 

@@ -3,4 +3,7 @@ export default interface IDormRequest {
     iin:string,
     datecreated:string,
     approved:string,
+    statementdata: string,
+    carddata: string,
+    parentsdata: string
   }  

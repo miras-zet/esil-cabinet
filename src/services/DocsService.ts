@@ -56,6 +56,45 @@ const getTitleDataKz = () : Promise<any> => {
   const userid = localStorage.getItem('applicant_user_id');  
   return http.get(`/docs/title/kz/${userid}`,{params});
 };
+const addStatement = (Faculty,FIO,Number,ParentNumber,Location) : Promise<any>=>{ 
+  const params = {
+    userid : localStorage.getItem('user_id'),
+    token: localStorage.getItem('token'),
+    Faculty: Faculty,
+    FIO:FIO,
+    Number:Number,
+    ParentNumber:ParentNumber,
+    Location:Location
+  }
+  return http.get(`/docs/addstatement`,{params});
+};
+const getDataForStatement = (user_id) : Promise<any>=>{ 
+  const params = {
+    userid : user_id
+  }
+  return http.get(`/docs/getdataforstatement`,{params});
+};
+const getDataForCard = (user_id) : Promise<any>=>{ 
+  const params = {
+    userid : user_id
+  }
+  return http.get(`/docs/getdataforcard`,{params});
+};
+const createDormDocs = () : Promise<any>=>{ 
+  const params = {
+    userid : localStorage.getItem('user_id'),
+    statementdata: localStorage.getItem('statementdata'),
+    carddata: localStorage.getItem('carddata'),
+    parentsdata: localStorage.getItem('cardparentsdata'),
+  }
+  return http.get(`/docs/createdormdocs`,{params});
+};
+const getRoomNumber = (iin) : Promise<any>=>{ 
+  const params = {
+    iin : iin
+  }
+  return http.get(`/docs/getroomnumber`,{params});
+};
 const getApplicantData = () : Promise<any>=>{ 
   const params = {
     token: localStorage.getItem('token'),
@@ -172,6 +211,10 @@ const addApplicant = (iin:string) : Promise<any> =>{
 };
 
 const DocsService = {
+  createDormDocs,
+  getRoomNumber,
+  addStatement,
+  getDataForStatement,
   getEmployeeList,
   createPenalty,
   deletePenalty,
@@ -198,7 +241,8 @@ const DocsService = {
   getInventoryDataRu,
   getInventoryDataKz,
   getTitleDataRu,
-  getTitleDataKz
+  getTitleDataKz,
+  getDataForCard
 };
 
 export default DocsService;

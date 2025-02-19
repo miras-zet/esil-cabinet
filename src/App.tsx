@@ -68,6 +68,11 @@ import TutorScienceSecretary from './pages/TutorScienceSecretary'
 import TutorProforientation from './pages/TutorProforientation'
 import TutorDataExportPrevMonth from './pages/TutorDataExportPrevMonth'
 import AttendanceRecordEmployee from './pages/AttendanceRecordEmployee'
+import AddDormStatement from './pages/AddDormStatement'
+import AddDormCard from './pages/AddDormCard'
+import AddDormCardParents from './pages/AddDormCardParents'
+import { DormStatement } from './pages/template/DormStatement'
+import { DormCard } from './pages/template/DormCard'
 
 const App:FC = () => {  
 //   const {store} = useContext(Context);    
@@ -139,6 +144,13 @@ const App:FC = () => {
         <Route path="/techActDocument" element={<TechAct/>}/>
         <Route path="/photoadminpage" element={<PhotoAdminPage/>}/>
         <Route path="/addUser" element={<AddNewUser/>}/>
+
+        <Route path="/dormdocs" element={<AddDormStatement/>}/>
+        <Route path="/dormdocscontinue" element={<AddDormCard/>}/>
+        <Route path="/dormdocsparents" element={<AddDormCardParents/>}/>
+        <Route path="/viewdormstatement" element={<DormStatement/>}/>
+        <Route path="/viewdormcard" element={<DormCard/>}/>
+
 
         {/* <Route path="/physicalbooks" element={<PhysicalBooks/>}/> */}
         <Route path="/ebooks" element={<EBooks />}/>

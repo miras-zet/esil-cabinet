@@ -50,7 +50,7 @@ const ModalDorm: FC = () => {
         close();    
     }
     return (
-        <div className="modal_new" style={{marginTop:window.scrollY}}>
+        <div className="modal_new" style={{marginTop:window.scrollY+85}}>
             <div className="modalblock_new">
                 <center><h2>Ответ на заявку</h2>
                     <h3>{localStorage.getItem('dormFIO')}</h3>
@@ -59,7 +59,7 @@ const ModalDorm: FC = () => {
                         <option key='1' selected={localStorage.getItem('dormType')=='dorm'} value='dorm'>Собственное общежитие</option>
                         <option key='2' selected={localStorage.getItem('dormType')=='hostel'} value='hostel'>Хостел</option>
                     </select>
-                    <br /><br />
+                    <br /> 
                     <p style={{ color: "black" }}>Номер комнаты</p>
                     <input type='text' className="btn" style={{ color: 'black', width: '40%', backgroundColor: 'white', border: 'solid 1px', borderColor: 'gray' }} placeholder='Номер комнаты' maxLength={10} value={roomnumber} onChange={event => setRoomNumber(event.target.value)}></input><br /><br />
                     <p></p>
