@@ -82,6 +82,10 @@ const DormList: FC = () => {
                 localStorage.setItem('parentsdata',extradata);
                 window.location.href = window.location.protocol + '//' + window.location.host + '/viewdormcard';
             } break;
+            case 'agreement': {
+                localStorage.setItem('viewinguseriin',iin)
+                window.location.href = window.location.protocol + '//' + window.location.host + '/viewdormagreement';
+            } break;
         }
     }
     const dormRequestsList = dormRequests.map((element, index) =>
@@ -104,14 +108,15 @@ const DormList: FC = () => {
                 <><td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>Нет льгот</td></>
             }
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{moment(element.datecreated).format("DD.MM.YYYY")}</td>
-            <td id="table-divider" style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+            <td id="table-divider" style={{ verticalAlign: 'middle', textAlign: 'center' }}><br/><button style={{ backgroundColor: '#088c64' }} onClick={() => redirectDocs('agreement',element.carddata,element.parentsdata,element.iin)}>Договор</button>
                 {element.statementdata !== null ? 
-                <>
+                <><br/><br/>
                     <button style={{ backgroundColor: '#088c64' }} onClick={() => redirectDocs('statement',element.statementdata,'',element.iin)}>Заявление</button><br/><br/>
-                    <button style={{ backgroundColor: '#088c64' }} onClick={() => redirectDocs('card',element.carddata,element.parentsdata,element.iin)}>Карточка</button>
+                    <button style={{ backgroundColor: '#088c64' }} onClick={() => redirectDocs('card',element.carddata,element.parentsdata,element.iin)}>Карточка</button><br/><br/>
+                    
                 </>
                 :
-                <>Документы не прикреплены</>
+                <><br/><br/>Остальные документы не прикреплены<br/><br/></>
                 }
             </td>
             <td id="table-divider" style={{ verticalAlign: 'middle', textAlign: 'center' }}>

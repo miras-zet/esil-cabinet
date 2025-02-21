@@ -261,6 +261,19 @@ td {
   color:black;
 }
 
+#dormAgreement {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: white;
+  color: black;
+  width: 210mm;
+  font-size: 12pt;
+}
+
+#dormAgreementPadding {
+  padding-left: 10mm;
+  padding-right: 10mm;
+}
+
 #anketa {
   overflow: hidden;
   font-family: 'Times New Roman', Times, serif;

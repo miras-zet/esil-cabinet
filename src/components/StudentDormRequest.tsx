@@ -36,6 +36,10 @@ const StudentDormRequest: FC = () => {
     localStorage.setItem('parentsdata',extradata);
     window.location.href = window.location.protocol + '//' + window.location.host + '/viewdormcard';
   }
+  const openAgreement = () => {
+    localStorage.setItem('viewinguseriin',JSON.parse(localStorage.getItem('data')).username);
+    window.location.href = window.location.protocol + '//' + window.location.host + '/viewdormagreement';
+  }
   const updateDocs = () =>{
     window.location.href = window.location.protocol + '//' + window.location.host + '/dormdocs';
   }
@@ -43,12 +47,14 @@ const StudentDormRequest: FC = () => {
     return <tr key={element.id}>
       <td id="table-divider-stats">{moment(element.datecreated).format("DD.MM.YYYY")}</td>
       <td id="table-divider-stats">{element.approved == '1' ? <>Одобрено</> : <>В обработке</>}</td>
-      <td id="table-divider-stats">{element.approved == '1' ? <></> : <><button className='redbutton' onClick={() => deleteRequest()}>Удалить заявку</button></>}<br/><br/>
+      <td id="table-divider-stats">{element.approved == '1' ? <></> : <><button className='redbutton' onClick={() => deleteRequest()}>Удалить заявку</button></>}<br/>
       {element.statementdata != null ?
-      <div>
+      <div><br/>
         <button className='navbarbutton' onClick={() => openStatement(element.statementdata)}>Заявление</button>
         <br/>
         <button className='navbarbutton' onClick={() => openCard(element.carddata, element.parentsdata)}>Карточка</button>
+        <br/>
+        <button className='navbarbutton' onClick={() => openAgreement()}>Договор</button>
       </div>:<div>
       <button className='navbarbutton' onClick={() => updateDocs()}>Заполнить документы</button>
       </div>  

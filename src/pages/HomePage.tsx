@@ -11,7 +11,7 @@ import UploadService from '../services/UploadService';
 //import KPICategoryScores from '../components/KPICategoryScores';
 import KPINavbar from '../components/KPINavbar';
 //import { HiSparkles } from "react-icons/hi2";
-import { FaBook, FaClock, FaPlus, FaTrashAlt } from 'react-icons/fa';
+import { FaBook, FaPlus, FaTrashAlt } from 'react-icons/fa';
 import { FaBookAtlas, FaDisplay } from "react-icons/fa6";
 import { IoIosAlarm, IoIosBook } from "react-icons/io";
 import { MdNoteAdd } from 'react-icons/md';
@@ -311,7 +311,7 @@ const HomePage: FC = () => {
                         <button className='navbarbutton' onClick={open}><FaPlus style={{ verticalAlign: 'middle', fontSize: '11pt' }} /> Получить новую справку</button>
                         &nbsp;&nbsp;
                         <Link to="/list">
-                          <button className='navbarbutton' onClick={() => store.getCert()}> <FaClock style={{ verticalAlign: 'middle', fontSize: '14pt' }} /> История справок</button>
+                          {/* <button className='navbarbutton' onClick={() => store.getCert()}> <FaClock style={{ verticalAlign: 'middle', fontSize: '14pt' }} /> История справок</button> */}
                         </Link><br /><br />
                       </div><br /></tr>
                       <tr><div id='homepagePanel'>

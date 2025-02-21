@@ -73,6 +73,7 @@ import AddDormCard from './pages/AddDormCard'
 import AddDormCardParents from './pages/AddDormCardParents'
 import { DormStatement } from './pages/template/DormStatement'
 import { DormCard } from './pages/template/DormCard'
+import { DormAgreement } from './pages/template/DormAgreement'
 
 const App:FC = () => {  
 //   const {store} = useContext(Context);    
@@ -150,7 +151,7 @@ const App:FC = () => {
         <Route path="/dormdocsparents" element={<AddDormCardParents/>}/>
         <Route path="/viewdormstatement" element={<DormStatement/>}/>
         <Route path="/viewdormcard" element={<DormCard/>}/>
-
+        <Route path="/viewdormagreement" element={<DormAgreement/>}/>
 
         {/* <Route path="/physicalbooks" element={<PhysicalBooks/>}/> */}
         <Route path="/ebooks" element={<EBooks />}/>

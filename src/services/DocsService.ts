@@ -95,6 +95,12 @@ const getRoomNumber = (iin) : Promise<any>=>{
   }
   return http.get(`/docs/getroomnumber`,{params});
 };
+const getAgreementData = () : Promise<any>=>{ 
+  const params = {
+    iin : localStorage.getItem('viewinguseriin')
+  }
+  return http.get(`/docs/getagreementdata`,{params});
+};
 const getApplicantData = () : Promise<any>=>{ 
   const params = {
     token: localStorage.getItem('token'),
@@ -212,6 +218,7 @@ const addApplicant = (iin:string) : Promise<any> =>{
 
 const DocsService = {
   createDormDocs,
+  getAgreementData,
   getRoomNumber,
   addStatement,
   getDataForStatement,
