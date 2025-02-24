@@ -74,6 +74,7 @@ import AddDormCardParents from './pages/AddDormCardParents'
 import { DormStatement } from './pages/template/DormStatement'
 import { DormCard } from './pages/template/DormCard'
 import { DormAgreement } from './pages/template/DormAgreement'
+import AddCourseraDocs from './pages/AddCourseraDocs'
 
 const App:FC = () => {  
 //   const {store} = useContext(Context);    
@@ -112,6 +113,7 @@ const App:FC = () => {
         <Route path="/studentinfo" element={ <StudentInfo /> } />
         <Route path="/attendance" element={ <AttendanceRecordStudent/>} />
         <Route path="/attendanceEmployee" element={ <AttendanceRecordEmployee/>} />
+        <Route path="/uploadcoursera" element={ <AddCourseraDocs/>} />
         
         <Route path="/accounting" element={ <TutorDataExport/>} />
         <Route path="/accountingPrev" element={ <TutorDataExportPrevMonth/>} />

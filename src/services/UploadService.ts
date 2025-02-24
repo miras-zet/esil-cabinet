@@ -20,6 +20,15 @@ const uploadBonusFile = (file: File,  filetype: string): Promise<any> => {
   formData.append('filetype',filetype);    
   return http.post("/bonusfile", formData);
 };
+const uploadCourseraFile = (file: File, filetype: string, link: string): Promise<any> => {
+  let formData = new FormData();
+  const userid = localStorage.getItem('user_id');
+  formData.append("file", file);
+  formData.append('userid',userid);
+  formData.append('filetype', filetype);    
+  formData.append('link', link); 
+  return http.post("/courserafile", formData);
+};
 const updateProforientation = (): Promise<any> => {
   const for_userid = localStorage.getItem('viewinguserid');
   const student_count = localStorage.getItem('student_count'); 
@@ -92,6 +101,12 @@ const deleteFile = (filename: any, user_id:any): Promise<any> => {
 const getFiles = () : Promise<any> => {
   const userid = localStorage.getItem('user_id');  
   return http.get(`/upload/files/${userid}`);
+};
+const getCourseraFiles = () :Promise<any> => {
+  const params = {
+    userid: localStorage.getItem('user_id')
+  }
+  return http.get(`/upload/getcourserafiles`,{params});
 };
 const getCategoryScores = () : Promise<any> => {
   const userid = localStorage.getItem('user_id');  
@@ -186,10 +201,12 @@ const getKpi = () : Promise<any> => {
 const UploadService = {
   upload,
   uploadBonusFile,
+  uploadCourseraFile,
   uploadBonusFileSelf,
   updateProforientation,
   updateProforientationAdmission,
   getFiles,
+  getCourseraFiles,
   getTutors,
   getCategories,
   denyDormRequestForUser,

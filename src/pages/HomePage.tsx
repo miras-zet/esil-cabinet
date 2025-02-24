@@ -43,7 +43,7 @@ const HomePage: FC = () => {
   UploadService.checkPhotoUploadEligibility().then((response) => {
     localStorage.setItem('eligibility', response.data);
   });
-  
+
   const { store } = useContext(Context);
   const { modal, open } = useContext(ModalContext);
   //const [kpiInfo, setKpiInfo] = useState<Array<IKPI>>([]);
@@ -147,7 +147,7 @@ const HomePage: FC = () => {
       setFacultyManager(response.data);
     });
   }
-  
+
   const findBookName = () => {
     localStorage.setItem('searchType', 'name');
     let bookName = (document.getElementById("inputSearchBookByName") as HTMLInputElement).value;
@@ -258,7 +258,7 @@ const HomePage: FC = () => {
       {(() => {
         const role = localStorage.getItem('role');
         const suspended = JSON.parse(localStorage.getItem('data')).suspended;
-        if (suspended == 1){
+        if (suspended == 1) {
           return <center>
             <h2>Доступ к аккаунту отключен</h2>
             <br /><button id="backbutton" onClick={() => store.logout()}>Выйти</button>
@@ -301,11 +301,26 @@ const HomePage: FC = () => {
           return <div className='root' style={{ textAlign: 'left' }}>
             <KPINavbar /> <br /><br /><br /><br /><br /><br /><br />
             <h2>{store.isAuth ? `Добро пожаловать, ${store.user.lastname} ${store.user.name}` : 'АВТОРИЗУЙТЕСЬ'}</h2>
+            <br />
+
             <table>
               <tbody>
                 <tr>
                   <td>
                     <table>
+                      <tr><div id='homepagePanel'>
+                        <h2>Объявление для обучающихся</h2>
+                        В соответствии с письмом министерства науки и высшего образования № 4-07-02-06/1250-И от 24.02.2025 все обучающиеся университета Esil University должны пройти следующие курсы на образовательной платформе "Coursera":<br />
+                        <br /><a href="https://www.coursera.org/learn/ai-for-everyone-ru?utm_medium=sem&utm_source=gg&utm_campaign=b2c_apac_x_coursera_ftcof_career-academy_cx_dr_bau_gg_pmax_gc_s2_all_m_hyb_24-08_x&campaignid=21573875733&adgroupid=&device=c&keyword=&matchtype=&network=x&devicemodel=&creativeid=&assetgroupid=6511393614&targetid=&extensionid=&placement=&gad_source=1&gclid=Cj0KCQiAwtu9BhC8ARIsAI9JHalxtabS7pSBWQ5XXxqc6fa-gAn4WUp6IRyRGD-4dFrqACnhvSRVE30aAu9sEALw_wcB" target='_blank'>«Генеративный ИИ для всех» (6 часов, 4 модуля)</a>
+                        <br /><a href="https://www.coursera.org/learn/prompt-engineering" target='_blank'>«Prompt-инженерия для ChatGPT» (18 часов, 6 модулей)</a>
+                        <br /><br />По завершению курсов необходимо загрузить два сертификата Coursera и ссылки-подтверждения.<br />
+                        <br /><b>Без сертификатов у студентов не будет допуска к рубежным контролям и экзаменационной сессии.</b>
+                        <br />
+                        <img style={{}} src="example.png" alt='example' width={500} />
+                        <br/><br/>
+                        <Link to="/uploadcoursera"><button className='navbarbutton'>Загрузить сертификаты</button></Link><br />
+                        <br/>
+                      </div><br /></tr>
                       <tr><div id='homepagePanel'>
                         <h2>Справки</h2>
                         <button className='navbarbutton' onClick={open}><FaPlus style={{ verticalAlign: 'middle', fontSize: '11pt' }} /> Получить новую справку</button>
@@ -336,8 +351,8 @@ const HomePage: FC = () => {
                       <tr><div id='homepagePanel'>
                         <h2>Посещаемость занятий</h2>
                         <StudentAttendance />
-                        <Link to="/attendance"><button className='backbutton' style={{marginLeft:'18px'}}>Посмотреть всё</button></Link><br/><br/>
-                        </div><br /></tr>
+                        <Link to="/attendance"><button className='backbutton' style={{ marginLeft: '18px' }}>Посмотреть всё</button></Link><br /><br />
+                      </div><br /></tr>
                       <tr><div id='homepagePanel'>
                         <h2>Дом студентов</h2>
                         <StudentDormRequest />
@@ -384,22 +399,22 @@ const HomePage: FC = () => {
                         <Link to="/kpi"><button className='navbarbutton'><FaUpload />&nbsp;&nbsp;Загрузить документы</button></Link><br /><br />
                         <KPICategoryScores />
                       </div><br /></tr> */}
-                      {localStorage.getItem('cafedramanager')!=='0' ? <tr><div id='homepagePanel'>
+                      {localStorage.getItem('cafedramanager') !== '0' ? <tr><div id='homepagePanel'>
                         <h2>Коэффициент трудового участия</h2>
                         <Link to="/cafedramanagement"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Показатели</button></Link><br /><br />
                         <br /></div><br />
-                      </tr>:
-                      <tr><div id='homepagePanel'>
-                        <h2>Коэффициент трудового участия</h2>
-                        <Link to="/ktu"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Показатели</button></Link><br /><br />
-                        <br /></div><br />
-                      </tr>
+                      </tr> :
+                        <tr><div id='homepagePanel'>
+                          <h2>Коэффициент трудового участия</h2>
+                          <Link to="/ktu"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Показатели</button></Link><br /><br />
+                          <br /></div><br />
+                        </tr>
                       }
                       {isfacultymanager ? <tr><div id='homepagePanel'>
                         <h2>Факультет</h2>
                         <Link to="/facultymanagement"><button className='navbarbutton'><FaTableList style={{ verticalAlign: 'middle' }} /> Заведующие кафедр</button></Link><br /><br />
                         <br /></div><br />
-                      </tr>:''
+                      </tr> : ''
                       }
                       <tr><div id='homepagePanel'>
                         <h2>Регистрация FaceID</h2>
@@ -409,14 +424,14 @@ const HomePage: FC = () => {
                       <tr><div id='homepagePanel'>
                         <h2>Учёт трудового времени</h2>
                         <EmployeeAttendance />
-                        <Link to="/attendanceEmployee"><button className='backbutton' style={{marginLeft:'18px'}}>Посмотреть всё</button></Link><br/><br/>
-                        </div><br /></tr>
+                        <Link to="/attendanceEmployee"><button className='backbutton' style={{ marginLeft: '18px' }}>Посмотреть всё</button></Link><br /><br />
+                      </div><br /></tr>
                     </table>
                   </td>
                   <td style={{ width: '15px' }}></td>
                   <td>
                     <table>
-                      
+
                       <tr><div id='homepagePanel'>
                         <h2>Библиотека</h2>
                         <Link to="/bookrepo"><button className='navbarbutton'><IoIosBook style={{ verticalAlign: 'middle' }} /> Каталог книг</button></Link><br /><br />
@@ -461,8 +476,8 @@ const HomePage: FC = () => {
                       <tr><div id='homepagePanel'>
                         <h2>Учёт трудового времени</h2>
                         <EmployeeAttendance />
-                        <Link to="/attendanceEmployee"><button className='backbutton' style={{marginLeft:'18px'}}>Посмотреть всё</button></Link><br/><br/>
-                        </div><br /></tr>
+                        <Link to="/attendanceEmployee"><button className='backbutton' style={{ marginLeft: '18px' }}>Посмотреть всё</button></Link><br /><br />
+                      </div><br /></tr>
                     </table>
                   </td>
                   <td style={{ width: '15px' }}></td>
@@ -540,8 +555,8 @@ const HomePage: FC = () => {
         else if (role === 'admission_bonus') {
           return <Navigate to='/tutorproforientation' />
         }
-        else if (role === 'science_secretary'){
-          return <Navigate to='/science_secretary_page'/>
+        else if (role === 'science_secretary') {
+          return <Navigate to='/science_secretary_page' />
         }
         else if (role === 'admissionadmin') {
           return <Navigate to='/applicants' />
@@ -577,11 +592,11 @@ const HomePage: FC = () => {
                     ))}
                   </select>
                   <br /><br />
-                  {searchtype == 'name' ? <div><input type="text" id='inputSearchBookByName' className='btnNeutral' maxLength={100} placeholder='Поиск по названию'></input>&nbsp;<button id="navbarbutton" style={{backgroundColor: '#088c64',color:'white'}} onClick={() => findBookName()}>Найти</button></div> : ''}
-                  {searchtype == 'keywords' ? <div><input type="text" id='inputSearchBookByKeyWords' className='btnNeutral' maxLength={100} placeholder='Поиск по ключевым словам'></input>&nbsp;<button id="navbarbutton" style={{backgroundColor: '#088c64',color:'white'}} onClick={() => findBookKeyWords()}>Найти</button></div> : ''}
-                  {searchtype == 'isbn' ? <div><input type="text" id='inputSearchBookByISBN' className='btnNeutral' maxLength={100} placeholder='Поиск по ISBN'></input>&nbsp;<button id="navbarbutton" style={{backgroundColor: '#088c64',color:'white'}} onClick={() => findBookISBN()}>Найти</button></div> : ''}
-                  {searchtype == 'inventory' ? <div><input type="text" id='inputSearchBookByInventory' className='btnNeutral' maxLength={100} placeholder='Поиск по инвентарному номеру'></input>&nbsp;<button id="navbarbutton" style={{backgroundColor: '#088c64',color:'white'}} onClick={() => findBookInventory()}>Найти</button></div> : ''}
-                  {searchtype == 'barcode' ? <div><input type="text" id='inputSearchBookByBarcode' className='btnNeutral' maxLength={100} placeholder='Поиск по штрихкоду'></input>&nbsp;<button id="navbarbutton" style={{backgroundColor: '#088c64',color:'white'}} onClick={() => findBookBarcode()}>Найти</button></div> : ''}
+                  {searchtype == 'name' ? <div><input type="text" id='inputSearchBookByName' className='btnNeutral' maxLength={100} placeholder='Поиск по названию'></input>&nbsp;<button id="navbarbutton" style={{ backgroundColor: '#088c64', color: 'white' }} onClick={() => findBookName()}>Найти</button></div> : ''}
+                  {searchtype == 'keywords' ? <div><input type="text" id='inputSearchBookByKeyWords' className='btnNeutral' maxLength={100} placeholder='Поиск по ключевым словам'></input>&nbsp;<button id="navbarbutton" style={{ backgroundColor: '#088c64', color: 'white' }} onClick={() => findBookKeyWords()}>Найти</button></div> : ''}
+                  {searchtype == 'isbn' ? <div><input type="text" id='inputSearchBookByISBN' className='btnNeutral' maxLength={100} placeholder='Поиск по ISBN'></input>&nbsp;<button id="navbarbutton" style={{ backgroundColor: '#088c64', color: 'white' }} onClick={() => findBookISBN()}>Найти</button></div> : ''}
+                  {searchtype == 'inventory' ? <div><input type="text" id='inputSearchBookByInventory' className='btnNeutral' maxLength={100} placeholder='Поиск по инвентарному номеру'></input>&nbsp;<button id="navbarbutton" style={{ backgroundColor: '#088c64', color: 'white' }} onClick={() => findBookInventory()}>Найти</button></div> : ''}
+                  {searchtype == 'barcode' ? <div><input type="text" id='inputSearchBookByBarcode' className='btnNeutral' maxLength={100} placeholder='Поиск по штрихкоду'></input>&nbsp;<button id="navbarbutton" style={{ backgroundColor: '#088c64', color: 'white' }} onClick={() => findBookBarcode()}>Найти</button></div> : ''}
                   <br /><br /><br />
                   <Link to="/ebooks"><button className='navbarbutton'>Список электронных книг &nbsp;<FaDisplay style={{ verticalAlign: 'middle', marginTop: '-4px' }} /></button></Link><br /><br />
                   <br />
