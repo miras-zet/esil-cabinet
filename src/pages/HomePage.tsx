@@ -308,7 +308,7 @@ const HomePage: FC = () => {
                 <tr>
                   <td>
                     <table>
-                      <tr><div id='homepagePanel'>
+                      {/* <tr><div id='homepagePanel'>
                         <h2>Объявление для обучающихся</h2>
                         В соответствии с письмом министерства науки и высшего образования № 4-07-02-06/1250-И от 24.02.2025 все обучающиеся университета Esil University должны пройти следующие курсы на образовательной платформе "Coursera":<br />
                         <br /><a href="https://www.coursera.org/learn/ai-for-everyone-ru?utm_medium=sem&utm_source=gg&utm_campaign=b2c_apac_x_coursera_ftcof_career-academy_cx_dr_bau_gg_pmax_gc_s2_all_m_hyb_24-08_x&campaignid=21573875733&adgroupid=&device=c&keyword=&matchtype=&network=x&devicemodel=&creativeid=&assetgroupid=6511393614&targetid=&extensionid=&placement=&gad_source=1&gclid=Cj0KCQiAwtu9BhC8ARIsAI9JHalxtabS7pSBWQ5XXxqc6fa-gAn4WUp6IRyRGD-4dFrqACnhvSRVE30aAu9sEALw_wcB" target='_blank'>«Генеративный ИИ для всех» (6 часов, 4 модуля)</a>
@@ -320,7 +320,7 @@ const HomePage: FC = () => {
                         <br/><br/>
                         <Link to="/uploadcoursera"><button className='navbarbutton'>Загрузить подтверждающие сертификаты Coursera</button></Link><br />
                         <br/>
-                      </div><br /></tr>
+                      </div><br /></tr> */}
                       <tr><div id='homepagePanel'>
                         <h2>Справки</h2>
                         <button className='navbarbutton' onClick={open}><FaPlus style={{ verticalAlign: 'middle', fontSize: '11pt' }} /> Получить новую справку</button>
