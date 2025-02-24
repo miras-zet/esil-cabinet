@@ -138,15 +138,15 @@ const AddCourseraDocs: FC = () => {
                         ) : (
                             <>
                                 Ссылка-подтверждение:
-                                <input id="inputLink1" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Ссылка'></input>
+                                &emsp;<input id="inputLink1" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Ссылка'></input>
                                 <br /><br />
 
                                 Прикрепить .pdf файл:
-                                <label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'DimGray' }}>
+                                &emsp;<label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'DimGray' }}>
                                     {currentFileOne ? `Выбран файл: ${currentFileOne.name.length < 35 ? currentFileOne.name : currentFileOne.name.substring(0, 35) + '...'}` : 'Выберите файл...'}
                                     <input type="file" hidden onChange={selectFileOne} />
                                 </label>
-                                <br />
+                                <br /><br />
 
                                 <button className="navbarbutton" id='mainbutton1' onClick={() => addCertificateOne()} disabled={!currentFileOne}>Добавить</button>
                                 <br /><br />
@@ -159,15 +159,15 @@ const AddCourseraDocs: FC = () => {
                         ) : (
                             <>
                                 Ссылка-подтверждение:
-                                <input id="inputLink2" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Ссылка'></input>
+                                &emsp;<input id="inputLink2" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Ссылка'></input>
                                 <br /><br />
 
                                 Прикрепить .pdf файл:
-                                <label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'DimGray' }}>
+                                &emsp;<label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'DimGray' }}>
                                     {currentFileTwo ? `Выбран файл: ${currentFileTwo.name.length < 35 ? currentFileTwo.name : currentFileTwo.name.substring(0, 35) + '...'}` : 'Выберите файл...'}
                                     <input type="file" hidden onChange={selectFileTwo} />
                                 </label>
-                                <br />
+                                <br /><br />
 
                                 <button className="navbarbutton" id='mainbutton2' onClick={() => addCertificateTwo()} disabled={!currentFileTwo}>Добавить</button>
                                 <br />

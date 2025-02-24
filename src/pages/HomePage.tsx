@@ -314,11 +314,11 @@ const HomePage: FC = () => {
                         <br /><a href="https://www.coursera.org/learn/ai-for-everyone-ru?utm_medium=sem&utm_source=gg&utm_campaign=b2c_apac_x_coursera_ftcof_career-academy_cx_dr_bau_gg_pmax_gc_s2_all_m_hyb_24-08_x&campaignid=21573875733&adgroupid=&device=c&keyword=&matchtype=&network=x&devicemodel=&creativeid=&assetgroupid=6511393614&targetid=&extensionid=&placement=&gad_source=1&gclid=Cj0KCQiAwtu9BhC8ARIsAI9JHalxtabS7pSBWQ5XXxqc6fa-gAn4WUp6IRyRGD-4dFrqACnhvSRVE30aAu9sEALw_wcB" target='_blank'>«Генеративный ИИ для всех» (6 часов, 4 модуля)</a>
                         <br /><a href="https://www.coursera.org/learn/prompt-engineering" target='_blank'>«Prompt-инженерия для ChatGPT» (18 часов, 6 модулей)</a>
                         <br /><br />По завершению курсов необходимо загрузить два сертификата Coursera и ссылки-подтверждения.<br />
-                        <br /><b>Без сертификатов у студентов не будет допуска к рубежным контролям и экзаменационной сессии.</b>
+                        <br /><b>Без сертификатов у обучающихся не будет допуска к рубежным контролям и экзаменационной сессии.</b>
                         <br />
                         <img style={{}} src="example.png" alt='example' width={500} />
                         <br/><br/>
-                        <Link to="/uploadcoursera"><button className='navbarbutton'>Загрузить сертификаты</button></Link><br />
+                        <Link to="/uploadcoursera"><button className='navbarbutton'>Загрузить подтверждающие сертификаты Coursera</button></Link><br />
                         <br/>
                       </div><br /></tr>
                       <tr><div id='homepagePanel'>
