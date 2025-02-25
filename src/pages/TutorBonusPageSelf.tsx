@@ -311,12 +311,16 @@ const TutorBonusPageSelf: FC = () => {
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
                                                                         <RxCross2/>
-                                                                        <br /><br />
+                                                                        <br />
+                                                                        <Link to={"/publicationsinfo"}><button className="navbarbutton">Помощь</button></Link> <br />
+                                                                        <br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
                                                                         Подтверждено {pubPoints}x <IoMdCheckmark />
-                                                                        <br /><br />
+                                                                        <br />
+                                                                        <Link to={"/publicationsinfo"}><button className="navbarbutton">Помощь</button></Link> <br />
+                                                                        <br />
                                                                     </div>}
                                                                 </td>
                                                             </tr>

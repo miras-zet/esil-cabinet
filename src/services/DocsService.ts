@@ -215,8 +215,22 @@ const addApplicant = (iin:string) : Promise<any> =>{
   }
   return http.get(`/applicant/register/${iin}`,{params});
 };
+const getTutorPubsInfo = () : Promise<any> =>{
+  const params = {
+    userid: localStorage.getItem('user_id'),
+  }
+  return http.get(`/docs/getpubsinfotutor`,{params});
+};
+const getTutorAcademicStatus = () : Promise<any> =>{
+  const params = {
+    userid: localStorage.getItem('user_id'),
+  }
+  return http.get(`/docs/gettutoracademicstatus`,{params});
+};
 
 const DocsService = {
+  getTutorPubsInfo,
+  getTutorAcademicStatus,
   createDormDocs,
   getAgreementData,
   getRoomNumber,

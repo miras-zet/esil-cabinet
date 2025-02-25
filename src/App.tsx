@@ -75,6 +75,7 @@ import { DormStatement } from './pages/template/DormStatement'
 import { DormCard } from './pages/template/DormCard'
 import { DormAgreement } from './pages/template/DormAgreement'
 import AddCourseraDocs from './pages/AddCourseraDocs'
+import TutorPublicationsInfoContainer from './pages/TutorPublicationsInfoContainer'
 
 const App:FC = () => {  
 //   const {store} = useContext(Context);    
@@ -123,6 +124,7 @@ const App:FC = () => {
         <Route path="/tutorauditorium" element={<TutorAuditorium/>} />
         <Route path="/tutorpenalty" element={ <TutorPenalty/>} />
         <Route path="/moodleinfo" element={<TutorMoodleInfoContainer/>} />
+        <Route path="/publicationsinfo" element={<TutorPublicationsInfoContainer/>} />
 
         <Route path="/applicants" element={<ApplicantList />}/>
         <Route path="/dormrequests" element={<DormList />}/>
