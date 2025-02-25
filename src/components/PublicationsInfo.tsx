@@ -8,21 +8,14 @@ import { RxCross1 } from "react-icons/rx";
 const PublicationsInfo: FC = () => {
   const [info, setInfo] = useState<Array<IPublicationsInfo>>([]);
   const [academicStatus, setAcademicStatus] = useState<string>('');
-  //let [margin, setMargin] = useState<string>('-35%');
 
   useEffect(() => {
-    //setMargin('-35%');
-    //if(window.innerWidth<940) setMargin('0%');
     DocsService.getTutorPubsInfo().then((response) => {
       setInfo(response.data);
     });
     DocsService.getTutorAcademicStatus().then((response) => {
       setAcademicStatus(response.data);
     });
-    // UploadService.getDebtData().then((response) => {
-    //   setDebtData(response.data);
-    // });
-
 
   }, []);
   const refDBMap = {
@@ -62,8 +55,9 @@ const PublicationsInfo: FC = () => {
   };
 
   const getRequirementIcon = (academicStatus, requirement, publicationsInfo) => {
-    const countNonZeroRefDBID = publicationsInfo.filter(item => item.refDBID !== 0).length;
+    const countNonZeroRefDBID = publicationsInfo.filter(item => Number(item.refDBID) !== 0).length;
     const countMonographs = publicationsInfo.filter(item => item.pubtype == 'Научные монографии').length;
+    //alert(`countNonZeroRefDBID: ${countNonZeroRefDBID}, countMonographs: ${countMonographs}`);
     if (requirement == 1) switch (academicStatus) {
       case 0: case 1: case 2: case 4:
         return publicationsInfo.length >= 5
@@ -72,14 +66,39 @@ const PublicationsInfo: FC = () => {
     }
     if (requirement == 2) switch (academicStatus) {
       case 0: case 1:
-        return countNonZeroRefDBID + countMonographs >= 1
+        return countNonZeroRefDBID + countMonographs >= 1;
       case 2: case 4:
-        return countNonZeroRefDBID + countMonographs >= 3
+        return countNonZeroRefDBID + countMonographs >= 3;
       case 3: case 5:
-        return countNonZeroRefDBID + countMonographs >= 5
+        return countNonZeroRefDBID + countMonographs >= 5;
     }
     return '';
   };
+
+  const countOvercompletion = (academicStatus, publicationsInfo) => {
+    const countNonZeroRefDBID = publicationsInfo.filter(item => Number(item.refDBID) !== 0).length;
+    const countMonographs = publicationsInfo.filter(item => item.pubtype == 'Научные монографии').length;
+    switch (academicStatus) {
+      case 0: case 1:
+        {
+          if (publicationsInfo.length >=10 && countNonZeroRefDBID >= 2) return 2;
+          if (publicationsInfo.length >=5 && countNonZeroRefDBID >=1) return 1;
+          else return 0;
+        }
+      case 2: case 4:
+        {
+          if (publicationsInfo.length >=10 && countNonZeroRefDBID >= 6) return 2;
+          if (publicationsInfo.length >=5 && countNonZeroRefDBID >=3) return 1;
+          else return 0;
+        }
+      case 3: case 5:
+        {
+          if (publicationsInfo.length >=14 && countNonZeroRefDBID+countMonographs >= 10) return 2;
+          if (publicationsInfo.length >=7 && countNonZeroRefDBID+countMonographs >=5) return 1;
+          else return 0;
+        }
+    }
+  }
 
   const datalist = info.map((element, index) => {
     return <tr key={element.pubID}>
@@ -96,9 +115,18 @@ const PublicationsInfo: FC = () => {
       <h3>Прогресс выполнения критерия "Публикация статей"</h3>
       <h4>Ваш академический статус: <i>{academicStatusMap[academicStatus]}</i></h4>
       <h4>Условия выполнения критерия для Вашей академической степени:</h4>
-      1. {getRequirementText(academicStatus, 1)} &emsp; {getRequirementIcon(academicStatus, 1, datalist) ? <b style={{ color: 'green' }}>Выполнено &nbsp;<FcCheckmark /></b>: <b style={{ color: 'red' }} >Не выполнено &nbsp;<RxCross1/></b>}<br /><br />
-      2. {getRequirementText(academicStatus, 2)} &emsp; {getRequirementIcon(academicStatus, 2, datalist) ? <b style={{ color: 'green' }}>Выполнено &nbsp;<FcCheckmark /></b>: <b style={{ color: 'red' }} >Не выполнено &nbsp;<RxCross1/></b>}<br />
-      <br />
+      1. {getRequirementText(academicStatus, 1)} &emsp; {getRequirementIcon(academicStatus, 1, info) ? <b style={{ color: 'green' }}>Выполнено &nbsp;<FcCheckmark /></b>: <b style={{ color: 'red' }} >Не выполнено &nbsp;<RxCross1/></b>}<br /><br />
+      2. {getRequirementText(academicStatus, 2)} &emsp; {getRequirementIcon(academicStatus, 2, info) ? <b style={{ color: 'green' }}>Выполнено &nbsp;<FcCheckmark /></b>: <b style={{ color: 'red' }} >Не выполнено &nbsp;<RxCross1/></b>}<br />
+      <br/>
+      {countOvercompletion(academicStatus, info) == 0 ? 
+      <h4>Балл не зачислен, так как не выполнены критерии выше</h4>:''
+      }
+      {countOvercompletion(academicStatus, info) == 1 ? 
+      <h4>За выполненные условия начислен <u>1</u> балл</h4>:''
+      }
+      {countOvercompletion(academicStatus, info) == 2 ? 
+      <h4>За перевыполнение условия начислено <u>2</u> балла (максимум)</h4>:''
+      }
       {datalist.length > 0 ?
         <div>
           <h4>Ваши статьи:</h4>
