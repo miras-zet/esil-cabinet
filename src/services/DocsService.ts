@@ -70,7 +70,7 @@ const addStatement = (Faculty,FIO,Number,ParentNumber,Location) : Promise<any>=>
 };
 const getDataForStatement = (user_id) : Promise<any>=>{ 
   const params = {
-    userid : user_id
+    userid : user_id,
   }
   return http.get(`/docs/getdataforstatement`,{params});
 };

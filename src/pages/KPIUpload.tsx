@@ -13,7 +13,7 @@ import UMKDMoodle from '../components/UMKDMoodle';
 import KPINavbar from '../components/KPINavbar';
 import { FaDownload, FaTrashAlt, FaUpload } from "react-icons/fa";
 import { TiArrowBack } from "react-icons/ti";
-import axios from 'axios';
+import api from '../http-common';
 import config from "../http/config.json";
 
 const KPIUpload: FC = () => {
@@ -80,7 +80,7 @@ const KPIUpload: FC = () => {
   };
   const handleFileDownload = async (fileId: number, filename: string) => {
     try {
-      const response = await axios.get(`${config.API_URL}/upload/download/${fileId}`, {
+      const response = await api.get(`${config.API_URL}/upload/download/${fileId}`, {
         responseType: 'blob',
       });
       const url = window.URL.createObjectURL(new Blob([response.data]));

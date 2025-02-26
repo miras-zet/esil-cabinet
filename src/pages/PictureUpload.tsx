@@ -11,9 +11,6 @@ import { TiArrowBack } from "react-icons/ti";
 import Webcam from 'react-webcam';
 import { IoCameraReverse } from "react-icons/io5";
 
-//import axios from 'axios';
-//import config from "../http/config.json";
-
 const PictureUpload: FC = () => {
   const webcamRef = useRef(null);
   const [imgSrc, setImgSrc] = useState(null);

@@ -1,13 +1,13 @@
-import http from "../http-common";
+import api from "../http-common";
 
 const getAllBooks = (): Promise<any> => {
-    return http.get(`/books/allbooks`);
+    return api.get(`/books/allbooks`);
 };
 const findUser = (iin): Promise<any> => {
     const params = {
         iin: iin
     }
-    return http.get(`/admin/findphotodata`, { params });
+    return api.get(`/admin/findphotodata`, { params });
 };
 const addNewUser = (iin,lastname,firstname,patronymic,role): Promise<any> => {
     const params = {
@@ -17,13 +17,13 @@ const addNewUser = (iin,lastname,firstname,patronymic,role): Promise<any> => {
         patronymic: patronymic,
         role: role
     }
-    return http.get(`/admin/addnewuser`, { params });
+    return api.get(`/admin/addnewuser`, { params });
 };
 const deletePhoto = (id): Promise<any> => {
     const params = {
         id: id
     }
-    return http.get(`/admin/deletephotobyid`, { params });
+    return api.get(`/admin/deletephotobyid`, { params });
 };
 
 

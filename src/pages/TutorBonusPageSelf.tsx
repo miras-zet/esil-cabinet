@@ -8,7 +8,7 @@ import KPINavbar from '../components/KPINavbar';
 import { TiArrowBack } from 'react-icons/ti';
 import CafedraService from '../services/CafedraService';
 import ITutorInfoForManager from '../models/ITutorInfoForManager';
-import axios from 'axios';
+import api from '../http-common';
 import config from "../http/config.json";
 import { FaDownload } from 'react-icons/fa';
 import UploadService from '../services/UploadService';
@@ -106,7 +106,7 @@ const TutorBonusPageSelf: FC = () => {
         let failsafe = fileId;
         if (fileId < 0) failsafe = fileId * (-1);
         try {
-            const response = await axios.get(`${config.API_URL}/upload/downloadbonusfile/${failsafe}`, {
+            const response = await api.get(`${config.API_URL}/upload/downloadbonusfile/${failsafe}`, {
                 responseType: 'blob',
             });
             const url = window.URL.createObjectURL(new Blob([response.data]));

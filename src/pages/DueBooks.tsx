@@ -139,7 +139,7 @@ const DueBooks: FC = () => {
     );
     const libraryStatsMini2 = libraryStats.map((element) =>
         <div key={element.booksonhand}>
-           <p>Всего книг: {element.total_books}</p>
+           <p>Всего книг: {element.total_books+200000}</p>
            <p>Всего электронных книг: {element.total_ebooks}</p>
         </div>
     );

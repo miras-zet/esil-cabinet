@@ -1,4 +1,4 @@
-import http from "../http-common";
+import api from "../http-common";
 
 
 const upload = (file: File,  activity_id: any, info: any): Promise<any> => {
@@ -8,7 +8,7 @@ const upload = (file: File,  activity_id: any, info: any): Promise<any> => {
   formData.append('user_id',userid);
   formData.append('activity_id',activity_id);  
   formData.append('info',info);  
-  return http.post("/upload", formData);
+  return api.post("/upload", formData);
 };
 const uploadBonusFile = (file: File,  filetype: string): Promise<any> => {
   let formData = new FormData();
@@ -18,7 +18,7 @@ const uploadBonusFile = (file: File,  filetype: string): Promise<any> => {
   formData.append('for_user_id',for_userid);
   formData.append('by_user_id',by_userid);
   formData.append('filetype',filetype);    
-  return http.post("/bonusfile", formData);
+  return api.post("/bonusfile", formData);
 };
 const uploadCourseraFile = (file: File, filetype: string, link: string): Promise<any> => {
   let formData = new FormData();
@@ -27,7 +27,7 @@ const uploadCourseraFile = (file: File, filetype: string, link: string): Promise
   formData.append('userid',userid);
   formData.append('filetype', filetype);    
   formData.append('link', link); 
-  return http.post("/courserafile", formData);
+  return api.post("/courserafile", formData);
 };
 const updateProforientation = (): Promise<any> => {
   const for_userid = localStorage.getItem('viewinguserid');
@@ -36,14 +36,14 @@ const updateProforientation = (): Promise<any> => {
     for_userid: for_userid,
     student_count: student_count,
   }
-  return http.get(`/upload/bonusfileproforientation`,{params});
+  return api.get(`/upload/bonusfileproforientation`,{params});
 };
 const updateProforientationAdmission = (userid,student_count): Promise<any> => {
   const params = {
     for_userid: userid,
     student_count: student_count,
   }
-  return http.get(`/upload/bonusfileproforientation`,{params});
+  return api.get(`/upload/bonusfileproforientation`,{params});
 };
 const uploadBonusFileSelf = (file: File,  filetype: string): Promise<any> => {
   let formData = new FormData();
@@ -53,7 +53,7 @@ const uploadBonusFileSelf = (file: File,  filetype: string): Promise<any> => {
   formData.append('for_user_id',for_userid);
   formData.append('by_user_id',by_userid);
   formData.append('filetype',filetype);    
-  return http.post("/bonusfile", formData);
+  return api.post("/bonusfile", formData);
 };
 // const uploadBonusFileProforientationSelf = (file: File,  filetype: string): Promise<any> => {
 //   let formData = new FormData();
@@ -65,7 +65,7 @@ const uploadBonusFileSelf = (file: File,  filetype: string): Promise<any> => {
 //   formData.append('by_user_id',by_userid);
 //   formData.append('filetype',filetype); 
 //   formData.append('student_count',student_count);   
-//   return http.post("/bonusfileproforientation", formData);
+//   return api.post("/bonusfileproforientation", formData);
 // };
 const uploadPhoto = (file: File, extension): Promise<any> => {
   let formData = new FormData();
@@ -76,12 +76,12 @@ const uploadPhoto = (file: File, extension): Promise<any> => {
   });
   formData.append("file", renamedFile);
   formData.append('user_id',userid);
-  return http.post("/upload/photo", formData);
+  return api.post("/upload/photo", formData);
 };
 const checkPhotoUploadEligibility = (): Promise<any> => {
   const user_id = localStorage.getItem('user_id');
-  if (user_id == null || user_id == 'null') return http.get(`/upload/checkphotoeligibility/0`);
-  return http.get(`/upload/checkphotoeligibility/${user_id}`);
+  if (user_id == null || user_id == 'null') return api.get(`/upload/checkphotoeligibility/0`);
+  return api.get(`/upload/checkphotoeligibility/${user_id}`);
 };
 // const updateapplicant = (column: any, data: any): Promise<any> => {
 //   let formData = new FormData();
@@ -89,113 +89,113 @@ const checkPhotoUploadEligibility = (): Promise<any> => {
 //   formData.append('user_id',userid);
 //   formData.append('column',column);  
 //   formData.append('data',data);  
-//   return http.post("/applicant/update", formData);
+//   return api.post("/applicant/update", formData);
 // };
 const downloadFile = (filename: string,): Promise<any> => {
-    return http.get(`/upload/download/${filename}`);
+    return api.get(`/upload/download/${filename}`);
 };
 const deleteFile = (filename: any, user_id:any): Promise<any> => {
-    //return http.delete(`/upload/delete/${filename}`);
-    return http.delete(`/upload/delete`, {data:{filename:filename,user_id:user_id}});
+    //return api.delete(`/upload/delete/${filename}`);
+    return api.delete(`/upload/delete`, {data:{filename:filename,user_id:user_id}});
 };
 const getFiles = () : Promise<any> => {
   const userid = localStorage.getItem('user_id');  
-  return http.get(`/upload/files/${userid}`);
+  return api.get(`/upload/files/${userid}`);
 };
 const getCourseraFiles = () :Promise<any> => {
   const params = {
     userid: localStorage.getItem('user_id')
   }
-  return http.get(`/upload/getcourserafiles`,{params});
+  return api.get(`/upload/getcourserafiles`,{params});
 };
 const getCategoryScores = () : Promise<any> => {
   const userid = localStorage.getItem('user_id');  
-  return http.get(`/upload/getcategoryscore/${userid}`);
+  return api.get(`/upload/getcategoryscore/${userid}`);
 };
 const getDebtData = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id');
-  return http.get(`/excel/getdebtdata/${userid}`);
+  return api.get(`/excel/getdebtdata/${userid}`);
 };
 const getExcelDate = () : Promise<any> =>{
-  return http.get(`/excel/getdocdate`);
+  return api.get(`/excel/getdocdate`);
 };
 const getDormRequestForUser = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id');
-  return http.get(`/upload/getdormrequest/${userid}`);
+  return api.get(`/upload/getdormrequest/${userid}`);
 };
 const getDormRequestsData = () : Promise<any> =>{
-  return http.get(`/upload/getalldormrequests`);
+  return api.get(`/upload/getalldormrequests`);
 };
 const approveDormRequestForUser = () : Promise<any> =>{
-  //return http.get(`/upload/approvedormrequest/${iin}`);
+  //return api.get(`/upload/approvedormrequest/${iin}`);
   const params = {
     iin: localStorage.getItem('dormIIN'),
     dormType: localStorage.getItem('dormType'),
     dormMessage: localStorage.getItem('dormMessage'),
     dormRoomNumber: localStorage.getItem('dormRoomNumber'),
   }
-  return http.get(`/upload/approvedormrequest`,{params});
+  return api.get(`/upload/approvedormrequest`,{params});
 };
 const denyDormRequestForUser = () : Promise<any> =>{
-  //return http.get(`/upload/approvedormrequest/${iin}`);
+  //return api.get(`/upload/approvedormrequest/${iin}`);
   const params = {
     iin: localStorage.getItem('dormIIN'),
     dormMessage: localStorage.getItem('dormMessage'),
   }
-  return http.get(`/upload/denydormrequest`,{params});
+  return api.get(`/upload/denydormrequest`,{params});
 };
 const createDormRequestForUser = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id');
-  return http.get(`/upload/createdormrequest/${userid}`);
+  return api.get(`/upload/createdormrequest/${userid}`);
 };
 const createDormRequestForUserSelected = (id) : Promise<any> =>{
-  return http.get(`/upload/createdormrequest/${id}`);
+  return api.get(`/upload/createdormrequest/${id}`);
 };
 const deleteDormRequestForUser = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id');
-  return http.get(`/upload/deletedormrequest/${userid}`);
+  return api.get(`/upload/deletedormrequest/${userid}`);
 };
 const getUMKDMoodle = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id');
-  return http.get(`/upload/getumkdmoodle/${userid}`);
+  return api.get(`/upload/getumkdmoodle/${userid}`);
 };
 const getFilesForUser = () : Promise<any> => {
   const userid = localStorage.getItem('user_id_view');  
-  return http.get(`/upload/files/${userid}`);
+  return api.get(`/upload/files/${userid}`);
 };
 const getUMKDMoodleForUser = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id_view');
-  return http.get(`/upload/getumkdmoodle/${userid}`);
+  return api.get(`/upload/getumkdmoodle/${userid}`);
 };
 const getPlatonusData = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id'); 
-  return http.get(`/upload/getpltdata/${userid}`);
+  return api.get(`/upload/getpltdata/${userid}`);
 }
 const getPlatonusDataForUser = () : Promise<any> =>{
   const userid = localStorage.getItem('user_id_view'); 
-  return http.get(`/upload/getpltdata/${userid}`);
+  return api.get(`/upload/getpltdata/${userid}`);
 }
 const getTutors = () : Promise<any> =>{
   const cafedra = localStorage.getItem('cafedraid'); 
-  return http.get(`/upload/gettutors/${cafedra}`);
+  return api.get(`/upload/gettutors/${cafedra}`);
 }
 const getStats = () : Promise<any> =>{
-  return http.get(`/upload/getstats`);
+  return api.get(`/upload/getstats`);
 }
 const getFacultyStats = () :Promise<any> =>{
-  return http.get(`/upload/getfacultystats`);
+  return api.get(`/upload/getfacultystats`);
 }
 const getTopTen = () : Promise<any> =>{
   const toptentype = localStorage.getItem('toptentype');
-  return http.get(`/upload/gettopten/${toptentype}`);
+  return api.get(`/upload/gettopten/${toptentype}`);
 }
 const getCategories = () : Promise<any> => {
     const categoryid = localStorage.getItem('categoryid');  
-    return http.get(`/upload/activities/${categoryid}`);
+    return api.get(`/upload/activities/${categoryid}`);
 }
 const getKpi = () : Promise<any> => {
     const user_id = localStorage.getItem('user_id');  
-    return http.get(`/upload/getscore/${user_id}`);
+    return api.get(`/upload/getscore/${user_id}`);
 }
 
 const UploadService = {

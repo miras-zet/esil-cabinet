@@ -79,7 +79,7 @@ const LoginForm: FC = () => {
           }}
         /> 
         <div>{store.errors === 401 && <span style={{color: 'red'}}>Не верно введен логин или пароль</span>} {store.errors === 500 && <span style={{color: 'red'}}>Ошибка сервера</span>} {store.errors === 400 && <span style={{color: 'red'}}>Не верно введен логин или пароль</span>} &nbsp;</div> 
-          
+        <div>{localStorage.getItem('login_token_incorrect') === '1' && <span style={{color: 'red'}}>Сессия устарела. Войдите в аккаунт заново</span>}</div> 
         {/* <button className='navbarbutton' onClick = {
             () => store.login(sanitizeInput(username), password)
         }

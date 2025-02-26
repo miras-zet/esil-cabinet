@@ -3,15 +3,21 @@ import config from "./config.json";
 
 export const API_URL = config.API_URL;
 
-const $api = axios.create({
-    withCredentials: true,
-    baseURL: API_URL
-})
+const api = axios.create({
+  baseURL: API_URL,
+});
 
-$api.interceptors.request.use((config)=>{
-    config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`
-    return config;
-})
+// Add a request interceptor to automatically attach the token
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token"); // Retrieve token from localStorage
 
+  if (token) {
+    config.headers["Authorization"] = `Bearer ${token}`; // Attach token to headers
+  }
 
-export default $api;
+  return config;
+}, (error) => {
+  return Promise.reject(error);
+});
+
+export default api;

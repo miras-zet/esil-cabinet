@@ -1,25 +1,25 @@
-import http from "../http-common";
+import api from "../http-common";
 
 const example_noparams = (): Promise<any> => {
-    return http.get(`/books/allbooks`);
+    return api.get(`/books/allbooks`);
 };
 const getIconData = (): Promise<any> =>{
     const params = {
         user_id: localStorage.getItem('user_id'),
     }
-    return http.get(`/notifications/geticondata`,{params});
+    return api.get(`/notifications/geticondata`,{params});
 }
 const getNotifications = (): Promise<any> =>{
     const params = {
         user_id: localStorage.getItem('user_id'),
     }
-    return http.get(`/notifications/getnotifications`,{params});
+    return api.get(`/notifications/getnotifications`,{params});
 }
 const markAsRead = (notif_id): Promise<any> =>{
     const params = {
         notif_id: notif_id,
     }
-    return http.get(`/notifications/markasread`,{params});
+    return api.get(`/notifications/markasread`,{params});
 }
 
 const NotificationService = {
