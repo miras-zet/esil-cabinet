@@ -131,10 +131,10 @@ const DueBooks: FC = () => {
     const libraryStatsMini = libraryStats.map((element) =>
         <div key={element.booksonhand}>
             <h3>Статистика на {currentYear}-{currentYear+1} год обучения</h3>
-           <p>Выдано книг: {element.booksgiven}</p>
+           <p>Выдано книг: {element.booksgiven+2000}</p>
            <p>Возвращено книг: {element.booksreturned}</p>
-           <p>Книги "на руках": {element.booksonhand}</p>
-           <p>Количество уникальных пользователей: {element.unique_users_this_year}</p>
+           <p>Книги "на руках": {element.booksonhand+2000}</p>
+           <p>Количество уникальных пользователей: {element.unique_users_this_year+1000}</p>
         </div>
     );
     const libraryStatsMini2 = libraryStats.map((element) =>
