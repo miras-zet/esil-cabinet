@@ -20,7 +20,7 @@ api.interceptors.response.use(
   async (error) => {
     if (error.response) {
       const { status, data } = error.response;
-      if (status === 401 || (data && data.error === "FAST_JWT_MALFORMED")) {
+      if ((status === 401 || (data && data.error === "FAST_JWT_MALFORMED")) && data.message.includes('token')) {
         console.warn("JWT is invalid. Logging out...");
 
         localStorage.clear();
