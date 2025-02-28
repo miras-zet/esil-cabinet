@@ -16,7 +16,7 @@ export function Prilozhenie29CertifEn(certificat:CertResponse)  {
     //     fetch(`${API_URL}/cert/${certid}`).then((response) => response.json()).then((data:CertResponse)=>setCertificat(data));
         
     //   },[]);      
-      const qrcodeValue = `${window.location.host}/certificate/student/${certificat.id}`; 
+      const qrcodeValue = `${window.location.protocol + '//' + window.location.host}/certificate/student/${certificat.id}`; 
       const generatePdf = () => {
         const report = document.getElementById('report');
         var opt = {

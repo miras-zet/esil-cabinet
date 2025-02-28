@@ -129,7 +129,7 @@ const PublicationsInfo: FC = () => {
       }
       {datalist.length > 0 ?
         <div>
-          <h4>Ваши статьи:</h4>
+          <h4>Ваши статьи (за последние 3 года):</h4>
           <table style={{ fontSize: '12pt', paddingLeft: '15px' }}>
             <tbody>
               <tr><br /></tr>
