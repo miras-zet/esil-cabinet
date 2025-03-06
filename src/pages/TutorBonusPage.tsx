@@ -176,6 +176,11 @@ const TutorBonusPage: FC = () => {
             location.reload();
         });
     }
+    const subtractCategory = (category) => {
+        CafedraService.subtractTutorCategory(category).then(() => {
+            location.reload();
+        });
+    }
     const denyCategory = (category) => {
         CafedraService.removeTutorCategory(category).then(() => {
             location.reload();
@@ -514,6 +519,29 @@ const TutorBonusPage: FC = () => {
                                                                         Подтверждено <IoMdCheckmark />
                                                                         <br/>
                                                                         <button className='backbutton' onClick={() => denyCategory('commission_participation')}>Удалить</button>
+                                                                        <br /><br />
+                                                                    </div>}
+                                                                </td>
+                                                            </tr>  
+                                                            <tr>
+                                                                <td id="table-divider-stats-left">Своевременное выполнение поручений руководства</td>
+                                                                <td id="table-divider-stats">{tutorInfo[0]?.task_completion_fileid == 0 ?
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        <button className='backbutton' style={{ width: '50px', height: '50px'}} onClick={() => subtractCategory('task_completion')}>-1</button>&ensp;
+                                                                        <button className='backbutton' style={{ width: '50px', height: '50px'}} onClick={() => confirmCategory('task_completion')}>+1</button>
+                                                                        <br /><br />
+                                                                    </div> : tutorInfo[0]?.task_completion_fileid == -1 ?
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                    <br />
+                                                                        <button className='backbutton' style={{ width: '50px', height: '50px', backgroundColor:'red', color:'white'}} onClick={() => denyCategory('task_completion')}>-1</button>&ensp;
+                                                                        <button className='backbutton' style={{ width: '50px', height: '50px'}} onClick={() => confirmCategory('task_completion')}>+1</button>
+                                                                        <br /><br />
+                                                                    </div> :
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                    <br />
+                                                                        <button className='backbutton'   style={{ width: '50px', height: '50px'}} onClick={() => subtractCategory('task_completion')}>-1</button>&ensp;
+                                                                        <button className='navbarbutton' style={{ width: '50px', height: '50px'}} onClick={() => denyCategory('task_completion')}>+1</button>
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>

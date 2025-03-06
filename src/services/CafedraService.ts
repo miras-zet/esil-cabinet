@@ -23,6 +23,14 @@ const confirmTutorCategory = (category): Promise<any> => {
     }
     return api.get(`/management/confirmtutorcategory`,{params});
 };
+const subtractTutorCategory = (category): Promise<any> => {
+    const params = {
+        confirmed_by: localStorage.getItem('user_id'),
+        confirmed_for: localStorage.getItem('viewinguserid'),
+        category: category
+    }
+    return api.get(`/management/subtracttutorcategory`,{params});
+};
 const confirmTutorFile = (category): Promise<any> => {
     const params = {
         confirmed_by: localStorage.getItem('user_id'),
@@ -141,6 +149,7 @@ const getAllTutorBonusDataPrevMonth = (): Promise<any> =>{
 
 const AdminService = {
     checkManagerStatus,
+    subtractTutorCategory,
     checkFacultyStatus,
     confirmTutorFile,
     confirmTutorCategory,

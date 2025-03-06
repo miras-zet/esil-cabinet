@@ -48,7 +48,7 @@ const TutorBonusPageSelf: FC = () => {
                 setCurrentFile(undefined);
             });
     };
-    
+
     useEffect(() => {
         if (localStorage.getItem('token')) {
             store.checkAuth()
@@ -57,8 +57,8 @@ const TutorBonusPageSelf: FC = () => {
             setTutorInfo(response.data);
         });
         CafedraService.getTutorBonusDataProforientationSelf().then((response) => {
-            (document.getElementById("proforientation") as HTMLInputElement).value=response.data;
-            localStorage.setItem('student_count',response.data);
+            (document.getElementById("proforientation") as HTMLInputElement).value = response.data;
+            localStorage.setItem('student_count', response.data);
         });
         CafedraService.getTutorBonusDataLiteratureSelf().then((response) => {
             setLiteraturePoints(response.data);
@@ -68,10 +68,10 @@ const TutorBonusPageSelf: FC = () => {
         });
         CafedraService.getTutorBonusDataMoodleSelf().then((response) => {
             setMoodlePercentage(response.data);
-        });    
+        });
         InfoService.getBonusPointsSelf().then((response) => {
             setBonusPoints(response.data);
-            if (typeof(response.data) != 'number') location.reload();
+            if (typeof (response.data) != 'number') location.reload();
             if (response.data >= 0 && response.data <= 5) {
                 setPremiere('Низкий');
             }
@@ -82,7 +82,7 @@ const TutorBonusPageSelf: FC = () => {
                 setPremiere('Высокий');
             }
         });
-        
+
     }, [])
 
     // useEffect(()=>{
@@ -173,7 +173,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.auditorium_percentage_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <RxCross2/>
+                                                                        <RxCross2 />
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -188,7 +188,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.umkd_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <RxCross2/>
+                                                                        <RxCross2 />
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -203,7 +203,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.course_development_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <RxCross2/>
+                                                                        <RxCross2 />
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -218,7 +218,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.certificates_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <RxCross2/>
+                                                                        <RxCross2 />
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -253,14 +253,14 @@ const TutorBonusPageSelf: FC = () => {
                                                                 <td id="table-divider-stats">{moodlePercentage == -1 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <RxCross2/>
+                                                                        <RxCross2 />
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
                                                                         {moodlePercentage}%
                                                                         <br />
-                                                                        {moodlePercentage < 100? <><Link to={"/moodleinfo"}><button className="navbarbutton">Помощь</button></Link> <br /></>:''}
+                                                                        {moodlePercentage < 100 ? <><Link to={"/moodleinfo"}><button className="navbarbutton">Помощь</button></Link> <br /></> : ''}
                                                                         <br />
                                                                     </div>}
                                                                 </td>
@@ -270,7 +270,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 <td id="table-divider-stats">{literaturePoints == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <RxCross2/>
+                                                                        <RxCross2 />
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -295,7 +295,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.science_event_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <RxCross2/>
+                                                                        <RxCross2 />
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -310,7 +310,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 <td id="table-divider-stats">{pubPoints == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <RxCross2/>
+                                                                        <RxCross2 />
                                                                         <br />
                                                                         <Link to={"/publicationsinfo"}><button className="navbarbutton">Помощь</button></Link> <br />
                                                                         <br />
@@ -329,7 +329,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.grants_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <RxCross2/>
+                                                                        <RxCross2 />
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -344,7 +344,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.nirs_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <RxCross2/>
+                                                                        <RxCross2 />
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -375,7 +375,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.is_adviser_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <RxCross2/>
+                                                                        <RxCross2 />
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -390,7 +390,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.disciplinary_event_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <RxCross2/>
+                                                                        <RxCross2 />
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -399,7 +399,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>
-                                                            </tr>    
+                                                            </tr>
                                                             <tr>
                                                                 <td><br /></td>
                                                             </tr>
@@ -410,20 +410,20 @@ const TutorBonusPageSelf: FC = () => {
                                                     <h3>Общественная деятельность</h3>
                                                     <table style={{ fontSize: '12pt', paddingLeft: '15px' }}>
                                                         <tbody>
-                                                        <tr>
+                                                            <tr>
                                                                 <td id="table-divider-stats-left">Сотрудничество с работодателями</td>
-                                                                <td id="table-divider-stats">{tutorInfo[0]?.employer_cooperation_fileid != 0 ? tutorInfo[0]?.employer_cooperation_fileid < 0?
+                                                                <td id="table-divider-stats">{tutorInfo[0]?.employer_cooperation_fileid != 0 ? tutorInfo[0]?.employer_cooperation_fileid < 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
-                                                                        <br/>
-                                                                        <button className='backbutton' style={{width:'40px',height:'40px'}} onClick={() => handleFileDownload(tutorInfo[0]?.employer_cooperation_fileid, tutorInfo[0]?.employer_cooperation_filename)}><FaDownload style={{width:'20px',height:'20px', position:'absolute',marginLeft:'-10px',marginTop:'-10px'}}/></button><br/>
+                                                                        <br />
+                                                                        <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload(tutorInfo[0]?.employer_cooperation_fileid, tutorInfo[0]?.employer_cooperation_filename)}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button><br />
                                                                         Ожидает подтверждения
-                                                                        <br/><br/>
+                                                                        <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
-                                                                    <br/>
-                                                                    Подтверждено <IoMdCheckmark/>
-                                                                    <br/><br/>
-                                                                </div> :
+                                                                        <br />
+                                                                        Подтверждено <IoMdCheckmark />
+                                                                        <br /><br />
+                                                                    </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}><label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'black', border: 'none' }} >
                                                                         {currentFile ? `Загрузка...` : 'Выбрать файл...'}
                                                                         <input type="file" hidden onChange={(event) => selectFile(event, "employer_cooperation")} style={{ backgroundColor: 'silver', color: 'DimGray' }} />
@@ -435,7 +435,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 <td id="table-divider-stats">{tutorInfo[0]?.commission_participation_fileid == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
-                                                                        <RxCross2/>
+                                                                        <RxCross2 />
                                                                         <br /><br />
                                                                     </div> :
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -444,12 +444,33 @@ const TutorBonusPageSelf: FC = () => {
                                                                         <br /><br />
                                                                     </div>}
                                                                 </td>
-                                                            </tr>  
+                                                            </tr>
+                                                            <tr>
+                                                                <td id="table-divider-stats-left">Своевременное выполнение поручений руководства</td>
+                                                                <td id="table-divider-stats">{tutorInfo[0]?.task_completion_fileid == 0 ?
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        <RxCross2 />
+                                                                        <br /><br />
+                                                                    </div> : tutorInfo[0]?.task_completion_fileid == -1 ?
+                                                                        <div style={{ whiteSpace: 'nowrap' }}>
+                                                                            <br />
+                                                                            <b style={{color:'red'}}>- 1</b>
+                                                                            <br /><br />
+                                                                        </div> :
+                                                                        <div style={{ whiteSpace: 'nowrap' }}>
+                                                                            <br />
+                                                                            Подтверждено <IoMdCheckmark />
+                                                                            <br /><br />
+                                                                        </div>
+                                                                }
+                                                                </td>
+                                                            </tr>
                                                             <tr>
                                                                 <td id="table-divider-stats-left">Профориентационная работа</td>
                                                                 <td id="table-divider-stats"><br />
-                                                                    <i style={{whiteSpace:'nowrap'}}>Приведено студентов:&nbsp;<input type='text' style={{width:'28px'}} id='proforientation' disabled={true} className='btnNeutral' placeholder='Кол-во абитуриентов'></input></i>
-                                                                    <br/><br/>
+                                                                    <i style={{ whiteSpace: 'nowrap' }}>Приведено студентов:&nbsp;<input type='text' style={{ width: '28px' }} id='proforientation' disabled={true} className='btnNeutral' placeholder='Кол-во абитуриентов'></input></i>
+                                                                    <br /><br />
                                                                 </td>
                                                             </tr>
                                                             <tr>
