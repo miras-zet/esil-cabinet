@@ -12,8 +12,18 @@ const StudentEmail: FC = () => {
 
   }, []);
 
+  const sanitizeEmail = (input) =>{
+    let email = input.trim();
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (emailPattern.test(email)) {
+        return email;
+    } else {
+        return null;
+    }
+  }
+
   const sendEmail = () => {
-    if (!(document.getElementById("inputEmail") as HTMLInputElement).value.includes('@')){
+    if (!sanitizeEmail((document.getElementById("inputEmail") as HTMLInputElement).value)){
       alert('Неверный формат почты');
       return;
     }
