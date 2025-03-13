@@ -145,7 +145,12 @@ const getAllTutorBonusDataPrevMonth = (): Promise<any> =>{
     }
     return api.get(`/management/getalltutordata`,{params});
 }
-
+const getCourseraDocsByCafedra = (): Promise<any> =>{
+    const params = {
+        cafedraid: localStorage.getItem('cafedramanager'),
+    }
+    return api.get(`/management/getcourseradocscafedra`,{params});
+}
 
 const AdminService = {
     checkManagerStatus,
@@ -170,6 +175,7 @@ const AdminService = {
     getTutorBonusDataProforientationSelf,
     getAllTutorBonusData,
     getAllTutorBonusDataPrevMonth,
+    getCourseraDocsByCafedra,
 };
 
 export default AdminService;

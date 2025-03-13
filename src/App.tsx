@@ -76,6 +76,8 @@ import { DormCard } from './pages/template/DormCard'
 import { DormAgreement } from './pages/template/DormAgreement'
 import AddCourseraDocs from './pages/AddCourseraDocs'
 import TutorPublicationsInfoContainer from './pages/TutorPublicationsInfoContainer'
+import CourseraDocsList from './pages/CourseraDocsList'
+import RegisterTutorVideo from './pages/RegisterTutorVideo'
 
 const App:FC = () => {  
 //   const {store} = useContext(Context);    
@@ -156,6 +158,9 @@ const App:FC = () => {
         <Route path="/viewdormstatement" element={<DormStatement/>}/>
         <Route path="/viewdormcard" element={<DormCard/>}/>
         <Route path="/viewdormagreement" element={<DormAgreement/>}/>
+
+        <Route path="/courseradocslist" element={<CourseraDocsList/>}/>
+        <Route path="/addvideo" element={<RegisterTutorVideo/>}/>
 
         {/* <Route path="/physicalbooks" element={<PhysicalBooks/>}/> */}
         <Route path="/ebooks" element={<EBooks />}/>

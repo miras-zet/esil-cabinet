@@ -55,7 +55,7 @@ const AttendanceRecordEmployee: FC = () => {
         <KPINavbar />
         <br /><br /><br /><br />
         <h3>Учёт трудового времени</h3>
-        <h4>Обновляется ежемесячно</h4>
+        <h4>Обновляется еженедельно</h4>
         <Link to={"/"}><button className='backbutton'>Вернуться назад</button></Link> <br /><br />
         <br />
         <table id='opaqueTable' style={{paddingLeft: '15px', width: '80%',marginLeft:'11%'}}>
