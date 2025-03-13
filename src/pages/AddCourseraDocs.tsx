@@ -149,7 +149,8 @@ const AddCourseraDocs: FC = () => {
                                 <br /><br />
 
                                 <button className="navbarbutton" id='mainbutton1' onClick={() => addCertificateOne()} disabled={!currentFileOne}>Добавить</button>
-                                <br /><br />
+                                <br/><br/><i>После нажатия необходимо подождать окончания загрузки</i>
+                                <br /><br /><br />
                             </>
                         )}
 
@@ -170,6 +171,7 @@ const AddCourseraDocs: FC = () => {
                                 <br /><br />
 
                                 <button className="navbarbutton" id='mainbutton2' onClick={() => addCertificateTwo()} disabled={!currentFileTwo}>Добавить</button>
+                                <br/><br/><i>После нажатия необходимо подождать окончания загрузки</i>
                                 <br />
                             </>
                         )}

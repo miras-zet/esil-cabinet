@@ -78,6 +78,7 @@ import AddCourseraDocs from './pages/AddCourseraDocs'
 import TutorPublicationsInfoContainer from './pages/TutorPublicationsInfoContainer'
 import CourseraDocsList from './pages/CourseraDocsList'
 import RegisterTutorVideo from './pages/RegisterTutorVideo'
+import CourseraEmailCheck from './pages/CourseraEmailCheck'
 
 const App:FC = () => {  
 //   const {store} = useContext(Context);    
@@ -117,6 +118,7 @@ const App:FC = () => {
         <Route path="/attendance" element={ <AttendanceRecordStudent/>} />
         <Route path="/attendanceEmployee" element={ <AttendanceRecordEmployee/>} />
         <Route path="/uploadcoursera" element={ <AddCourseraDocs/>} />
+        <Route path="/emailcheck" element={ <CourseraEmailCheck/>} />
         
         <Route path="/accounting" element={ <TutorDataExport/>} />
         <Route path="/accountingPrev" element={ <TutorDataExportPrevMonth/>} />

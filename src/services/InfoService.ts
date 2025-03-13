@@ -6,6 +6,12 @@ const getStudentInfo = (): Promise<any> => {
     }
     return api.get(`/info/getstudentinfo`, { params });
 };
+const getStudentMail = (): Promise<any> => {
+    const params = {
+        user_id: localStorage.getItem('user_id'),
+    }
+    return api.get(`/info/getstudentemail`, { params });
+};
 const getTutorSubjects = (tutorid): Promise<any> => {
     const params = {
         tutorid: tutorid,
@@ -21,6 +27,16 @@ const addVideo = (tutorid, subject, number, videotype, lang): Promise<any> => {
         language: lang,
     }
     return api.get(`/management/addvideo`, { params });
+};
+const sendNewEmail = (email): Promise<any> => {
+    const params = {
+        user_id: localStorage.getItem('user_id'),
+        email: email
+    }
+    return api.get(`/info/sendnewemail`, { params });
+};
+const getEmails = (): Promise<any> => {
+    return api.get(`/info/getemails`);
 };
 const getExtraDataForCertificate = (): Promise<any> => {
     const params = {
@@ -85,6 +101,9 @@ const findTutorSearchbar = (search_query): Promise<any> => {
 
 const InfoService = {
     addVideo,
+    getEmails,
+    sendNewEmail,
+    getStudentMail,
     findTutorSearchbar,
     getTutorSubjects,
     getExtraDataForCertificate,

@@ -25,6 +25,7 @@ import CafedraService from '../services/CafedraService';
 import { FaTableList } from "react-icons/fa6";
 import StudentAttendance from '../components/StudentAttendance';
 import EmployeeAttendance from '../components/EmployeeAttendance';
+import StudentEmail from '../components/StudentEmail';
 
 export const buildVer = config.buildVer;
 
@@ -315,10 +316,10 @@ const HomePage: FC = () => {
                         <br /><a href="https://www.coursera.org/learn/prompt-engineering" target='_blank'>«Prompt-инженерия для ChatGPT» (18 часов, 6 модулей)</a>
                         <br /><br />По завершению курсов необходимо загрузить два сертификата Coursera и ссылки-подтверждения.<br />
                         <br /><b>Без сертификатов у обучающихся не будет допуска к рубежным контролям и экзаменационной сессии.</b>
-                        <br />
+                        <br /><StudentEmail/>
                         <img style={{}} src="example.png" alt='example' width={500} />
                         <br/><br/>
-                        <Link to="/uploadcoursera"><button className='navbarbutton'>Загрузить подтверждающие сертификаты Coursera</button></Link><br />
+                        <Link to="/uploadcoursera"><button className='navbarbutton'>Загрузить подтверждающие сертификаты</button></Link><br />
                         <br/>
                       </div><br /></tr>
                       <tr><div id='homepagePanel'>
