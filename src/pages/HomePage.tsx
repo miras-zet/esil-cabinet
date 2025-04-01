@@ -334,6 +334,7 @@ const HomePage: FC = () => {
                         В соответствии с письмом министерства науки и высшего образования № 4-07-02-06/1250-И от 24.02.2025 все обучающиеся университета Esil University должны пройти следующий курс на образовательной платформе от Astana Hub:<br />
                         <br /><a href="https://astanahub.com/ru/l/aicoursechatGPT" target='_blank'>"Основы Искусственного Интеллекта: чат GPT"</a>
                         <br /><br />По завершению курсов необходимо загрузить сертификат.<br />
+                        <br />Курс необходимо пройти до 20.04.2025.
                         <br /><b>Без сертификата у обучающихся не будет допуска к рубежным контролям и экзаменационной сессии.</b>
                         <br/><br/>Скачать инструкцию:&ensp;
                         <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload()}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button><br />
