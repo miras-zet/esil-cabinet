@@ -25,7 +25,6 @@ import CafedraService from '../services/CafedraService';
 import { FaTableList } from "react-icons/fa6";
 import StudentAttendance from '../components/StudentAttendance';
 import EmployeeAttendance from '../components/EmployeeAttendance';
-import StudentEmail from '../components/StudentEmail';
 
 export const buildVer = config.buildVer;
 
@@ -311,15 +310,13 @@ const HomePage: FC = () => {
                     <table>
                       <tr><div id='homepagePanel'>
                         <h2>Объявление для обучающихся</h2>
-                        В соответствии с письмом министерства науки и высшего образования № 4-07-02-06/1250-И от 24.02.2025 все обучающиеся университета Esil University должны пройти следующие курсы на образовательной платформе "Coursera":<br />
-                        <br /><a href="https://www.coursera.org/learn/ai-for-everyone-ru?utm_medium=sem&utm_source=gg&utm_campaign=b2c_apac_x_coursera_ftcof_career-academy_cx_dr_bau_gg_pmax_gc_s2_all_m_hyb_24-08_x&campaignid=21573875733&adgroupid=&device=c&keyword=&matchtype=&network=x&devicemodel=&creativeid=&assetgroupid=6511393614&targetid=&extensionid=&placement=&gad_source=1&gclid=Cj0KCQiAwtu9BhC8ARIsAI9JHalxtabS7pSBWQ5XXxqc6fa-gAn4WUp6IRyRGD-4dFrqACnhvSRVE30aAu9sEALw_wcB" target='_blank'>«Генеративный ИИ для всех» (6 часов, 4 модуля)</a>
-                        <br /><a href="https://www.coursera.org/learn/prompt-engineering" target='_blank'>«Prompt-инженерия для ChatGPT» (18 часов, 6 модулей)</a>
-                        <br /><br />По завершению курсов необходимо загрузить два сертификата Coursera и ссылки-подтверждения.<br />
-                        <br /><b>Без сертификатов у обучающихся не будет допуска к рубежным контролям и экзаменационной сессии.</b>
-                        <br /><StudentEmail/>
-                        <img style={{}} src="example.png" alt='example' width={500} />
+                        В соответствии с письмом министерства науки и высшего образования № 4-07-02-06/1250-И от 24.02.2025 все обучающиеся университета Esil University должны пройти следующий курс на образовательной платформе от Astana Hub:<br />
+                        <br /><a href="https://astanahub.com/ru/l/aicoursechatGPT" target='_blank'>"Основы Искусственного Интеллекта: чат GPT"</a>
+                        <br /><br />По завершению курсов необходимо загрузить сертификат.<br />
+                        <br /><b>Без сертификата у обучающихся не будет допуска к рубежным контролям и экзаменационной сессии.</b>
+                        {/* <br /><StudentEmail/> */}
                         <br/><br/>
-                        <Link to="/uploadcoursera"><button className='navbarbutton'>Загрузить подтверждающие сертификаты</button></Link><br />
+                        <Link to="/uploadcoursera"><button className='navbarbutton'>Загрузить сертификат</button></Link><br />
                         <br/>
                       </div><br /></tr>
                       <tr><div id='homepagePanel'>

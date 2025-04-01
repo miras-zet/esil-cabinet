@@ -151,8 +151,14 @@ const getCourseraDocsByCafedra = (): Promise<any> =>{
     }
     return api.get(`/management/getcourseradocscafedra`,{params});
 }
-
+const getTutorBonusDataMoodleVideoSelf = (): Promise<any> => {
+    const params = {
+        userid: localStorage.getItem('user_id'),
+    }
+    return api.get(`/management/gettutormoodlevideopercentage`,{params});
+};
 const AdminService = {
+    getTutorBonusDataMoodleVideoSelf,
     checkManagerStatus,
     subtractTutorCategory,
     checkFacultyStatus,

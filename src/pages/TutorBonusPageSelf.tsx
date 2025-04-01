@@ -27,6 +27,7 @@ const TutorBonusPageSelf: FC = () => {
     const [pubPoints, setPubPoints] = useState<number>(0);
     const [literaturePoints, setLiteraturePoints] = useState<number>(0);
     const [moodlePercentage, setMoodlePercentage] = useState<number>(-1);
+    const [moodleVideoPercentage, setMoodleVideoPercentage] = useState<number>(-1);
     const [premiere, setPremiere] = useState<string>('');
     const [currentFile, setCurrentFile] = useState<File>();
 
@@ -68,6 +69,9 @@ const TutorBonusPageSelf: FC = () => {
         });
         CafedraService.getTutorBonusDataMoodleSelf().then((response) => {
             setMoodlePercentage(response.data);
+        });
+        CafedraService.getTutorBonusDataMoodleVideoSelf().then((response) => {
+            setMoodleVideoPercentage(response.data);
         });
         InfoService.getBonusPointsSelf().then((response) => {
             setBonusPoints(response.data);
@@ -262,6 +266,21 @@ const TutorBonusPageSelf: FC = () => {
                                                                         <br />
                                                                         {moodlePercentage < 100 ? <><Link to={"/moodleinfo"}><button className="navbarbutton">Помощь</button></Link> <br /></> : ''}
                                                                         <br />
+                                                                    </div>}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td id="table-divider-stats-left">Процент видеолекций на портале ДОТ<br/> <i>(необходимо 15 на каждом курсе)</i></td>
+                                                                <td id="table-divider-stats">{moodleVideoPercentage == -1 ?
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        <RxCross2 />
+                                                                        <br /><br />
+                                                                    </div> :
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        {moodleVideoPercentage}%
+                                                                        <br /><br />
                                                                     </div>}
                                                                 </td>
                                                             </tr>

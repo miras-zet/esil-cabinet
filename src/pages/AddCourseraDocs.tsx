@@ -14,7 +14,7 @@ import ICourseraDocsResponse from '../models/ICourseraDocsResponse';
 const AddCourseraDocs: FC = () => {
     const { store } = useContext(Context);
     const [currentFileOne, setCurrentFileOne] = useState<File>();
-    const [currentFileTwo, setCurrentFileTwo] = useState<File>();
+    // const [currentFileTwo, setCurrentFileTwo] = useState<File>();
     const [courseraDocs, setCourseraDocs] = useState<Array<ICourseraDocsResponse>>([]);
     useEffect(() => {
         // const user = JSON.parse(localStorage.getItem('data'));
@@ -30,11 +30,11 @@ const AddCourseraDocs: FC = () => {
         const selectedFiles = files as FileList;
         setCurrentFileOne(selectedFiles?.[0]);
     };
-    const selectFileTwo = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { files } = event.target;
-        const selectedFiles = files as FileList;
-        setCurrentFileTwo(selectedFiles?.[0]);
-    };
+    // const selectFileTwo = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     const { files } = event.target;
+    //     const selectedFiles = files as FileList;
+    //     setCurrentFileTwo(selectedFiles?.[0]);
+    // };
 
     if (store.isLoading) {
         return <div>Loading ...</div>
@@ -88,35 +88,35 @@ const AddCourseraDocs: FC = () => {
                 }
             });
     }
-    const addCertificateTwo = () => {
-        const fileNameParts = currentFileTwo.name.split('.');
-        const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
+    // const addCertificateTwo = () => {
+    //     const fileNameParts = currentFileTwo.name.split('.');
+    //     const fileExtension = fileNameParts[fileNameParts.length - 1].toLowerCase();
 
-        if (fileExtension !== 'pdf') {
-            alert('Необходим PDF файл');
-            return;
-        }
-        const link = (document.getElementById("inputLink2") as HTMLInputElement).value;
-        (document.getElementById("mainbutton2") as HTMLInputElement).value = 'Идёт загрузка..';
-        uploadCourseraFile(currentFileTwo, "2", link).then((response) => {
-            if (response.data.message.indexOf('успешно') !== -1) {
-                setCurrentFileTwo(undefined);
-                alert('Файл загружен');
-                location.reload();
-            } else {
+    //     if (fileExtension !== 'pdf') {
+    //         alert('Необходим PDF файл');
+    //         return;
+    //     }
+    //     const link = (document.getElementById("inputLink2") as HTMLInputElement).value;
+    //     (document.getElementById("mainbutton2") as HTMLInputElement).value = 'Идёт загрузка..';
+    //     uploadCourseraFile(currentFileTwo, "2", link).then((response) => {
+    //         if (response.data.message.indexOf('успешно') !== -1) {
+    //             setCurrentFileTwo(undefined);
+    //             alert('Файл загружен');
+    //             location.reload();
+    //         } else {
 
-            }
-            (document.getElementById("mainbutton") as HTMLInputElement).value = 'Добавить';
-        })
-            .catch((err) => {
-                if (err.response && err.response.data && err.response.data.message) {
-                    console.log(err.response.data.message);
-                } else {
-                    console.log('error');
-                }
-            });
+    //         }
+    //         (document.getElementById("mainbutton") as HTMLInputElement).value = 'Добавить';
+    //     })
+    //         .catch((err) => {
+    //             if (err.response && err.response.data && err.response.data.message) {
+    //                 console.log(err.response.data.message);
+    //             } else {
+    //                 console.log('error');
+    //             }
+    //         });
 
-    }
+    // }
     const goBack = () => {
         window.location.href = window.location.protocol + '//' + window.location.host + '/';
     }
@@ -130,9 +130,9 @@ const AddCourseraDocs: FC = () => {
                         <br /><br /><br /><br /><br /><br />
                         <button onClick={() => goBack()} className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button><br /><br />
                         <br />
-                        <h3>Добавить сертификаты Coursera</h3>
+                        <h3>Добавить сертификат</h3>
 
-                        <h4>«Генеративный ИИ для всех»</h4>
+                        <h4>«Основы Искусственного Интеллекта: чат GPT»</h4>
                         {courseraDocs.find(doc => doc.filetype === 1) ? (
                             <p style={{ color: 'green' }}>Файл загружен</p>
                         ) : (
@@ -153,7 +153,7 @@ const AddCourseraDocs: FC = () => {
                                 <br /><br /><br />
                             </>
                         )}
-
+{/* 
                         <h4>«Prompt-инженерия для ChatGPT»</h4>
                         {courseraDocs.find(doc => doc.filetype === 2) ? (
                             <p style={{ color: 'green' }}>Файл загружен</p>
@@ -174,7 +174,7 @@ const AddCourseraDocs: FC = () => {
                                 <br/><br/><i>После нажатия необходимо подождать окончания загрузки</i>
                                 <br />
                             </>
-                        )}
+                        )} */}
                         <br />
 
                     </div>
