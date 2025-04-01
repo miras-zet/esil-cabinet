@@ -268,11 +268,11 @@ const TutorBonusPageSelf: FC = () => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                            <td id="table-divider-stats-left" style={{zIndex:0, pointerEvents:'none',position:'absolute', height:'370px', width:'448px'}}><br/>Портал дистанционного обучения<br/><br/></td>
+                                                            <td id="table-divider-stats-left" style={{zIndex:0, pointerEvents:'none',position:'absolute', height:'410px', width:'448px'}}><br/>Портал дистанционного обучения<br/><br/></td>
                                                             </tr>
                                                             <tr><br/><br/><br/></tr>
                                                             <tr>
-                                                                <div style={{marginLeft:'46px'}}><td id="table-divider-stats-left"><br/>Заполнение файлами и тестами<br/><br/></td></div>
+                                                                <div style={{marginLeft:'46px'}}><td id="table-divider-stats-left"><br/>Наполнение курсов файлами и тестами<br/><br/></td></div>
                                                                 <td id="table-divider-stats">{moodlePercentage == -1 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
@@ -289,7 +289,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <div style={{marginLeft:'46px'}}><td id="table-divider-stats-left"><br/>Заполнение видеолекциями<br/><br/></td></div>
+                                                                <div style={{marginLeft:'46px'}}><td id="table-divider-stats-left"><br/>Наполнение курсов видеолекциями<br/><br/></td></div>
                                                                 <td id="table-divider-stats">{moodleVideoPercentage == -1 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
                                                                         <br />
@@ -305,7 +305,7 @@ const TutorBonusPageSelf: FC = () => {
                                                             </tr>
                                                             <tr>
                                                                 <div style={{marginLeft:'46px'}}>
-                                                                    <td id="table-divider-stats-left" width={'350px'} style={{paddingLeft:'50px'}}><br /><Link to={"/videorecordhelp"} style={{zIndex:100}}><button className="navbarbutton">Видеолекции</button></Link><br /><br />
+                                                                    <td id="table-divider-stats-left" width={'350px'} style={{paddingLeft:'20px'}}><br /><Link to={"/videorecordhelp"} style={{zIndex:100}}><button className="navbarbutton">Инструкция для записи видеолекций</button></Link><br /><br />
                                                                     </td>
                                                                 </div>
                                                             </tr>
