@@ -6,6 +6,9 @@ import { Link, Navigate } from 'react-router-dom';
 import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import { TiArrowBack } from 'react-icons/ti';
+import api from '../http-common';
+import configFile from "../http/config.json";
+import { FaDownload } from 'react-icons/fa';
 
 
 const TutorPublicationsInfoContainer: FC = () => {
@@ -29,6 +32,66 @@ const TutorPublicationsInfoContainer: FC = () => {
             </div>
         );
     }
+
+    async function handleFileDownload(argument:string){
+        let response;
+        let extension = '';
+        /*
+        const params = {
+        cafedraid: localStorage.getItem('cafedramanager'),
+    }
+    return api.get(`/management/getcourseradocscafedra`,{params});
+        */
+        try {
+            switch(argument){
+                case 'ustanovka': {
+                    extension = 'pptx';
+                    response = await api.get(`${configFile.API_URL}/upload/downloadrecording/${argument}`, {
+                        responseType: 'blob',
+                    });
+                    
+                } break;
+                case 'zapis': {
+                    extension = 'pptx';
+                    response = await api.get(`${configFile.API_URL}/upload/downloadrecording/${argument}`, {
+                        responseType: 'blob',
+                    });
+                } break;
+                case 'icecream': {
+                    extension = 'zip';
+                    response = await api.get(`${configFile.API_URL}/upload/downloadrecording/${argument}`, {
+                        responseType: 'blob',
+                    });
+                } break;
+                case 'shablon': {
+                    extension = 'pptx';
+                    response = await api.get(`${configFile.API_URL}/upload/downloadrecording/${argument}`, {
+                        responseType: 'blob',
+                    });
+                } break;
+                case 'logo': {
+                    extension = 'png';
+                    response = await api.get(`${configFile.API_URL}/upload/downloadrecording/${argument}`, {
+                        responseType: 'blob',
+                    });   
+                } break;
+                default:{
+                    alert('err');
+                }
+            }
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', `${argument}.${extension}`);
+          document.body.appendChild(link);
+          link.click();
+          window.URL.revokeObjectURL(url);
+          document.body.removeChild(link);
+        } catch (error) {
+          console.error('Error downloading file:', error);
+          alert('Ошибка загрузки файла.');
+        }
+      };
    
     return (
         <div>
@@ -39,7 +102,11 @@ const TutorPublicationsInfoContainer: FC = () => {
                         <KPINavbar />
                         <br /><br /><br /><br /><br /><br /><br />
                         <Link to={"/ktu"}><button className="navbarbutton"><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link> <br />
-                        <h3>Информация скоро появится</h3>         
+                        <h4>Инструкция по установке IceCream: <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload('ustanovka')}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button></h4>         
+                        <h4>Инструкция по записи видеолекций: <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload('zapis')}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button></h4>     
+                        <h4>Скачать программу: <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload('icecream')}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button></h4>     
+                        <h4>Скачать шаблон презентации: <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload('shablon')}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button></h4>     
+                        <h4>Скачать логотип университета: <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload('logo')}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button></h4>     
                     </div>
                 }
                 else {
