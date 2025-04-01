@@ -157,8 +157,15 @@ const getTutorBonusDataMoodleVideoSelf = (): Promise<any> => {
     }
     return api.get(`/management/gettutormoodlevideopercentage`,{params});
 };
+const getTutorBonusDataMoodleVideo = (): Promise<any> => {
+    const params = {
+        userid: localStorage.getItem('viewinguserid'),
+    }
+    return api.get(`/management/gettutormoodlevideopercentage`,{params});
+};
 const AdminService = {
     getTutorBonusDataMoodleVideoSelf,
+    getTutorBonusDataMoodleVideo,
     checkManagerStatus,
     subtractTutorCategory,
     checkFacultyStatus,

@@ -26,6 +26,7 @@ const TutorBonusPage: FC = () => {
     const [pubPoints, setPubPoints] = useState<number>(0);
     const [literaturePoints, setLiteraturePoints] = useState<number>(0);
     const [moodlePercentage, setMoodlePercentage] = useState<number>(-1);
+    const [moodleVideoPercentage, setMoodleVideoPercentage] = useState<number>(-1);
     const [premiere, setPremiere] = useState<string>('');
     const [currentFile, setCurrentFile] = useState<File>();
 
@@ -110,6 +111,9 @@ const TutorBonusPage: FC = () => {
         CafedraService.getTutorBonusDataMoodle().then((response) => {
             setMoodlePercentage(response.data);
         }); 
+        CafedraService.getTutorBonusDataMoodleVideo().then((response) => {
+            setMoodleVideoPercentage(response.data);
+        });
         CafedraService.getTutorBonusDataProforientation().then((response) => {
             (document.getElementById("proforientation") as HTMLInputElement).value=response.data;
 
@@ -326,21 +330,6 @@ const TutorBonusPage: FC = () => {
                                                                 </td>
                                                             </tr> */}
                                                             <tr>
-                                                                <td id="table-divider-stats-left">Контент ДОТ на портале</td>
-                                                                <td id="table-divider-stats">{moodlePercentage == -1 ?
-                                                                    <div style={{ whiteSpace: 'nowrap' }}>
-                                                                        <br />
-                                                                        <RxCross2/>
-                                                                        <br /><br />
-                                                                    </div> :
-                                                                    <div style={{ whiteSpace: 'nowrap' }}>
-                                                                        <br />
-                                                                        {moodlePercentage}%
-                                                                        <br /><br />
-                                                                    </div>}
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
                                                                 <td id="table-divider-stats-left">Разработка и подготовка учебной и учебно-методической литературы (за 5 лет)</td>
                                                                 <td id="table-divider-stats">{literaturePoints == 0 ?
                                                                     <div style={{ whiteSpace: 'nowrap' }}>
@@ -355,6 +344,41 @@ const TutorBonusPage: FC = () => {
                                                                     </div>}
                                                                 </td>
                                                             </tr>
+                                                            <tr>
+                                                            <td id="table-divider-stats-left" style={{zIndex:0, pointerEvents:'none',position:'absolute', height:'300px', width:'448px'}}><br/>Портал дистанционного обучения<br/><br/></td>
+                                                            </tr>
+                                                            <tr><br/><br/><br/></tr>
+                                                            <tr>
+                                                                <div style={{marginLeft:'46px'}}><td id="table-divider-stats-left"><br/>Наполнение курсов файлами и тестами<br/><br/></td></div>
+                                                                <td id="table-divider-stats">{moodlePercentage == -1 ?
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        <RxCross2 />
+                                                                        <br /><br />
+                                                                    </div> :
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        {moodlePercentage}%
+                                                                        <br /><br />
+                                                                    </div>}
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <div style={{marginLeft:'46px'}}><td id="table-divider-stats-left"><br/>Наполнение курсов видеолекциями<br/><br/></td></div>
+                                                                <td id="table-divider-stats">{moodleVideoPercentage == -1 ?
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        <RxCross2 />
+                                                                        <br /><br />
+                                                                    </div> :
+                                                                    <div style={{ whiteSpace: 'nowrap' }}>
+                                                                        <br />
+                                                                        {moodleVideoPercentage}%
+                                                                        <br /> <br /> 
+                                                                    </div>}             
+                                                                </td>
+                                                            </tr>
+                                                            
                                                             <tr>
                                                                 <td><br /></td>
                                                             </tr>
