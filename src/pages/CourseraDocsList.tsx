@@ -87,7 +87,7 @@ const CourseraDocsList: FC = () => {
             <td style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>{index + 1}&nbsp;&nbsp;&nbsp;</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>{element.fio}</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{element.filepath}</td>
-            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{element.link}</td>
+            {/* <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{element.link}</td> */}
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{element.confirmed}</td>  
         </tr> : <></>
     );
@@ -146,7 +146,7 @@ const CourseraDocsList: FC = () => {
                                 <th style={{ textAlign: 'center' }}><br />№&nbsp;&nbsp;<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />ФИО<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Ссылка на файл<br />&nbsp;</th>
-                                <th style={{ textAlign: 'center' }}><br />Ссылка-подтверждение<br />&nbsp;</th>
+                                {/* <th style={{ textAlign: 'center' }}><br />Ссылка-подтверждение<br />&nbsp;</th> */}
                                 <th style={{ textAlign: 'center' }}><br />Подтверждено<br />&nbsp;</th>
                                 <th>&nbsp;</th>
                             </tr>

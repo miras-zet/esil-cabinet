@@ -11,7 +11,7 @@ import UploadService from '../services/UploadService';
 //import KPICategoryScores from '../components/KPICategoryScores';
 import KPINavbar from '../components/KPINavbar';
 //import { HiSparkles } from "react-icons/hi2";
-import { FaBook, FaPlus, FaTrashAlt } from 'react-icons/fa';
+import { FaBook, FaDownload, FaPlus, FaTrashAlt } from 'react-icons/fa';
 import { FaBookAtlas, FaDisplay } from "react-icons/fa6";
 import { IoIosAlarm, IoIosBook } from "react-icons/io";
 import { MdNoteAdd } from 'react-icons/md';
@@ -25,6 +25,8 @@ import CafedraService from '../services/CafedraService';
 import { FaTableList } from "react-icons/fa6";
 import StudentAttendance from '../components/StudentAttendance';
 import EmployeeAttendance from '../components/EmployeeAttendance';
+import api from '../http-common';
+import configFile from "../http/config.json";
 
 export const buildVer = config.buildVer;
 
@@ -253,6 +255,25 @@ const HomePage: FC = () => {
     }
   };
 
+  async function handleFileDownload(){
+    try {
+      const response = await api.get(`${configFile.API_URL}/upload/downloadinstruction`, {
+        responseType: 'blob',
+      });
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'Инструкция.pptx');
+      document.body.appendChild(link);
+      link.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading file:', error);
+      alert('Ошибка загрузки файла.');
+    }
+  };
+
   return (
     <div>
       {(() => {
@@ -314,10 +335,12 @@ const HomePage: FC = () => {
                         <br /><a href="https://astanahub.com/ru/l/aicoursechatGPT" target='_blank'>"Основы Искусственного Интеллекта: чат GPT"</a>
                         <br /><br />По завершению курсов необходимо загрузить сертификат.<br />
                         <br /><b>Без сертификата у обучающихся не будет допуска к рубежным контролям и экзаменационной сессии.</b>
+                        <br/><br/>Скачать инструкцию:&ensp;
+                        <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload()}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button><br />
                         {/* <br /><StudentEmail/> */}
-                        <br/><br/>
+                        <br />
                         <Link to="/uploadcoursera"><button className='navbarbutton'>Загрузить сертификат</button></Link><br />
-                        <br/>
+                        <br />
                       </div><br /></tr>
                       <tr><div id='homepagePanel'>
                         <h2>Справки</h2>
