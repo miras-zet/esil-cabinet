@@ -68,7 +68,8 @@ const AddCourseraDocs: FC = () => {
             alert('Необходим PDF файл');
             return;
         }
-        const link = (document.getElementById("inputLink1") as HTMLInputElement).value;
+        //const link = (document.getElementById("inputLink1") as HTMLInputElement).value;
+        const link = '-';
         (document.getElementById("mainbutton1") as HTMLInputElement).value = 'Идёт загрузка..';
         uploadCourseraFile(currentFileOne, "1", link).then((response) => {
             if (response.data.message.indexOf('успешно') !== -1) {
@@ -137,9 +138,7 @@ const AddCourseraDocs: FC = () => {
                             <p style={{ color: 'green' }}>Файл загружен</p>
                         ) : (
                             <>
-                                Ссылка-подтверждение:
-                                &emsp;<input id="inputLink1" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Ссылка'></input>
-                                <br /><br />
+                                
 
                                 Прикрепить .pdf файл:
                                 &emsp;<label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'DimGray' }}>
