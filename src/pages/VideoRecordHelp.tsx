@@ -107,6 +107,9 @@ const TutorPublicationsInfoContainer: FC = () => {
                         <h4>Скачать программу: <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload('icecream')}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button></h4>     
                         <h4>Скачать шаблон презентации: <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload('shablon')}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button></h4>     
                         <h4>Скачать логотип университета: <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload('logo')}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button></h4>     
+                        <br/>
+                        <h4><a target='_blank' href='https://drive.google.com/file/d/1RaUX58QWjdBhZq47AEi4xfzh7IzHHBJc/view?usp=drive_link'>Ссылка на видеоинструкцию №1</a></h4>
+                        <h4><a target='_blank' href='https://drive.google.com/file/d/1fcSYvgs2eRfjorTZbpZxiA8RQlQhozIR/view?usp=drive_link'>Ссылка на видеоинструкцию №2</a></h4>
                     </div>
                 }
                 else {
