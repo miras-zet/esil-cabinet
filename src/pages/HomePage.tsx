@@ -27,6 +27,7 @@ import StudentAttendance from '../components/StudentAttendance';
 import EmployeeAttendance from '../components/EmployeeAttendance';
 import api from '../http-common';
 import configFile from "../http/config.json";
+import astanahubvideo from "/astanahub.mp4";
 
 export const buildVer = config.buildVer;
 
@@ -255,7 +256,7 @@ const HomePage: FC = () => {
     }
   };
 
-  async function handleFileDownload(){
+  async function handleFileDownload() {
     try {
       const response = await api.get(`${configFile.API_URL}/upload/downloadinstruction`, {
         responseType: 'blob',
@@ -331,14 +332,19 @@ const HomePage: FC = () => {
                     <table>
                       <tr><div id='homepagePanel'>
                         <h2>Объявление для обучающихся</h2>
-                        <h4 style={{color:'red'}}>Если возникают проблемы с выбором университета при регистрации, необходимо заново перейти по обновлённой ссылке на курс и зарегистрировать другую почту, затем появится выбор университета.</h4>
+                        <h4 style={{ color: 'red' }}>Если возникают проблемы с выбором университета при регистрации, необходимо заново перейти по обновлённой ссылке на курс и зарегистрировать другую почту, затем появится выбор университета.</h4>
                         В соответствии с письмом министерства науки и высшего образования № 4-07-02-06/1250-И от 24.02.2025 все обучающиеся университета Esil University должны пройти следующий курс на образовательной платформе от Astana Hub:<br />
                         <br /><a href="https://corp.lerna.kz/astanahub_registration?company=033f2f74-4795-4ae6-a3dc-f6ea1fe08d29" target='_blank'>"Основы Искусственного Интеллекта: чат GPT"</a>
                         <br /><br />По завершению курсов необходимо загрузить сертификат.<br />
                         <br />Курс необходимо пройти до 20.04.2025.
                         <br /><b>Без сертификата у обучающихся не будет допуска к рубежным контролям и экзаменационной сессии.</b>
-                        <br/><br/>Скачать инструкцию:&ensp;
+                        <br /><br />Скачать инструкцию:&ensp;
                         <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload()}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button><br />
+                        <br />Видеоинструкция:
+                        <video width="500" height="220" controls>
+                          <source src={astanahubvideo} type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
                         {/* <br /><StudentEmail/> */}
                         <br />
                         <Link to="/uploadcoursera"><button className='navbarbutton'>Загрузить сертификат</button></Link><br />
