@@ -108,6 +108,12 @@ const getCourseraFiles = () :Promise<any> => {
   }
   return api.get(`/upload/getcourserafiles`,{params});
 };
+const deleteCourseraFiles = () :Promise<any> => {
+  const params = {
+    userid: localStorage.getItem('user_id')
+  }
+  return api.get(`/upload/deletecourserafiles`,{params});
+};
 const getCategoryScores = () : Promise<any> => {
   const userid = localStorage.getItem('user_id');  
   return api.get(`/upload/getcategoryscore/${userid}`);
@@ -207,6 +213,7 @@ const UploadService = {
   updateProforientationAdmission,
   getFiles,
   getCourseraFiles,
+  deleteCourseraFiles,
   getTutors,
   getCategories,
   denyDormRequestForUser,

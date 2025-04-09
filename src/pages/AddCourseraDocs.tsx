@@ -30,6 +30,12 @@ const AddCourseraDocs: FC = () => {
         const selectedFiles = files as FileList;
         setCurrentFileOne(selectedFiles?.[0]);
     };
+    const deleteDoc = () => {
+        UploadService.deleteCourseraFiles().then(() => {
+            alert('Файл был удален');
+            location.reload();
+        });
+    };
     // const selectFileTwo = (event: React.ChangeEvent<HTMLInputElement>) => {
     //     const { files } = event.target;
     //     const selectedFiles = files as FileList;
@@ -135,7 +141,9 @@ const AddCourseraDocs: FC = () => {
 
                         <h4>«Основы Искусственного Интеллекта: чат GPT»</h4>
                         {courseraDocs.find(doc => doc.filetype === 1) ? (
-                            <p style={{ color: 'green' }}>Файл загружен</p>
+                            <><p style={{ color: 'green' }}>Файл загружен</p><br/>
+                            <button onClick={() => deleteDoc()} className='backbutton'>Удалить файл</button><br />
+                            </>
                         ) : (
                             <>
                                 
