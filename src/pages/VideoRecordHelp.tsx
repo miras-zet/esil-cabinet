@@ -44,6 +44,13 @@ const TutorPublicationsInfoContainer: FC = () => {
         */
         try {
             switch(argument){
+                case 'polozhenie': {
+                    extension = 'pdf';
+                    response = await api.get(`${configFile.API_URL}/upload/downloadrecording/${argument}`, {
+                        responseType: 'blob',
+                    });
+                    
+                } break;
                 case 'ustanovka': {
                     extension = 'pptx';
                     response = await api.get(`${configFile.API_URL}/upload/downloadrecording/${argument}`, {
@@ -105,6 +112,7 @@ const TutorPublicationsInfoContainer: FC = () => {
                         <h4>Инструкция по установке IceCream: <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload('ustanovka')}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button></h4>         
                         <h4>Инструкция по записи видеолекций: <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload('zapis')}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button></h4>     
                         <h4>Скачать программу: <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload('icecream')}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button></h4>     
+                        <h4>Скачать положение о видеолекциях: <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload('polozhenie')}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button></h4>     
                         <h4>Скачать шаблон презентации: <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload('shablon')}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button></h4>     
                         <h4>Скачать логотип университета: <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload('logo')}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button></h4>     
                         <br/>
