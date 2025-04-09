@@ -255,7 +255,24 @@ const HomePage: FC = () => {
       default: searchTypeSelected('name');
     }
   };
-
+  async function handleFileDownloadLetter() {
+    try {
+      const response = await api.get(`${configFile.API_URL}/upload/downloadletter`, {
+        responseType: 'blob',
+      });
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'Письмо.docx');
+      document.body.appendChild(link);
+      link.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error('Error downloading file:', error);
+      alert('Ошибка загрузки файла.');
+    }
+  };
   async function handleFileDownload() {
     try {
       const response = await api.get(`${configFile.API_URL}/upload/downloadinstruction`, {
@@ -338,12 +355,14 @@ const HomePage: FC = () => {
                         <br /><br />По завершению курсов необходимо загрузить сертификат.<br />
                         <br />Курс необходимо пройти до 20.04.2025.
                         <br /><b>Без сертификата у обучающихся не будет допуска к рубежным контролям и экзаменационной сессии.</b>
+                        <br /><br />Скачать письмо:&ensp;
+                        <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownloadLetter()}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button><br />
                         <br /><br />Скачать инструкцию:&ensp;
                         <button className='backbutton' style={{ width: '40px', height: '40px' }} onClick={() => handleFileDownload()}><FaDownload style={{ width: '20px', height: '20px', position: 'absolute', marginLeft: '-10px', marginTop: '-10px' }} /></button><br />
                         <br />Видеоинструкция:
                         <video width="500" height="220" controls>
                           <source src={astanahubvideo} type="video/mp4" />
-                          Your browser does not support the video tag.
+                          Ваш браузер не поддерживает это видео.
                         </video>
                         {/* <br /><StudentEmail/> */}
                         <br />
