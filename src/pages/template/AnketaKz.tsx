@@ -65,7 +65,7 @@ export function AnketaKz() {
     ['Студенттер қатарына', '...'],
     ['Оқу орыны', applicationData?.edu_name],
     ['Бітірген оқу орыны', applicationData?.edu_place_name],
-    ['Жатақхана қажеттілігі', (applicationData?.dorm==1? 'Иə':'Жоқ')],
+    ['Жатақхана қажеттілігі', (applicationData?.dorm!=1? 'Иə':'Жоқ')],
     ['Меңгерген тілдері', '...'],
     ['Жеңілдіктер', '...'],
     ['Шартты', '...'],
