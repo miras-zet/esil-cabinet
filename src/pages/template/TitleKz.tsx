@@ -46,7 +46,7 @@ export function TitleKz() {
                         Оқыту: &nbsp;<u>{[3,4,8,19,20,25,30].includes(titleData?.studyformID) ? <b>Күндізгі (ҚОТ)</b>:<b>Күндізгі</b>}</u><br />
                         Курс: _______<br />
                     </p>
-                    {titleData?.grant_type==-7 ? <div>Ақылы</div>:<div>Грант</div>}<br />
+                    {titleData?.grant_type==-4 ? <div>Грант</div>:<div>Ақылы</div>}<br />
                     <p style={{ marginLeft: '14%', fontSize: '21pt' }}>Білім алушының жеке іс-қағазы №_____</p><br />
                     Тегі: &nbsp;<u>{titleData?.lastname}</u><br />
                     Аты: &nbsp;<u>{titleData?.firstname}</u><br />

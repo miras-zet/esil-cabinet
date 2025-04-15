@@ -47,7 +47,7 @@ export function TitleRu() {
                         Обучение: &nbsp;<u>{[3,4,8,19,20,25,30].includes(titleData?.studyformID) ? <b>Очное с использованием ДОТ</b>:<b>Очное</b>}</u><br />
                         Курс: _______<br />
                     </p>
-                    {titleData?.grant_type==-7 ? <div>Коммерческий</div>:<div>Грант</div>}<br />
+                    {titleData?.grant_type==-4 ? <div>Грант</div>:<div>Коммерческий</div>}<br />
                     <p style={{ marginLeft: '20%', fontSize: '21pt' }}>Личное дело обучающегося №_____</p><br />
                     Фамилия: &nbsp;<u>{titleData?.lastname}</u><br />
                     Имя: &nbsp;<u>{titleData?.firstname}</u><br />
