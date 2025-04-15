@@ -92,6 +92,13 @@ const HomePage: FC = () => {
     return <Navigate to='/certificate' />;
   }
 
+  function openModal(){
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+    open();
+  }
   function redirectCafedra(id: string, name: string) {
     localStorage.setItem('cafedraid', id);
     localStorage.setItem('cafedraname', name);
@@ -372,7 +379,7 @@ const HomePage: FC = () => {
                       </div><br /></tr>
                       <tr><div id='homepagePanel'>
                         <h2>Справки</h2>
-                        <button className='navbarbutton' onClick={open}><FaPlus style={{ verticalAlign: 'middle', fontSize: '11pt' }} /> Получить новую справку</button>
+                        <button className='navbarbutton' onClick={openModal}><FaPlus style={{ verticalAlign: 'middle', fontSize: '11pt' }} /> Получить новую справку</button>
                         &nbsp;&nbsp;
                         <Link to="/list">
                           {/* <button className='navbarbutton' onClick={() => store.getCert()}> <FaClock style={{ verticalAlign: 'middle', fontSize: '14pt' }} /> История справок</button> */}
