@@ -38,7 +38,7 @@ const LoginForm: FC = () => {
     
           if (newAttempts >= 5) {
             setIsLocked(true);
-            alert("Слишком много попыток входа. Попробуйте снова через 10 секунд.");
+            alert("Слишком много попыток входа. Попробуйте снова через 10 секунд. Логин и пароль - ваш ИИН.");
             
             setTimeout(() => {
               setFailedAttempts(0);
