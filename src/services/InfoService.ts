@@ -92,6 +92,9 @@ const getAttendanceInfo = (): Promise<any> => {
     }
     return api.get(`/info/getattendanceinfo`, { params });
 };
+const getAstanaHubInfo = (): Promise<any> => {
+    return api.get(`/info/getastanahubinfo`);
+};
 const findTutorSearchbar = (search_query): Promise<any> => {
     const params = {
         search_query: search_query
@@ -101,6 +104,7 @@ const findTutorSearchbar = (search_query): Promise<any> => {
 
 const InfoService = {
     addVideo,
+    getAstanaHubInfo,
     getEmails,
     sendNewEmail,
     getStudentMail,

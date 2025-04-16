@@ -81,6 +81,7 @@ import RegisterTutorVideo from './pages/RegisterTutorVideo'
 import CourseraEmailCheck from './pages/CourseraEmailCheck'
 import VideoRecordHelp from './pages/VideoRecordHelp'
 import AstanaHubSupport from './pages/AstanaHubSupport'
+import AstanaHubInfo from './pages/AstanaHubInfo'
 
 const App:FC = () => {  
 //   const {store} = useContext(Context);    
@@ -123,6 +124,7 @@ const App:FC = () => {
         <Route path="/emailcheck" element={ <CourseraEmailCheck/>} />
         <Route path="/videorecordhelp" element={ <VideoRecordHelp/>} />
         <Route path="/astanahubhelp" element={ <AstanaHubSupport/>} />
+        <Route path="/astanahubinfo" element={ <AstanaHubInfo/>} />
         
         <Route path="/accounting" element={ <TutorDataExport/>} />
         <Route path="/accountingPrev" element={ <TutorDataExportPrevMonth/>} />
