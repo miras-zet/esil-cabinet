@@ -90,7 +90,7 @@ const AstanaHubInfo: FC = () => {
                         <p>{info2}</p>
                         <button className='navbarbutton' onClick={()=>handleExport('ФПН')}>Экспорт ФПН</button>&ensp;
                         <button className='navbarbutton' onClick={()=>handleExport('ФБУ')}>Экспорт ФБУ</button><br/><br/>
-                        <table hidden id="ФПН">
+                        <table hidden id="ФБУ">
                             <tr>
                                 <th>Фамилия</th>
                                 <th>Имя</th>
@@ -101,7 +101,7 @@ const AstanaHubInfo: FC = () => {
                             </tr>
                             {FBUList}
                         </table>
-                        <table hidden id="ФБУ">
+                        <table hidden id="ФПН">
                             <tr>
                                 <th>Фамилия</th>
                                 <th>Имя</th>
