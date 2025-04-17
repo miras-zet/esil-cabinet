@@ -37,7 +37,7 @@ const AstanaHubSupport: FC = () => {
                     return <div style={{ textAlign: 'left', width: '1200px' }}>
                         <KPINavbar />
                         <br /><br /><br /><br /><br /><br /><br />
-                        <Link to={"/ktu"}><button className="navbarbutton"><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link> <br />
+                        <Link to={"/"}><button className="navbarbutton"><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link> <br />
                         <br/><h2>Самые популярные вопросы по курсу ChatGPT от Lerna и ответы на них:</h2>
                         <br/><b>1. Не отображается ВУЗ при регистрации/не появляются курсы</b>
                         <br/>Пользователи проходят регистрацию не по той ссылке, которую мы вам отправили, то есть просто регистрируются на Lerna как обычные пользователи

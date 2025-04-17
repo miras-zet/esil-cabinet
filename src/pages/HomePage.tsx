@@ -43,7 +43,7 @@ const HomePage: FC = () => {
     localStorage.setItem('appVersion', currentVersion);
     window.location.reload();
   }
-  UploadService.checkPhotoUploadEligibility().then((response) => {
+  if (localStorage.getItem('data')) UploadService.checkPhotoUploadEligibility().then((response) => {
     localStorage.setItem('eligibility', response.data);
   });
 
