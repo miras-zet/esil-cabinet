@@ -7,6 +7,9 @@ import '../App.css';
 import KPINavbar from '../components/KPINavbar';
 import { TiArrowBack } from 'react-icons/ti';
 import InfoService from '../services/InfoService';
+import IAstanaHubInfoSpecific from '../models/IAstanaHubInfoSpecific';
+import { exportHtmlTableToExcel } from '../models/exportHtmlTableToExcel';
+import moment from 'moment';
 
 
 const AstanaHubInfo: FC = () => {
@@ -15,11 +18,22 @@ const AstanaHubInfo: FC = () => {
     const [info, setInfo] = useState<String>("");
     const [info2, setInfo2] = useState<String>("");
 
+    const [FPNInfo, setFPNInfo] = useState<Array<IAstanaHubInfoSpecific>>([]);
+    const [FBUInfo, setFBUInfo] = useState<Array<IAstanaHubInfoSpecific>>([]);
+
+    moment.locale('ru');
+
     useEffect(() => {
         InfoService.getAstanaHubInfo().then((response) => {
             setInfo0(response.data.message);
             setInfo(response.data.message1);
             setInfo2(response.data.message2);
+        });
+        InfoService.getAstanaHubInfoSpecific('ФПН').then((response) => {
+            setFPNInfo(response.data)
+        });
+        InfoService.getAstanaHubInfoSpecific('ФБУ').then((response) => {
+            setFBUInfo(response.data)
         });
         if (localStorage.getItem('token')) {
             store.checkAuth()
@@ -39,7 +53,29 @@ const AstanaHubInfo: FC = () => {
             </div>
         );
     }
-
+    const handleExport = (tableid) => {
+        exportHtmlTableToExcel(tableid, `Кафедра ${tableid} студенты не сдавшие курс ${moment(Date.now()).format("LL")}`, [80,80,80,90,65,75],[]);
+      };
+    const FBUList = FBUInfo.map((element) =>
+        <tr key={element.lastname} style={{ textAlign: 'center' }}>
+            <td>{element.lastname}</td>
+            <td>{element.firstname}</td>
+            <td>{element.patronymic}</td>
+            <td>{element.cafedra}</td>
+            <td>{element.course}</td>
+            <td>{element.group}</td>
+        </tr>
+    );
+    const FPNList = FPNInfo.map((element) =>
+        <tr key={element.lastname} style={{ textAlign: 'center' }}>
+            <td>{element.lastname}</td>
+            <td>{element.firstname}</td>
+            <td>{element.patronymic}</td>
+            <td>{element.cafedra}</td>
+            <td>{element.course}</td>
+            <td>{element.group}</td>
+        </tr>
+    );
     return (
         <div>
             {(() => {
@@ -52,8 +88,30 @@ const AstanaHubInfo: FC = () => {
                         <p>{info0}</p>
                         <p>{info}</p>
                         <p>{info2}</p>
-                        {/* <h4><a target='_blank' href='https://drive.google.com/file/d/1RaUX58QWjdBhZq47AEi4xfzh7IzHHBJc/view?usp=drive_link'>Ссылка на видеоинструкцию №1</a></h4>
-                        <h4><a target='_blank' href='https://drive.google.com/file/d/1fcSYvgs2eRfjorTZbpZxiA8RQlQhozIR/view?usp=drive_link'>Ссылка на видеоинструкцию №2</a></h4> */}
+                        <button className='navbarbutton' onClick={()=>handleExport('ФПН')}>Экспорт ФПН</button>&ensp;
+                        <button className='navbarbutton' onClick={()=>handleExport('ФБУ')}>Экспорт ФБУ</button><br/><br/>
+                        <table hidden id="ФПН">
+                            <tr>
+                                <th>Фамилия</th>
+                                <th>Имя</th>
+                                <th>Отчество</th>
+                                <th>Кафедра</th>
+                                <th>Курс</th>
+                                <th>Группа</th>
+                            </tr>
+                            {FBUList}
+                        </table>
+                        <table hidden id="ФБУ">
+                            <tr>
+                                <th>Фамилия</th>
+                                <th>Имя</th>
+                                <th>Отчество</th>
+                                <th>Кафедра</th>
+                                <th>Курс</th>
+                                <th>Группа</th>
+                            </tr>
+                            {FPNList}
+                        </table>
                     </div>
                 }
                 else {

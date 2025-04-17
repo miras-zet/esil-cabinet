@@ -193,6 +193,7 @@ const EditLibraryBook: FC = () => {
                                     {bookData?.RLibraryCategoryRLibraryBook == 25 ? <option value="25" selected>Монографии</option>:<option value="25" >Монографии</option>}
                                     {bookData?.RLibraryCategoryRLibraryBook == 26 ? <option value="26" selected>Учебники</option>:<option value="26" >Учебники</option>}
                                     {bookData?.RLibraryCategoryRLibraryBook == 27 ? <option value="27" selected>Учебные пособия</option>:<option value="27" >Учебные пособия</option>}
+                                    {bookData?.RLibraryCategoryRLibraryBook == 28 ? <option value="28" selected>Учебно-методическое пособие</option>:<option value="28" >Учебно-методическое пособие</option>}
                                 </select></td>
                             </tr>
                         </tbody>

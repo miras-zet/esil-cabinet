@@ -10,7 +10,7 @@ import { TiArrowBack } from 'react-icons/ti';
 import BookService from '../services/BookService';
 import IEBook from '../models/IEBook';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
-import { FaPen } from 'react-icons/fa';
+import { FaPen, FaTrash } from 'react-icons/fa';
 
 const EBooks: FC = () => {
   const { store } = useContext(Context);
@@ -63,6 +63,21 @@ const EBooks: FC = () => {
       </div>
     );
   }
+  const deleteEBook = (ebookid) =>{
+    if(confirm('Вы действительно хотите удалить книгу?')){
+      BookService.deleteEBook(ebookid)
+                .then(() => {
+                    location.reload();
+                })
+                .catch((err) => {
+                    if (err.response && err.response.data && err.response.data.message) {
+                        alert(err.response.data.message);
+                    } else {
+                        alert("Ошибка удаления");
+                    }
+                });
+    }
+  }
   const openPDF = (url, ebookid) => {
     localStorage.setItem('pdfURL', url.split('/')[url.split('/').length - 1]);
     BookService.eBookAddLog(localStorage.getItem('user_id'), ebookid).then(() => {
@@ -99,6 +114,7 @@ const EBooks: FC = () => {
     return <tr key={element.id}>
       <td id="table-divider-stats"><button className='backbutton' onClick={() => openPDF(element.EBookPath, element.id)}>Открыть</button>&nbsp;
       {localStorage.getItem('role')=='librarian'?<button className="backbutton" onClick={() => editBook(element.id)}><FaPen /></button>:''}
+      {localStorage.getItem('role')=='librarian'?<button className="redbutton" onClick={() => deleteEBook(element.id)}><FaTrash /></button>:''}<br/>
       {localStorage.getItem('role')=='librarian'?<a href={'https://cloud.esil.edu.kz/api/view?filename='+element.EBookPath.split('/')[element.EBookPath.split('/').length-1]} target='_blank'>Скачать</a>:''}
       </td>
       <td id="table-divider-stats">{element.NameRuBook}</td>

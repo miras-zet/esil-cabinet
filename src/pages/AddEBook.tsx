@@ -26,7 +26,7 @@ const AddEBook: FC = () => {
         if (localStorage.getItem('token')) {
             store.checkAuth()
         }
-        BookService.getBookCategories().then((response) => {
+        BookService.getEBookCategories().then((response) => {
             setBookCategories(response.data);
         });
     }, [])

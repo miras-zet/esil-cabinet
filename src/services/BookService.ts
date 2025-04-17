@@ -196,6 +196,12 @@ const deleteBook = (id): Promise<any> => {
     }
     return api.get(`/books/deletebook`, { params });
 };
+const deleteEBook = (id): Promise<any> => {
+    const params = {
+        id: id,
+    }
+    return api.get(`/books/deleteEbook`, { params });
+};
 const resolveBookTransfer = (id): Promise<any> => {
     const params = {
         id: id,
@@ -214,9 +220,13 @@ const getDueBookForUser = (): Promise<any> => {
 const getBookCategories = (): Promise<any> => {
     return api.get(`/books/getbookcategories`);
 };
+const getEBookCategories = (): Promise<any> => {
+    return api.get(`/books/getebookcategories`);
+};
 
 const BookService = {
     getAllBooks,
+    getEBookCategories,
     getPhysicalBookPageCount,
     getEBookPageCount,
     getBooksByName,
@@ -242,6 +252,7 @@ const BookService = {
     transferBook,
     transferBookBatch,
     deleteBook,
+    deleteEBook,
     getDueBooks,
     getDueBookForUser,
     resolveBookTransfer
