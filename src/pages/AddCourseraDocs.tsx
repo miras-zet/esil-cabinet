@@ -131,6 +131,7 @@ const AddCourseraDocs: FC = () => {
         <div>
             {(() => {
                 const role = localStorage.getItem('role');
+                const unixTimestamp = Math.floor(Date.now() / 1000);
                 if (role == 'plt_student') {
                     return <div style={{ textAlign: 'left', width: '1200px' }}>
                         <KPINavbar />
@@ -138,50 +139,25 @@ const AddCourseraDocs: FC = () => {
                         <button onClick={() => goBack()} className='backbutton'><TiArrowBack style={{ verticalAlign: 'middle', marginTop: '-4px' }} /> Вернуться назад</button><br /><br />
                         <br />
                         <h3>Добавить сертификат</h3>
+                        {/* Ограничение до 30.06.2025 */}
+                        {unixTimestamp < 1751309999 ? <><h4>«Основы Искусственного Интеллекта: чат GPT»</h4>
+                            {courseraDocs.find(doc => doc.filetype === 1) ? (
+                                <><p style={{ color: 'green' }}>Файл загружен</p><br />
+                                    <button onClick={() => deleteDoc()} className='backbutton'>Удалить файл</button><br />
+                                </>
+                            ) : (
+                                <>Прикрепить .pdf файл:
+                                    &emsp;<label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'DimGray' }}>
+                                        {currentFileOne ? `Выбран файл: ${currentFileOne.name.length < 35 ? currentFileOne.name : currentFileOne.name.substring(0, 35) + '...'}` : 'Выберите файл...'}
+                                        <input type="file" hidden onChange={selectFileOne} />
+                                    </label>
+                                    <br /><br />
 
-                        <h4>«Основы Искусственного Интеллекта: чат GPT»</h4>
-                        {courseraDocs.find(doc => doc.filetype === 1) ? (
-                            <><p style={{ color: 'green' }}>Файл загружен</p><br/>
-                            <button onClick={() => deleteDoc()} className='backbutton'>Удалить файл</button><br />
-                            </>
-                        ) : (
-                            <>
-                                
-
-                                Прикрепить .pdf файл:
-                                &emsp;<label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'DimGray' }}>
-                                    {currentFileOne ? `Выбран файл: ${currentFileOne.name.length < 35 ? currentFileOne.name : currentFileOne.name.substring(0, 35) + '...'}` : 'Выберите файл...'}
-                                    <input type="file" hidden onChange={selectFileOne} />
-                                </label>
-                                <br /><br />
-
-                                <button className="navbarbutton" id='mainbutton1' onClick={() => addCertificateOne()} disabled={!currentFileOne}>Добавить</button>
-                                <br/><br/><i>После нажатия необходимо подождать окончания загрузки</i>
-                                <br /><br /><br />
-                            </>
-                        )}
-{/* 
-                        <h4>«Prompt-инженерия для ChatGPT»</h4>
-                        {courseraDocs.find(doc => doc.filetype === 2) ? (
-                            <p style={{ color: 'green' }}>Файл загружен</p>
-                        ) : (
-                            <>
-                                Ссылка-подтверждение:
-                                &emsp;<input id="inputLink2" className='btnNeutral' style={{ width: '300px' }} type="text" placeholder='Ссылка'></input>
-                                <br /><br />
-
-                                Прикрепить .pdf файл:
-                                &emsp;<label className="btnNeutral" style={{ backgroundColor: 'silver', color: 'DimGray' }}>
-                                    {currentFileTwo ? `Выбран файл: ${currentFileTwo.name.length < 35 ? currentFileTwo.name : currentFileTwo.name.substring(0, 35) + '...'}` : 'Выберите файл...'}
-                                    <input type="file" hidden onChange={selectFileTwo} />
-                                </label>
-                                <br /><br />
-
-                                <button className="navbarbutton" id='mainbutton2' onClick={() => addCertificateTwo()} disabled={!currentFileTwo}>Добавить</button>
-                                <br/><br/><i>После нажатия необходимо подождать окончания загрузки</i>
-                                <br />
-                            </>
-                        )} */}
+                                    <button className="navbarbutton" id='mainbutton1' onClick={() => addCertificateOne()} disabled={!currentFileOne}>Добавить</button>
+                                    <br /><br /><i>После нажатия необходимо подождать окончания загрузки</i>
+                                    <br /><br /><br />
+                                </>
+                            )}</> : <><h4>Загрузка курсов недоступна в связи с ограничением даты.</h4></>}
                         <br />
 
                     </div>

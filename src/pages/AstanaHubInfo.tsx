@@ -11,11 +11,13 @@ import InfoService from '../services/InfoService';
 
 const AstanaHubInfo: FC = () => {
     const { store } = useContext(Context);
+    const [info0, setInfo0] = useState<String>("");
     const [info, setInfo] = useState<String>("");
     const [info2, setInfo2] = useState<String>("");
 
     useEffect(() => {
         InfoService.getAstanaHubInfo().then((response) => {
+            setInfo0(response.data.message);
             setInfo(response.data.message1);
             setInfo2(response.data.message2);
         });
@@ -47,6 +49,7 @@ const AstanaHubInfo: FC = () => {
                         <KPINavbar />
                         <br /><br /><br /><br /><br /><br /><br />
                         <Link to={"/"}><button className="navbarbutton"><TiArrowBack style={{ verticalAlign: 'middle' }} /> Вернуться назад</button></Link> <br />
+                        <p>{info0}</p>
                         <p>{info}</p>
                         <p>{info2}</p>
                         {/* <h4><a target='_blank' href='https://drive.google.com/file/d/1RaUX58QWjdBhZq47AEi4xfzh7IzHHBJc/view?usp=drive_link'>Ссылка на видеоинструкцию №1</a></h4>
