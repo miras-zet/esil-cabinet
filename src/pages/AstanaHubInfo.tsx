@@ -54,7 +54,7 @@ const AstanaHubInfo: FC = () => {
         );
     }
     const handleExport = (tableid) => {
-        exportHtmlTableToExcel(tableid, `Кафедра ${tableid} студенты не сдавшие курс ${moment(Date.now()).format("LL")}`, [80,80,80,90,65,75],[]);
+        exportHtmlTableToExcel(tableid, `${tableid} студенты не сдавшие курс ${moment(Date.now()).format("LL")}`, [80,80,80,120,40,80],[]);
       };
     const FBUList = FBUInfo.map((element) =>
         <tr key={element.lastname} style={{ textAlign: 'center' }}>

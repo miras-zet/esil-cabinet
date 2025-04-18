@@ -154,7 +154,8 @@ const AddCourseraDocs: FC = () => {
                                     <br /><br />
 
                                     <button className="navbarbutton" id='mainbutton1' onClick={() => addCertificateOne()} disabled={!currentFileOne}>Добавить</button>
-                                    <br /><br /><i>После нажатия необходимо подождать окончания загрузки</i>
+                                    <br /><br /><i>Наименование файла не должно превышать 30 символов</i>
+                                    <br /><i>После нажатия необходимо подождать окончания загрузки</i>
                                     <br /><br /><br />
                                 </>
                             )}</> : <><h4>Загрузка курсов недоступна в связи с ограничением даты.</h4></>}
