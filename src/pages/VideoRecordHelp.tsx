@@ -65,7 +65,7 @@ const TutorPublicationsInfoContainer: FC = () => {
                     });
                 } break;
                 case 'shablon': {
-                    extension = 'potx';
+                    extension = 'pptx';
                     response = await api.get(`${configFile.API_URL}/upload/downloadrecording/${argument}`, {
                         responseType: 'blob',
                     });
