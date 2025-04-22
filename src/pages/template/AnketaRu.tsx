@@ -21,7 +21,7 @@ export function AnketaRu() {
     });
   }, []);
 
-  
+  moment.locale('ru');
   const generatePdf = () => {
     const report = document.getElementById('anketa');
     var opt = {
@@ -34,6 +34,7 @@ export function AnketaRu() {
     html2pdf().set(opt).from(report).save()
   };
   const data = JSON.parse(localStorage.getItem('data'));
+  const seriya = `№${applicationData?.certificate_serial != '' ? applicationData?.certificate_serial : applicationData?.alternative_certificate_serial ? applicationData?.alternative_certificate_serial:'_______'} ${applicationData?.certificate_number != '' ? applicationData?.certificate_number : applicationData?.alternative_certificate_number ? applicationData?.alternative_certificate_number:'______________'} от ${applicationData?.alternative_certificate_date!='' ? moment(applicationData?.alternative_certificate_date).format("LL") :  moment(applicationData?.certificate_date).format("LL")} ${applicationData?.altynBelgi!==0?'(Алтын белгі)':''}`;
   const anketaValuesRu = [
     ['Фамилия', applicationData?.lastname],
     ['Имя', applicationData?.firstname],
@@ -45,35 +46,36 @@ export function AnketaRu() {
     ['Срок действия', moment(applicationData?.id_thru).format("DD.MM.YYYY")],
     ['Орган выдачи', applicationData?.id_dep],
     ['Пол', applicationData?.sex],
+    ['Семейное положение', applicationData?.ismarried==1 ? 'Женат / замужем':'Холост / не замужем'],
     ['Место рождения', applicationData?.birth_place],
     ['Адрес проживания', applicationData?.living_address],
     ['Адрес прописки', applicationData?.registration_address],
-    ['Место проживания КАТО', applicationData?.living_place_kato],
-    ['Место регистрации КАТО', applicationData?.registration_place_kato],
-    ['Место рождения КАТО', applicationData?.birth_place_kato],
+    // ['Место проживания КАТО', applicationData?.living_place_kato],
+    // ['Место регистрации КАТО', applicationData?.registration_place_kato],
+    // ['Место рождения КАТО', applicationData?.birth_place_kato],
     ['Номер телефона', applicationData?.phone1],
-    ['Дом. номер телефона', applicationData?.phone2],
     ['Телефон родителей', '...'],
-    ['Эл. почта', applicationData?.email],
     ['Национальность', applicationData?.nationality],
     ['Гражданство', applicationData?.citizenship],
-    ['Образовательная программа', applicationData?.specialization],
-    ['Форма обучения', applicationData?.study_form],
-    ['Академическая степень', applicationData?.degree_type],
-    ['Образование', '...'],
-    ['Язык обучения', applicationData?.study_language],
-    ['Зачислить по результатам', '...'],
-    ['Баллы ЕНТ', applicationData?.exam_score],
-    ['В число студентов', '...'],
-    ['Учебное заведение', applicationData?.edu_name],
-    ['Место окончания учебного заведения', applicationData?.edu_place_name],
-    ['Нуждаетесь ли Вы в общежитии', (applicationData?.dorm != 1 ? 'Да' : 'Нет')],
-    ['Какие языки изучал', '...'],
-    ['Льготы', '...'],
-    ['Условник', '...'],
-    ['Инклюзив', '...'],
-    ['ГРАНТ', '...'],
-    ['Оплаченная сумма', '...'],
+    ['Льготы', applicationData?.benefits],
+    ['Серия, № и дата выдачи', seriya],    
+    // ['Образовательная программа', applicationData?.specialization],
+    // ['Форма обучения', applicationData?.study_form],
+    // ['Академическая степень', applicationData?.degree_type],
+    // ['Образование', '...'],
+    // ['Язык обучения', applicationData?.study_language],
+    // ['Зачислить по результатам', '...'],
+    // ['Баллы ЕНТ', applicationData?.exam_score],
+    // ['В число студентов', '...'],
+    // ['Учебное заведение', applicationData?.edu_name],
+    // ['Место окончания учебного заведения', applicationData?.edu_place_name],
+    // ['Нуждаетесь ли Вы в общежитии', (applicationData?.dorm != 1 ? 'Да' : 'Нет')],
+    // ['Какие языки изучал', '...'],
+    // ['Льготы', '...'],
+    // ['Условник', '...'],
+    // ['Инклюзив', '...'],
+    // ['ГРАНТ', '...'],
+    // ['Оплаченная сумма', '...'],
     ['Источник информации', '...'],
     ['Принял(-а)', data.lastname + ' ' + data.name + ' ' + data.middlename]
   ];

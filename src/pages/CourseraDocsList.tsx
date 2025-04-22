@@ -6,20 +6,21 @@ import { Link, Navigate } from 'react-router-dom';
 import '../App.css';
 import './Certificate.css'
 import KPINavbar from '../components/KPINavbar';
-import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa';
+import { FaDownload } from 'react-icons/fa';
 import CafedraService from '../services/CafedraService';
 import ICourseraDocsList from '../models/ICourseraDocsList';
-
+import api from '../http-common';
+import configFile from "../http/config.json";
+import { exportHtmlTableToExcel } from '../models/exportHtmlTableToExcel';
+import moment from 'moment';
 
 const CourseraDocsList: FC = () => {
     const { store } = useContext(Context);
     //const navigate = useNavigate();
     const [data, setData] = useState<Array<ICourseraDocsList>>([]);
-    const [approvedHidden, setApprovedHidden] = useState<boolean>(false);
+    moment.locale('ru');
     useEffect(() => {
-        if (localStorage.getItem('editMode') == 'true') localStorage.setItem('editMode', 'false');
-        if (localStorage.getItem('approvedHidden') == 'true') setApprovedHidden(true);
-        CafedraService.getCourseraDocsByCafedra().then((response) => {
+        CafedraService.getCourseraDocsAll().then((response) => {
             setData(response.data);
         }).catch((err) => {
             console.log(err);
@@ -35,34 +36,7 @@ const CourseraDocsList: FC = () => {
     //   setModal(modals)
     // },[])
 
-    const switchButton = () => {
-        if (approvedHidden) {
-            setApprovedHidden(false)
-            localStorage.setItem('approvedHidden', 'false');
-        }
-        else {
-            setApprovedHidden(true);
-            localStorage.setItem('approvedHidden', 'true');
-        }
 
-    }
-
-    // const displayMessageApproved = (fio, datecreated, datemodified, ishostel, roomnumber) => {
-    //     let dormtype = ''
-    //     if (ishostel == 0) { dormtype = 'Собственное общежитие'; }
-    //     else {
-    //         dormtype = 'Хостел';
-    //     }
-    //     alert(`${fio} \nЗаявка создана: ${moment(datecreated).format("DD.MM.YYYY")} \nЗаявка принята: ${moment(datemodified).format("DD.MM.YYYY")} \nВид общежития: ${dormtype} \nНомер комнаты: ${roomnumber}`);
-    // }
-
-    // const displayMessageDenied = (fio, datecreated, datemodified, notification_message) => {
-    //     alert(`${fio} \nЗаявка создана: ${moment(datecreated).format("DD.MM.YYYY")} \nЗаявка отклонена: ${moment(datemodified).format("DD.MM.YYYY")} \nПричина: ${notification_message}`);
-    // }
-
-    // const showBenefits = (fio, benefits) => {
-    //     alert(`Льгота у ${fio}: \n${benefits}`);
-    // }
 
     // const redirectDocs = (type,data,extradata,iin) =>{
     //     switch(type){
@@ -82,19 +56,40 @@ const CourseraDocsList: FC = () => {
     //         } break;
     //     }
     // }
+    const handleExport = (tableid) => {
+        exportHtmlTableToExcel(tableid, `Студенты, сдавшие курсы AI-Sana ${moment(Date.now()).format("LL")}`, [40,300,250,0,0],[]);
+    };
+    const downloadFile = async (filepath, fio) => {
+        let extension = 'pdf';
+        const encodedFilePath = encodeURIComponent(filepath);
+        const response = await api.get(`${configFile.API_URL}/upload/downloadastanahub/${encodedFilePath}`, {
+          responseType: 'blob',
+        });
+        try {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `${fio}_certificate.${extension}`);
+            document.body.appendChild(link);
+            link.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(link);
+        } catch (error) {
+            console.error('Error downloading file:', error);
+            alert('Ошибка загрузки файла.');
+        }
+    }
     const dataList = data.map((element, index) =>
-        (element.confirmed != 1 || !approvedHidden) ? <tr key={element.id} style={{ textAlign: 'center' }}>
+        <tr key={element.id} style={{ textAlign: 'center' }}>
             <td style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>{index + 1}&nbsp;&nbsp;&nbsp;</td>
             <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>{element.fio}</td>
-            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{element.filepath}</td>
-            {/* <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{element.link}</td> */}
-            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}>{element.confirmed}</td>  
-        </tr> : <></>
+            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt', textAlign: 'center' }}>{element.cafedranameru}</td>
+            <td id="table-divider" style={{ verticalAlign: 'middle', fontSize: '13pt' }}><button onClick={() => downloadFile(element.filepath, element.fio)}><FaDownload></FaDownload></button></td>
+        </tr>
     );
     if (store.isLoading) {
         return <div>Loading ...</div>
     }
-
 
     if (!store.isAuth) {
         return (
@@ -103,26 +98,7 @@ const CourseraDocsList: FC = () => {
             </div>
         );
     }
-
-    // const redirect = (iin: any, fio: string) => {
-    //     localStorage.setItem('dormType', 'empty');
-    //     localStorage.setItem('dormIIN', iin);
-    //     localStorage.setItem('dormFIO', fio);
-    //     open();
-    // }
-
-    // const redirectEdit = (iin: any, fio: string, ishostel: string, dormMessage: string, dormRoomNumber: string) => {
-    //     let dormType;
-    //     if (ishostel == '0') dormType = 'dorm'
-    //     else dormType = 'hostel';
-    //     localStorage.setItem('dormIIN', iin);
-    //     localStorage.setItem('dormFIO', fio);
-    //     localStorage.setItem('dormType', dormType);
-    //     localStorage.setItem('dormMessage', dormMessage);
-    //     localStorage.setItem('dormRoomNumber', dormRoomNumber);
-    //     localStorage.setItem('editMode', 'true');
-    //     open();
-    // }
+  
     return (
         <div>
             {(() => {
@@ -132,22 +108,18 @@ const CourseraDocsList: FC = () => {
                         <KPINavbar />
                         <br /><br /><br /><br />
                         <Link to={"/"}><button className='navbarbutton'>Вернуться назад</button></Link><br />
-                        <h2>Список загруженных сертификатов Coursera</h2>
+                        <h2>Список загруженных сертификатов AI-Sana</h2>
                         <h3>{dataList.length} файлов</h3>
                         <br />
-                        {approvedHidden ?
-                            <button className='backbutton' onClick={() => switchButton()}><FaRegEye /> Показать принятые</button>
-                            :
-                            <button className='backbutton' onClick={() => switchButton()}><FaRegEyeSlash /> Скрыть принятые</button>
-                        }
+                        <button className='backbutton' onClick={() => handleExport('opaqueTable')}><FaDownload></FaDownload> Экспортировать</button>&ensp;
                         <br /><br />
                         <table id='opaqueTable' style={{ marginLeft: '-1.3%', paddingLeft: '15px', width: '107%' }}>
                             <tr>
                                 <th style={{ textAlign: 'center' }}><br />№&nbsp;&nbsp;<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />ФИО<br />&nbsp;</th>
-                                <th style={{ textAlign: 'center' }}><br />Ссылка на файл<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center' }}><br />Кафедра<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center' }}>Скачать</th>
                                 {/* <th style={{ textAlign: 'center' }}><br />Ссылка-подтверждение<br />&nbsp;</th> */}
-                                <th style={{ textAlign: 'center' }}><br />Подтверждено<br />&nbsp;</th>
                                 <th>&nbsp;</th>
                             </tr>
                             {dataList}

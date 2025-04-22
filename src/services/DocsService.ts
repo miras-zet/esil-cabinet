@@ -56,6 +56,34 @@ const getTitleDataKz = () : Promise<any> => {
   const userid = localStorage.getItem('applicant_user_id');  
   return http.get(`/docs/title/kz/${userid}`,{params});
 };
+const getStatementDataRu = () : Promise<any> => {
+  const params = {
+    token: localStorage.getItem('token'),
+  }
+  const userid = localStorage.getItem('applicant_user_id');  
+  return http.get(`/docs/statement/ru/${userid}`,{params});
+};
+const getStatementDataKz = () : Promise<any> => {
+  const params = {
+    token: localStorage.getItem('token'),
+  }
+  const userid = localStorage.getItem('applicant_user_id');  
+  return http.get(`/docs/statement/kz/${userid}`,{params});
+};
+const getStatementDOTDataRu = () : Promise<any> => {
+  const params = {
+    token: localStorage.getItem('token'),
+  }
+  const userid = localStorage.getItem('applicant_user_id');  
+  return http.get(`/docs/statementDOT/ru/${userid}`,{params});
+};
+const getStatementDOTDataKz = () : Promise<any> => {
+  const params = {
+    token: localStorage.getItem('token'),
+  }
+  const userid = localStorage.getItem('applicant_user_id');  
+  return http.get(`/docs/statementDOT/kz/${userid}`,{params});
+};
 const addStatement = (Faculty,FIO,Number,ParentNumber,Location) : Promise<any>=>{ 
   const params = {
     userid : localStorage.getItem('user_id'),
@@ -212,6 +240,7 @@ const getAdmissionStatsMain = () : Promise<any>=>{
 const addApplicant = (iin:string) : Promise<any> =>{
   const params = {
     token: localStorage.getItem('token'),
+    userid: localStorage.getItem('user_id'),
   }
   return http.get(`/applicant/register/${iin}`,{params});
 };
@@ -230,6 +259,10 @@ const getTutorAcademicStatus = () : Promise<any> =>{
 
 const DocsService = {
   getTutorPubsInfo,
+  getStatementDataRu,
+  getStatementDataKz,
+  getStatementDOTDataRu,
+  getStatementDOTDataKz,
   getTutorAcademicStatus,
   createDormDocs,
   getAgreementData,

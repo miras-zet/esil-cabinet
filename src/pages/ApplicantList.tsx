@@ -71,6 +71,18 @@ const ApplicantList: FC = () => {
                 </div>}
             </td>
             <td id="table-divider" style={{ verticalAlign: 'middle', textAlign: 'center' }}>
+                {element.study_language == 'русский' ? 
+                <div>
+                    <button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#52A177', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Ru', 'statement')}><RiFileListFill /></button>&nbsp;
+                    <button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#e8bc56', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Ru', 'statementDOT')}><RiFileListFill /></button>&nbsp;
+                </div>
+                    :
+                <div>
+                    <button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#52A177', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Kz', 'statement')}><RiFileListFill /></button>&nbsp;
+                    <button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#e8bc56', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Kz', 'statementDOT')}><RiFileListFill /></button>&nbsp;
+                </div>}
+            </td>
+            <td id="table-divider" style={{ verticalAlign: 'middle', textAlign: 'center' }}>
             {element.study_language == 'русский' ? 
             <div>
                 <button style={{ verticalAlign: 'middle', height: '38px', paddingBottom: '25px', backgroundColor: '#A585C4', color: 'white', width: '73px' }} onClick={() => redirect(element.id, element.lastname, 'Ru', 'title')}><RiArchiveFill/></button>&nbsp;
@@ -131,7 +143,7 @@ const ApplicantList: FC = () => {
                         <Link to={"/addapplicant"}><button className='navbarbutton'>Добавить нового абитуриента (из Platonus)</button></Link> <br /><br />
                         {/* <Link to={"/dormrequests"}><button className='graybutton'>Заявки на общежитие</button></Link> <br /><br /> */}
                         <br />
-                        <table id='opaqueTable' style={{ marginLeft: '-1.3%', paddingLeft: '15px', width: '107%' }}>
+                        <table id='opaqueTable' style={{ marginLeft: '-1.3%', paddingLeft: '15px', width: '109%' }}>
                             <tr>
                                 <th style={{ textAlign: 'center' }}><br />№&nbsp;&nbsp;<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />ФИО<br />&nbsp;</th>
@@ -139,7 +151,8 @@ const ApplicantList: FC = () => {
                                 <th style={{ textAlign: 'center' }}><br />Форма обучения<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Академическая степень<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center' }}><br />Язык обучения<br />&nbsp;</th>
-                                <th style={{ textAlign: 'center', width:'20%' }}><br />Документы<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center', width:'45%' }}><br />Документы<br />&nbsp;</th>
+                                <th style={{ textAlign: 'center', width:'30%' }}><br />Заявление (+ДОТ)<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center'}}><br />Титульный лист<br />&nbsp;</th>
                                 <th style={{ textAlign: 'center'}}><br />Общежитие<br />&nbsp;</th>
                                 <th>&nbsp;</th>

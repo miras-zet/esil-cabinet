@@ -82,6 +82,10 @@ import CourseraEmailCheck from './pages/CourseraEmailCheck'
 import VideoRecordHelp from './pages/VideoRecordHelp'
 import AstanaHubSupport from './pages/AstanaHubSupport'
 import AstanaHubInfo from './pages/AstanaHubInfo'
+import { StatementRu } from './pages/template/StatementRu'
+import { StatementKz } from './pages/template/StatementKz'
+import { StatementDOTRu } from './pages/template/StatementDOTRu'
+import { StatementDOTKz } from './pages/template/StatementDOTKz'
 
 const App:FC = () => {  
 //   const {store} = useContext(Context);    
@@ -151,6 +155,10 @@ const App:FC = () => {
         <Route path="/contractKz" element={<ContractKz/>}/>
         <Route path="/titleRu" element={<TitleRu/>}/>
         <Route path="/titleKz" element={<TitleKz/>}/>
+        <Route path="/statementRu" element={<StatementRu/>}/>
+        <Route path="/statementKz" element={<StatementKz/>}/>
+        <Route path="/statementDOTRu" element={<StatementDOTRu/>}/>
+        <Route path="/statementDOTKz" element={<StatementDOTKz/>}/>
         
         <Route path="/techNewDocument" element={<TechAddNewDocument/>}/>
         <Route path="/techDueDocuments" element={<TechDueDocuments/>}/>
@@ -167,7 +175,7 @@ const App:FC = () => {
         <Route path="/viewdormcard" element={<DormCard/>}/>
         <Route path="/viewdormagreement" element={<DormAgreement/>}/>
 
-        <Route path="/courseradocslist" element={<CourseraDocsList/>}/>
+        <Route path="/aisanadocslist" element={<CourseraDocsList/>}/>
         <Route path="/addvideo" element={<RegisterTutorVideo/>}/>
 
         {/* <Route path="/physicalbooks" element={<PhysicalBooks/>}/> */}
