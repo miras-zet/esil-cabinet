@@ -57,13 +57,13 @@ const CourseraDocsList: FC = () => {
     //     }
     // }
     const handleExport = (tableid) => {
-        exportHtmlTableToExcel(tableid, `Студенты, сдавшие курсы AI-Sana ${moment(Date.now()).format("LL")}`, [40,300,250,0,0],[]);
+        exportHtmlTableToExcel(tableid, `Студенты, сдавшие курсы AI-Sana ${moment(Date.now()).format("LL")}`, [40, 300, 250, 0, 0], []);
     };
     const downloadFile = async (filepath, fio) => {
         let extension = 'pdf';
-        const encodedFilePath = encodeURIComponent(filepath);
-        const response = await api.get(`${configFile.API_URL}/upload/downloadastanahub/${encodedFilePath}`, {
-          responseType: 'blob',
+        const sanitizedPath = filepath.replace(/^\/+/, '');
+        const response = await api.get(`${configFile.API_URL}/upload/downloadastanahub/${sanitizedPath}`, {
+            responseType: 'blob',
         });
         try {
             const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -98,7 +98,7 @@ const CourseraDocsList: FC = () => {
             </div>
         );
     }
-  
+
     return (
         <div>
             {(() => {
