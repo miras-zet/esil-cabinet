@@ -103,11 +103,11 @@ const CourseraDocsList: FC = () => {
         <div>
             {(() => {
                 const role = localStorage.getItem('role');
-                if (role == 'plt_tutor') {
+                if (role == 'ai_sana' || role == 'plt_tutor') {
                     return <div style={{ textAlign: 'left', width: '1200px', marginTop: '10%' }}>
                         <KPINavbar />
                         <br /><br /><br /><br />
-                        <Link to={"/"}><button className='navbarbutton'>Вернуться назад</button></Link><br />
+                        {role=='plt_tutor'?<Link to={"/"}><button className='navbarbutton'>Вернуться назад</button></Link>:''}<br />
                         <h2>Список загруженных сертификатов AI-Sana</h2>
                         <h3>{dataList.length} файлов</h3>
                         <br />
