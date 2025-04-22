@@ -61,8 +61,8 @@ const CourseraDocsList: FC = () => {
     };
     const downloadFile = async (filepath, fio) => {
         let extension = 'pdf';
-        const filename = filepath.split('/').pop(); 
-        const response = await api.get(`${configFile.API_URL}/upload/downloadastanahub/${filename}`, {
+        const filename = filepath.split('/').pop().replace(/\.pdf$/, ""); 
+        const response = await api.get(`${configFile.API_URL}/upload/astanahubfile/${filename}`, {
             responseType: 'blob',
         });
         try {
