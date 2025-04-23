@@ -19,7 +19,7 @@ export function StatementRu() {
             setStatementData(response.data);
         });
     }, []);
-
+    console.log(data,statementData);
     const generatePdf = () => {
         // currentApplicantFIO must be set in localstorage on page load
         const report = document.getElementById('title');

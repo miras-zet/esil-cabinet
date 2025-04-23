@@ -54,7 +54,9 @@ const AstanaHubInfo: FC = () => {
         );
     }
     const handleExport = (tableid) => {
-        exportHtmlTableToExcel(tableid, `${tableid} студенты не сдавшие курс ${moment(Date.now()).format("LL")}`, [80,80,80,120,40,80],[]);
+        const semicolon = '\u2236';
+        const currentDateTime = moment().format(`DD.MM.YYYY HH${semicolon}mm`);
+        exportHtmlTableToExcel(tableid, `${tableid} студенты не сдавшие курс (актуально на ${currentDateTime})`, [80,80,80,120,40,80],[]);
     };
     const FBUList = FBUInfo.map((element) =>
         <tr key={element.lastname} style={{ textAlign: 'center' }}>
@@ -80,7 +82,7 @@ const AstanaHubInfo: FC = () => {
         <div>
             {(() => {
                 const role = localStorage.getItem('role');
-                if (role == 'plt_tutor') {
+                if (role == 'plt_tutor' || role == 'ai_sana') {
                     return <div style={{ textAlign: 'left', width: '1200px' }}>
                         <KPINavbar />
                         <br /><br /><br /><br /><br /><br /><br />

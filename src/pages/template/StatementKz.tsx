@@ -14,12 +14,12 @@ export function StatementKz() {
     const data = JSON.parse(localStorage.getItem('data'));
     const [statementData, setStatementData] = useState<StatementResponse>();
     moment.locale('ru');
+    console.log(data,statementData);
     useEffect(() => {
         DocsService.getStatementDataRu().then((response) => {
             setStatementData(response.data);
         });
     }, []);
-
     const generatePdf = () => {
         // currentApplicantFIO must be set in localstorage on page load
         const report = document.getElementById('title');

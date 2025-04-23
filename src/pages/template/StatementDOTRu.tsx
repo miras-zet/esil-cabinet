@@ -13,6 +13,7 @@ export function StatementDOTRu() {
 
     const data = JSON.parse(localStorage.getItem('data'));
     const [statementData, setStatementData] = useState<StatementDOTResponse>();
+    console.log(data,statementData);
     moment.locale('ru');
     useEffect(() => {
         DocsService.getStatementDOTDataRu().then((response) => {
