@@ -12,14 +12,37 @@ export function ContractKz() {
   // const [certid] = useState<number>(id);
   // const [certificat, setCertificat] = useState<CertResponse>();
   const [contractData, setContractData] = useState<ContractResponse>();
+  const [selectedKey, setSelectedKey] = useState<string>("");
 
   useEffect(() => {
+    localStorage.removeItem('price');
     DocsService.getContractDataKz().then((response) => {
       setContractData(response.data);
     });
   }, []);
 
+  const options: Record<string, string> = {
+    "400 000": "Төрт жүз мың",
+    "594 000": "Бес жүз тоқсан төрт мың",
+    "789 000": "Жеті жүз сексен тоғыз мың",
+    "792 000": "Жеті жүз тоқсан екі мың",
+    "900 000": "Тоғыз жүз мың",
+    "990 000": "Тоғыз жүз тоқсан мың",
+    "1 052 000": "Бір миллион елу екі мың",
+    "1 050 000": "Бір миллион елу мың",
+    "1 200 000": "Бір миллион екі жүз мың",
+    "1 900 000": "Бір миллион тоғыз жүз мың",
+    "2 100 000": "Екі миллион жүз мың"
+  };
 
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const newKey = event.target.value;
+    const newValue = options[newKey];
+    const displayString = `( ${newKey} ) ${newValue}`;
+    localStorage.setItem('price', displayString);
+    setSelectedKey(newKey);
+  };
+ 
   const generatePdf = () => {
     const report = document.getElementById('contract');
     var opt = {
@@ -36,7 +59,18 @@ export function ContractKz() {
 
   return (
     <><div id='documentNavbar'><Link to="/applicants"><button id="documentNavbarButton">Назад</button></Link> &nbsp;
-      <button id="documentNavbarButton" onClick={generatePdf}>Скачать&nbsp;&nbsp;<FaDownload /></button></div>
+            <button id="documentNavbarButton" onClick={generatePdf}>Скачать&nbsp;&nbsp;<FaDownload /></button>
+            &ensp;<label htmlFor="keyValueSelect" style={{color:'white'}}>Выберите сумму:</label>&ensp;
+            <select id="keyValueSelect" value={selectedKey} onChange={handleChange}>
+                <option value="" disabled>-- Выберите --</option>
+                {Object.entries(options).map(([key]) => (
+                    <option key={key} value={key}>
+                        {`${key} теңге`}
+                        {/* {`${key} (${value})`} */}
+                    </option>
+                ))}
+            </select>
+        </div>
       <div id="contractBackground">
         <div id="contract">
           <div id="contractPadding">
@@ -189,7 +223,7 @@ export function ContractKz() {
                   <br /><b style={{ marginLeft: '8%' }}>3. БІЛІМ БЕРУ ҚЫЗМЕТІНЕ ТӨЛЕМНІҢ МӨЛШЕРІ МЕН ТӘРТІБІ</b>
                   <br />3.1. Кредиттің құны, оқу ақысының мөлшері, мерзімдері теңгемен белгіленеді және оны жыл сайын білім беру ұйымының басшысы бекітеді.
                   <br />3.2. Оқу жылының ақысы:
-                  <br />3.2.1. егер оқу жылы ағымдағы жылдың қыркүйек айынан келесі жылдың маусым айына дейінгі кезең болып есептелсе, Келісімшарт жасасқан кезде оқу ақысы  (______________)__________________________________________________________ теңгені құрайды;
+                  <br />3.2.1. егер оқу жылы ағымдағы жылдың қыркүйек айынан келесі жылдың маусым айына дейінгі кезең болып есептелсе, Келісімшарт жасасқан кезде оқу ақысы  <br/>{localStorage.getItem('price') && localStorage.getItem('price')!='' ? <><u>{localStorage.getItem('price')}</u></>:'(______________)_________________________________________________'} теңгені құрайды;
                   <br />3.2.2. егер оқу жылы ағымдағы жылдың қыркүйек айынан келесі жылдың шілде айына дейінгі кезең болып есептелсе (яғни жазғы семестрді қоса алғанда), Келісімшарт жасаған кезде оқу ақысы: (___________________)_____________________________________________________<br />_________________________________________________________) теңгені құрайды;
                   <br />3.3. Оқу ақысы Қазақстан Республикасының «Білім туралы» Заңына сәйкес және білім беру қызметтерінің шарттары мен құнын айтарлықтай өзгертетін, еңбек ақысын және инфляция индексін арттыратын нормативтік құқықтық актілер шығарылған жағдайда университет ректорының бұйрығымен өзгертілуі мүмкін, бірақ жылына бір реттен жиі емес. Бұл ретте Университет білім алушыны оқу ақысының өзгергені туралы, сондай-ақ қызметтер көрсету талаптарының және Шарттың басқа да талаптарының өзгергені туралы, оның ішінде қажет болған жағдайда Университет Келісімшартқа қосымша келісім жасаспай ақ мұндай ақпаратты интернет-ресурста www.esil.edu.kz сайтында жария қолжетімділікте орналастыру арқылы хабарлайды;
                   <br />3.4. Оқу ақысы Келісімшарттың реквизітінде көрсетілген университеттің шотына біржолғы немесе мынадай талаптарға сәйкес қолма-қол емес ақша аудару жолымен төленеді:

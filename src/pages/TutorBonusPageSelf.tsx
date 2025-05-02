@@ -268,7 +268,7 @@ const TutorBonusPageSelf: FC = () => {
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                            <td id="table-divider-stats-left" style={{zIndex:0, pointerEvents:'none',position:'absolute', height:'350px', width:'448px'}}><br/>Портал дистанционного обучения<br/><br/></td>
+                                                            <td id="table-divider-stats-left" style={{zIndex:0, pointerEvents:'none',position:'absolute', height:'415-px', width:'448px'}}><br/>Портал дистанционного обучения<br/><br/></td>
                                                             </tr>
                                                             <tr><br/><br/><br/></tr>
                                                             <tr>

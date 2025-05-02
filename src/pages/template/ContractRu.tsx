@@ -12,13 +12,22 @@ export function ContractRu() {
     // const [certid] = useState<number>(id);
     // const [certificat, setCertificat] = useState<CertResponse>();
     const [contractData, setContractData] = useState<ContractResponse>();
+    const [selectedKey, setSelectedKey] = useState<string>("");
 
     useEffect(() => {
+        localStorage.removeItem('price');
         DocsService.getContractDataRu().then((response) => {
             setContractData(response.data);
         });
     }, []);
 
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const newKey = event.target.value;
+        const newValue = options[newKey];
+        const displayString = `( ${newKey} ) ${newValue}`;
+        localStorage.setItem('price', displayString);
+        setSelectedKey(newKey);
+    };
 
     const generatePdf = () => {
         const report = document.getElementById('contract');
@@ -33,10 +42,33 @@ export function ContractRu() {
     };
     // const data = JSON.parse(localStorage.getItem('data'));
 
-
+    const options: Record<string, string> = {
+        "400 000": "Четыреста тысяч",
+        "594 000": "Пятьсот девяносто четыре тысячи",
+        "789 000": "Семьсот восемьдесят девять тысяч",
+        "792 000": "Семьсот девяносто две тысячи",
+        "900 000": "Девятьсот тысяч",
+        "990 000": "Девятьсот девяносто тысяч",
+        "1 052 000": "Один миллион пятьдесят две тысячи",
+        "1 050 000": "Один миллион пятьдесят тысяч",
+        "1 200 000": "Один миллион двести тысяч",
+        "1 900 000": "Один миллион девятьсот тысяч",
+        "2 100 000": "Два миллиона сто тысяч"
+      };
     return (
         <><div id='documentNavbar'><Link to="/applicants"><button id="documentNavbarButton">Назад</button></Link> &nbsp;
-            <button id="documentNavbarButton" onClick={generatePdf}>Скачать&nbsp;&nbsp;<FaDownload /></button></div>
+            <button id="documentNavbarButton" onClick={generatePdf}>Скачать&nbsp;&nbsp;<FaDownload /></button>
+            &ensp;<label htmlFor="keyValueSelect" style={{color:'white'}}>Выберите сумму:</label>&ensp;
+            <select id="keyValueSelect" value={selectedKey} onChange={handleChange}>
+                <option value="" disabled>-- Выберите --</option>
+                {Object.entries(options).map(([key]) => (
+                    <option key={key} value={key}>
+                        {`${key} тенге`}
+                        {/* {`${key} (${value})`} */}
+                    </option>
+                ))}
+            </select>
+        </div>
             <div id="contractBackground">
                 <div id="contract">
                     <div id="contractPadding">
@@ -192,7 +224,7 @@ export function ContractRu() {
                                     <br /><b style={{ marginLeft: '10%' }}>3. РАЗМЕР И ПОРЯДОК ОПЛАТЫ ОБРАЗОВАТЕЛЬНЫХ УСЛУГ</b>
                                     <br />3.1. Стоимость кредита, размер, сроки оплаты за обучение устанавливаются в тенге и ежегодно утверждаются руководителем организации образования.
                                     <br />3.2. Стоимость обучения за учебный год:
-                                    <br />3.2.1. если учебным годом считается период с сентября месяца текущего года по июнь месяц следующего года, на момент заключения договора, составляет:  (______________)_________________________________________________ тенге;
+                                    <br />3.2.1. если учебным годом считается период с сентября месяца текущего года по июнь месяц следующего года, на момент заключения договора, составляет:  <br/>{localStorage.getItem('price') && localStorage.getItem('price')!='' ? <><u>{localStorage.getItem('price')}</u></>:'(______________)_________________________________________________'} тенге;
                                     <br />3.2.2. если учебным годом считается период с сентября месяца текущего года по июль месяц следующего года (т.е. включая летний семестр), на момент заключения договора, составляет: (_______________________)____________________________<br />_________________________________________________________________) тенге;
                                     <br />3.3. Стоимость обучения может быть изменена приказом Ректора Университета в соответствии с Законом Республики Казахстан "Об образовании" и в случаях издания нормативных актов, существенно меняющих условия и расходы на образовательные услуги, увеличения расходов на оплату труда и индекса инфляции, но не более одного раза в год.  При  этом Университет  извещать Обучающегося об изменении стоимости обучения, а также об изменении условий оказания услуг и других условий Договора, в том числе, при необходимости и по усмотрению Университета, посредством размещения такой информации в публичном доступе на Интернет-ресурсе  www.esil.edu.kz , без заключения дополнительного соглашения к Договору;
                                     <br />3.4. Оплата за обучение производится путем безналичного перечисления денег на счет Университета, указанный в реквизитах договора, единовременно, либо согласно следующим условиям
