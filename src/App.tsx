@@ -86,6 +86,7 @@ import { StatementRu } from './pages/template/StatementRu'
 import { StatementKz } from './pages/template/StatementKz'
 import { StatementDOTRu } from './pages/template/StatementDOTRu'
 import { StatementDOTKz } from './pages/template/StatementDOTKz'
+import InternalDocs from './pages/InternalDocs'
 
 const App:FC = () => {  
 //   const {store} = useContext(Context);    
@@ -129,6 +130,7 @@ const App:FC = () => {
         <Route path="/videorecordhelp" element={ <VideoRecordHelp/>} />
         <Route path="/astanahubhelp" element={ <AstanaHubSupport/>} />
         <Route path="/astanahubinfo" element={ <AstanaHubInfo/>} />
+        <Route path="/internal_docs" element={ <InternalDocs/>} />
         
         <Route path="/accounting" element={ <TutorDataExport/>} />
         <Route path="/accountingPrev" element={ <TutorDataExportPrevMonth/>} />

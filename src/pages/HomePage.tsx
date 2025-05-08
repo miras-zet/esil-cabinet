@@ -393,6 +393,10 @@ const HomePage: FC = () => {
                         <h2>Оплата</h2>
                         <StudentDebt />
                         <br /></div><br /></tr>
+                      <tr><div id='homepagePanel'>
+                        <h2>Этика и безопасность</h2>
+                        <Link to="/internal_docs"><button className='navbarbutton'>Документы</button></Link><br />
+                        <br /></div><br /></tr>
                     </table>
                   </td>
                   <td style={{ width: '25px' }}></td>
